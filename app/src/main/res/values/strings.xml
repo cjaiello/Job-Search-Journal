@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">ChristinaAiello</string>
+
+
+    <string name="action_settings">Action Settings</string>
+    <string name="save">Save</string>
+
+    <!-- Initial Contact Fragment -->
+    <string name="initial_contact">Initial Contact</string>
+    <string name="date_of_interaction">Date of Interaction</string>
+    <string name="contact_name">Contact Name</string>
+    <string name="contact_email_address">Contact Email Address</string>
+    <string name="method_of_interaction">Method of Interaction</string>
+    <string name="what_did_you_discuss">What did you discuss?</string>
+
+    <!-- Set Up Interview Fragment -->
+    <string name="set_up_interview">Set Up Interview</string>
+    <string name="date_of_interview">Date of Interview</string>
+    <string name="names_of_interviewers">Name(s) of Interviewers</string>
+    <string name="misc_notes">Miscellaneous Notes</string>
+
+    <!-- Interview Completed -->
+    <string name="interview_completed">Interview Completed</string>
+    <string name="interview_start_time">Interview Start Time</string>
+    <string name="interview_end_time">Interview End Time</string>
+    <string name="notes_about_interview">Notes About Interview</string>
+
+    <!-- Set Up Interview Fragment -->
+    <string name="received_response">Received Response</string>
+    <string name="date_of_response">Date of Response</string>
+    <string name="received_offer">Received Offer</string>
+    <string name="no_offer">No Offer</string>
+    <string name="offer_amount">Offer Amount</string>
+    <string name="offer_deadline">Offer Deadline</string>
+
+    <!-- Responded to Offer -->
+    <string name="responded_to_offer">Responded to Offer</string>
+    <string name="response_to_offer">Response To Offer</string>
+
+    <!--
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    -->
+</resources>

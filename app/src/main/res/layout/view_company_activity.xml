@@ -1,0 +1,48 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/editView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip">
+
+        <EditText
+            android:id="@+id/company_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Company Title*"
+            android:inputType="text|textCapWords" />
+
+        <EditText
+            android:id="@+id/company_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Position you are applying for*"
+            android:inputType="text|textCapWords" />
+
+        <EditText
+            android:id="@+id/company_goal_mission_statement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:lines="2"
+            android:hint="Company Goal or Mission Statement"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/company_miscellaneous_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:lines="5"
+            android:hint="Miscellaneous notes about this company."
+            android:inputType="text|textMultiLine" />
+
+    </LinearLayout>
+</ScrollView>
