@@ -18,6 +18,7 @@ import static com.example.christinaaiello.DatabaseContract.DatabaseHelper;
 
 
 public class ViewCompanyActivity extends FragmentActivity {
+    String TAG = "ViewCompanyActivity "; // Used for log printing
     Employer employer; // Contains employer's information
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
@@ -141,12 +142,9 @@ public class ViewCompanyActivity extends FragmentActivity {
         );
 
         if (!(cursor.getCount() == 0)) {
-            Log.e("results", "HAD RESULTS!!!!!!");
+            Log.i(TAG, "Got results when searching database for companies user has entered.");
             // Now, look into the result and get the data
             cursor.moveToFirst();
-            for (int i = 0; i < 16; i++) {
-                Log.e("Cursor", "Value is: " + cursor.getString(i));
-            }
             employer.setID(cursor.getString(0));
             employer.setName(cursor.getString(1));
             employer.setPosition(cursor.getString(2));
@@ -164,7 +162,7 @@ public class ViewCompanyActivity extends FragmentActivity {
             employer.setCareerOpportunitiesRating(cursor.getString(14));
             employer.setWorkLifeBalanceRating(cursor.getString(15));
         } else {
-            Log.e("results", "NO RESULTs ahhhhhhhhhhhhh");
+            Log.i(TAG, "Could not find matches when searching database for companies user has entered.");
         }
 
     }

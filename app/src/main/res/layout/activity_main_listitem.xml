@@ -22,9 +22,8 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
         android:gravity="center_vertical"
@@ -35,7 +34,7 @@
 
     <TextView
         android:id="@+id/website"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
         android:ellipsize="marquee"
@@ -48,7 +47,7 @@
 
     <TextView
         android:id="@+id/position"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/website"
         android:gravity="center_vertical"
@@ -57,5 +56,12 @@
         android:text="Position"
         android:paddingLeft="5dp"
         android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_action_discard"
+        android:layout_alignParentRight="true"
+        android:onClick="deleteCompany"/>
 
 </RelativeLayout> 

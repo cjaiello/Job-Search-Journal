@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.christinaaiello.employerinformation.Employer;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,7 +20,7 @@ public class CompanyListAdapter extends ArrayAdapter<Employer> {
     private Context context;
 
     public CompanyListAdapter(List<Employer> employerList, Context ctx) {
-        super(ctx, R.layout.activity_main_listviewadapter, employerList);
+        super(ctx, R.layout.activity_main_listitem, employerList);
         this.employerList = employerList;
         this.context = ctx;
     }
@@ -33,7 +31,7 @@ public class CompanyListAdapter extends ArrayAdapter<Employer> {
         if (convertView == null) {
             // This a new view we inflate the new layout
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.activity_main_listviewadapter, parent, false);
+            convertView = inflater.inflate(R.layout.activity_main_listitem, parent, false);
         }
         // Now we can fill the layout with the right values
         TextView companyIDView = (TextView) convertView.findViewById(R.id.id);

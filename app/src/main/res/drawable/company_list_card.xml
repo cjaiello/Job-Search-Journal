@@ -3,11 +3,11 @@
     android:shape="rectangle">
     <item>
         <shape>
-            <!-- set the shadow color here -->
+            <!-- Shadow -->
             <stroke
                 android:width="2dp"
                 android:color="@color/section_title" />
-            <!-- setting the thickness of shadow (positive value will give shadow on that side)-->
+            <!-- Shadow properties  -->
             <padding
                 android:bottom="3dp"
                 android:left="0dp"

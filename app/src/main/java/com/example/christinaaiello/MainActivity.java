@@ -1,5 +1,7 @@
 package com.example.christinaaiello;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,10 +22,12 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
-    ListView listView;
+    String TAG = "MainActivity "; // Used for log files
+    ListView listView; // Contains all companies' names and urls
     public CompanyListAdapter adapter;
     private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
+    private ArrayList<Employer> listOfCompanies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,13 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
+        listOfCompanies = getAllCompanyNames(); // Will contain all companies
 
         // This contains the list of companies
         listView = (ListView) findViewById(R.id.listview);
 
         // Adapter for the list of companies
-        adapter = new CompanyListAdapter(getAllCompanyNames(), this);
+        adapter = new CompanyListAdapter(listOfCompanies, this);
         listView.setAdapter(adapter);
 
         // Setting actions that occur when pressing an item in the listview
@@ -53,7 +57,6 @@ public class MainActivity extends ActionBarActivity {
                 RelativeLayout relativeLayout = (RelativeLayout) view;
                 // Getting the first child, which is the textview with a company's name
                 TextView idTextView = (TextView) relativeLayout.getChildAt(0);
-                Log.e("ID is....", "ID in Main is: " + idTextView.getText().toString());
                 // Use this name when starting a new activity
                 bundle.putString("ID", idTextView.getText().toString());
                 startViewCompanyIntent.putExtras(bundle);
@@ -81,9 +84,19 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();
-        // Restarting list adapter
-        adapter = new CompanyListAdapter(getAllCompanyNames(), this);
-        listView.setAdapter(adapter);
+        refreshListOfCompanies();
+    }
+
+    /**
+     * This method can be called from anywhere to refresh the list of companies in this activity
+     */
+    private void refreshListOfCompanies() {
+        // First we clear the list of companies that the adapter is using:
+        listOfCompanies.clear();
+        // Now we update the list of companies:
+        listOfCompanies.addAll(getAllCompanyNames());
+        // And lastly we tell the adapter to get new data:
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -141,7 +154,7 @@ public class MainActivity extends ActionBarActivity {
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false) {
             Employer employer = new Employer();
-            Log.e("getAllCompanyNames", "Company name is: " + cursor.getString(1));
+            Log.i(TAG, "Company name is: " + cursor.getString(1));
             employer.setID(Long.toString(cursor.getLong(0)));
             employer.setName(cursor.getString(1));
             employer.setPosition(cursor.getString(2));
@@ -151,7 +164,7 @@ public class MainActivity extends ActionBarActivity {
             cursor.moveToNext();
         }
 
-        Log.e("Companynameslist", companyNamesList.toString());
+        Log.i(TAG, "Companynameslist: " + companyNamesList.toString());
         return companyNamesList;
     }
 
@@ -160,5 +173,40 @@ public class MainActivity extends ActionBarActivity {
      */
     public void refreshListView() {
         adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * This method lets a user delete a company
+     *
+     * @param view is the view a user clicked on
+     */
+    public void deleteCompany(final View view) {
+        // Making a dialog box that will pop up for the user
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.app_name);
+        builder.setMessage("Are you sure you want to delete this?");
+        builder.setIcon(R.drawable.ic_launcher);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+                // Getting the relativelayout holding this trash can and other things
+                RelativeLayout parentView = (RelativeLayout) view.getParent();
+                // Getting the textview holding the company's ID number
+                TextView idView = (TextView) parentView.getChildAt(0);
+                // This is the actual ID number
+                String idNumber = idView.getText().toString();
+                // Deleting from the database:
+                db.delete(DatabaseContract.DatabaseEntry.TABLE_NAME, DatabaseContract.DatabaseEntry._ID + "=?", new String[]{idNumber});
+                // And refreshing the layout
+                refreshListOfCompanies();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
