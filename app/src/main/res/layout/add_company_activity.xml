@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="Company Title*"
+            android:hint="@string/company_name"
             android:inputType="text|textCapWords" />
 
         <EditText
@@ -23,32 +23,63 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="Position you are applying for*"
+            android:hint="@string/company_position"
             android:inputType="text|textCapWords" />
+
+
+        <EditText
+            android:id="@+id/company_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="@string/company_size"
+            android:inputType="text"
+            android:lines="2" />
+
+        <EditText
+            android:id="@+id/company_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="@string/company_location"
+            android:inputType="text"
+            android:lines="2" />
 
         <EditText
             android:id="@+id/company_goal_mission_statement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:lines="2"
-            android:hint="Company Goal or Mission Statement"
-            android:inputType="text" />
+            android:hint="@string/company_goal_mission_statement"
+            android:inputType="text"
+            android:lines="2" />
 
         <EditText
             android:id="@+id/company_miscellaneous_notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:gravity="top"
+            android:hint="@string/misc_notes_about_company"
+            android:inputType="text|textMultiLine"
+            android:lines="5" />
+
+        <TextView
+            android:id="@+id/add_company_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:lines="5"
-            android:hint="Miscellaneous notes about this company."
-            android:inputType="text|textMultiLine" />
+            android:text="@string/add_company_message"
+            android:textSize="12dp"
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/save_button"
-            android:text="@string/save"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/save" />
 
     </LinearLayout>
 </ScrollView>

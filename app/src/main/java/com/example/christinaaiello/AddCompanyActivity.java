@@ -1,25 +1,37 @@
 package com.example.christinaaiello;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.christinaaiello.employerinformation.Employer;
 
+import static com.example.christinaaiello.DatabaseContract.DatabaseEntry;
+import static com.example.christinaaiello.DatabaseContract.DatabaseHelper;
 
-public class AddCompanyActivity extends FragmentActivity {
-    EditText employerNameEditText; // Box where user types employer's name
-    Employer employer; // Will contain an employer's information
+
+public class AddCompanyActivity extends ActionBarActivity {
+    private EditText employerNameEditText; // Box where user types employer's name
+    private Employer employer; // Will contain an employer's information
+    private DatabaseHelper databaseHelper;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_company_activity);
+
+        databaseHelper = new DatabaseHelper(getApplicationContext());
+        db = databaseHelper.getWritableDatabase();
 
         employer = new Employer();
 
@@ -71,25 +83,52 @@ public class AddCompanyActivity extends FragmentActivity {
      */
     public void saveToDatabase() throws InterruptedException {
         // URL for the company's information:
-        String URL = constructAPIURL(employerNameEditText.getText().toString());
-        Log.e("String", "String is: " + URL);
+        String URL = employer.constructAPIURL(employerNameEditText.getText().toString());
         // Fetching the company's information:
         employer.fetchCompanyInformation(URL);
-        Log.e("Company website", "Company website is: " + employer.getWebsite());
-    }
 
-    /**
-     * This method will construct the necessary API URL for a specific company, by name.
-     *
-     * @param companyName is the name of the company whose information we want
-     * @return the URL to get the company's information
-     */
-    public String constructAPIURL(String companyName) {
-        // First, we trim any leading or trailing spaces off the name
-        String trimmedName = companyName.trim();
-        // Next, we need to replace any middle spaces with %20's
-        String noSpacesInName = trimmedName.replaceAll(" ", "%20");
-        // Lastly, return the URL for this company name
-        return "http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=31746&t.k=f6EKkHN4wb9&action=employers&q=" + noSpacesInName + "&userip=192.168.43.42&useragent=Mozilla/%2F4.0";
+        // Each of the textboxes the user typed into:
+        EditText companyNameTextView = (EditText) findViewById(R.id.company_name);
+        EditText companyPosition = (EditText) findViewById(R.id.company_position);
+        EditText companySize = (EditText) findViewById(R.id.company_size);
+        EditText companyLocation = (EditText) findViewById(R.id.company_location);
+        EditText companyGoal = (EditText) findViewById(R.id.company_goal_mission_statement);
+        EditText companyMisc = (EditText) findViewById(R.id.company_miscellaneous_notes);
+
+        ContentValues values = new ContentValues();
+        // These are retrieved from what the user typed in:
+        values.put(DatabaseEntry.COLUMN_NAME_NAME, companyNameTextView.getText().toString());
+        values.put(DatabaseEntry.COLUMN_NAME_POSITION, companyPosition.getText().toString());
+        values.put(DatabaseEntry.COLUMN_NAME_SIZE, companySize.getText().toString());
+        values.put(DatabaseEntry.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
+        values.put(DatabaseEntry.COLUMN_NAME_GOAL, companyGoal.getText().toString());
+        values.put(DatabaseEntry.COLUMN_NAME_MISCELLANEOUS, companyMisc.getText().toString());
+        // These are retrieved via the API:
+        values.put(DatabaseEntry.COLUMN_NAME_WEBSITE, employer.getWebsite());
+        values.put(DatabaseEntry.COLUMN_NAME_INDUSTRY, employer.getIndustry());
+        values.put(DatabaseEntry.COLUMN_NAME_LOGO, employer.getSquareLogo());
+        values.put(DatabaseEntry.COLUMN_NAME_OVERALL_RATING, employer.getOverallRating());
+        values.put(DatabaseEntry.COLUMN_NAME_CULTURE, employer.getCultureAndValuesRating());
+        values.put(DatabaseEntry.COLUMN_NAME_LEADERSHIP, employer.getSeniorLeadershipRating());
+        values.put(DatabaseEntry.COLUMN_NAME_COMPENSATION, employer.getCompensationAndBenefitsRating());
+        values.put(DatabaseEntry.COLUMN_NAME_OPPORTUNITIES, employer.getCareerOpportunitiesRating());
+        values.put(DatabaseEntry.COLUMN_NAME_WORKLIFE, employer.getWorkLifeBalanceRating());
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insert(
+                DatabaseEntry.TABLE_NAME,
+                null,
+                values);
+
+        // Now, if we couldn't get info for this company from Glassdoor, let's let them know about that.
+        if (!employer.getCouldRetrieveFromGlassdoor()) {
+            Toast.makeText(getApplicationContext(), "Could not retrieve company data from Glassdoor.com",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        // Closing this activity
+        finish();
+
     }
 }

@@ -15,6 +15,13 @@ import java.net.URL;
  * Created by Christina Aiello on 3/22/2015.
  */
 public class Employer {
+    private String id;
+    private String name;
+    private String position;
+    private String size;
+    private String location;
+    private String misc;
+    private String goal;
     private String website;
     private String industry;
     private String squareLogo;
@@ -24,156 +31,285 @@ public class Employer {
     private String compensationAndBenefitsRating;
     private String careerOpportunitiesRating;
     private String workLifeBalanceRating;
+    private Boolean couldRetrieveFromGlassdoor;
 
     public Employer() {
     }
 
     /**
      * Getter for an employer object
+     *
+     * @return name
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Getter for an employer object
+     *
+     * @return position
+     */
+    public String getPosition() {
+        return this.position;
+    }
+
+    /**
+     * Getter for an employer object
+     *
+     * @return size
+     */
+    public String getSize() {
+        return this.size;
+    }
+
+    /**
+     * Getter for an employer object
+     *
+     * @return location
+     */
+    public String getLocation() {
+        return this.location;
+    }
+
+    /**
+     * Getter for an employer object
+     *
+     * @return misc
+     */
+    public String getMisc() {
+        return this.misc;
+    }
+
+    /**
+     * Getter for an employer object
+     *
+     * @return goal
+     */
+    public String getGoal() {
+        return this.goal;
+    }
+
+    /**
+     * Getter for an employer object
+     *
      * @return website
      */
-    public String getWebsite(){
+    public String getWebsite() {
         return this.website;
     }
 
     /**
      * Getter for an employer object
+     *
      * @return industry
      */
-    public String getIndustry(){
+    public String getIndustry() {
         return this.industry;
     }
 
     /**
      * Getter for an employer object
+     *
      * @return squareLogo
      */
-    public String getSquareLogo(){
+    public String getSquareLogo() {
         return this.squareLogo;
     }
 
     /**
      * Getter for an employer object
+     *
      * @return overallRating
      */
-    public String getOverallRating(){
+    public String getOverallRating() {
         return this.overallRating;
     }
 
     /**
      * Getter for an employer object
+     *
      * @return cultureAndValuesRating
      */
-    public String getCultureAndValuesRating(){
+    public String getCultureAndValuesRating() {
         return this.cultureAndValuesRating;
     }
 
     /**
      * Getter for an employer object
+     *
      * @return seniorLeadershipRating
      */
-    public String getSeniorLeadershipRating(){
+    public String getSeniorLeadershipRating() {
         return this.seniorLeadershipRating;
     }
 
     /**
      * Getter for an employer object
+     *
      * @return compensationAndBenefitsRating
      */
-    public String getCompensationAndBenefitsRating(){
+    public String getCompensationAndBenefitsRating() {
         return this.compensationAndBenefitsRating;
     }
 
     /**
      * Getter for an employer object
+     *
      * @return careerOpportunitiesRating
      */
-    public String getCareerOpportunitiesRating(){
+    public String getCareerOpportunitiesRating() {
         return this.careerOpportunitiesRating;
     }
 
     /**
      * Getter for an employer object
+     *
      * @return workLifeBalanceRating
      */
-    public String getWorkLifeBalanceRating(){
+    public String getWorkLifeBalanceRating() {
         return this.workLifeBalanceRating;
     }
 
     /**
      * Getter for an employer object
-     * @return website
+     * @return
      */
-    public void setWebsite(String website){
+    public String getID() {
+        return this.id;
+    }
+
+    /**
+     * Setter for an employer object
+     * @param id
+     */
+    public void setID(String id) {
+        this.id = id;
+    }
+
+    /**
+     * Setter for an employer object
+     *
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Setter for an employer object
+     *
+     */
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    /**
+     * Setter for an employer object
+     *
+     */
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    /**
+     * Setter for an employer object
+     *
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    /**
+     * Setter for an employer object
+     *
+     */
+    public void setMisc(String misc) {
+        this.misc = misc;
+    }
+
+    /**
+     * Setter for an employer object
+     *
+     */
+    public void setGoal(String goal) {
+        this.goal = goal;
+    }
+
+    /**
+     * Setter for an employer object
+     *
+     */
+    public void setWebsite(String website) {
         this.website = website;
     }
 
     /**
-     * Getter for an employer object
-     * @return industry
+     * Setter for an employer object
+     *
      */
-    public void setIndustry(String industry){
+    public void setIndustry(String industry) {
         this.industry = industry;
     }
 
     /**
-     * setter for an employer object
-     * @return squareLogo
+     * Setter for an employer object
+     *
      */
-    public void setSquareLogo(String squareLogo){
+    public void setSquareLogo(String squareLogo) {
         this.squareLogo = squareLogo;
     }
 
     /**
-     * setter for an employer object
-     * @return overallRating
+     * Setter for an employer object
+     *
      */
-    public void setOverallRating(String overallRating){
+    public void setOverallRating(String overallRating) {
         this.overallRating = overallRating;
     }
 
     /**
-     * setter for an employer object
-     * @return cultureAndValuesRating
+     * Setter for an employer object
+     *
      */
-    public void setCultureAndValuesRating(String cultureAndValuesRating){
+    public void setCultureAndValuesRating(String cultureAndValuesRating) {
         this.cultureAndValuesRating = cultureAndValuesRating;
     }
 
     /**
-     * setter for an employer object
-     * @return seniorLeadershipRating
+     * Setter for an employer object
+     *
      */
-    public void setSeniorLeadershipRating(String seniorLeadershipRating){
+    public void setSeniorLeadershipRating(String seniorLeadershipRating) {
         this.seniorLeadershipRating = seniorLeadershipRating;
     }
 
     /**
-     * setter for an employer object
-     * @return compensationAndBenefitsRating
+     * Setter for an employer object
+     *
      */
-    public void setCompensationAndBenefitsRating(String compensationAndBenefitsRating){
+    public void setCompensationAndBenefitsRating(String compensationAndBenefitsRating) {
         this.compensationAndBenefitsRating = compensationAndBenefitsRating;
     }
 
     /**
-     * setter for an employer object
-     * @return careerOpportunitiesRating
+     * Setter for an employer object
+     *
      */
-    public void setCareerOpportunitiesRating(String careerOpportunitiesRating){
+    public void setCareerOpportunitiesRating(String careerOpportunitiesRating) {
         this.careerOpportunitiesRating = careerOpportunitiesRating;
     }
 
     /**
-     * setter for an employer object
-     * @return workLifeBalanceRating
+     * Setter for an employer object
+     *
      */
-    public void setWorkLifeBalanceRating(String workLifeBalanceRating){
+    public void setWorkLifeBalanceRating(String workLifeBalanceRating) {
         this.workLifeBalanceRating = workLifeBalanceRating;
     }
 
     /**
      * This method extracts company information from the JSON that was returned
+     *
      * @param jsonString is the JSON string
      * @throws java.io.FileNotFoundException if this file could not be found
      * @throws org.json.JSONException
@@ -183,13 +319,13 @@ public class Employer {
         JSONObject reader = new JSONObject(jsonString);
 
         // Getting the response information for this URL
-        JSONObject responseInfo  = reader.getJSONObject("response");
+        JSONObject responseInfo = reader.getJSONObject("response");
         JSONArray employersInfoArray = responseInfo.getJSONArray("employers");
 
-        // Now we need to loop through this JSON array to retrieve the necessary information
-        for(int i = 0; i < employersInfoArray .length(); i++)
-        {
-            JSONObject employersInfoObject = employersInfoArray.getJSONObject(i);
+        // If there was at least one result found, use the first one (closest match):
+        if (employersInfoArray.length() >= 1) {
+            // Now we need to get the necessary information from the first item in this array:
+            JSONObject employersInfoObject = employersInfoArray.getJSONObject(0);
             this.setWebsite(employersInfoObject.getString("website"));
             Log.e("Website is", "Website is: " + employersInfoObject.getString("website"));
             this.setIndustry(employersInfoObject.getString("industry"));
@@ -200,15 +336,29 @@ public class Employer {
             this.setCompensationAndBenefitsRating(employersInfoObject.getString("compensationAndBenefitsRating"));
             this.setCareerOpportunitiesRating(employersInfoObject.getString("careerOpportunitiesRating"));
             this.setWorkLifeBalanceRating(employersInfoObject.getString("workLifeBalanceRating"));
+            this.setCouldRetrieveFromGlassdoor(true);
+        } else {
+            this.setWebsite("");
+            this.setIndustry("");
+            this.setSquareLogo("");
+            this.setOverallRating("");
+            this.setCultureAndValuesRating("");
+            this.setSeniorLeadershipRating("");
+            this.setCompensationAndBenefitsRating("");
+            this.setCareerOpportunitiesRating("");
+            this.setWorkLifeBalanceRating("");
+            this.setCouldRetrieveFromGlassdoor(false);
         }
+
     }
 
     /**
      * Referenced from http://www.tutorialspoint.com/android/android_json_parser.htm
+     *
      * @param urlString is the URL that you are fetching and parsing JSON from
      */
     public void fetchCompanyInformation(final String urlString) throws InterruptedException {
-        Thread thread = new Thread(new Runnable(){
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -245,6 +395,7 @@ public class Employer {
 
     /**
      * Source: Referenced from http://www.tutorialspoint.com/android/android_json_parser.htm
+     *
      * @param is is the input stream
      * @return a String of JSON data
      */
@@ -253,4 +404,34 @@ public class Employer {
         return s.hasNext() ? s.next() : "";
     }
 
+    /**
+     * This method will construct the necessary API URL for a specific company, by name.
+     *
+     * @param companyName is the name of the company whose information we want
+     * @return the URL to get the company's information
+     */
+    public String constructAPIURL(String companyName) {
+        // First, we trim any leading or trailing spaces off the name
+        String trimmedName = companyName.trim();
+        // Next, we need to replace any middle spaces with %20's
+        String noSpacesInName = trimmedName.replaceAll(" ", "%20");
+        // Lastly, return the URL for this company name
+        return "http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=31746&t.k=f6EKkHN4wb9&action=employers&q=" + noSpacesInName + "&userip=192.168.43.42&useragent=Mozilla/%2F4.0";
+    }
+
+    /**
+     * Lets the boolean for "Could retrieve information from Glassdoor" be set
+     * @param couldRetrieveFromGlassdoor is whether or not Glassdoor has info for this company
+     */
+    public void setCouldRetrieveFromGlassdoor(boolean couldRetrieveFromGlassdoor) {
+        this.couldRetrieveFromGlassdoor = couldRetrieveFromGlassdoor;
+    }
+
+    /**
+     * Getter for the boolean that tells you if Glassdoor has data for this company or not.
+     * @return true if Glassdoor had the info, else false.
+     */
+    public Boolean getCouldRetrieveFromGlassdoor() {
+        return couldRetrieveFromGlassdoor;
+    }
 }

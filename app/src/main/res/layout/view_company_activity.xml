@@ -1,48 +1,430 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
 
     <LinearLayout
         android:id="@+id/editView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip">
+        android:paddingTop="2dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
-        <EditText
-            android:id="@+id/company_name"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="Company Title*"
-            android:inputType="text|textCapWords" />
+            android:visibility="gone">
 
-        <EditText
-            android:id="@+id/company_position"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="Position you are applying for*"
-            android:inputType="text|textCapWords" />
+            <TextView
+                android:id="@+id/company_id_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="" />
 
-        <EditText
-            android:id="@+id/company_goal_mission_statement"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:lines="2"
-            android:hint="Company Goal or Mission Statement"
-            android:inputType="text" />
+            <TextView
+                android:id="@+id/company_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/company_id_label"
+                android:layout_weight="2"
+                android:text="" />
 
-        <EditText
-            android:id="@+id/company_miscellaneous_notes"
-            android:layout_width="match_parent"
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:lines="5"
-            android:hint="Miscellaneous notes about this company."
-            android:inputType="text|textMultiLine" />
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/company_title"
+                android:gravity="center_horizontal"
+                android:text="Company Name"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_size_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_size"
+                android:gravity="center_vertical"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/company_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_size_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:gravity="center_vertical"
+                android:text="@string/company_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_location_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:text="@string/company_location"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/company_location"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_location_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:gravity="center_vertical"
+                android:text="@string/company_location" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_website_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_website"
+                android:gravity="center_vertical"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/company_website"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_website_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:gravity="center_vertical"
+                android:text="@string/company_website" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_industry_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:text="@string/company_industry"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/company_industry"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_industry_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:gravity="center_vertical"
+                android:text="@string/company_industry" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_goal_mission_statement_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_goal_mission_statement"
+                android:gravity="center_vertical"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/company_goal_mission_statement"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_goal_mission_statement_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:gravity="center_vertical"
+                android:text="@string/company_goal_mission_statement" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/ratings_label"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/company_title"
+                android:padding="2dp"
+                android:gravity="center"
+                android:paddingRight="20dp"
+                android:textSize="20dp"
+                android:text="@string/company_ratings"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_overall_rating_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="@string/company_overall_rating" />
+
+            <TextView
+                android:id="@+id/company_overall_rating"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_overall_rating_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:paddingRight="30dp"
+                android:gravity="center"
+                android:text="@string/company_overall_rating" />
+
+            <TextView
+                android:id="@+id/company_culture_and_values_rating_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_overall_rating"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="@string/company_culture_and_values_rating" />
+
+            <TextView
+                android:id="@+id/company_culture_and_values_rating"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_culture_and_values_rating_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:gravity="center"
+                android:text="@string/company_culture_and_values_rating" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_senior_leadership_rating_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="@string/company_senior_leadership_rating" />
+
+            <TextView
+                android:id="@+id/company_senior_leadership_rating"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_senior_leadership_rating_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:paddingRight="30dp"
+                android:gravity="center"
+                android:text="@string/company_senior_leadership_rating" />
+
+            <TextView
+                android:id="@+id/company_compensation_rating_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_senior_leadership_rating"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="@string/company_compensation_rating" />
+
+            <TextView
+                android:id="@+id/company_compensation_rating"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_compensation_rating_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:gravity="center"
+                android:text="@string/company_compensation_rating" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_career_opportunities_rating_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="@string/company_career_opportunities_rating" />
+
+            <TextView
+                android:id="@+id/company_career_opportunities_rating"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_career_opportunities_rating_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:paddingRight="30dp"
+                android:gravity="center"
+                android:text="@string/company_career_opportunities_rating" />
+
+            <TextView
+                android:id="@+id/company_work_life_balance_rating_label"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_career_opportunities_rating"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="@string/company_work_life_balance_rating" />
+
+            <TextView
+                android:id="@+id/company_work_life_balance_rating"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_work_life_balance_rating_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:padding="2dp"
+                android:gravity="center"
+                android:text="@string/company_work_life_balance_rating" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_miscellaneous_notes_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="@string/misc_notes_about_company" />
+
+            <TextView
+                android:id="@+id/company_miscellaneous_notes"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/company_miscellaneous_notes_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:lines="5"
+                android:padding="2dp"
+                android:text="@string/misc_notes_about_company" />
+        </RelativeLayout>
 
     </LinearLayout>
 </ScrollView>
