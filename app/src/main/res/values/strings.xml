@@ -6,24 +6,35 @@
     <string name="save">Save</string>
 
     <!-- Add Company -->
-    <string name="company_name">Company Name</string>
-    <string name="company_position">Position You Are Applying For*</string>
-    <string name="company_size">Company size</string>
-    <string name="company_location">Company Location</string>
+    <string name="company_name">Name</string>
+    <string name="company_position">Position</string>
+    <string name="company_size">Size</string>
+    <string name="company_location">Location</string>
     <string name="company_goal_mission_statement">Goal/Mission Statement</string>
     <string name="misc_notes_about_company">Miscellaneous Notes About Company</string>
-    <string name="add_company_message">When you hit \'save,\' we will search Glassdoor.com™ for some more company information. If this information is not found, you will be able to add it yourself.</string>
+    <string name="add_company_message">When you click \'save,\' we will search Glassdoor.com™ for some more company information (website, industry, and ratings). If this information is not found, you will be able to add it yourself.</string>
+    <string name="add_company_instructions">Fill in the fields below with information about a company!</string>
+
+    <string name="company_name_hint">What\'s the company\'s name?</string>
+    <string name="company_position_hint">What position are you applying for?</string>
+    <string name="company_size_hint">What size is the company?</string>
+    <string name="company_location_hint">Where are they located?</string>
+    <string name="company_goal_mission_statement_hint">What is this company\'s goal?</string>
+    <string name="misc_notes_about_company_hint">Anything else you\'d like to include can you here.</string>
+    <string name="add_company_message_hint">When you click \'save,\' we will search Glassdoor.com™ for some more company information (website, industry, and ratings). If this information is not found, you will be able to add it yourself.</string>
+    <string name="add_company_instructions_hint">Fill in the fields below with information about a company!</string>
 
     <!-- View Company -->
     <string name="company_website">Website</string>
     <string name="company_industry">Industry</string>
     <string name="company_ratings">Company Ratings</string>
+    <string name="ratings_subtitle">(Courtesy of Glassdoor.com)</string>
     <string name="company_overall_rating">Overall Rating</string>
     <string name="company_culture_and_values_rating">Culture and Values</string>
     <string name="company_senior_leadership_rating">Senior Leadership</string>
     <string name="company_compensation_rating">Compensation and Benefits</string>
     <string name="company_career_opportunities_rating">Career Opportunities</string>
-    <string name="company_work_life_balance_rating">Work/life Balance</string>
+    <string name="company_work_life_balance_rating">Work/Life Balance</string>
 
     <!-- Initial Contact Fragment -->
     <string name="initial_contact">Initial Contact</string>

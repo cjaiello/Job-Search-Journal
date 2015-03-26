@@ -1,75 +1,215 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
 
     <LinearLayout
         android:id="@+id/editView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip">
+        android:padding="10dp">
 
-        <EditText
-            android:id="@+id/company_name"
+        <TextView
+            android:id="@+id/add_company_instructions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="@string/company_name"
-            android:inputType="text|textCapWords" />
+            android:gravity="center_horizontal"
+            android:padding="2dp"
+            android:text="@string/add_company_instructions"
+            android:textSize="14dp"
+            android:textStyle="italic" />
 
-        <EditText
-            android:id="@+id/company_position"
-            android:layout_width="match_parent"
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="@string/company_position"
-            android:inputType="text|textCapWords" />
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_name_label"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:background="@color/section_title"
+                android:gravity="center"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_name"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/company_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_name_label"
+                android:background="@color/white"
+                android:hint="@string/company_name_hint"
+                android:inputType="text|textCapWords"
+                android:textSize="14dp"
+                android:padding="10dp" />
+        </RelativeLayout>
 
 
-        <EditText
-            android:id="@+id/company_size"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="@string/company_size"
-            android:inputType="text"
-            android:lines="2" />
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
 
-        <EditText
-            android:id="@+id/company_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="@string/company_location"
-            android:inputType="text"
-            android:lines="2" />
+            <TextView
+                android:id="@+id/company_position_label"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:background="@color/section_title"
+                android:gravity="center"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_position"
+                android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/company_goal_mission_statement"
-            android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/company_position"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_position_label"
+                android:layout_weight="2"
+                android:background="@color/white"
+                android:hint="@string/company_position_hint"
+                android:textSize="14dp"
+                android:inputType="text|textCapWords"
+                android:padding="10dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="@string/company_goal_mission_statement"
-            android:inputType="text"
-            android:lines="2" />
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_size_label"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:background="@color/section_title"
+                android:gravity="center"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_size"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/company_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_size_label"
+                android:layout_weight="2"
+                android:background="@color/white"
+                android:hint="@string/company_size_hint"
+                android:inputType="text|textCapWords"
+                android:lines="2"
+                android:textSize="14dp"
+                android:padding="10dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_location_label"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:background="@color/section_title"
+                android:gravity="center"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_location"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/company_location"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_location_label"
+                android:layout_weight="2"
+                android:background="@color/white"
+                android:hint="@string/company_location_hint"
+                android:inputType="text|textCapWords"
+                android:lines="2"
+                android:textSize="14dp"
+                android:padding="10dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_goal_mission_statement_label"
+                android:layout_width="90dp"
+                android:layout_height="75dp"
+                android:background="@color/section_title"
+                android:gravity="center"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_goal_mission_statement"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/company_goal_mission_statement"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_toRightOf="@id/company_goal_mission_statement_label"
+                android:layout_weight="2"
+                android:gravity="top"
+                android:background="@color/white"
+                android:hint="@string/company_goal_mission_statement_hint"
+                android:inputType="text|textCapSentences|textMultiLine"
+                android:lines="3"
+                android:textSize="14dp"
+                android:padding="10dp" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/company_miscellaneous_notes_label"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/section_title"
+            android:gravity="center"
+            android:padding="10dp"
+            android:paddingRight="20dp"
+            android:text="@string/misc_notes_about_company"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/company_miscellaneous_notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:background="@color/white"
             android:gravity="top"
-            android:hint="@string/misc_notes_about_company"
-            android:inputType="text|textMultiLine"
-            android:lines="5" />
+            android:hint="@string/misc_notes_about_company_hint"
+            android:inputType="text|textMultiLine|textCapSentences"
+            android:lines="5"
+            android:textSize="14dp"
+            android:padding="10dp" />
 
         <TextView
             android:id="@+id/add_company_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:lines="5"
+            android:padding="2dp"
             android:text="@string/add_company_message"
             android:textSize="12dp"
             android:textStyle="italic" />

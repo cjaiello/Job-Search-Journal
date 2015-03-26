@@ -36,20 +36,11 @@ public class ViewCompanyActivity extends FragmentActivity {
         // Getting the company's Name number from the bundle
         Bundle bundle = getIntent().getExtras();
         companyID = bundle.getString("ID");
-
+        // Displaying the company's data on the screen
         readCompanyData(companyID);
         displayCompanyData();
 
-        // Getting the textview containing a company's website
-        TextView websiteTextView = (TextView) findViewById(R.id.company_website);
-        // Getting the text in this textview
-        String websiteLink = websiteTextView.getText().toString();
-        // Turning the content of this textview into a clickable link:
-        websiteTextView.setText(
-                Html.fromHtml(
-                        "<a href=\"http://" + websiteLink + "\">" + websiteLink + "</a>"));
-        websiteTextView.setMovementMethod(LinkMovementMethod.getInstance());
-
+        setLinks(); // Setting links in activity
     }
 
 
@@ -153,7 +144,7 @@ public class ViewCompanyActivity extends FragmentActivity {
             Log.e("results", "HAD RESULTS!!!!!!");
             // Now, look into the result and get the data
             cursor.moveToFirst();
-            for(int i = 0; i<16; i++){
+            for (int i = 0; i < 16; i++) {
                 Log.e("Cursor", "Value is: " + cursor.getString(i));
             }
             employer.setID(cursor.getString(0));
@@ -176,6 +167,31 @@ public class ViewCompanyActivity extends FragmentActivity {
             Log.e("results", "NO RESULTs ahhhhhhhhhhhhh");
         }
 
+    }
+
+    /**
+     * This method will set the links for Glassdoor.com and for the actual company's website.
+     */
+    public void setLinks() {
+        // Getting the textview containing a company's website
+        TextView websiteTextView = (TextView) findViewById(R.id.company_website);
+        // Getting the text in this textview
+        String websiteLink = websiteTextView.getText().toString();
+        // Turning the content of this textview into a clickable link:
+        websiteTextView.setText(
+                Html.fromHtml(
+                        "<a href=\"http://" + websiteLink + "\">" + websiteLink + "</a>"));
+        websiteTextView.setMovementMethod(LinkMovementMethod.getInstance());
+
+        // Getting the textview containing "courtesy of glassdoor.com"
+        TextView subtitleTextView = (TextView) findViewById(R.id.ratings_subtitle);
+        // Getting the text in this textview
+        String subtitleTextViewContent = subtitleTextView.getText().toString();
+        // Turning the content of this textview into a clickable link:
+        subtitleTextView.setText(
+                Html.fromHtml(
+                        "<a href=\"http://glassdoor.com\">" + subtitleTextViewContent + "</a>"));
+        subtitleTextView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
 

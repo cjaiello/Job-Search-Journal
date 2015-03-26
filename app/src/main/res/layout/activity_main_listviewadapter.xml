@@ -2,7 +2,11 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/company_list_card"
-    android:padding="6dip">
+    android:gravity="center_vertical"
+    android:paddingRight="3dp"
+    android:paddingLeft="3dp"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp">
 
     <TextView
         android:id="@+id/id"
@@ -26,7 +30,8 @@
         android:gravity="center_vertical"
         android:text="Name"
         android:textStyle="bold"
-        android:textSize="20dp"/>
+        android:paddingLeft="5dp"
+        android:textSize="18dp"/>
 
     <TextView
         android:id="@+id/website"
@@ -36,17 +41,21 @@
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Website"
+        android:gravity="center_vertical"
         android:textStyle="italic"
-        android:textSize="18sp" />
+        android:paddingLeft="5dp"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/position"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/website"
+        android:gravity="center_vertical"
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Position"
+        android:paddingLeft="5dp"
         android:textSize="16sp" />
 
 </RelativeLayout> 

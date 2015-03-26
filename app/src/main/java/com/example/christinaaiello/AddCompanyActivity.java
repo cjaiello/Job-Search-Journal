@@ -1,5 +1,6 @@
 package com.example.christinaaiello;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ import static com.example.christinaaiello.DatabaseContract.DatabaseEntry;
 import static com.example.christinaaiello.DatabaseContract.DatabaseHelper;
 
 
-public class AddCompanyActivity extends ActionBarActivity {
+public class AddCompanyActivity extends Activity {
     private EditText employerNameEditText; // Box where user types employer's name
     private Employer employer; // Will contain an employer's information
     private DatabaseHelper databaseHelper;
