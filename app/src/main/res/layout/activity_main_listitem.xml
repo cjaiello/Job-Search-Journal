@@ -43,7 +43,7 @@
         android:gravity="center_vertical"
         android:textStyle="italic"
         android:paddingLeft="5dp"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/position"
@@ -55,7 +55,7 @@
         android:singleLine="true"
         android:text="Position"
         android:paddingLeft="5dp"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <ImageView
         android:layout_width="32dp"

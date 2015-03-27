@@ -183,10 +183,10 @@ public class MainActivity extends ActionBarActivity {
     public void deleteCompany(final View view) {
         // Making a dialog box that will pop up for the user
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle(R.string.app_name);
-        builder.setMessage("Are you sure you want to delete this?");
+        builder.setTitle("Delete Company?");
+        builder.setMessage("Are you sure you want to delete this company?");
         builder.setIcon(R.drawable.ic_launcher);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Yes, Delete It", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
                 // Getting the relativelayout holding this trash can and other things

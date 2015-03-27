@@ -1,9 +1,10 @@
 package com.example.christinaaiello;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -17,7 +18,7 @@ import static com.example.christinaaiello.DatabaseContract.DatabaseEntry;
 import static com.example.christinaaiello.DatabaseContract.DatabaseHelper;
 
 
-public class ViewCompanyActivity extends FragmentActivity {
+public class ViewCompanyActivity extends ActionBarActivity {
     String TAG = "ViewCompanyActivity "; // Used for log printing
     Employer employer; // Contains employer's information
     private DatabaseHelper databaseHelper;
@@ -37,18 +38,13 @@ public class ViewCompanyActivity extends FragmentActivity {
         // Getting the company's Name number from the bundle
         Bundle bundle = getIntent().getExtras();
         companyID = bundle.getString("ID");
-        // Displaying the company's data on the screen
-        readCompanyData(companyID);
-        displayCompanyData();
-
-        setLinks(); // Setting links in activity
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.view_company, menu);
         return true;
     }
 
@@ -59,11 +55,22 @@ public class ViewCompanyActivity extends FragmentActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        // Intent used for editing mode
+        Log.e(TAG, "Making intent for editing");
+        Intent intent = new Intent(ViewCompanyActivity.this, EditCompanyActivity.class);
+        intent.putExtras(createBundleForEditing()); // Putting company info into bundle
+        Log.e(TAG, "Created bundle for editing");
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Log.e(TAG, "Clicked action settings");
             return true;
+        } else if (id == R.id.edit_company) {
+            Log.e(TAG, "Clicked Edit Company Button");
+            startActivity(intent);
+        } else {
+            Log.e(TAG, "Didn't click anything");
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -190,6 +197,39 @@ public class ViewCompanyActivity extends FragmentActivity {
                 Html.fromHtml(
                         "<a href=\"http://glassdoor.com\">" + subtitleTextViewContent + "</a>"));
         subtitleTextView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    /**
+     * This will create a bundle of information that can be sent to the editing activity.
+     */
+    public Bundle createBundleForEditing() {
+        Bundle bundle = new Bundle();
+        Log.e(TAG, "Making bundle for editing!");
+        bundle.putString("ID", employer.getID());
+        bundle.putString("Name", employer.getName());
+        bundle.putString("Size", employer.getSize());
+        bundle.putString("Location", employer.getLocation());
+        bundle.putString("Goal", employer.getGoal());
+        bundle.putString("Website", employer.getWebsite());
+        bundle.putString("Industry", employer.getIndustry());
+        bundle.putString("Overall", employer.getOverallRating());
+        bundle.putString("Culture", employer.getCultureAndValuesRating());
+        bundle.putString("Leadership", employer.getSeniorLeadershipRating());
+        bundle.putString("Compensation", employer.getCompensationAndBenefitsRating());
+        bundle.putString("Opportunities", employer.getCareerOpportunitiesRating());
+        bundle.putString("Worklife", employer.getWorkLifeBalanceRating());
+        bundle.putString("Misc", employer.getMisc());
+        Log.e(TAG, "Made bundle for editing!");
+        return bundle;
+    }
+
+    @Override
+    public void onResume(){
+        // Displaying the company's data on the screen
+        readCompanyData(companyID);
+        displayCompanyData();
+        setLinks(); // Setting links in activity
+        super.onResume();
     }
 
 

@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/MyCustomTheme" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -28,6 +28,14 @@
         <activity
             android:name=".AddCompanyActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".EditCompanyActivity"
+            android:label="Edit Company Info" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

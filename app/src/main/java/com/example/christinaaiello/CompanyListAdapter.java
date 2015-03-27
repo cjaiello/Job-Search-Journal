@@ -43,10 +43,10 @@ public class CompanyListAdapter extends ArrayAdapter<Employer> {
         Log.e("Inside Adapter name", "Position is: " + Integer.toString(position));
 
         companyIDView.setText(employer.getID());
-        Log.e("Inside Adapter name", employer.getName());
+        Log.e("Inside Adapter, name:", employer.getName());
         companyNameView.setText(employer.getName());
         websiteView.setText(employer.getWebsite());
-        positionView.setText(employer.getPosition());
+        positionView.setText("Position Applied For: " + employer.getPosition());
 
         return convertView;
     }
