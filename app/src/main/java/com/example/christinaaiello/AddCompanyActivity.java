@@ -1,6 +1,5 @@
 package com.example.christinaaiello;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -8,10 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.christinaaiello.employerinformation.Employer;
@@ -20,7 +16,7 @@ import static com.example.christinaaiello.DatabaseContract.DatabaseEntry;
 import static com.example.christinaaiello.DatabaseContract.DatabaseHelper;
 
 
-public class AddCompanyActivity extends Activity {
+public class AddCompanyActivity extends ActionBarActivity {
     private EditText employerNameEditText; // Box where user types employer's name
     private Employer employer; // Will contain an employer's information
     private DatabaseHelper databaseHelper;
@@ -39,28 +35,13 @@ public class AddCompanyActivity extends Activity {
         // Getting the edit text box where user types employer's name
         employerNameEditText = (EditText) findViewById(R.id.company_name);
 
-        // Button used to save changes made
-        Button saveButton = (Button) findViewById(R.id.save_button);
-
-        // Save button's onClickListener
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                try {
-                    saveToDatabase();
-                } catch (InterruptedException e) {
-                    Log.e("Database Error", "Error in saving to database: " + e.toString());
-                }
-            }
-        });
-
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.add_company, menu);
         return true;
     }
 
@@ -74,6 +55,12 @@ public class AddCompanyActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.save_company) {
+            try {
+                saveToDatabase();
+            } catch (InterruptedException e) {
+                Log.e("Database Error", "Error in saving to database: " + e.toString());
+            }
         }
 
         return super.onOptionsItemSelected(item);

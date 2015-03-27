@@ -77,6 +77,7 @@ public class EditCompanyActivity extends ActionBarActivity {
         // First we need to get the view objects that are on the screen
         TextView idView = (TextView) findViewById(R.id.company_id);
         EditText nameView = (EditText) findViewById(R.id.company_name);
+        EditText positionView = (EditText) findViewById(R.id.company_position);
         EditText sizeView = (EditText) findViewById(R.id.company_size);
         EditText locationView = (EditText) findViewById(R.id.company_location);
         EditText goalView = (EditText) findViewById(R.id.company_goal_mission_statement);
@@ -93,6 +94,7 @@ public class EditCompanyActivity extends ActionBarActivity {
         // Now we need to set the content of the views
         idView.setText(bundle.getString("ID"));
         nameView.setText(bundle.getString("Name"));
+        positionView.setText(bundle.getString("Position"));
         sizeView.setText(bundle.getString("Size"));
         locationView.setText(bundle.getString("Location"));
         goalView.setText(bundle.getString("Goal"));
@@ -113,7 +115,8 @@ public class EditCompanyActivity extends ActionBarActivity {
     public void saveToDatabase() throws InterruptedException {
         // Each of the textboxes the user typed into:
         TextView companyID = (TextView) findViewById(R.id.company_id);
-        EditText companyNameTextView = (EditText) findViewById(R.id.company_name);
+        EditText companyName = (EditText) findViewById(R.id.company_name);
+        EditText companyPosition = (EditText) findViewById(R.id.company_position);
         EditText companySize = (EditText) findViewById(R.id.company_size);
         EditText companyLocation = (EditText) findViewById(R.id.company_location);
         EditText companyGoal = (EditText) findViewById(R.id.company_goal_mission_statement);
@@ -129,7 +132,8 @@ public class EditCompanyActivity extends ActionBarActivity {
 
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
-        values.put(DatabaseEntry.COLUMN_NAME_NAME, companyNameTextView.getText().toString());
+        values.put(DatabaseEntry.COLUMN_NAME_NAME, companyName.getText().toString());
+        values.put(DatabaseEntry.COLUMN_NAME_LOCATION, companyPosition.getText().toString());
         values.put(DatabaseEntry.COLUMN_NAME_SIZE, companySize.getText().toString());
         values.put(DatabaseEntry.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
         values.put(DatabaseEntry.COLUMN_NAME_GOAL, companyGoal.getText().toString());

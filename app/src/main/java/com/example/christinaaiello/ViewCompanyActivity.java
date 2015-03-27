@@ -81,6 +81,7 @@ public class ViewCompanyActivity extends ActionBarActivity {
         // First we need to get the view objects that are on the screen
         TextView idView = (TextView) findViewById(R.id.company_id);
         TextView nameView = (TextView) findViewById(R.id.company_name);
+        TextView positionView = (TextView) findViewById(R.id.company_position);
         TextView sizeView = (TextView) findViewById(R.id.company_size);
         TextView locationView = (TextView) findViewById(R.id.company_location);
         TextView goalView = (TextView) findViewById(R.id.company_goal_mission_statement);
@@ -97,6 +98,7 @@ public class ViewCompanyActivity extends ActionBarActivity {
         // Now we need to set the content of the views
         idView.setText(employer.getID());
         nameView.setText(employer.getName());
+        positionView.setText(employer.getPosition());
         sizeView.setText(employer.getSize());
         locationView.setText(employer.getLocation());
         goalView.setText(employer.getGoal());
@@ -207,6 +209,7 @@ public class ViewCompanyActivity extends ActionBarActivity {
         Log.e(TAG, "Making bundle for editing!");
         bundle.putString("ID", employer.getID());
         bundle.putString("Name", employer.getName());
+        bundle.putString("Position", employer.getPosition());
         bundle.putString("Size", employer.getSize());
         bundle.putString("Location", employer.getLocation());
         bundle.putString("Goal", employer.getGoal());

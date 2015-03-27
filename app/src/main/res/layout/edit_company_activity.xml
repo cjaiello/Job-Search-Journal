@@ -1,17 +1,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbarFadeDuration="0"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    android:scrollbarFadeDuration="0">
 
     <LinearLayout
         android:id="@+id/editView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="2dp"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:paddingRight="5dp"
+        android:paddingTop="2dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -61,15 +61,46 @@
             android:paddingTop="2dp">
 
             <TextView
+                android:id="@+id/company_position_label"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:gravity="center"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_position"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/company_position"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_position_label"
+                android:layout_weight="2"
+                android:background="@color/section_text"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/company_position" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
                 android:id="@+id/company_size_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
                 android:text="@string/company_size"
-                android:gravity="center"
                 android:textStyle="bold" />
 
             <EditText
@@ -78,9 +109,9 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_size_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
-                android:padding="2dp"
+                android:background="@color/white"
                 android:gravity="center"
+                android:padding="2dp"
                 android:text="@string/company_size" />
 
         </RelativeLayout>
@@ -97,9 +128,9 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:gravity="center"
                 android:text="@string/company_location"
                 android:textStyle="bold" />
 
@@ -109,9 +140,9 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_location_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
-                android:padding="2dp"
+                android:background="@color/white"
                 android:gravity="center"
+                android:padding="2dp"
                 android:text="@string/company_location" />
 
         </RelativeLayout>
@@ -128,10 +159,10 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
                 android:text="@string/company_website"
-                android:gravity="center"
                 android:textStyle="bold" />
 
             <EditText
@@ -140,9 +171,9 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_website_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
-                android:padding="2dp"
+                android:background="@color/white"
                 android:gravity="center"
+                android:padding="2dp"
                 android:text="@string/company_website" />
 
         </RelativeLayout>
@@ -159,9 +190,9 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:gravity="center"
                 android:text="@string/company_industry"
                 android:textStyle="bold" />
 
@@ -171,9 +202,9 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_industry_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
-                android:padding="2dp"
+                android:background="@color/white"
                 android:gravity="center"
+                android:padding="2dp"
                 android:text="@string/company_industry" />
 
         </RelativeLayout>
@@ -190,10 +221,10 @@
                 android:layout_height="75dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
                 android:text="@string/company_goal_mission_statement"
-                android:gravity="center"
                 android:textStyle="bold" />
 
             <EditText
@@ -202,9 +233,9 @@
                 android:layout_height="75dp"
                 android:layout_toRightOf="@id/company_goal_mission_statement_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
-                android:padding="2dp"
+                android:background="@color/white"
                 android:gravity="center"
+                android:padding="2dp"
                 android:text="@string/company_goal_mission_statement" />
 
         </RelativeLayout>
@@ -221,24 +252,24 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:background="@color/section_title"
-                android:padding="2dp"
                 android:gravity="center"
-                android:textSize="20dp"
+                android:padding="2dp"
                 android:text="@string/company_ratings"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/ratings_subtitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/ratings_label"
                 android:layout_weight="2"
                 android:background="@color/section_title"
-                android:padding="2dp"
                 android:gravity="center"
+                android:padding="2dp"
                 android:paddingRight="20dp"
-                android:textSize="12dp"
-                android:layout_below="@id/ratings_label"
-                android:text="@string/ratings_subtitle" />
+                android:text="@string/ratings_subtitle"
+                android:textSize="12dp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -253,11 +284,11 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/company_overall_rating" />
+                android:text="@string/company_overall_rating"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/company_overall_rating"
@@ -265,10 +296,10 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_overall_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/white"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="30dp"
-                android:gravity="center"
                 android:text="@string/company_overall_rating" />
 
             <TextView
@@ -278,11 +309,11 @@
                 android:layout_toRightOf="@id/company_overall_rating"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/company_culture_and_values_rating" />
+                android:text="@string/company_culture_and_values_rating"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/company_culture_and_values_rating"
@@ -290,9 +321,9 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_culture_and_values_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
-                android:padding="2dp"
+                android:background="@color/white"
                 android:gravity="center"
+                android:padding="2dp"
                 android:text="@string/company_culture_and_values_rating" />
 
         </RelativeLayout>
@@ -309,11 +340,11 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/company_senior_leadership_rating" />
+                android:text="@string/company_senior_leadership_rating"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/company_senior_leadership_rating"
@@ -321,10 +352,10 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_senior_leadership_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/white"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="30dp"
-                android:gravity="center"
                 android:text="@string/company_senior_leadership_rating" />
 
             <TextView
@@ -334,11 +365,11 @@
                 android:layout_toRightOf="@id/company_senior_leadership_rating"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/company_compensation_rating" />
+                android:text="@string/company_compensation_rating"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/company_compensation_rating"
@@ -346,9 +377,9 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_compensation_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
-                android:padding="2dp"
+                android:background="@color/white"
                 android:gravity="center"
+                android:padding="2dp"
                 android:text="@string/company_compensation_rating" />
 
         </RelativeLayout>
@@ -365,11 +396,11 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/company_career_opportunities_rating" />
+                android:text="@string/company_career_opportunities_rating"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/company_career_opportunities_rating"
@@ -377,10 +408,10 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_career_opportunities_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/white"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="30dp"
-                android:gravity="center"
                 android:text="@string/company_career_opportunities_rating" />
 
             <TextView
@@ -390,11 +421,11 @@
                 android:layout_toRightOf="@id/company_career_opportunities_rating"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/company_work_life_balance_rating" />
+                android:text="@string/company_work_life_balance_rating"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/company_work_life_balance_rating"
@@ -402,9 +433,9 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_work_life_balance_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
-                android:padding="2dp"
+                android:background="@color/white"
                 android:gravity="center"
+                android:padding="2dp"
                 android:text="@string/company_work_life_balance_rating" />
 
         </RelativeLayout>
@@ -421,11 +452,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:background="@color/section_title"
+                android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/misc_notes_about_company" />
+                android:text="@string/misc_notes_about_company"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/company_miscellaneous_notes"
@@ -433,18 +464,11 @@
                 android:layout_height="50dp"
                 android:layout_below="@id/company_miscellaneous_notes_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/white"
                 android:lines="5"
                 android:padding="2dp"
                 android:text="@string/misc_notes_about_company" />
         </RelativeLayout>
-
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/save" />
 
     </LinearLayout>
 </ScrollView>
