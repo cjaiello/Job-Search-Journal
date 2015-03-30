@@ -2,11 +2,13 @@
 <resources>
     <color name="blue">#0066FF</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="primary_light">#b2b2ff</color>
     <color name="primary_medium">#6666ff</color>
     <color name="primary_dark">#1919ff</color>
 
 
+    <color name="dark_blue">#73baba</color>
     <color name="company_title">#80CFCF</color>
     <color name="section_title">#ACE0E0</color>
     <color name="mainactivity_bg_color">#C5E9E9</color>

@@ -17,62 +17,113 @@
 
         <RelativeLayout
             android:id="@+id/ic_action_add_person_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:padding="2dp">
 
             <ImageView
                 android:id="@+id/ic_action_add_person"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_action_add_person" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ic_action_add_person"
+                android:gravity="center"
+                android:text="How did you initially contact this company?" />
+
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/ic_action_time_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:padding="2dp">
 
             <ImageView
                 android:id="@+id/ic_action_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_action_time" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ic_action_time"
+                android:gravity="center"
+                android:text="Enter information for an interview you scheduled." />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/ic_action_chat_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:padding="2dp">
 
             <ImageView
                 android:id="@+id/ic_action_chat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_action_chat" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ic_action_chat"
+                android:gravity="center"
+                android:text="Document how your interview went." />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/ic_action_phone_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue">
 
             <ImageView
                 android:id="@+id/ic_action_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="2dp"
                 android:src="@drawable/ic_action_phone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ic_action_phone"
+                android:gravity="center"
+                android:text="Record company's followup to your interview." />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/ic_action_email_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:padding="2dp">
 
             <ImageView
                 android:id="@+id/ic_action_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_action_email" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ic_action_email"
+                android:gravity="center"
+                android:text="How did you respond, if you got an offer?" />
 
         </RelativeLayout>
 

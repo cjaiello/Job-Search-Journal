@@ -131,20 +131,20 @@ public class MainActivity extends ActionBarActivity {
 
         // Writing what columns we want from the table
         String[] projection = {
-                DatabaseContract.DatabaseEntry._ID,
-                DatabaseContract.DatabaseEntry.COLUMN_NAME_NAME,
-                DatabaseContract.DatabaseEntry.COLUMN_NAME_POSITION,
-                DatabaseContract.DatabaseEntry.COLUMN_NAME_WEBSITE,
-                DatabaseContract.DatabaseEntry.COLUMN_NAME_LOGO,
+                DatabaseContract.CompanyDataTable._ID,
+                DatabaseContract.CompanyDataTable.COLUMN_NAME_NAME,
+                DatabaseContract.CompanyDataTable.COLUMN_NAME_POSITION,
+                DatabaseContract.CompanyDataTable.COLUMN_NAME_WEBSITE,
+                DatabaseContract.CompanyDataTable.COLUMN_NAME_LOGO,
         };
 
         // Organize company names alphabetically
         String sortOrder =
-                DatabaseContract.DatabaseEntry.COLUMN_NAME_NAME + " ASC";
+                DatabaseContract.CompanyDataTable.COLUMN_NAME_NAME + " ASC";
 
         // My cursor that I use to loop over query results
         Cursor cursor = db.query(
-                DatabaseContract.DatabaseEntry.TABLE_NAME,  // The table to query
+                DatabaseContract.CompanyDataTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
                 null,                                // The columns for the WHERE clause
                 null,                            // The values for the WHERE clause
@@ -200,7 +200,7 @@ public class MainActivity extends ActionBarActivity {
                 // This is the actual ID number
                 String idNumber = idView.getText().toString();
                 // Deleting from the database:
-                db.delete(DatabaseContract.DatabaseEntry.TABLE_NAME, DatabaseContract.DatabaseEntry._ID + "=?", new String[]{idNumber});
+                db.delete(DatabaseContract.CompanyDataTable.TABLE_NAME, DatabaseContract.CompanyDataTable._ID + "=?", new String[]{idNumber});
                 // And refreshing the layout
                 refreshListOfCompanies();
             }

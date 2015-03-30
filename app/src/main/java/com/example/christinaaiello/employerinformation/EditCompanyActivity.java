@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.christinaaiello.R;
 
-import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseEntry;
+import static com.example.christinaaiello.employerinformation.DatabaseContract.CompanyDataTable;
 import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseHelper;
 
 
@@ -131,28 +131,28 @@ public class EditCompanyActivity extends ActionBarActivity {
 
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
-        values.put(DatabaseEntry.COLUMN_NAME_NAME, companyName.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_POSITION, companyPosition.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_SIZE, companySize.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_GOAL, companyGoal.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_MISCELLANEOUS, companyMisc.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_NAME, companyName.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_POSITION, companyPosition.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_SIZE, companySize.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_GOAL, companyGoal.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_MISCELLANEOUS, companyMisc.getText().toString());
         // These are retrieved via the API:
-        values.put(DatabaseEntry.COLUMN_NAME_WEBSITE, companyWebsite.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_INDUSTRY, companyIndustry.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_OVERALL_RATING, companyOverall.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_CULTURE, companyCulture.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_LEADERSHIP, companyLeadership.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_COMPENSATION, companyCompensation.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_OPPORTUNITIES, companyOpportunities.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_WORKLIFE, companyWorklife.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_WEBSITE, companyWebsite.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_INDUSTRY, companyIndustry.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_OVERALL_RATING, companyOverall.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_CULTURE, companyCulture.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_LEADERSHIP, companyLeadership.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_COMPENSATION, companyCompensation.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_OPPORTUNITIES, companyOpportunities.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_WORKLIFE, companyWorklife.getText().toString());
 
         // Updating the row, returning the primary key value of the new row
         String strFilter = "_id=" + companyID.getText().toString();
 
         long newRowId;
         newRowId = db.update(
-                DatabaseEntry.TABLE_NAME,
+                CompanyDataTable.TABLE_NAME,
                 values,
                 strFilter,
                 null);

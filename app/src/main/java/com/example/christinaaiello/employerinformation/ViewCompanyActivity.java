@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.example.christinaaiello.R;
 import com.example.christinaaiello.applicationprocess.UpdateStepsInApplicationProcessActivity;
 
-import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseEntry;
+import static com.example.christinaaiello.employerinformation.DatabaseContract.CompanyDataTable;
 import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseHelper;
 
 
@@ -47,6 +47,7 @@ public class ViewCompanyActivity extends ActionBarActivity {
         positionView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(ViewCompanyActivity.this, UpdateStepsInApplicationProcessActivity.class);
+                intent.putExtras(createBundleForEditing()); // Putting company info into bundle
                 startActivity(intent);
             }
         });
@@ -130,22 +131,22 @@ public class ViewCompanyActivity extends ActionBarActivity {
      */
     public void readCompanyData(String companyID) {
         String[] projection = {
-                DatabaseEntry._ID,
-                DatabaseEntry.COLUMN_NAME_NAME,
-                DatabaseEntry.COLUMN_NAME_POSITION,
-                DatabaseEntry.COLUMN_NAME_SIZE,
-                DatabaseEntry.COLUMN_NAME_LOCATION,
-                DatabaseEntry.COLUMN_NAME_GOAL,
-                DatabaseEntry.COLUMN_NAME_MISCELLANEOUS,
-                DatabaseEntry.COLUMN_NAME_WEBSITE,
-                DatabaseEntry.COLUMN_NAME_INDUSTRY,
-                DatabaseEntry.COLUMN_NAME_LOGO,
-                DatabaseEntry.COLUMN_NAME_OVERALL_RATING,
-                DatabaseEntry.COLUMN_NAME_CULTURE,
-                DatabaseEntry.COLUMN_NAME_LEADERSHIP,
-                DatabaseEntry.COLUMN_NAME_COMPENSATION,
-                DatabaseEntry.COLUMN_NAME_OPPORTUNITIES,
-                DatabaseEntry.COLUMN_NAME_WORKLIFE,
+                CompanyDataTable._ID,
+                CompanyDataTable.COLUMN_NAME_NAME,
+                CompanyDataTable.COLUMN_NAME_POSITION,
+                CompanyDataTable.COLUMN_NAME_SIZE,
+                CompanyDataTable.COLUMN_NAME_LOCATION,
+                DatabaseContract.CompanyDataTable.COLUMN_NAME_GOAL,
+                CompanyDataTable.COLUMN_NAME_MISCELLANEOUS,
+                CompanyDataTable.COLUMN_NAME_WEBSITE,
+                CompanyDataTable.COLUMN_NAME_INDUSTRY,
+                CompanyDataTable.COLUMN_NAME_LOGO,
+                CompanyDataTable.COLUMN_NAME_OVERALL_RATING,
+                CompanyDataTable.COLUMN_NAME_CULTURE,
+                CompanyDataTable.COLUMN_NAME_LEADERSHIP,
+                CompanyDataTable.COLUMN_NAME_COMPENSATION,
+                CompanyDataTable.COLUMN_NAME_OPPORTUNITIES,
+                CompanyDataTable.COLUMN_NAME_WORKLIFE,
         };
 
         // I only want a company whose ID number matches the one passed to me in a bundle
@@ -153,9 +154,9 @@ public class ViewCompanyActivity extends ActionBarActivity {
 
         // My cursor that I use to loop over query results
         Cursor cursor = db.query(
-                DatabaseEntry.TABLE_NAME,  // The table to query
+                CompanyDataTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                DatabaseEntry._ID + "=?",                                // The columns for the WHERE clause
+                CompanyDataTable._ID + "=?",                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups

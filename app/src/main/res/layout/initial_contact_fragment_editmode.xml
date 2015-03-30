@@ -2,7 +2,8 @@
     android:id="@+id/initial_contact_fragment"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="2dp">
 
     <TextView
         android:id="@+id/initial_contact_label"
@@ -24,7 +25,7 @@
         android:paddingTop="2dp">
 
         <TextView
-            android:id="@+id/company_position_label"
+            android:id="@+id/company_date_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
@@ -40,11 +41,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/company_position_label"
+            android:layout_toRightOf="@id/company_date_label"
             android:layout_weight="2"
             android:background="@color/white"
             android:hint="@string/date_of_interaction"
-            android:inputType="date" />
+            android:inputType="date"
+            android:padding="2dp"
+            android:textSize="14dp" />
 
     </RelativeLayout>
 
@@ -57,7 +60,7 @@
         android:paddingTop="2dp">
 
         <TextView
-            android:id="@+id/company_name_label"
+            android:id="@+id/contact_name_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
@@ -73,11 +76,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/company_name_label"
+            android:layout_toRightOf="@id/contact_name_label"
             android:layout_weight="2"
             android:background="@color/white"
             android:hint="@string/contact_name"
-            android:inputType="text|textCapWords" />
+            android:inputType="text|textCapWords"
+            android:padding="2dp"
+            android:textSize="14dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -109,7 +114,9 @@
             android:layout_weight="2"
             android:background="@color/white"
             android:hint="@string/contact_email_address"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:padding="2dp"
+            android:textSize="14dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -141,7 +148,9 @@
             android:layout_weight="2"
             android:background="@color/white"
             android:hint="@string/contact_phone_number"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:padding="2dp"
+            android:textSize="14dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -174,7 +183,9 @@
             android:background="@color/white"
             android:hint="@string/method_of_interaction"
             android:inputType="text|textMultiLine"
-            android:lines="2" />
+            android:lines="2"
+            android:padding="2dp"
+            android:textSize="14dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -201,14 +212,16 @@
             android:id="@+id/what_was_discussed_with_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_below="@id/what_was_discussed_with_contact_label"
+            android:layout_centerVertical="true"
             android:layout_weight="2"
             android:background="@color/white"
             android:gravity="top"
             android:hint="@string/what_did_you_discuss"
             android:inputType="text|textMultiLine"
-            android:lines="5" />
+            android:lines="5"
+            android:padding="2dp"
+            android:textSize="14dp" />
     </RelativeLayout>
 
 </LinearLayout>

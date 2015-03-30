@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.christinaaiello.R;
 
-import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseEntry;
+import static com.example.christinaaiello.employerinformation.DatabaseContract.CompanyDataTable;
 import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseHelper;
 
 
@@ -27,6 +27,7 @@ public class AddCompanyActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_company_activity);
 
+        // Initialize Database objects
         databaseHelper = new DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
 
@@ -85,27 +86,27 @@ public class AddCompanyActivity extends ActionBarActivity {
 
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
-        values.put(DatabaseEntry.COLUMN_NAME_NAME, companyNameTextView.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_POSITION, companyPosition.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_SIZE, companySize.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_GOAL, companyGoal.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_MISCELLANEOUS, companyMisc.getText().toString());
+        values.put(DatabaseContract.CompanyDataTable.COLUMN_NAME_NAME, companyNameTextView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_POSITION, companyPosition.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_SIZE, companySize.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_GOAL, companyGoal.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_MISCELLANEOUS, companyMisc.getText().toString());
         // These are retrieved via the API:
-        values.put(DatabaseEntry.COLUMN_NAME_WEBSITE, employer.getWebsite());
-        values.put(DatabaseEntry.COLUMN_NAME_INDUSTRY, employer.getIndustry());
-        values.put(DatabaseEntry.COLUMN_NAME_LOGO, employer.getSquareLogo());
-        values.put(DatabaseEntry.COLUMN_NAME_OVERALL_RATING, employer.getOverallRating());
-        values.put(DatabaseEntry.COLUMN_NAME_CULTURE, employer.getCultureAndValuesRating());
-        values.put(DatabaseEntry.COLUMN_NAME_LEADERSHIP, employer.getSeniorLeadershipRating());
-        values.put(DatabaseEntry.COLUMN_NAME_COMPENSATION, employer.getCompensationAndBenefitsRating());
-        values.put(DatabaseEntry.COLUMN_NAME_OPPORTUNITIES, employer.getCareerOpportunitiesRating());
-        values.put(DatabaseEntry.COLUMN_NAME_WORKLIFE, employer.getWorkLifeBalanceRating());
+        values.put(CompanyDataTable.COLUMN_NAME_WEBSITE, employer.getWebsite());
+        values.put(CompanyDataTable.COLUMN_NAME_INDUSTRY, employer.getIndustry());
+        values.put(CompanyDataTable.COLUMN_NAME_LOGO, employer.getSquareLogo());
+        values.put(CompanyDataTable.COLUMN_NAME_OVERALL_RATING, employer.getOverallRating());
+        values.put(CompanyDataTable.COLUMN_NAME_CULTURE, employer.getCultureAndValuesRating());
+        values.put(CompanyDataTable.COLUMN_NAME_LEADERSHIP, employer.getSeniorLeadershipRating());
+        values.put(CompanyDataTable.COLUMN_NAME_COMPENSATION, employer.getCompensationAndBenefitsRating());
+        values.put(CompanyDataTable.COLUMN_NAME_OPPORTUNITIES, employer.getCareerOpportunitiesRating());
+        values.put(CompanyDataTable.COLUMN_NAME_WORKLIFE, employer.getWorkLifeBalanceRating());
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId;
         newRowId = db.insert(
-                DatabaseEntry.TABLE_NAME,
+                CompanyDataTable.TABLE_NAME,
                 null,
                 values);
 
