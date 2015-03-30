@@ -1,4 +1,4 @@
-package com.example.christinaaiello;
+package com.example.christinaaiello.employerinformation;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,10 +10,10 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.christinaaiello.employerinformation.Employer;
+import com.example.christinaaiello.R;
 
-import static com.example.christinaaiello.DatabaseContract.DatabaseEntry;
-import static com.example.christinaaiello.DatabaseContract.DatabaseHelper;
+import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseEntry;
+import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseHelper;
 
 
 public class AddCompanyActivity extends ActionBarActivity {

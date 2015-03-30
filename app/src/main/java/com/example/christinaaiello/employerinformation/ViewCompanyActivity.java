@@ -1,4 +1,4 @@
-package com.example.christinaaiello;
+package com.example.christinaaiello.employerinformation;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,12 +10,14 @@ import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
-import com.example.christinaaiello.employerinformation.Employer;
+import com.example.christinaaiello.R;
+import com.example.christinaaiello.applicationprocess.UpdateStepsInApplicationProcessActivity;
 
-import static com.example.christinaaiello.DatabaseContract.DatabaseEntry;
-import static com.example.christinaaiello.DatabaseContract.DatabaseHelper;
+import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseEntry;
+import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseHelper;
 
 
 public class ViewCompanyActivity extends ActionBarActivity {
@@ -38,6 +40,16 @@ public class ViewCompanyActivity extends ActionBarActivity {
         // Getting the company's Name number from the bundle
         Bundle bundle = getIntent().getExtras();
         companyID = bundle.getString("ID");
+
+        // When this textview is clicked, it opens up the steps in the process
+        // that a user is (regarding applying to a job)
+        TextView positionView = (TextView) findViewById(R.id.company_position);
+        positionView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewCompanyActivity.this, UpdateStepsInApplicationProcessActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -227,7 +239,7 @@ public class ViewCompanyActivity extends ActionBarActivity {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         // Displaying the company's data on the screen
         readCompanyData(companyID);
         displayCompanyData();

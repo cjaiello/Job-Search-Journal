@@ -16,7 +16,11 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.christinaaiello.employerinformation.AddCompanyActivity;
+import com.example.christinaaiello.employerinformation.CompanyListAdapter;
+import com.example.christinaaiello.employerinformation.DatabaseContract;
 import com.example.christinaaiello.employerinformation.Employer;
+import com.example.christinaaiello.employerinformation.ViewCompanyActivity;
 
 import java.util.ArrayList;
 

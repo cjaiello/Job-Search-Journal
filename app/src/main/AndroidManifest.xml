@@ -20,7 +20,7 @@
         </activity>
 
         <activity
-            android:name=".ViewCompanyActivity"
+            android:name=".employerinformation.ViewCompanyActivity"
             android:label="Company Information" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name=".AddCompanyActivity"
+            android:name=".employerinformation.AddCompanyActivity"
             android:label="Add New Company" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -36,8 +36,16 @@
         </activity>
 
         <activity
-            android:name=".EditCompanyActivity"
+            android:name=".employerinformation.EditCompanyActivity"
             android:label="Edit Company Info" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".applicationprocess.UpdateStepsInApplicationProcessActivity"
+            android:label="Track Your Progress" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

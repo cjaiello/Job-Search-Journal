@@ -1,7 +1,6 @@
-package com.example.christinaaiello;
+package com.example.christinaaiello.employerinformation;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,10 +10,10 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.christinaaiello.employerinformation.Employer;
+import com.example.christinaaiello.R;
 
-import static com.example.christinaaiello.DatabaseContract.DatabaseEntry;
-import static com.example.christinaaiello.DatabaseContract.DatabaseHelper;
+import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseEntry;
+import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseHelper;
 
 
 public class EditCompanyActivity extends ActionBarActivity {
@@ -133,7 +132,7 @@ public class EditCompanyActivity extends ActionBarActivity {
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
         values.put(DatabaseEntry.COLUMN_NAME_NAME, companyName.getText().toString());
-        values.put(DatabaseEntry.COLUMN_NAME_LOCATION, companyPosition.getText().toString());
+        values.put(DatabaseEntry.COLUMN_NAME_POSITION, companyPosition.getText().toString());
         values.put(DatabaseEntry.COLUMN_NAME_SIZE, companySize.getText().toString());
         values.put(DatabaseEntry.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
         values.put(DatabaseEntry.COLUMN_NAME_GOAL, companyGoal.getText().toString());

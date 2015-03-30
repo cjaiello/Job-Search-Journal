@@ -38,11 +38,18 @@
 
     <!-- Initial Contact Fragment -->
     <string name="initial_contact">Initial Contact</string>
-    <string name="date_of_interaction">Date of Interaction</string>
-    <string name="contact_name">Contact Name</string>
-    <string name="contact_email_address">Contact Email Address</string>
-    <string name="method_of_interaction">Method of Interaction</string>
-    <string name="what_did_you_discuss">What did you discuss?</string>
+    <string name="date_of_interaction_label">Date</string>
+    <string name="contact_name_label">Contact Name</string>
+    <string name="contact_phone_number_label">Contact PHone Number</string>
+    <string name="contact_email_address_label">Contact Email Address</string>
+    <string name="method_of_interaction_label">Contact Method</string>
+    <string name="what_did_you_discuss_label">What was discussed?</string>
+    <string name="date_of_interaction">When did you contact them?</string>
+    <string name="contact_name">Who did you speak to?</string>
+    <string name="contact_email_address">What's his/her email address?</string>
+    <string name="method_of_interaction">How did you contact him/her?</string>
+    <string name="what_did_you_discuss">What did you discuss with this individual?</string>
+    <string name="contact_phone_number">What is his/her phone number?</string>
 
     <!-- Set Up Interview Fragment -->
     <string name="set_up_interview">Set Up Interview</string>

@@ -1,9 +1,13 @@
-package com.example.christinaaiello;
+package com.example.christinaaiello.applicationprocess;
 
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.christinaaiello.R;
+
 
 
 public class UpdateStepsInApplicationProcessActivity extends FragmentActivity {
@@ -11,7 +15,13 @@ public class UpdateStepsInApplicationProcessActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_company_activity);
+        setContentView(R.layout.update_steps_in_application_process_activity);
+
+        // Initializing the fragment for initial contact with a company
+        InitialContactFragment initialContactFragment = new InitialContactFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.initial_contact_fragment, initialContactFragment);
+        transaction.commit();
     }
 
 

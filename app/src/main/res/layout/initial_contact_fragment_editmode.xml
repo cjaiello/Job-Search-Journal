@@ -14,10 +14,11 @@
         android:textSize="30dp"
         android:textStyle="bold" />
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/section_text"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -34,14 +35,14 @@
             android:text="@string/date_of_interaction_label"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/date_of_interview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/company_position_label"
             android:layout_weight="2"
-            android:background="@color/section_text"
+            android:background="@color/white"
             android:hint="@string/date_of_interaction"
             android:inputType="date" />
 
@@ -50,7 +51,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/section_text"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -67,14 +68,14 @@
             android:text="@string/contact_name_label"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/contact_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/company_name_label"
             android:layout_weight="2"
-            android:background="@color/section_text"
+            android:background="@color/white"
             android:hint="@string/contact_name"
             android:inputType="text|textCapWords" />
     </RelativeLayout>
@@ -82,7 +83,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/section_text"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -99,14 +100,14 @@
             android:text="@string/contact_email_address_label"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/contact_email_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/company_email_label"
             android:layout_weight="2"
-            android:background="@color/section_text"
+            android:background="@color/white"
             android:hint="@string/contact_email_address"
             android:inputType="textEmailAddress" />
     </RelativeLayout>
@@ -114,7 +115,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/section_text"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -131,14 +132,14 @@
             android:text="@string/contact_phone_number_label"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/contact_phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/contact_phone_number_label"
             android:layout_weight="2"
-            android:background="@color/section_text"
+            android:background="@color/white"
             android:hint="@string/contact_phone_number"
             android:inputType="phone" />
     </RelativeLayout>
@@ -146,7 +147,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/section_text"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -163,14 +164,14 @@
             android:text="@string/method_of_interaction_label"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/method_of_interaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/method_of_interaction_label"
             android:layout_weight="2"
-            android:background="@color/section_text"
+            android:background="@color/white"
             android:hint="@string/method_of_interaction"
             android:inputType="text|textMultiLine"
             android:lines="2" />
@@ -179,7 +180,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/section_text"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -196,14 +197,14 @@
             android:text="@string/what_did_you_discuss_label"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/what_was_discussed_with_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_below="@id/what_was_discussed_with_contact_label"
             android:layout_weight="2"
-            android:background="@color/section_text"
+            android:background="@color/white"
             android:gravity="top"
             android:hint="@string/what_did_you_discuss"
             android:inputType="text|textMultiLine"

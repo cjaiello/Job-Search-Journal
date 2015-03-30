@@ -1,4 +1,4 @@
-package com.example.christinaaiello;
+package com.example.christinaaiello.employerinformation;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.christinaaiello.R;
 import com.example.christinaaiello.employerinformation.Employer;
 
 import java.util.List;
