@@ -1,6 +1,8 @@
 package com.example.christinaaiello.applicationprocess;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -13,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.christinaaiello.R;
+import com.example.christinaaiello.employerinformation.DatabaseContract;
 
 
 public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
@@ -20,41 +23,44 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     Boolean editing;
     String ID;
     static Integer requestCode;
+    String TAG;
+    private DatabaseContract.DatabaseHelper databaseHelper;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_steps_in_application_process_activity);
         requestCode = 4;
+        TAG = "UpdateStepsInApplicationProcessActivity";
+        // Initialize Database objects
+        databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
+        db = databaseHelper.getReadableDatabase();
 
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
         ID = bundle.getString("ID");
 
-        initializeClicking(); // Initialize the bundle to be used for edit mode
+        displayData(ID); // Initializing the data, using the company ID
+        initializeClicking(); // Initialize the bundle to be used for edit mode, and the onclicks
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.update_steps, menu);
         return true;
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityResult(int aRequestCode, int resultCode, Intent data) {
+        super.onActivityResult(aRequestCode, resultCode, data);
         Log.e("Activity result", "Activity result");
 
-        if (requestCode == requestCode) {
-            Log.e("Activity result", "Got correct result code");
-            // If we just edited the initial contact fragment, show it now:
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            // Initializing the fragment for initial contact with a company
-            InitialContactFragment initialContactFragment = new InitialContactFragment();
-            transaction.add(R.id.initial_contact_fragment, initialContactFragment);
-            transaction.commit();
+        if (aRequestCode == requestCode) {
+            Log.e("Activity result", "Got correct result code for initialcontact");
+            displayInitialContactData();
         }
     }
 
@@ -151,7 +157,74 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 startActivityForResult(setupIntent, requestCode, initialContactBundle);
             }
         });
+    }
 
+    /**
+     * This method will initialize all of the data in the list of steps.
+     *
+     * @param companyID is the ID of the company in the table
+     */
+    public void displayData(String companyID) {
+        String[] projection = {
+                DatabaseContract.InitialContactTable._ID,
+                DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID,
+        };
+
+        // I only want a company whose ID number matches the one passed to me in a bundle
+        String[] selectionArgs = {String.valueOf(companyID)};
+
+        // My cursor that I use to loop over query results
+        Cursor cursor = db.query(
+                DatabaseContract.InitialContactTable.TABLE_NAME,  // The table to query
+                projection,                               // The columns to return
+                DatabaseContract.InitialContactTable._ID + "=?",                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null                                 // The sort order
+        );
+
+        if (!(cursor.getCount() == 0)) {
+            Log.i(TAG, "Got results when searching database.");
+            // Since we have had initial contact with this company, show the data on the screen.
+            displayInitialContactData();
+        } else {
+            Log.i(TAG, "Could not find matches when searching database.");
+            // We won't show any data, because we don't have it.
+        }
 
     }
+
+    /**
+     * Display our initial contact data
+     */
+    public void displayInitialContactData() {
+        // If we just edited the initial contact fragment, show it now:
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        // Initializing the fragment for initial contact with a company
+        InitialContactFragment initialContactFragment = new InitialContactFragment();
+        transaction.add(R.id.initial_contact_fragment, initialContactFragment);
+        transaction.commit();
+    }
+
+    /**
+     * This method is used when a user wants to edit initial contact info
+     *
+     * @param view is the button being clicked
+     */
+    public void initialContactEditClick(View view) {
+        final Intent initialContactIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, InitialContactActivityEditMode.class);
+
+        step = "initial";
+        editing = true; // This time, we are editing, not creating something new
+        // Use this name when starting a new activity
+        final Bundle initialContactBundle = new Bundle();
+        initialContactBundle.putString("Step", step);
+        initialContactBundle.putBoolean("Editing", editing);
+        initialContactBundle.putString("ID", ID);
+        initialContactIntent.putExtras(initialContactBundle);
+        // Creating an intent to start the window
+        startActivityForResult(initialContactIntent, requestCode, initialContactBundle);
+    }
+
 }

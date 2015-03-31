@@ -2,10 +2,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainactivity_bg_color"
-    android:paddingBottom="15dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="15dp">
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp">
 
     <LinearLayout
         android:id="@+id/update_steps_in_application_process"
