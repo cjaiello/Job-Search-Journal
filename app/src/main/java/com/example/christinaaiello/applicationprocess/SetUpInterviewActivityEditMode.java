@@ -17,7 +17,7 @@ import com.example.christinaaiello.employerinformation.DatabaseContract;
 /**
  * Created by Christina Aiello on 3/27/2015.
  */
-public class InitialContactActivityEditMode extends ActionBarActivity {
+public class SetUpInterviewActivityEditMode extends ActionBarActivity {
     private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     Boolean editing; // Help us tell the difference between adding a new step and editing a current one
@@ -28,9 +28,9 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.initial_contact_activity_editmode);
+        setContentView(R.layout.set_up_interview_fragment_editmode);
         requestCode = 4;
-        TAG = "InitialContactActivityEditMode";
+        TAG = "SetUpInterviewActivityEditMode";
         // Initialize Database objects
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
@@ -43,7 +43,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         // If I chose to edit this, show the old data
         if (editing) {
             try {
-                displayCompanyData(ID);
+                displayPreviouslyEnteredInterviewData(ID);
             } catch (InterruptedException e) {
                 Log.e(TAG, "Error in displaying company data.");
             }
@@ -63,7 +63,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.save_data:
                 try {
-                    ContentValues initialContactValues = getInitialContactInfo(); // Get info from the screen
+                    ContentValues initialContactValues = getSetUpInterviewInformation();// Get info from the screen
                     // Calling method to decide if we're adding a new thing or updating old:
                     addOrUpdate(initialContactValues); // This updates the database
                     Intent intent = new Intent();
@@ -72,7 +72,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
                     setResult(RESULT_OK, intent); //add this
                     finish();
                 } catch (InterruptedException e) {
-                    Log.e("Exception", "Exception in initial contact fragment edit mode, " + e.toString());
+                    Log.e("Exception", "Exception in set up interview fragment edit mode, " + e.toString());
                 }
                 return true;
             default:
@@ -83,42 +83,39 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     /**
      * This method decides if you are adding a new row to the table or updating it
      *
-     * @param initialContactValues
+     * @param setUpValues are the values on the screen for setting up an interview
      */
-    public void addOrUpdate(ContentValues initialContactValues) throws InterruptedException {
+    public void addOrUpdate(ContentValues setUpValues) throws InterruptedException {
         if (editing) {
             Log.e(TAG, "editing");
-            updateData(ID, initialContactValues); // Updating data, based on this company's ID
+            updateData(ID, setUpValues); // Updating data, based on this company's ID
         } else {
             long newRowId;
             newRowId = db.insert(
-                    DatabaseContract.InitialContactTable.TABLE_NAME,
+                    DatabaseContract.SetUpInterviewTable.TABLE_NAME,
                     null,
-                    initialContactValues);
+                    setUpValues);
         }
     }
 
     /**
      * This method will acquire the new information from the screen
      */
-    public ContentValues getInitialContactInfo() throws InterruptedException {
+    public ContentValues getSetUpInterviewInformation() throws InterruptedException {
         // Each of the textboxes the user typed into:
-        EditText dateOfContact = (EditText) findViewById(R.id.date_of_contact);
-        EditText contactName = (EditText) findViewById(R.id.contact_name);
+        EditText dateOfInterview = (EditText) findViewById(R.id.date_of_interview);
+        EditText interviewerNames = (EditText) findViewById(R.id.names_of_interviewers);
         EditText contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
-        EditText contactPhoneNumber = (EditText) findViewById(R.id.contact_phone_number);
-        EditText method = (EditText) findViewById(R.id.method_of_interaction);
-        EditText whatWasDiscussed = (EditText) findViewById(R.id.what_was_discussed_with_contact);
+        EditText miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
         // These are retrieved from what the user typed in:
-        values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_DATE, dateOfContact.getText().toString());
-        values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_CONTACT, contactName.getText().toString());
-        values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_EMAIL, contactEmailAddress.getText().toString());
-        values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_PHONE, contactPhoneNumber.getText().toString());
-        values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_METHOD, method.getText().toString());
-        values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_DISCUSSION, whatWasDiscussed.getText().toString());
+        values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
+        // These are retrieved from what the user typed in:
+        values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_DATE, dateOfInterview.getText().toString());
+        values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_INTERVIEWERS, interviewerNames.getText().toString());
+        values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_EMAIL, contactEmailAddress.getText().toString());
+        values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_MISC_NOTES, miscNotes.getText().toString());
 
         return values;
     }
@@ -126,14 +123,15 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     /**
      * This method will save a company's information to the database
      */
-    public void updateData(String companyID, ContentValues initialContactValues) throws InterruptedException {
+    public void updateData(String companyID, ContentValues setUpInfo) throws InterruptedException {
+
         // Updating the row, returning the primary key value of the new row
         String strFilter = "company_id=" + companyID;
 
         long newRowId;
         newRowId = db.update(
-                DatabaseContract.InitialContactTable.TABLE_NAME,
-                initialContactValues,
+                DatabaseContract.SetUpInterviewTable.TABLE_NAME,
+                setUpInfo,
                 strFilter,
                 null);
 
@@ -145,24 +143,20 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     /**
      * This will display the data for the chosen company
      */
-    public void displayCompanyData(String companyID) throws InterruptedException {
+    public void displayPreviouslyEnteredInterviewData(String companyID) throws InterruptedException {
         // Each of the textboxes the user typed into:
-        EditText dateOfContact = (EditText) findViewById(R.id.date_of_contact);
-        EditText contactName = (EditText) findViewById(R.id.contact_name);
+        EditText dateOfInterview = (EditText) findViewById(R.id.date_of_interview);
+        EditText interviewerNames = (EditText) findViewById(R.id.names_of_interviewers);
         EditText contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
-        EditText contactPhoneNumber = (EditText) findViewById(R.id.contact_phone_number);
-        EditText method = (EditText) findViewById(R.id.method_of_interaction);
-        EditText whatWasDiscussed = (EditText) findViewById(R.id.what_was_discussed_with_contact);
+        EditText miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
 
         String[] projection = {
-                DatabaseContract.InitialContactTable._ID,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_DATE,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_CONTACT,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_EMAIL,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_PHONE,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_METHOD,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_DISCUSSION,
+                DatabaseContract.SetUpInterviewTable._ID,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_DATE,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_INTERVIEWERS,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_EMAIL,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_MISC_NOTES,
         };
 
         // I only want a company whose ID number matches the one passed to me in a bundle
@@ -170,9 +164,9 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
 
         // My cursor that I use to loop over query results
         Cursor cursor = db.query(
-                DatabaseContract.InitialContactTable.TABLE_NAME,  // The table to query
+                DatabaseContract.SetUpInterviewTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
@@ -182,12 +176,10 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         if (!(cursor.getCount() == 0)) {
             cursor.moveToFirst();
             Log.e(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
-            dateOfContact.setText(cursor.getString(2));
-            contactName.setText(cursor.getString(3));
+            dateOfInterview.setText(cursor.getString(2));
+            interviewerNames.setText(cursor.getString(3));
             contactEmailAddress.setText(cursor.getString(4));
-            contactPhoneNumber.setText(cursor.getString(5));
-            method.setText(cursor.getString(6));
-            whatWasDiscussed.setText(cursor.getString(7));
+            miscNotes.setText(cursor.getString(5));
         } else {
             Log.i(TAG, "Could not find matches when searching database.");
             // We won't show any data, because we don't have it.

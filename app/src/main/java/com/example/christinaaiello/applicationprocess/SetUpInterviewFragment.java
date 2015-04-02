@@ -17,7 +17,7 @@ import com.example.christinaaiello.employerinformation.DatabaseContract;
 /**
  * Created by Christina Aiello on 3/27/2015.
  */
-public class InitialContactFragment extends Fragment {
+public class SetUpInterviewFragment extends Fragment {
     private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     String ID;
@@ -36,10 +36,8 @@ public class InitialContactFragment extends Fragment {
         Bundle bundle = getActivity().getIntent().getExtras();
         ID = bundle.getString("ID"); // ID for this particular company
 
-        Log.e(TAG, "Bundle inside initial contact fragment says my id is: " + ID);
-
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.initial_contact_fragment, container, false);
+        View view = inflater.inflate(R.layout.set_up_interview_fragment, container, false);
 
         // Reading this company's initial contact data from the database
         readCompanyData(view, ID);
@@ -52,14 +50,12 @@ public class InitialContactFragment extends Fragment {
      */
     public void readCompanyData(View view, String companyID) {
         String[] projection = {
-                DatabaseContract.InitialContactTable._ID,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_DATE,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_CONTACT,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_EMAIL,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_PHONE,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_METHOD,
-                DatabaseContract.InitialContactTable.COLUMN_NAME_DISCUSSION,
+                DatabaseContract.SetUpInterviewTable._ID,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_DATE,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_INTERVIEWERS,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_EMAIL,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_MISC_NOTES,
         };
 
         // I only want a company whose ID number matches the one passed to me in a bundle
@@ -67,9 +63,9 @@ public class InitialContactFragment extends Fragment {
 
         // My cursor that I use to loop over query results
         Cursor cursor = db.query(
-                DatabaseContract.InitialContactTable.TABLE_NAME,  // The table to query
+                DatabaseContract.SetUpInterviewTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
@@ -78,22 +74,18 @@ public class InitialContactFragment extends Fragment {
 
         // Getting each of the text boxes for this fragment:
         TextView dateOfInterview = (TextView) view.findViewById(R.id.date_of_interview);
-        TextView contactName = (TextView) view.findViewById(R.id.contact_name);
+        TextView interviewerNames = (TextView) view.findViewById(R.id.names_of_interviewers);
         TextView contactEmailAddress = (TextView) view.findViewById(R.id.contact_email_address);
-        TextView contactPhoneNumber = (TextView) view.findViewById(R.id.contact_phone_number);
-        TextView method = (TextView) view.findViewById(R.id.method_of_interaction);
-        TextView whatWasDiscussed = (TextView) view.findViewById(R.id.what_was_discussed_with_contact);
+        TextView miscNotes = (TextView) view.findViewById(R.id.miscellaneous_notes);
 
         if (!(cursor.getCount() == 0)) {
             Log.i(TAG, "Got results when searching database.");
             // Now, look into the result and get the data
             cursor.moveToFirst();
             dateOfInterview.setText(cursor.getString(2));
-            contactName.setText(cursor.getString(3));
+            interviewerNames.setText(cursor.getString(3));
             contactEmailAddress.setText(cursor.getString(4));
-            contactPhoneNumber.setText(cursor.getString(5));
-            method.setText(cursor.getString(6));
-            whatWasDiscussed.setText(cursor.getString(7));
+            miscNotes.setText(cursor.getString(5));
         } else {
             Log.i(TAG, "Could not find matches when searching database.");
         }

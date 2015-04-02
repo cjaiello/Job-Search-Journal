@@ -1,63 +1,180 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/set_up_interview_fragment"
+    android:id="@+id/initial_contact_fragment"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@color/background_color"
     android:orientation="vertical"
-    android:paddingLeft="10dip"
-    android:paddingRight="10dip">
+    android:paddingTop="10dp">
 
-    <TextView
-        android:id="@+id/set_up_interview_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/set_up_interview" />
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:orientation="horizontal">
+        android:background="@color/company_title"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp">
 
+        <TextView
+            android:id="@+id/set_up_interview_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/set_up_interview"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/date_of_interview_picker"
+            android:id="@+id/edit_button_set_up_interview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/calendar_icon"
-            android:onClick="showDatePickerDialog"
-            android:contentDescription="Calendar for datepicker" />
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/set_up_interview_label"
+            android:focusableInTouchMode="false"
+            android:onClick="initialContactEditClick"
+            android:src="@drawable/ic_action_edit_dark" />
 
-        <EditText
-            android:id="@+id/date_of_interview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/date_of_interview_picker"
-            android:layout_weight="2"
-            android:hint="@string/date_of_interview"
-            android:inputType="date" />
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/names_of_interviewers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:ellipsize="start"
-        android:gravity="top"
-        android:hint="@string/names_of_interviewers"
-        android:inputType="textMultiLine"
-        android:lines="5" />
 
-    <EditText
-        android:id="@+id/miscellaneous_notes"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:gravity="top"
-        android:hint="@string/misc_notes"
-        android:inputType="text|textMultiLine"
-        android:lines="5" />
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/company_date_label"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:background="@color/section_title"
+            android:gravity="center"
+            android:padding="2dp"
+            android:paddingRight="5dp"
+            android:text="@string/date_of_interaction_label"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date_of_interview"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/company_date_label"
+            android:layout_weight="2"
+            android:background="@color/section_text"
+            android:gravity="center"
+            android:inputType="date"
+            android:padding="2dp"
+            android:textSize="14dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/names_of_interviewers_label"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:background="@color/section_title"
+            android:gravity="center"
+            android:padding="2dp"
+            android:paddingRight="5dp"
+            android:text="@string/names_of_interviewers"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/names_of_interviewers"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/names_of_interviewers_label"
+            android:layout_weight="2"
+            android:background="@color/section_text"
+            android:gravity="center"
+            android:inputType="text|textCapWords"
+            android:padding="2dp"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/company_email_label"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:background="@color/section_title"
+            android:gravity="center"
+            android:padding="2dp"
+            android:paddingRight="5dp"
+            android:text="@string/contact_email_address_label"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/contact_email_address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/company_email_label"
+            android:layout_weight="2"
+            android:background="@color/section_text"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:padding="2dp"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/miscellaneous_notes_label"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:background="@color/section_title"
+            android:gravity="center"
+            android:padding="2dp"
+            android:paddingRight="5dp"
+            android:text="@string/misc_notes"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/miscellaneous_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/miscellaneous_notes_label"
+            android:layout_centerVertical="true"
+            android:layout_weight="2"
+            android:background="@color/section_text"
+            android:gravity="top"
+            android:inputType="text|textMultiLine"
+            android:lines="5"
+            android:padding="2dp"
+            android:textSize="14dp" />
+    </RelativeLayout>
 
 </LinearLayout>

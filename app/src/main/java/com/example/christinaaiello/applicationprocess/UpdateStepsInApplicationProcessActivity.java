@@ -26,8 +26,14 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     String TAG;
     private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
+    RelativeLayout initialContactLayout;
+    RelativeLayout scheduleInterviewLayout;
+    RelativeLayout interviewDocumentationLayout;
+    RelativeLayout interviewFollowupLayout;
+    RelativeLayout offerResponseLayout;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_steps_in_application_process_activity);
@@ -37,11 +43,18 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getReadableDatabase();
 
+        initialContactLayout = (RelativeLayout) findViewById(R.id.ic_action_add_person_box);
+        scheduleInterviewLayout = (RelativeLayout) findViewById(R.id.ic_action_time_box);
+        interviewDocumentationLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box);
+        interviewFollowupLayout = (RelativeLayout) findViewById(R.id.ic_action_phone_box);
+        offerResponseLayout = (RelativeLayout) findViewById(R.id.ic_action_email_box);
+
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
         ID = bundle.getString("ID");
+        Log.e(TAG, "Company ID in update is... " + ID);
 
-        displayData(ID); // Initializing the data, using the company ID
+        seeIfInitialContactDataExists(ID); // Initializing the data, using the company ID
         initializeClicking(); // Initialize the bundle to be used for edit mode, and the onclicks
     }
 
@@ -60,7 +73,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
 
         if (aRequestCode == requestCode) {
             Log.e("Activity result", "Got correct result code for initialcontact");
-            displayInitialContactData();
+            displayInitialContactDataFragment();
         }
     }
 
@@ -127,7 +140,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         RelativeLayout setUpContactLayout = (RelativeLayout) findViewById(R.id.ic_action_time_box);
         ImageView setUpContactImage = (ImageView) setUpContactLayout.getChildAt(0);
         TextView setUpContactLayoutTextView = (TextView) setUpContactLayout.getChildAt(1);
-        final Intent setupIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, InitialContactActivityEditMode.class);
+        final Intent setupIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, SetUpInterviewActivityEditMode.class);
         final Bundle setupBundle = new Bundle();
         setUpContactImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +177,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      *
      * @param companyID is the ID of the company in the table
      */
-    public void displayData(String companyID) {
+    public void seeIfInitialContactDataExists(String companyID) {
         String[] projection = {
                 DatabaseContract.InitialContactTable._ID,
                 DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID,
@@ -174,23 +187,40 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         String[] selectionArgs = {String.valueOf(companyID)};
 
         // My cursor that I use to loop over query results
-        Cursor cursor = db.query(
+        Cursor initialContactCursor = db.query(
                 DatabaseContract.InitialContactTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                DatabaseContract.InitialContactTable._ID + "=?",                                // The columns for the WHERE clause
+                DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
                 null                                 // The sort order
         );
 
-        if (!(cursor.getCount() == 0)) {
+        Cursor setUpInterviewCursor = db.query(
+                DatabaseContract.InitialContactTable.TABLE_NAME,  // The table to query
+                projection,                               // The columns to return
+                DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null                                 // The sort order
+        );
+
+        if (!(setUpInterviewCursor.getCount() == 0)) {
             Log.i(TAG, "Got results when searching database.");
-            // Since we have had initial contact with this company, show the data on the screen.
-            displayInitialContactData();
-        } else {
+            displayInitialContactDataFragment(); // Show initial contact info
+            displaySetUpInterviewDataFragment(); // Show set up interview info
+            // Lastly, we need to hide the unnecessary boxes
+            scheduledInterviewFilledOut();
+        } else if (!(initialContactCursor.getCount() == 0)) {
+            Log.i(TAG, "Got results when searching database.");
+            displayInitialContactDataFragment();
+            // Lastly, we need to hide the "add initial contact" box
+            initialContactFilledOut();
+        }else {
             Log.i(TAG, "Could not find matches when searching database.");
-            // We won't show any data, because we don't have it.
+            noOptionsFilledOut(); // Hide all options other than the first one
         }
 
     }
@@ -198,12 +228,24 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     /**
      * Display our initial contact data
      */
-    public void displayInitialContactData() {
+    public void displayInitialContactDataFragment() {
         // If we just edited the initial contact fragment, show it now:
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         // Initializing the fragment for initial contact with a company
         InitialContactFragment initialContactFragment = new InitialContactFragment();
         transaction.add(R.id.initial_contact_fragment, initialContactFragment);
+        transaction.commit();
+    }
+
+    /**
+     * Display our initial contact data
+     */
+    public void displaySetUpInterviewDataFragment() {
+        // If we just edited the initial contact fragment, show it now:
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        // Initializing the fragment for initial contact with a company
+        SetUpInterviewFragment setUpInterviewFragment = new SetUpInterviewFragment();
+        transaction.add(R.id.set_up_interview_fragment, setUpInterviewFragment);
         transaction.commit();
     }
 
@@ -225,6 +267,83 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         initialContactIntent.putExtras(initialContactBundle);
         // Creating an intent to start the window
         startActivityForResult(initialContactIntent, requestCode, initialContactBundle);
+    }
+
+    /**
+     * This method is used to hide the "Add Initial Contact" box when that's already been clicked,
+     * and the steps after the next step
+     */
+    public void initialContactFilledOut() {
+        // The first box, the add initial contact box
+        initialContactLayout.setVisibility(View.GONE);
+        scheduleInterviewLayout.setVisibility(View.VISIBLE);
+        interviewDocumentationLayout.setVisibility(View.GONE);
+        interviewFollowupLayout.setVisibility(View.GONE);
+        offerResponseLayout.setVisibility(View.GONE);
+    }
+
+    /**
+     * This method is used to hide the "When did you schedule your interview" box when that's already been clicked,
+     * and the steps after the next step
+     */
+    public void scheduledInterviewFilledOut() {
+        // The first box, the add initial contact box
+        initialContactLayout.setVisibility(View.GONE);
+        scheduleInterviewLayout.setVisibility(View.GONE);
+        interviewDocumentationLayout.setVisibility(View.VISIBLE);
+        interviewFollowupLayout.setVisibility(View.GONE);
+        offerResponseLayout.setVisibility(View.GONE);
+    }
+
+    /**
+     * This method is used to hide the "Document how your interview went" box when that's already been clicked,
+     * and the steps after the next step
+     */
+    public void interviewDocumentationFilledOut() {
+        // The first box, the add initial contact box
+        initialContactLayout.setVisibility(View.GONE);
+        scheduleInterviewLayout.setVisibility(View.GONE);
+        interviewDocumentationLayout.setVisibility(View.GONE);
+        interviewFollowupLayout.setVisibility(View.VISIBLE);
+        offerResponseLayout.setVisibility(View.GONE);
+    }
+
+    /**
+     * This method is used to hide the "Add Initial Contact" box when that's already been clicked,
+     * and the steps after the next step
+     */
+    public void interviewFollowupFilledOut() {
+        // The first box, the add initial contact box
+        initialContactLayout.setVisibility(View.GONE);
+        scheduleInterviewLayout.setVisibility(View.GONE);
+        interviewDocumentationLayout.setVisibility(View.GONE);
+        interviewFollowupLayout.setVisibility(View.GONE);
+        offerResponseLayout.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * This method is used to hide the "Add Initial Contact" box when that's already been clicked,
+     * and the steps after the next step
+     */
+    public void allFilledOut() {
+        // The first box, the add initial contact box
+        initialContactLayout.setVisibility(View.GONE);
+        scheduleInterviewLayout.setVisibility(View.GONE);
+        interviewDocumentationLayout.setVisibility(View.GONE);
+        interviewFollowupLayout.setVisibility(View.GONE);
+        offerResponseLayout.setVisibility(View.GONE);
+    }
+
+    /**
+     * This method is used to hide all options other than the first,
+     * and the steps after the next step
+     */
+    public void noOptionsFilledOut() {
+        // The first box, the add initial contact box
+        scheduleInterviewLayout.setVisibility(View.GONE);
+        interviewDocumentationLayout.setVisibility(View.GONE);
+        interviewFollowupLayout.setVisibility(View.GONE);
+        offerResponseLayout.setVisibility(View.GONE);
     }
 
 }

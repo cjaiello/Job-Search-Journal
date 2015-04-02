@@ -16,6 +16,9 @@ public class DatabaseContract {
     public DatabaseContract() {
     }
 
+    private static final String TEXT_TYPE = " TEXT";
+    private static final String COMMA_SEP = ",";
+
     /* Inner class that defines the table contents */
     public static abstract class CompanyDataTable implements BaseColumns {
         public static final String TABLE_NAME = "company_information";
@@ -48,8 +51,6 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_DISCUSSION = "what_was_discussed_with_contact";
     }
 
-    private static final String TEXT_TYPE = " TEXT";
-    private static final String COMMA_SEP = ",";
     private static final String CREATE_INITIAL_CONTACT_TABLE =
             "CREATE TABLE " + InitialContactTable.TABLE_NAME + " (" +
                     InitialContactTable._ID + " INTEGER PRIMARY KEY," +
@@ -63,6 +64,29 @@ public class DatabaseContract {
                     " )";
     private static final String SQL_DELETE_INITIAL_CONTACT_TABLE =
             "DROP TABLE IF EXISTS " + InitialContactTable.TABLE_NAME;
+
+    /* Inner class that defines the table contents */
+    public static abstract class SetUpInterviewTable implements BaseColumns {
+        public static final String TABLE_NAME = "set_up_interview";
+        public static final String COLUMN_NAME_COMPANYID = "company_id";
+        public static final String COLUMN_NAME_DATE = "date_of_interview";
+        public static final String COLUMN_NAME_INTERVIEWERS = "names_of_interviewers";
+        public static final String COLUMN_NAME_EMAIL = "contact_email_address";
+        public static final String COLUMN_NAME_MISC_NOTES = "misc_notes";
+    }
+
+    private static final String CREATE_SET_UP_INTERVIEW_TABLE =
+            "CREATE TABLE " + SetUpInterviewTable.TABLE_NAME + " (" +
+                    SetUpInterviewTable._ID + " INTEGER PRIMARY KEY," +
+                    SetUpInterviewTable.COLUMN_NAME_COMPANYID + TEXT_TYPE + COMMA_SEP +
+                    SetUpInterviewTable.COLUMN_NAME_DATE + TEXT_TYPE + COMMA_SEP +
+                    SetUpInterviewTable.COLUMN_NAME_INTERVIEWERS + TEXT_TYPE + COMMA_SEP +
+                    SetUpInterviewTable.COLUMN_NAME_EMAIL + TEXT_TYPE + COMMA_SEP +
+                    SetUpInterviewTable.COLUMN_NAME_MISC_NOTES +
+                    " )";
+
+    private static final String SQL_DELETE_SET_UP_INTERVIEW_TABLE =
+            "DROP TABLE IF EXISTS " + SetUpInterviewTable.TABLE_NAME;
 
     private static final String CREATE_COMPANY_DATA_TABLE =
             "CREATE TABLE " + CompanyDataTable.TABLE_NAME + " (" +
@@ -97,12 +121,14 @@ public class DatabaseContract {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(CREATE_COMPANY_DATA_TABLE);
             db.execSQL(CREATE_INITIAL_CONTACT_TABLE);
+            db.execSQL(CREATE_SET_UP_INTERVIEW_TABLE);
         }
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             // This database is only a cache for online data, so its upgrade policy is
             // to simply to discard the data and start over
             db.execSQL(SQL_DELETE_COMPANY_DATA_TABLE);
             db.execSQL(SQL_DELETE_INITIAL_CONTACT_TABLE);
+            db.execSQL(SQL_DELETE_SET_UP_INTERVIEW_TABLE);
             onCreate(db);
         }
         public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {

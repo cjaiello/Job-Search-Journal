@@ -5,7 +5,8 @@
     android:paddingBottom="5dp"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
-    android:paddingTop="10dp">
+    android:paddingTop="10dp"
+    android:scrollbarFadeDuration="0">
 
     <LinearLayout
         android:id="@+id/update_steps_in_application_process"
@@ -15,11 +16,20 @@
         android:paddingLeft="10dip"
         android:paddingRight="10dip">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ic_action_add_person"
+            android:gravity="center"
+            android:background="@color/background_color"
+            android:text="Next step in the process..." />
+
         <RelativeLayout
             android:id="@+id/ic_action_add_person_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_blue"
+            android:background="@color/company_title"
             android:padding="2dp">
 
             <ImageView
@@ -42,7 +52,7 @@
             android:id="@+id/ic_action_time_box"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_blue"
+            android:background="@color/company_title"
             android:padding="2dp">
 
             <ImageView
@@ -64,7 +74,7 @@
             android:id="@+id/ic_action_chat_box"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_blue"
+            android:background="@color/company_title"
             android:padding="2dp">
 
             <ImageView
@@ -86,7 +96,7 @@
             android:id="@+id/ic_action_phone_box"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_blue">
+            android:background="@color/company_title">
 
             <ImageView
                 android:id="@+id/ic_action_phone"
@@ -108,7 +118,7 @@
             android:id="@+id/ic_action_email_box"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_blue"
+            android:background="@color/company_title"
             android:padding="2dp">
 
             <ImageView

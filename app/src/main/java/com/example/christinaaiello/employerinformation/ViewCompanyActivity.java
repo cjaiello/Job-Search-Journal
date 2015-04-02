@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.christinaaiello.R;
@@ -40,11 +41,20 @@ public class ViewCompanyActivity extends ActionBarActivity {
         // Getting the company's Name number from the bundle
         Bundle bundle = getIntent().getExtras();
         companyID = bundle.getString("ID");
+        Log.e("Company ID", "Company ID is... " + companyID);
 
         // When this textview is clicked, it opens up the steps in the process
         // that a user is (regarding applying to a job)
-        TextView positionView = (TextView) findViewById(R.id.company_position);
-        positionView.setOnClickListener(new View.OnClickListener() {
+        TextView trackProgressText = (TextView) findViewById(R.id.track_progress_text);
+        trackProgressText.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewCompanyActivity.this, UpdateStepsInApplicationProcessActivity.class);
+                intent.putExtras(createBundleForEditing()); // Putting company info into bundle
+                startActivity(intent);
+            }
+        });
+        ImageView trackProcessImage = (ImageView) findViewById(R.id.track_progress_image);
+        trackProcessImage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(ViewCompanyActivity.this, UpdateStepsInApplicationProcessActivity.class);
                 intent.putExtras(createBundleForEditing()); // Putting company info into bundle

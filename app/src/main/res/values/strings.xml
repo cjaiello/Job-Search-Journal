@@ -20,7 +20,7 @@
     <string name="company_size_hint">What size is the company?</string>
     <string name="company_location_hint">Where are they located?</string>
     <string name="company_goal_mission_statement_hint">What is this company\'s goal?</string>
-    <string name="misc_notes_about_company_hint">Anything else you\'d like to include can you here.</string>
+    <string name="misc_notes_about_company_hint">Anything else you\'d like to include can go here.</string>
     <string name="add_company_message_hint">When you click \'save,\' we will search Glassdoor.com™ for some more company information (website, industry, and ratings). If this information is not found, you will be able to add it yourself.</string>
     <string name="add_company_instructions_hint">Fill in the fields below with information about a company!</string>
 
