@@ -11,9 +11,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.christinaaiello.R;
+import com.example.christinaaiello.general.DatabaseContract;
 
-import static com.example.christinaaiello.employerinformation.DatabaseContract.CompanyDataTable;
-import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseHelper;
+import static com.example.christinaaiello.general.DatabaseContract.CompanyDataTable;
+import static com.example.christinaaiello.general.DatabaseContract.DatabaseHelper;
 
 
 public class AddCompanyActivity extends ActionBarActivity {

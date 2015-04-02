@@ -189,7 +189,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:hint="@string/method_of_interaction"
-            android:inputType="text|textMultiLine"
+            android:inputType="text|textMultiLine|textCapSentences"
             android:lines="2"
             android:padding="2dp"
             android:textSize="14dp" />

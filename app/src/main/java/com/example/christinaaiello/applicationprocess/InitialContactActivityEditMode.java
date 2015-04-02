@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.example.christinaaiello.R;
-import com.example.christinaaiello.employerinformation.DatabaseContract;
+import com.example.christinaaiello.general.DatabaseContract;
 
 /**
  * Created by Christina Aiello on 3/27/2015.

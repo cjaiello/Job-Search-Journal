@@ -49,6 +49,7 @@
                 android:background="@color/company_title"
                 android:gravity="center"
                 android:text="Company Name"
+                android:inputType="textCapWords"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 

@@ -1,4 +1,4 @@
-package com.example.christinaaiello.employerinformation;
+package com.example.christinaaiello.general;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,6 +19,8 @@ public class DatabaseContract {
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
 
+    // ------------------- Table for Company Data -----------------------------
+
     /* Inner class that defines the table contents */
     public static abstract class CompanyDataTable implements BaseColumns {
         public static final String TABLE_NAME = "company_information";
@@ -38,6 +40,31 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_WORKLIFE = "worklife";
         public static final String COLUMN_NAME_MISCELLANEOUS = "miscellaneous";
     }
+
+
+    private static final String CREATE_COMPANY_DATA_TABLE =
+            "CREATE TABLE " + CompanyDataTable.TABLE_NAME + " (" +
+                    CompanyDataTable._ID + " INTEGER PRIMARY KEY," +
+                    CompanyDataTable.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_LOGO + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_POSITION + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_SIZE + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_LOCATION + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_WEBSITE + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_INDUSTRY + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_OVERALL_RATING + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_CULTURE + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_GOAL + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_LEADERSHIP + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_COMPENSATION + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_OPPORTUNITIES + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_WORKLIFE + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_MISCELLANEOUS +
+                    " )";
+    private static final String SQL_DELETE_COMPANY_DATA_TABLE =
+            "DROP TABLE IF EXISTS " + CompanyDataTable.TABLE_NAME;
+
+    // ------------------- Table for Initial Contact -----------------------------
 
     /* Inner class that defines the table contents */
     public static abstract class InitialContactTable implements BaseColumns {
@@ -65,11 +92,35 @@ public class DatabaseContract {
     private static final String SQL_DELETE_INITIAL_CONTACT_TABLE =
             "DROP TABLE IF EXISTS " + InitialContactTable.TABLE_NAME;
 
+
+    // ------------------- Table for Interview Completed -----------------------------
+
+    /* Inner class that defines the table contents */
+    public static abstract class InterviewCompletedTable implements BaseColumns {
+        public static final String TABLE_NAME = "interview_completed";
+        public static final String COLUMN_NAME_COMPANYID = "company_id";
+        public static final String COLUMN_NAME_NOTES_ABOUT_INTERVIEW = "notes_about_interview";
+    }
+
+    private static final String CREATE_INTERVIEW_COMPLETED_TABLE =
+            "CREATE TABLE " + InterviewCompletedTable.TABLE_NAME + " (" +
+                    InterviewCompletedTable._ID + " INTEGER PRIMARY KEY," +
+                    InterviewCompletedTable.COLUMN_NAME_COMPANYID + TEXT_TYPE + COMMA_SEP +
+                    InterviewCompletedTable.COLUMN_NAME_NOTES_ABOUT_INTERVIEW +
+                    " )";
+
+    private static final String SQL_DELETE_INTERVIEW_COMPLETED_TABLE =
+            "DROP TABLE IF EXISTS " + InterviewCompletedTable.TABLE_NAME;
+
+
+    // ------------------- Table for Set Up Interview -----------------------------
+
     /* Inner class that defines the table contents */
     public static abstract class SetUpInterviewTable implements BaseColumns {
         public static final String TABLE_NAME = "set_up_interview";
         public static final String COLUMN_NAME_COMPANYID = "company_id";
         public static final String COLUMN_NAME_DATE = "date_of_interview";
+        public static final String COLUMN_NAME_TIME = "time_of_interview";
         public static final String COLUMN_NAME_INTERVIEWERS = "names_of_interviewers";
         public static final String COLUMN_NAME_EMAIL = "contact_email_address";
         public static final String COLUMN_NAME_MISC_NOTES = "misc_notes";
@@ -80,6 +131,7 @@ public class DatabaseContract {
                     SetUpInterviewTable._ID + " INTEGER PRIMARY KEY," +
                     SetUpInterviewTable.COLUMN_NAME_COMPANYID + TEXT_TYPE + COMMA_SEP +
                     SetUpInterviewTable.COLUMN_NAME_DATE + TEXT_TYPE + COMMA_SEP +
+                    SetUpInterviewTable.COLUMN_NAME_TIME + TEXT_TYPE + COMMA_SEP +
                     SetUpInterviewTable.COLUMN_NAME_INTERVIEWERS + TEXT_TYPE + COMMA_SEP +
                     SetUpInterviewTable.COLUMN_NAME_EMAIL + TEXT_TYPE + COMMA_SEP +
                     SetUpInterviewTable.COLUMN_NAME_MISC_NOTES +
@@ -88,27 +140,6 @@ public class DatabaseContract {
     private static final String SQL_DELETE_SET_UP_INTERVIEW_TABLE =
             "DROP TABLE IF EXISTS " + SetUpInterviewTable.TABLE_NAME;
 
-    private static final String CREATE_COMPANY_DATA_TABLE =
-            "CREATE TABLE " + CompanyDataTable.TABLE_NAME + " (" +
-                    CompanyDataTable._ID + " INTEGER PRIMARY KEY," +
-                    CompanyDataTable.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_LOGO + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_POSITION + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_SIZE + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_LOCATION + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_WEBSITE + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_INDUSTRY + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_OVERALL_RATING + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_CULTURE + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_GOAL + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_LEADERSHIP + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_COMPENSATION + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_OPPORTUNITIES + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_WORKLIFE + TEXT_TYPE + COMMA_SEP +
-                    CompanyDataTable.COLUMN_NAME_MISCELLANEOUS +
-                    " )";
-    private static final String SQL_DELETE_COMPANY_DATA_TABLE =
-            "DROP TABLE IF EXISTS " + CompanyDataTable.TABLE_NAME;
 
     public static class DatabaseHelper extends SQLiteOpenHelper {
         // If you change the database schema, you must increment the database version.
@@ -118,19 +149,25 @@ public class DatabaseContract {
         public DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
+
+        // Creating each of these tables
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(CREATE_COMPANY_DATA_TABLE);
             db.execSQL(CREATE_INITIAL_CONTACT_TABLE);
             db.execSQL(CREATE_SET_UP_INTERVIEW_TABLE);
+            db.execSQL(CREATE_INTERVIEW_COMPLETED_TABLE);
         }
+
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             // This database is only a cache for online data, so its upgrade policy is
             // to simply to discard the data and start over
             db.execSQL(SQL_DELETE_COMPANY_DATA_TABLE);
             db.execSQL(SQL_DELETE_INITIAL_CONTACT_TABLE);
             db.execSQL(SQL_DELETE_SET_UP_INTERVIEW_TABLE);
+            db.execSQL(SQL_DELETE_INTERVIEW_COMPLETED_TABLE);
             onCreate(db);
         }
+
         public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             onUpgrade(db, oldVersion, newVersion);
         }

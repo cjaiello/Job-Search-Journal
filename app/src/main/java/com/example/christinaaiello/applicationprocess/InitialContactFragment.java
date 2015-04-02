@@ -8,11 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.christinaaiello.R;
-import com.example.christinaaiello.employerinformation.DatabaseContract;
+import com.example.christinaaiello.general.DatabaseContract;
 
 /**
  * Created by Christina Aiello on 3/27/2015.

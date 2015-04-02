@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.example.christinaaiello.R;
 
-import static com.example.christinaaiello.employerinformation.DatabaseContract.CompanyDataTable;
-import static com.example.christinaaiello.employerinformation.DatabaseContract.DatabaseHelper;
+import static com.example.christinaaiello.general.DatabaseContract.CompanyDataTable;
+import static com.example.christinaaiello.general.DatabaseContract.DatabaseHelper;
 
 
 public class EditCompanyActivity extends ActionBarActivity {
