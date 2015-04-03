@@ -31,7 +31,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     RelativeLayout setUpInterviewLayout;
     RelativeLayout interviewCompletedLayout;
     RelativeLayout interviewFollowupLayout;
-    RelativeLayout offerResponseLayout;
 
     @Override
 
@@ -48,7 +47,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setUpInterviewLayout = (RelativeLayout) findViewById(R.id.ic_action_time_box);
         interviewCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box);
         interviewFollowupLayout = (RelativeLayout) findViewById(R.id.ic_action_phone_box);
-        offerResponseLayout = (RelativeLayout) findViewById(R.id.ic_action_email_box);
 
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
@@ -165,10 +163,10 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         step = "completed";
         editing = false;
         // Use this name when starting a new activity
-        setupBundle.putString("Step", step);
-        setupBundle.putBoolean("Editing", editing);
-        setupBundle.putString("ID", ID);
-        interviewCompletedIntent.putExtras(setupBundle);
+        interviewCompletedBundle.putString("Step", step);
+        interviewCompletedBundle.putBoolean("Editing", editing);
+        interviewCompletedBundle.putString("ID", ID);
+        interviewCompletedIntent.putExtras(interviewCompletedBundle);
 
         interviewCompletedImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +180,34 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
             public void onClick(View v) {
                 // Creating an intent to start the window
                 startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
+            }
+        });
+
+        // RECEIVED RESPONSE: Getting the set up contact layout item
+        ImageView receivedResponseImage = (ImageView) interviewFollowupLayout.getChildAt(0);
+        TextView receivedResponseTextView = (TextView) interviewFollowupLayout.getChildAt(1);
+        final Intent receivedResponseIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, ReceivedResponseActivityEditMode.class);
+        final Bundle receivedResponseBundle = new Bundle();
+        step = "completed";
+        editing = false;
+        // Use this name when starting a new activity
+        receivedResponseBundle.putString("Step", step);
+        receivedResponseBundle.putBoolean("Editing", editing);
+        receivedResponseBundle.putString("ID", ID);
+        receivedResponseIntent.putExtras(receivedResponseBundle);
+
+        receivedResponseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Creating an intent to start the window
+                startActivityForResult(receivedResponseIntent, requestCode, receivedResponseBundle);
+            }
+        });
+        receivedResponseTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Creating an intent to start the window
+                startActivityForResult(receivedResponseIntent, requestCode, receivedResponseBundle);
             }
         });
     }
@@ -367,7 +393,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setUpInterviewLayout.setVisibility(View.VISIBLE);
         interviewCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
-        offerResponseLayout.setVisibility(View.GONE);
     }
 
     /**
@@ -380,7 +405,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewCompletedLayout.setVisibility(View.VISIBLE);
         interviewFollowupLayout.setVisibility(View.GONE);
-        offerResponseLayout.setVisibility(View.GONE);
     }
 
     /**
@@ -393,7 +417,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.VISIBLE);
-        offerResponseLayout.setVisibility(View.GONE);
     }
 
     /**
@@ -406,7 +429,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
-        offerResponseLayout.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -419,7 +441,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
-        offerResponseLayout.setVisibility(View.GONE);
     }
 
     /**
@@ -431,7 +452,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
-        offerResponseLayout.setVisibility(View.GONE);
     }
 
 }

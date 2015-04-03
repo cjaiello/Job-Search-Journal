@@ -63,17 +63,13 @@
     <string name="interview_end_time">Interview End Time</string>
     <string name="notes_about_interview">Notes About Interview</string>
 
-    <!-- Set Up Interview Fragment -->
+    <!-- Received Response Fragment -->
     <string name="received_response">Received Response</string>
     <string name="date_of_response">Date of Response</string>
     <string name="received_offer">Received Offer</string>
     <string name="no_offer">No Offer</string>
     <string name="offer_amount">Offer Amount</string>
     <string name="offer_deadline">Offer Deadline</string>
-
-    <!-- Responded to Offer -->
-    <string name="responded_to_offer">Responded to Offer</string>
-    <string name="response_to_offer">Response To Offer</string>
 
     <!--
     <string name=""></string>

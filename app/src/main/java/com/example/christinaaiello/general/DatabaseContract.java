@@ -112,6 +112,35 @@ public class DatabaseContract {
     private static final String SQL_DELETE_INTERVIEW_COMPLETED_TABLE =
             "DROP TABLE IF EXISTS " + InterviewCompletedTable.TABLE_NAME;
 
+    // ------------------- Table for Received Response -----------------------------
+
+    /* Inner class that defines the table contents */
+    public static abstract class ReceivedResponseTable implements BaseColumns {
+        public static final String TABLE_NAME = "received_response";
+        public static final String COLUMN_NAME_COMPANYID = "company_id";
+        public static final String COLUMN_NAME_DATE_OF_RESPONSE = "date_of_response";
+        public static final String COLUMN_NAME_RECEIVED_OFFER = "received_offer";
+        public static final String COLUMN_NAME_OFFER_AMOUNT = "amount";
+        public static final String COLUMN_NAME_OFFER_DEADLINE = "deadline";
+        public static final String COLUMN_NAME_OFFER_RESPONSE = "response";
+        public static final String COLUMN_NAME_MISC_NOTES = "misc_notes";
+    }
+
+    private static final String CREATE_RECEIVED_RESPONSE_TABLE =
+            "CREATE TABLE " + ReceivedResponseTable.TABLE_NAME + " (" +
+                    ReceivedResponseTable._ID + " INTEGER PRIMARY KEY," +
+                    ReceivedResponseTable.COLUMN_NAME_COMPANYID + TEXT_TYPE + COMMA_SEP +
+                    ReceivedResponseTable.COLUMN_NAME_DATE_OF_RESPONSE + TEXT_TYPE + COMMA_SEP +
+                    ReceivedResponseTable.COLUMN_NAME_RECEIVED_OFFER + TEXT_TYPE + COMMA_SEP +
+                    ReceivedResponseTable.COLUMN_NAME_OFFER_AMOUNT + TEXT_TYPE + COMMA_SEP +
+                    ReceivedResponseTable.COLUMN_NAME_OFFER_DEADLINE + TEXT_TYPE + COMMA_SEP +
+                    ReceivedResponseTable.COLUMN_NAME_OFFER_RESPONSE + TEXT_TYPE + COMMA_SEP +
+                    ReceivedResponseTable.COLUMN_NAME_MISC_NOTES +
+                    " )";
+
+    private static final String SQL_DELETE_RECEIVED_RESPONSE_TABLE =
+            "DROP TABLE IF EXISTS " + ReceivedResponseTable.TABLE_NAME;
+
 
     // ------------------- Table for Set Up Interview -----------------------------
 
@@ -156,6 +185,7 @@ public class DatabaseContract {
             db.execSQL(CREATE_INITIAL_CONTACT_TABLE);
             db.execSQL(CREATE_SET_UP_INTERVIEW_TABLE);
             db.execSQL(CREATE_INTERVIEW_COMPLETED_TABLE);
+            db.execSQL(CREATE_RECEIVED_RESPONSE_TABLE);
         }
 
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -165,6 +195,7 @@ public class DatabaseContract {
             db.execSQL(SQL_DELETE_INITIAL_CONTACT_TABLE);
             db.execSQL(SQL_DELETE_SET_UP_INTERVIEW_TABLE);
             db.execSQL(SQL_DELETE_INTERVIEW_COMPLETED_TABLE);
+            db.execSQL(SQL_DELETE_RECEIVED_RESPONSE_TABLE);
             onCreate(db);
         }
 

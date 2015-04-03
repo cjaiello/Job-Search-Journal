@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:src="@drawable/ic_action_phone" />
+                android:src="@drawable/ic_action_email" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -112,29 +112,6 @@
                 android:layout_toRightOf="@+id/ic_action_phone"
                 android:gravity="center"
                 android:text="Record company's followup to your interview." />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/ic_action_email_box"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/company_title"
-            android:padding="2dp">
-
-            <ImageView
-                android:id="@+id/ic_action_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_email" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/ic_action_email"
-                android:gravity="center"
-                android:text="How did you respond, if you got an offer?" />
-
         </RelativeLayout>
 
         <FrameLayout

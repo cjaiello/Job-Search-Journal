@@ -68,7 +68,7 @@
         </activity>
 
         <activity
-            android:name=".applicationprocess.InterviewCompletedActivityEditMode"
+            android:name=".applicationprocess.ReceivedResponseActivityEditMode"
             android:label="Edit Your Progress" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
