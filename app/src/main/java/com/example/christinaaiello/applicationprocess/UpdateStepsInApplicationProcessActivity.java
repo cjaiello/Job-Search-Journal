@@ -226,7 +226,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // I only want a company whose ID number matches the one passed to me in a bundle
         String[] selectionArgs = {String.valueOf(companyID)};
 
-        // My cursor that I use to loop over query results
+        // Get any information about initial contact
         Cursor initialContactCursor = db.query(
                 DatabaseContract.InitialContactTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
@@ -237,6 +237,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 null                                 // The sort order
         );
 
+        // Get any information about setting up an interview
         Cursor setUpInterviewCursor = db.query(
                 DatabaseContract.SetUpInterviewTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
@@ -247,6 +248,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 null                                 // The sort order
         );
 
+        // Get any information about completing an interview
         Cursor interviewCompletedCursor = db.query(
                 DatabaseContract.InterviewCompletedTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
@@ -257,7 +259,25 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 null                                 // The sort order
         );
 
-        if (!(interviewCompletedCursor.getCount() == 0)) {
+        // Get any information about receiving a response after an interview
+        Cursor receivedResponseToInterviewCursor = db.query(
+                DatabaseContract.ReceivedResponseTable.TABLE_NAME,  // The table to query
+                projection,                               // The columns to return
+                DatabaseContract.ReceivedResponseTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null                                 // The sort order
+        );
+
+        if (!(receivedResponseToInterviewCursor.getCount() == 0)){
+            Log.i(TAG, "Got results when searching database");
+            displayInitialContactDataFragment(); // Show initial contact info
+            displaySetUpInterviewDataFragment(); // Show set up interview info
+            displayInterviewCompletedFragment(); // Show interview completed info
+            displayReceivedResponseFragment();
+            allFilledOut();
+        } else if (!(interviewCompletedCursor.getCount() == 0)) {
             Log.i(TAG, "Got results when searching database.");
             displayInitialContactDataFragment(); // Show initial contact info
             displaySetUpInterviewDataFragment(); // Show set up interview info
@@ -315,6 +335,18 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // Initializing the fragment for initial contact with a company
         InterviewCompletedFragment interviewCompletedFragment = new InterviewCompletedFragment();
         transaction.add(R.id.interview_completed_fragment, interviewCompletedFragment);
+        transaction.commit();
+    }
+
+    /**
+     * Display that we received a response
+     */
+    public void displayReceivedResponseFragment() {
+        // If we just edited the initial contact fragment, show it now:
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        // Initializing the fragment for initial contact with a company
+        ReceivedResponseFragment receivedResponseFragment = new ReceivedResponseFragment();
+        transaction.add(R.id.received_response_fragment, receivedResponseFragment);
         transaction.commit();
     }
 
@@ -384,6 +416,27 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     }
 
     /**
+     * This method is used when a user wants to edit received response.
+     * This is coded into the XML, which is why it isn't called in this file.
+     *
+     * @param view is the button being clicked
+     */
+    public void receivedResponseEditClick(View view) {
+        final Intent receivedResponseIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, ReceivedResponseActivityEditMode.class);
+
+        step = "receivedResponse";
+        editing = true; // This time, we are editing, not creating something new
+        // Use this name when starting a new activity
+        final Bundle receivedResponseBundle = new Bundle();
+        receivedResponseBundle.putString("Step", step);
+        receivedResponseBundle.putBoolean("Editing", editing);
+        receivedResponseBundle.putString("ID", ID);
+        receivedResponseIntent.putExtras(receivedResponseBundle);
+        // Creating an intent to start the window
+        startActivityForResult(receivedResponseIntent, requestCode, receivedResponseBundle);
+    }
+
+    /**
      * This method is used to hide the "Add Initial Contact" box when that's already been clicked,
      * and the steps after the next step
      */
@@ -423,24 +476,15 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      * This method is used to hide the "Add Initial Contact" box when that's already been clicked,
      * and the steps after the next step
      */
-    public void interviewFollowupFilledOut() {
-        // The first box, the add initial contact box
-        initialContactLayout.setVisibility(View.GONE);
-        setUpInterviewLayout.setVisibility(View.GONE);
-        interviewCompletedLayout.setVisibility(View.GONE);
-        interviewFollowupLayout.setVisibility(View.GONE);
-    }
-
-    /**
-     * This method is used to hide the "Add Initial Contact" box when that's already been clicked,
-     * and the steps after the next step
-     */
     public void allFilledOut() {
         // The first box, the add initial contact box
         initialContactLayout.setVisibility(View.GONE);
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
+        // Hiding the text that says "Next steps"
+        TextView nextStepText = (TextView) findViewById(R.id.next_step_text);
+        nextStepText.setVisibility(View.GONE);
     }
 
     /**

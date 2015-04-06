@@ -109,7 +109,7 @@ public class ReceivedResponseFragment extends Fragment {
                 acceptedBox.setChecked(false);
             }
             // Either way, set misc notes
-            miscNotes.setText(cursor.getString(6));
+            miscNotes.setText(cursor.getString(7));
         } else {
             Log.i(TAG, "Could not find matches when searching database.");
         }

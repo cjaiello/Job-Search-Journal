@@ -17,12 +17,13 @@
         android:paddingRight="10dip">
 
         <TextView
+            android:id="@+id/next_step_text"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/ic_action_add_person"
-            android:gravity="center"
             android:background="@color/background_color"
+            android:gravity="center"
             android:text="Next step in the process..." />
 
         <RelativeLayout
@@ -117,27 +118,31 @@
         <FrameLayout
             android:id="@+id/initial_contact_fragment"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <FrameLayout
             android:id="@+id/set_up_interview_fragment"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp" />
 
         <FrameLayout
             android:id="@+id/interview_completed_fragment"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp" />
 
         <FrameLayout
             android:id="@+id/received_response_fragment"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp" />
 
         <FrameLayout
             android:id="@+id/responded_to_offer_fragment"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp" />
 
     </LinearLayout>
 </ScrollView>

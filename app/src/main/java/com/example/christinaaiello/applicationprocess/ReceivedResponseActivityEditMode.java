@@ -129,6 +129,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
         // These are the text boxes on the screen that will show up if accepted box is checked:
         EditText offerAmount = (EditText) findViewById(R.id.offer_amount);
         EditText offerDeadline = (EditText) findViewById(R.id.offer_deadline);
+        EditText offerResponse = (EditText) findViewById(R.id.offer_response);
         EditText miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
 
         ContentValues values = new ContentValues();
@@ -145,7 +146,9 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
         }
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_OFFER_AMOUNT, offerAmount.getText().toString());
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_OFFER_DEADLINE, offerDeadline.getText().toString());
+        values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_OFFER_RESPONSE, offerResponse.getText().toString());
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_MISC_NOTES, miscNotes.getText().toString());
+        Log.e(TAG, "Misc Notes column values: " + miscNotes.getText().toString());
 
         return values;
     }
@@ -231,14 +234,14 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
                 offerResponseLayout.setVisibility(View.VISIBLE);
                 offerAmount.setText(cursor.getString(4));
                 offerDeadline.setText(cursor.getString(5));
-                offerResponse.setText(cursor.getString(5));
+                offerResponse.setText(cursor.getString(6));
             } else {
                 // Have rejected box be checked
                 rejectedBox.setChecked(true);
                 acceptedBox.setChecked(false);
             }
             // Either way, set misc notes
-            miscNotes.setText(cursor.getString(6));
+            miscNotes.setText(cursor.getString(7));
         } else {
             Log.i(TAG, "Could not find matches when searching database.");
             // We won't show any data, because we don't have it.
