@@ -32,6 +32,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
     RelativeLayout offerDeadlineLayout;
     RelativeLayout offerResponseLayout;
     CheckBox acceptedBox;
+    CheckBox rejectedBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
         offerDeadlineLayout = (RelativeLayout) findViewById(R.id.offer_deadline_layout);
         offerResponseLayout = (RelativeLayout) findViewById(R.id.offer_response_layout);
         acceptedBox = (CheckBox) findViewById(R.id.accepted_button);
+        rejectedBox = (CheckBox) findViewById(R.id.rejected_button);
 
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
@@ -61,27 +63,6 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
                 Log.e(TAG, "Error in displaying data.");
             }
         }
-
-
-        // Every time this is clicked (checked or unchecked), update the counter
-        acceptedBox.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                acceptedBoxFlag++; // Increase the counter
-                Log.e(TAG, "Clicked, and counter is: " + Integer.toString(acceptedBoxFlag));
-
-                if (((acceptedBoxFlag % 2) == 0) && (acceptedBoxFlag != 0)) {
-                    Log.e(TAG, "Odd, and counter is: " + Integer.toString(acceptedBoxFlag));
-                    // This happens for unchecking this box
-                    offerAmountLayout.setVisibility(View.GONE);
-                    offerDeadlineLayout.setVisibility(View.GONE);
-                    offerResponseLayout.setVisibility(View.GONE);
-                } else {
-                    offerAmountLayout.setVisibility(View.VISIBLE);
-                    offerDeadlineLayout.setVisibility(View.VISIBLE);
-                    offerResponseLayout.setVisibility(View.VISIBLE);
-                }
-            }
-        });
     }
 
     @Override
@@ -272,11 +253,22 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
      * @param v
      */
     public void receivedOfferMethod(View v) {
-        RelativeLayout offerAmountLayout = (RelativeLayout) findViewById(R.id.offer_amount_layout);
-        RelativeLayout offerDeadlineLayout = (RelativeLayout) findViewById(R.id.offer_deadline_layout);
-        offerAmountLayout.setVisibility(View.VISIBLE);
-        offerDeadlineLayout.setVisibility(View.VISIBLE);
-        offerResponseLayout.setVisibility(View.VISIBLE);
+        acceptedBoxFlag++; // Increase the counter
+        Log.e(TAG, "Clicked, and counter is: " + Integer.toString(acceptedBoxFlag));
+
+        if (((acceptedBoxFlag % 2) == 0) && (acceptedBoxFlag != 0)) {
+            Log.e(TAG, "Odd, and counter is: " + Integer.toString(acceptedBoxFlag));
+            // This happens for unchecking this box
+            offerAmountLayout.setVisibility(View.GONE);
+            offerDeadlineLayout.setVisibility(View.GONE);
+            offerResponseLayout.setVisibility(View.GONE);
+        } else {
+            offerAmountLayout.setVisibility(View.VISIBLE);
+            offerDeadlineLayout.setVisibility(View.VISIBLE);
+            offerResponseLayout.setVisibility(View.VISIBLE);
+            rejectedBox.setChecked(false);
+        }
+        Log.e(TAG, "Yes, got an offer - was clicked");
     }
 
     /**
@@ -285,11 +277,16 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
      * @param v
      */
     public void receivedNoOfferMethod(View v) {
-        RelativeLayout offerAmountLayout = (RelativeLayout) findViewById(R.id.offer_amount_layout);
-        RelativeLayout offerDeadlineLayout = (RelativeLayout) findViewById(R.id.offer_deadline_layout);
+        Log.e(TAG, "No, didn't get an offer - was clicked");
+        // Hide what we don't need to see
         offerAmountLayout.setVisibility(View.GONE);
         offerDeadlineLayout.setVisibility(View.GONE);
         offerResponseLayout.setVisibility(View.GONE);
+        acceptedBox.setChecked(false);
+        // If the number is odd for clicking, that means we need to increase the count
+        if (acceptedBoxFlag % 2 != 0) {
+            acceptedBoxFlag++;
+        }
     }
 
 }
