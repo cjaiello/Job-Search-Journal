@@ -69,7 +69,7 @@
             android:gravity="top"
             android:inputType="text|textMultiLine|textCapSentences"
             android:lines="10"
-            android:padding="2dp"
+            android:padding="5dp"
             android:textSize="14dp" />
     </RelativeLayout>
 

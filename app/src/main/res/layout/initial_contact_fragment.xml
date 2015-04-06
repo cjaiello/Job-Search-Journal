@@ -219,6 +219,7 @@
             android:layout_below="@id/what_was_discussed_with_contact_label"
             android:layout_centerVertical="true"
             android:layout_weight="2"
+            android:padding="5dp"
             android:background="@color/section_text"
             android:gravity="top"
             android:inputType="text|textMultiLine"

@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/company_title"
-            android:paddingBottom="4dp">
+            android:paddingBottom="6dp">
 
             <ImageView
                 android:id="@+id/track_progress_image"
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="4dp">
 
             <TextView
                 android:id="@+id/company_position_label"
