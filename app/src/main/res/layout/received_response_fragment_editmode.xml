@@ -257,7 +257,7 @@
             android:inputType="text|textMultiLine"
             android:lines="5"
             android:hint="Any other notes can go here."
-            android:padding="2dp"
+            android:padding="5dp"
             android:textSize="14dp" />
     </RelativeLayout>
 
