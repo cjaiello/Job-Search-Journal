@@ -201,6 +201,10 @@ public class MainActivity extends ActionBarActivity {
                 String idNumber = idView.getText().toString();
                 // Deleting from the database:
                 db.delete(DatabaseContract.CompanyDataTable.TABLE_NAME, DatabaseContract.CompanyDataTable._ID + "=?", new String[]{idNumber});
+                db.delete(DatabaseContract.CompanyDataTable.TABLE_NAME, DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
+                db.delete(DatabaseContract.CompanyDataTable.TABLE_NAME, DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
+                db.delete(DatabaseContract.CompanyDataTable.TABLE_NAME, DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
+                db.delete(DatabaseContract.CompanyDataTable.TABLE_NAME, DatabaseContract.ReceivedResponseTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
                 // And refreshing the layout
                 refreshListOfCompanies();
             }

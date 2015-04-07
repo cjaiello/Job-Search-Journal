@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.christinaaiello.R;
 import com.example.christinaaiello.general.DatabaseContract;
+import com.example.christinaaiello.general.PhoneCallCounter;
 
 /**
  * Created by Christina Aiello on 3/27/2015.
@@ -96,6 +97,13 @@ public class InitialContactFragment extends Fragment {
         } else {
             Log.i(TAG, "Could not find matches when searching database.");
         }
+
+        // Calling a method to count the # of times we've exchanged calls with this individual
+        Integer numberOfCalls = PhoneCallCounter.getNumberOfPhoneCalls(this.getActivity(), cursor.getString(5));
+        // Getting the number of calls box on the screen
+        TextView numberOfCallsExchangedTextView = (TextView) view.findViewById(R.id.contact_phone_number_count);
+        // Setting the value in that box
+        numberOfCallsExchangedTextView.setText(Integer.toString(numberOfCalls));
 
     }
 
