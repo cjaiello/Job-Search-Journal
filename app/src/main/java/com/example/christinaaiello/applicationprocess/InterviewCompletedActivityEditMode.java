@@ -22,15 +22,19 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
     private SQLiteDatabase db;
     Boolean editing; // Help us tell the difference between adding a new step and editing a current one
     String ID;
-    static Integer requestCode;
+    //static Integer requestCode;
     String TAG;
+    // Textbox the user typed into:
+    EditText notesAboutInterview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.interview_completed_fragment_editmode);
-        requestCode = 4;
+        //requestCode = 4;
         TAG = "InterviewCompletedActivityEditMode";
+        // Textbox the user typed into:
+        notesAboutInterview = (EditText) findViewById(R.id.notes_about_interview);
         // Initialize Database objects
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
@@ -45,7 +49,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
             try {
                 displayPreviouslyEnteredInterviewData(ID);
             } catch (InterruptedException e) {
-                Log.e(TAG, "Error in displaying company data.");
+                Log.e(TAG, "Error in displaying data: " + e.toString());
             }
         }
     }
@@ -87,11 +91,10 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
      */
     public void addOrUpdate(ContentValues setUpValues) throws InterruptedException {
         if (editing) {
-            Log.e(TAG, "editing");
+            Log.e(TAG, "We're editing, not adding a new item to the table");
             updateData(ID, setUpValues); // Updating data, based on this company's ID
         } else {
-            long newRowId;
-            newRowId = db.insert(
+            db.insert(
                     DatabaseContract.InterviewCompletedTable.TABLE_NAME,
                     null,
                     setUpValues);
@@ -102,9 +105,6 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
      * This method will acquire the new information from the screen
      */
     public ContentValues getSetUpInterviewInformation() throws InterruptedException {
-        // Each of the textboxes the user typed into:
-        EditText notesAboutInterview = (EditText) findViewById(R.id.notes_about_interview);
-
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
         values.put(DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
@@ -138,8 +138,6 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
      * This will display the data for the chosen company
      */
     public void displayPreviouslyEnteredInterviewData(String companyID) throws InterruptedException {
-        // Each of the textboxes the user typed into:
-        EditText notesAboutInterview = (EditText) findViewById(R.id.notes_about_interview);
 
         String[] projection = {
                 DatabaseContract.InterviewCompletedTable._ID,

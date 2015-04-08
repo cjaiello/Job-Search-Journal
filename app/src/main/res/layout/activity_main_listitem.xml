@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/company_list_card"
+    android:background="@drawable/mainactivity_companycard_style"
     android:gravity="center_vertical"
-    android:paddingRight="3dp"
-    android:paddingLeft="3dp"
     android:paddingBottom="5dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
     android:paddingTop="5dp">
 
     <TextView
@@ -18,7 +18,7 @@
         android:gravity="center_vertical"
         android:text="ID"
         android:textSize="16sp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/name"
@@ -27,10 +27,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
         android:gravity="center_vertical"
-        android:text="Name"
-        android:textStyle="bold"
         android:paddingLeft="5dp"
-        android:textSize="18dp"/>
+        android:text="Name"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/website"
@@ -38,30 +38,73 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
         android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
         android:singleLine="true"
         android:text="Website"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/position_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/website"
+        android:ellipsize="marquee"
         android:gravity="center_vertical"
-        android:textStyle="italic"
         android:paddingLeft="5dp"
-        android:textSize="14sp" />
+        android:paddingTop="10dp"
+        android:singleLine="true"
+        android:text="Position:"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/website"
-        android:gravity="center_vertical"
+        android:layout_below="@id/position_label"
         android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
         android:singleLine="true"
         android:text="Position"
-        android:paddingLeft="5dp"
         android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/step_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/position"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:lines="2"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
+        android:singleLine="true"
+        android:text="Step in Application Process:"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/step_label"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:lines="2"
+        android:paddingLeft="5dp"
+        android:singleLine="true"
+        android:text="Step"
+        android:textSize="14sp" />
+
 
     <ImageView
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:src="@drawable/ic_action_discard"
         android:layout_alignParentRight="true"
-        android:onClick="deleteCompany"/>
+        android:onClick="deleteCompany"
+        android:src="@drawable/ic_action_discard" />
 
-</RelativeLayout> 
+</RelativeLayout>

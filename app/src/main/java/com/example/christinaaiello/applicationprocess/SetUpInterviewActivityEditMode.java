@@ -24,6 +24,12 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
     String ID;
     static Integer requestCode;
     String TAG;
+    // Items on the screen:
+    EditText dateOfInterview;
+    EditText timeOfInterview;
+    EditText interviewerNames;
+    EditText contactEmailAddress;
+    EditText miscNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,8 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
         // Initialize Database objects
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
+
+        getLayoutItemsOnScreen(); // Getting items on screen and putting them into variables
 
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
@@ -102,13 +110,6 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
      * This method will acquire the new information from the screen
      */
     public ContentValues getSetUpInterviewInformation() throws InterruptedException {
-        // Each of the textboxes the user typed into:
-        EditText dateOfInterview = (EditText) findViewById(R.id.date_of_interview);
-        EditText timeOfInterview = (EditText) findViewById(R.id.time_of_interview);
-        EditText interviewerNames = (EditText) findViewById(R.id.names_of_interviewers);
-        EditText contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
-        EditText miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
-
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
         values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
@@ -146,12 +147,6 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
      * This will display the data for the chosen company
      */
     public void displayPreviouslyEnteredInterviewData(String companyID) throws InterruptedException {
-        // Each of the textboxes the user typed into:
-        EditText dateOfInterview = (EditText) findViewById(R.id.date_of_interview);
-        EditText timeOfInterview = (EditText) findViewById(R.id.time_of_interview);
-        EditText interviewerNames = (EditText) findViewById(R.id.names_of_interviewers);
-        EditText contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
-        EditText miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
 
         String[] projection = {
                 DatabaseContract.SetUpInterviewTable._ID,
@@ -191,6 +186,18 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
         }
 
 
+    }
+
+    /**
+     * This method will get all of the various layout items on the screen for us.
+     */
+    public void getLayoutItemsOnScreen() {
+        // Each of the textboxes the user typed into:
+        dateOfInterview = (EditText) findViewById(R.id.date_of_interview);
+        timeOfInterview = (EditText) findViewById(R.id.time_of_interview);
+        interviewerNames = (EditText) findViewById(R.id.names_of_interviewers);
+        contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
+        miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
     }
 
 }

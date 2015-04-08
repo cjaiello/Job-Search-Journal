@@ -21,15 +21,24 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     Boolean editing; // Help us tell the difference between adding a new step and editing a current one
-    String ID;
-    static Integer requestCode;
-    String TAG;
+    String ID; // This is the ID for this particular company
+    //static Integer requestCode;
+    String TAG; // Used for debugging
+    // Each of the textboxes the user typed into:
+    EditText dateOfContact;
+    EditText contactName;
+    EditText contactEmailAddress;
+    EditText contactPhoneNumber;
+    EditText method;
+    EditText whatWasDiscussed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_contact_activity_editmode);
-        requestCode = 4;
+        getLayoutItemsOnScreen();
+
+        //requestCode = 4;
         TAG = "InitialContactActivityEditMode";
         // Initialize Database objects
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
@@ -45,7 +54,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
             try {
                 displayCompanyData(ID);
             } catch (InterruptedException e) {
-                Log.e(TAG, "Error in displaying company data.");
+                Log.e(TAG, "Error in displaying data: " + e.toString());
             }
         }
     }
@@ -63,11 +72,10 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.save_data:
                 try {
-                    ContentValues initialContactValues = getInitialContactInfo(); // Get info from the screen
+                    ContentValues initialContactValues = getTextFromScreen(); // Get info from the screen
                     // Calling method to decide if we're adding a new thing or updating old:
                     addOrUpdate(initialContactValues); // This updates the database
                     Intent intent = new Intent();
-                    Log.e("Fuck", "Fuck fuck fuck");
                     // Closing this activity
                     setResult(RESULT_OK, intent); //add this
                     finish();
@@ -86,12 +94,13 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
      * @param initialContactValues
      */
     public void addOrUpdate(ContentValues initialContactValues) throws InterruptedException {
+        // If we're editing old data, do an update
         if (editing) {
             Log.e(TAG, "editing");
             updateData(ID, initialContactValues); // Updating data, based on this company's ID
         } else {
-            long newRowId;
-            newRowId = db.insert(
+            // We're adding something new, so do an insert
+            db.insert(
                     DatabaseContract.InitialContactTable.TABLE_NAME,
                     null,
                     initialContactValues);
@@ -99,17 +108,12 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     }
 
     /**
-     * This method will acquire the new information from the screen
+     * This method will acquire the new information from the screen, putting the information
+     * into a ContentValues that is used to insert into the database
+     *
+     * @return a ContentValues with the information from the screen
      */
-    public ContentValues getInitialContactInfo() throws InterruptedException {
-        // Each of the textboxes the user typed into:
-        EditText dateOfContact = (EditText) findViewById(R.id.date_of_contact);
-        EditText contactName = (EditText) findViewById(R.id.contact_name);
-        EditText contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
-        EditText contactPhoneNumber = (EditText) findViewById(R.id.contact_phone_number);
-        EditText method = (EditText) findViewById(R.id.method_of_interaction);
-        EditText whatWasDiscussed = (EditText) findViewById(R.id.what_was_discussed_with_contact);
-
+    public ContentValues getTextFromScreen() throws InterruptedException {
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
         // These are retrieved from what the user typed in:
@@ -130,8 +134,8 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         // Updating the row, returning the primary key value of the new row
         String strFilter = "company_id=" + companyID;
 
-        long newRowId;
-        newRowId = db.update(
+        // Make the query
+        db.update(
                 DatabaseContract.InitialContactTable.TABLE_NAME,
                 initialContactValues,
                 strFilter,
@@ -143,17 +147,9 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     }
 
     /**
-     * This will display the data for the chosen company
+     * This will display the data for the chosen company on the screen
      */
     public void displayCompanyData(String companyID) throws InterruptedException {
-        // Each of the textboxes the user typed into:
-        EditText dateOfContact = (EditText) findViewById(R.id.date_of_contact);
-        EditText contactName = (EditText) findViewById(R.id.contact_name);
-        EditText contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
-        EditText contactPhoneNumber = (EditText) findViewById(R.id.contact_phone_number);
-        EditText method = (EditText) findViewById(R.id.method_of_interaction);
-        EditText whatWasDiscussed = (EditText) findViewById(R.id.what_was_discussed_with_contact);
-
         String[] projection = {
                 DatabaseContract.InitialContactTable._ID,
                 DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID,
@@ -194,6 +190,19 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         }
 
 
+    }
+
+    /**
+     * This method will get all of the various layout items on the screen for us.
+     */
+    public void getLayoutItemsOnScreen() {
+        // Each of the textboxes the user types into:
+        dateOfContact = (EditText) findViewById(R.id.date_of_contact);
+        contactName = (EditText) findViewById(R.id.contact_name);
+        contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
+        contactPhoneNumber = (EditText) findViewById(R.id.contact_phone_number);
+        method = (EditText) findViewById(R.id.method_of_interaction);
+        whatWasDiscussed = (EditText) findViewById(R.id.what_was_discussed_with_contact);
     }
 
 }

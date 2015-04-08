@@ -31,7 +31,8 @@ public class Employer {
     private String compensationAndBenefitsRating;
     private String careerOpportunitiesRating;
     private String workLifeBalanceRating;
-    private Boolean couldRetrieveFromGlassdoor;
+    private Boolean couldRetrieveFromGlassdoor = false;
+    private String step;
 
     public Employer() {
     }
@@ -88,6 +89,15 @@ public class Employer {
      */
     public String getGoal() {
         return this.goal;
+    }
+
+    /**
+     * Getter for an employer object
+     *
+     * @return step
+     */
+    public String getStep() {
+        return this.step;
     }
 
     /**
@@ -201,6 +211,14 @@ public class Employer {
      */
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    /**
+     * Setter for an employer object
+     *
+     */
+    public void setStep(String step) {
+        this.step = step;
     }
 
     /**

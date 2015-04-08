@@ -1,6 +1,8 @@
 package com.example.christinaaiello.employerinformation;
 
 import android.content.Context;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.christinaaiello.R;
-import com.example.christinaaiello.employerinformation.Employer;
 
 import java.util.List;
 
@@ -38,16 +39,45 @@ public class CompanyListAdapter extends ArrayAdapter<Employer> {
         TextView companyIDView = (TextView) convertView.findViewById(R.id.id);
         TextView companyNameView = (TextView) convertView.findViewById(R.id.name);
         TextView websiteView = (TextView) convertView.findViewById(R.id.website);
+        TextView positionLabelView = (TextView) convertView.findViewById(R.id.position_label);
         TextView positionView = (TextView) convertView.findViewById(R.id.position);
+        TextView stepView = (TextView) convertView.findViewById(R.id.step);
         Employer employer = employerList.get(position);
-        Log.e("Employerlist", employerList.toString());
-        Log.e("Inside Adapter name", "Position is: " + Integer.toString(position));
 
+        Log.i("Inside Adapter name", "Position is: " + Integer.toString(position));
+        // Now let's set the text on the screen for this employer:
         companyIDView.setText(employer.getID());
-        Log.e("Inside Adapter, name:", employer.getName());
+        Log.i("Inside Adapter, name:", employer.getName());
         companyNameView.setText(employer.getName());
         websiteView.setText(employer.getWebsite());
-        positionView.setText("Position Applied For: " + employer.getPosition());
+
+        // If they don't put in a website, hide this field
+        if (employer.getWebsite() == null) {
+            websiteView.setVisibility(View.GONE);
+        } else if (employer.getWebsite().length() == 0) {
+            websiteView.setVisibility(View.GONE);
+        } else {
+            // There is a website, so show this field:
+            websiteView.setVisibility(View.VISIBLE);
+        }
+
+        positionView.setText(employer.getPosition());
+        // If they don't put in a position, hide this field
+        if (employer.getPosition().length() == 0) {
+            positionView.setVisibility(View.GONE);
+            positionLabelView.setVisibility(View.GONE);
+        } else {
+            // They did enter a position, so show this field:
+            positionView.setVisibility(View.VISIBLE);
+            positionLabelView.setVisibility(View.VISIBLE);
+        }
+
+        // If they have started, show most recent step, else don't
+        if (employer.getStep() != null) {
+            stepView.setText(employer.getStep());
+        } else {
+            stepView.setText("Not started");
+        }
 
         return convertView;
     }

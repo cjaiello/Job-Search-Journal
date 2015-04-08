@@ -28,11 +28,17 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
     static Integer requestCode;
     String TAG;
     Integer acceptedBoxFlag; // Used to tell whether the accepted box is checked or not
+    // Items on the sreen:
     RelativeLayout offerAmountLayout;
     RelativeLayout offerDeadlineLayout;
     RelativeLayout offerResponseLayout;
     CheckBox acceptedBox;
     CheckBox rejectedBox;
+    EditText dateOfResponse;
+    EditText offerAmount;
+    EditText offerDeadline;
+    EditText offerResponse;
+    EditText miscNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +50,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
         acceptedBoxFlag = 0; // Initialize to zero
-        offerAmountLayout = (RelativeLayout) findViewById(R.id.offer_amount_layout);
-        offerDeadlineLayout = (RelativeLayout) findViewById(R.id.offer_deadline_layout);
-        offerResponseLayout = (RelativeLayout) findViewById(R.id.offer_response_layout);
-        acceptedBox = (CheckBox) findViewById(R.id.accepted_button);
-        rejectedBox = (CheckBox) findViewById(R.id.rejected_button);
+        getLayoutItemsOnScreen(); // Getting all the items on the screen and putting them into variables
 
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
@@ -60,7 +62,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
             try {
                 displayPreviouslyEnteredData(ID);
             } catch (InterruptedException e) {
-                Log.e(TAG, "Error in displaying data.");
+                Log.e(TAG, "Error in displaying data: " + e.toString());
             }
         }
     }
@@ -104,8 +106,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
             Log.e(TAG, "editing");
             updateData(ID, receivedResponseValues); // Updating data, based on this company's ID
         } else {
-            long newRowId;
-            newRowId = db.insert(
+            db.insert(
                     DatabaseContract.ReceivedResponseTable.TABLE_NAME,
                     null,
                     receivedResponseValues);
@@ -116,21 +117,12 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
      * This method will acquire the new information from the screen
      */
     public ContentValues getReceivedResponseInformation() throws InterruptedException {
-        // Each of the textboxes the user typed into:
-        EditText dateOfResponse = (EditText) findViewById(R.id.date_of_response);
-        CheckBox acceptedBox = (CheckBox) findViewById(R.id.accepted_button);
         Boolean gotOffer = false; // Tells if user got an offer or not
 
         // If user got an offer, set this value to true (If this was only clicked once)
         if (acceptedBox.isChecked()) {
             gotOffer = true;
         }
-
-        // These are the text boxes on the screen that will show up if accepted box is checked:
-        EditText offerAmount = (EditText) findViewById(R.id.offer_amount);
-        EditText offerDeadline = (EditText) findViewById(R.id.offer_deadline);
-        EditText offerResponse = (EditText) findViewById(R.id.offer_response);
-        EditText miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
 
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
@@ -177,23 +169,11 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
      * This will display the data for the chosen company
      */
     public void displayPreviouslyEnteredData(String companyID) throws InterruptedException {
-        // Each of the textboxes the user typed into:
-        EditText dateOfResponse = (EditText) findViewById(R.id.date_of_response);
-        CheckBox acceptedBox = (CheckBox) findViewById(R.id.accepted_button);
-        CheckBox rejectedBox = (CheckBox) findViewById(R.id.rejected_button);
         Boolean gotOffer = false; // Tells if user got an offer or not
         // If user got an offer, set this value to true
         if (acceptedBox.isChecked()) {
             gotOffer = true;
         }
-        EditText offerAmount = (EditText) findViewById(R.id.offer_amount);
-        EditText offerDeadline = (EditText) findViewById(R.id.offer_deadline);
-        EditText offerResponse = (EditText) findViewById(R.id.offer_response);
-        EditText miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
-        // These will be shown or hidden depending if the user got an offer or not:
-        RelativeLayout offerAmountLayout = (RelativeLayout) findViewById(R.id.offer_amount_layout);
-        RelativeLayout offerDeadlineLayout = (RelativeLayout) findViewById(R.id.offer_deadline_layout);
-        RelativeLayout offerResponseLayout = (RelativeLayout) findViewById(R.id.offer_response_layout);
 
         String[] projection = {
                 DatabaseContract.ReceivedResponseTable._ID,
@@ -292,4 +272,20 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
         }
     }
 
+    /**
+     * This method will get all of the various layout items on the screen for us.
+     */
+    public void getLayoutItemsOnScreen() {
+        // Boxes that the user types into on the screen:
+        dateOfResponse = (EditText) findViewById(R.id.date_of_response);
+        offerAmountLayout = (RelativeLayout) findViewById(R.id.offer_amount_layout);
+        offerDeadlineLayout = (RelativeLayout) findViewById(R.id.offer_deadline_layout);
+        offerResponseLayout = (RelativeLayout) findViewById(R.id.offer_response_layout);
+        acceptedBox = (CheckBox) findViewById(R.id.accepted_button);
+        rejectedBox = (CheckBox) findViewById(R.id.rejected_button);
+        offerAmount = (EditText) findViewById(R.id.offer_amount);
+        offerDeadline = (EditText) findViewById(R.id.offer_deadline);
+        offerResponse = (EditText) findViewById(R.id.offer_response);
+        miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
+    }
 }

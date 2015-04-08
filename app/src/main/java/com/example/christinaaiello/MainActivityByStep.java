@@ -18,15 +18,15 @@ import android.widget.TextView;
 
 import com.example.christinaaiello.employerinformation.AddCompanyActivity;
 import com.example.christinaaiello.employerinformation.CompanyListAdapter;
-import com.example.christinaaiello.general.DatabaseContract;
 import com.example.christinaaiello.employerinformation.Employer;
 import com.example.christinaaiello.employerinformation.ViewCompanyActivity;
+import com.example.christinaaiello.general.DatabaseContract;
 
 import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
-    String TAG = "MainActivity "; // Used for log files
+public class MainActivityByStep extends ActionBarActivity {
+    String TAG = "MainActivityByStep "; // Used for log files
     ListView listView; // Contains all companies' names and urls
     public CompanyListAdapter adapter;
     private DatabaseContract.DatabaseHelper databaseHelper;
@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // Making an intent to open ViewCompanyActivity
-                Intent startViewCompanyIntent = new Intent(MainActivity.this, ViewCompanyActivity.class);
+                Intent startViewCompanyIntent = new Intent(MainActivityByStep.this, ViewCompanyActivity.class);
                 // Bundle to store things in
                 Bundle bundle = new Bundle();
                 // Getting the clicked view
@@ -109,7 +109,7 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Intent intent = new Intent(MainActivity.this, AddCompanyActivity.class);
+        Intent intent = new Intent(MainActivityByStep.this, AddCompanyActivity.class);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -127,7 +127,7 @@ public class MainActivity extends ActionBarActivity {
      */
     public ArrayList<Employer> getAllCompanyNames() {
         // This will contain the names of all of the companies
-        ArrayList<Employer> employerList = new ArrayList<Employer>();
+        ArrayList<Employer> companyNamesList = new ArrayList<Employer>();
 
         // Writing what columns we want from the table
         String[] projection = {
@@ -163,13 +163,13 @@ public class MainActivity extends ActionBarActivity {
             employer.setName(cursor.getString(1));
             employer.setPosition(cursor.getString(2));
             employer.setWebsite(cursor.getString(3));
-            employer.setStep(cursor.getString(4));
-            employerList.add(employer);
+            employer.setSquareLogo(cursor.getString(4));
+            companyNamesList.add(employer);
             cursor.moveToNext();
         }
 
-        Log.i(TAG, "Companynameslist: " + employerList.toString());
-        return employerList;
+        Log.i(TAG, "Companynameslist: " + companyNamesList.toString());
+        return companyNamesList;
     }
 
     /**
@@ -186,7 +186,7 @@ public class MainActivity extends ActionBarActivity {
      */
     public void deleteCompany(final View view) {
         // Making a dialog box that will pop up for the user
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivityByStep.this);
         builder.setTitle("Delete Company?");
         builder.setMessage("Are you sure you want to delete this company?");
         builder.setIcon(R.drawable.ic_launcher);

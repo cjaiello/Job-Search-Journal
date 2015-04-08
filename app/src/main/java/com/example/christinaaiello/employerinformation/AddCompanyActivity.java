@@ -105,8 +105,7 @@ public class AddCompanyActivity extends ActionBarActivity {
         values.put(CompanyDataTable.COLUMN_NAME_WORKLIFE, employer.getWorkLifeBalanceRating());
 
         // Insert the new row, returning the primary key value of the new row
-        long newRowId;
-        newRowId = db.insert(
+        db.insert(
                 CompanyDataTable.TABLE_NAME,
                 null,
                 values);

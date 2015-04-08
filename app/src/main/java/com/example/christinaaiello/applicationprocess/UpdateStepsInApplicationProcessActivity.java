@@ -1,5 +1,6 @@
 package com.example.christinaaiello.applicationprocess;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -43,16 +44,11 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getReadableDatabase();
 
-        initialContactLayout = (RelativeLayout) findViewById(R.id.ic_action_add_person_box);
-        setUpInterviewLayout = (RelativeLayout) findViewById(R.id.ic_action_time_box);
-        interviewCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box);
-        interviewFollowupLayout = (RelativeLayout) findViewById(R.id.ic_action_phone_box);
-
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
         ID = bundle.getString("ID");
-        Log.e(TAG, "Company ID in update is... " + ID);
 
+        getLayoutItemsOnScreen(); // Getting the items on the screen and putting them into variables
         seeIfDataExists(ID); // Initializing the data, using the company ID
         initializeClicking(); // Initialize the bundle to be used for edit mode, and the onclicks
     }
@@ -218,6 +214,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      * @param companyID is the ID of the company in the table
      */
     public void seeIfDataExists(String companyID) {
+        String mostRecentStep; // This contains the most recent step taken with a company
         String[] projection = {
                 DatabaseContract.InitialContactTable._ID,
                 DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID,
@@ -270,35 +267,55 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 null                                 // The sort order
         );
 
-        if (!(receivedResponseToInterviewCursor.getCount() == 0)){
-            Log.i(TAG, "Got results when searching database");
+        if (!(receivedResponseToInterviewCursor.getCount() == 0)) {
+            Log.i(TAG, "Got results when searching database - Received Response After Interview");
             displayInitialContactDataFragment(); // Show initial contact info
             displaySetUpInterviewDataFragment(); // Show set up interview info
             displayInterviewCompletedFragment(); // Show interview completed info
-            displayReceivedResponseFragment();
+            displayReceivedResponseFragment(); // Showing response to interview
+            mostRecentStep = "Received Response After Interview";
             allFilledOut();
         } else if (!(interviewCompletedCursor.getCount() == 0)) {
-            Log.i(TAG, "Got results when searching database.");
+            Log.i(TAG, "Got results when searching database - Completed Interview");
             displayInitialContactDataFragment(); // Show initial contact info
             displaySetUpInterviewDataFragment(); // Show set up interview info
             displayInterviewCompletedFragment(); // Show interview completed info
+            mostRecentStep = "Completed Interview";
             // Lastly, we need to hide the unnecessary boxes
             interviewDocumentationFilledOut();
         } else if (!(setUpInterviewCursor.getCount() == 0)) {
-            Log.i(TAG, "Got results when searching database.");
+            Log.i(TAG, "Got results when searching database - Set Up Interview");
             displayInitialContactDataFragment(); // Show initial contact info
             displaySetUpInterviewDataFragment(); // Show set up interview info
+            mostRecentStep = "Set Up Interview";
             // Lastly, we need to hide the unnecessary boxes
             scheduledInterviewFilledOut();
         } else if (!(initialContactCursor.getCount() == 0)) {
-            Log.i(TAG, "Got results when searching database.");
+            Log.i(TAG, "Got results when searching database - Initially Contacted Company");
+            mostRecentStep = "Initially Contacted Company";
             displayInitialContactDataFragment();
             // Lastly, we need to hide the "add initial contact" box
             initialContactFilledOut();
         } else {
+            mostRecentStep = "Not started";
             Log.i(TAG, "Could not find matches when searching database.");
             noOptionsFilledOut(); // Hide all options other than the first one
         }
+
+        // Lastly, we now will mark the column in the database saying what the most recent step
+        // that has been taken with this company
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.CompanyDataTable.COLUMN_NAME_STEP, mostRecentStep);
+
+        // Updating the row, returning the primary key value of the new row
+        String strFilter = "_id=" + companyID;
+
+        // Update the column in the main company table to say what the most recent step is
+        db.update(
+                DatabaseContract.CompanyDataTable.TABLE_NAME,
+                values,
+                strFilter,
+                null);
 
     }
 
@@ -496,6 +513,16 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
+    }
+
+    /**
+     * This method will get all of the various layout items on the screen for us.
+     */
+    public void getLayoutItemsOnScreen(){
+        initialContactLayout = (RelativeLayout) findViewById(R.id.ic_action_add_person_box);
+        setUpInterviewLayout = (RelativeLayout) findViewById(R.id.ic_action_time_box);
+        interviewCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box);
+        interviewFollowupLayout = (RelativeLayout) findViewById(R.id.ic_action_phone_box);
     }
 
 }
