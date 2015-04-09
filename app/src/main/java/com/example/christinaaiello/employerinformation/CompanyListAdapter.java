@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.christinaaiello.R;
@@ -41,6 +42,7 @@ public class CompanyListAdapter extends ArrayAdapter<Employer> {
         TextView websiteView = (TextView) convertView.findViewById(R.id.website);
         TextView positionLabelView = (TextView) convertView.findViewById(R.id.position_label);
         TextView positionView = (TextView) convertView.findViewById(R.id.position);
+        ImageView positionImageView = (ImageView) convertView.findViewById(R.id.position_image);
         TextView stepView = (TextView) convertView.findViewById(R.id.step);
         Employer employer = employerList.get(position);
 
@@ -66,10 +68,12 @@ public class CompanyListAdapter extends ArrayAdapter<Employer> {
         if (employer.getPosition().length() == 0) {
             positionView.setVisibility(View.GONE);
             positionLabelView.setVisibility(View.GONE);
+            positionImageView.setVisibility(View.GONE);
         } else {
             // They did enter a position, so show this field:
             positionView.setVisibility(View.VISIBLE);
             positionLabelView.setVisibility(View.VISIBLE);
+            positionImageView.setVisibility(View.VISIBLE);
         }
 
         // If they have started, show most recent step, else don't

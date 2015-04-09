@@ -15,6 +15,13 @@
     <color name="section_text">#e6f5f5</color>
     <color name="background_color">#C5E9E9</color>
 
+    <!--Purple-->
+    <color name="company_title_purple">#48baba</color>
+    <color name="section_title_purple">#93d6d6</color>
+    <color name="mainactivity_bg_color_purple">#C5E9E9</color>
+    <color name="section_text_purple">#e6f5f5</color>
+    <color name="background_color_purple">#C5E9E9</color>
+
     <color name="action_bar">#80CFCF</color>
 
 </resources>
