@@ -3,6 +3,7 @@ package com.example.christinaaiello.employerinformation;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import com.example.christinaaiello.R;
 import com.example.christinaaiello.applicationprocess.UpdateStepsInApplicationProcessActivity;
 import com.example.christinaaiello.general.DatabaseContract;
+
+import java.util.Locale;
 
 import static com.example.christinaaiello.general.DatabaseContract.CompanyDataTable;
 import static com.example.christinaaiello.general.DatabaseContract.DatabaseHelper;
@@ -107,7 +110,6 @@ public class ViewCompanyActivity extends ActionBarActivity {
         TextView nameView = (TextView) findViewById(R.id.company_name);
         TextView positionView = (TextView) findViewById(R.id.company_position);
         TextView sizeView = (TextView) findViewById(R.id.company_size);
-        TextView locationView = (TextView) findViewById(R.id.company_location);
         TextView goalView = (TextView) findViewById(R.id.company_goal_mission_statement);
         TextView miscView = (TextView) findViewById(R.id.company_miscellaneous_notes);
         TextView websiteView = (TextView) findViewById(R.id.company_website);
@@ -124,7 +126,6 @@ public class ViewCompanyActivity extends ActionBarActivity {
         nameView.setText(employer.getName());
         positionView.setText(employer.getPosition());
         sizeView.setText(employer.getSize());
-        locationView.setText(employer.getLocation());
         goalView.setText(employer.getGoal());
         websiteView.setText(employer.getWebsite());
         industryView.setText(employer.getIndustry());
@@ -223,6 +224,21 @@ public class ViewCompanyActivity extends ActionBarActivity {
                 Html.fromHtml(
                         "<a href=\"http://glassdoor.com\">" + subtitleTextViewContent + "</a>"));
         subtitleTextView.setMovementMethod(LinkMovementMethod.getInstance());
+
+        // Lastly, let's make the location look like a clickable link, so people will click it
+        String locationText="<u>" + employer.getLocation() + "</u>";
+        TextView locationView = (TextView) findViewById(R.id.company_location);
+        locationView.setText(Html.fromHtml(locationText));
+    }
+
+    /**
+     * This method will open up a map with this company's location, when the "location" is clicked in the layout.
+     */
+    public void openMap(View view) {
+        Log.e(TAG, "Onclick called to open map");
+        String uri = String.format(Locale.ENGLISH, "geo:0,0?q=%s", employer.getLocation());
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(intent);
     }
 
     /**
