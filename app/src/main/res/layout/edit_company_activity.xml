@@ -82,6 +82,7 @@
                 android:background="@color/white"
                 android:gravity="center"
                 android:padding="2dp"
+                android:inputType="textCapWords"
                 android:text="@string/company_position" />
 
         </RelativeLayout>
@@ -113,6 +114,7 @@
                 android:background="@color/white"
                 android:gravity="center"
                 android:padding="2dp"
+                android:inputType="textCapWords"
                 android:text="@string/company_size" />
 
         </RelativeLayout>
@@ -144,6 +146,7 @@
                 android:background="@color/white"
                 android:gravity="center"
                 android:padding="2dp"
+                android:inputType="textCapWords"
                 android:text="@string/company_location" />
 
         </RelativeLayout>
@@ -205,6 +208,7 @@
                 android:layout_weight="2"
                 android:background="@color/white"
                 android:gravity="center"
+                android:inputType="textCapWords"
                 android:padding="2dp"
                 android:text="@string/company_industry" />
 
@@ -237,6 +241,7 @@
                 android:background="@color/white"
                 android:gravity="center"
                 android:padding="2dp"
+                android:inputType="textCapSentences"
                 android:text="@string/company_goal_mission_statement" />
 
         </RelativeLayout>
