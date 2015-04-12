@@ -19,7 +19,6 @@ import com.example.christinaaiello.general.DatabaseContract;
  * Created by Christina Aiello on 3/27/2015.
  */
 public class InterviewCompletedActivityEditMode extends ActionBarActivity {
-    private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     Boolean editing; // Help us tell the difference between adding a new step and editing a current one
     String ID;
@@ -40,7 +39,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
         notesAboutInterview = (EditText) findViewById(R.id.notes_about_interview);
         interviewNumberView = (TextView) findViewById(R.id.interview_number);
         // Initialize Database objects
-        databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
+        DatabaseContract.DatabaseHelper databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
 
         // Getting bundle information

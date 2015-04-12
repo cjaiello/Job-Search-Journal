@@ -17,7 +17,6 @@ import com.example.christinaaiello.general.DatabaseContract;
  * Created by Christina Aiello on 3/27/2015.
  */
 public class InterviewCompletedFragment extends Fragment {
-    private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     String ID;
     String TAG;
@@ -29,7 +28,7 @@ public class InterviewCompletedFragment extends Fragment {
         TAG = "InterviewCompletedFragment";
 
         // Initialize Database objects
-        databaseHelper = new DatabaseContract.DatabaseHelper(getActivity().getApplicationContext());
+        DatabaseContract.DatabaseHelper databaseHelper = new DatabaseContract.DatabaseHelper(getActivity().getApplicationContext());
         db = databaseHelper.getWritableDatabase();
 
         // Getting bundle information

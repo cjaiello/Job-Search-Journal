@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,7 +26,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     String ID;
     static Integer requestCode;
     String TAG;
-    private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     // These are the options that show up at the top of the screen that let you create various events related to interacting with a company
     RelativeLayout initialContactLayout;
@@ -45,7 +43,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         requestCode = 4;
         TAG = "UpdateStepsInApplicationProcessActivity";
         // Initialize Database objects
-        databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
+        DatabaseContract.DatabaseHelper databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getReadableDatabase();
 
         // Getting bundle information
@@ -298,39 +296,8 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 null                                 // The sort order
         );
 
-        if (!(receivedResponseToInterviewCursor.getCount() == 0)) {
-            // This is called if everything has been filled out
-            Log.i(TAG, "Got results when searching database - Received Response After Interview");
-            displayInitialContactDataFragment(); // Show initial contact info
-            displaySetUpInterviewDataFragment(); // Show set up interview info
-            displayInterviewOneCompletedFragment(); // Show interview completed info
-            displayReceivedResponseFragment(); // Showing response to interview
-            mostRecentStep = "Received Response After Interview";
-            allFilledOut();
-        } else if (!(interviewCompletedCursor.getCount() == 0)) {
-            Log.e("Count was", Integer.toString(interviewCompletedCursor.getCount()));
-            if((interviewCompletedCursor.getCount() == 2)) {
-                Log.i(TAG, "Got results when searching database - Completed Interview");
-                Log.e("Count", "Count was still two");
-                interviewNumber = 2; // Used to show/hide certain buttons on screen
-                Log.e("Number is", interviewNumber.toString());
-                displayInterviewTwoCompletedFragment(); // If they've done two interviews
-            } else interviewNumber = 1; // Used to show/hide certain buttons on screen
-            displayInterviewOneCompletedFragment();
-            displayInitialContactDataFragment(); // Show initial contact info
-            displaySetUpInterviewDataFragment(); // Show set up interview info
-            displayInterviewOneCompletedFragment(); // Show interview completed info
-            mostRecentStep = "Completed Interview";
-            // Lastly, we need to hide the unnecessary boxes
-            interviewDocumentationFilledOut();
-        } else if (!(setUpInterviewCursor.getCount() == 0)) {
-            Log.i(TAG, "Got results when searching database - Set Up Interview");
-            displayInitialContactDataFragment(); // Show initial contact info
-            displaySetUpInterviewDataFragment(); // Show set up interview info
-            mostRecentStep = "Set Up Interview";
-            // Lastly, we need to hide the unnecessary boxes
-            scheduledInterviewFilledOut();
-        } else if (!(initialContactCursor.getCount() == 0)) {
+        // Seeing if the user has started recording the interview process:
+        if (!(initialContactCursor.getCount() == 0)) {
             Log.i(TAG, "Got results when searching database - Initially Contacted Company");
             mostRecentStep = "Initially Contacted Company";
             displayInitialContactDataFragment();
@@ -340,6 +307,40 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
             mostRecentStep = "Not started";
             Log.i(TAG, "Could not find matches when searching database.");
             noOptionsFilledOut(); // Hide all options other than the first one
+        }
+
+        // Have they recorded setting up an interview?
+        if (!(setUpInterviewCursor.getCount() == 0)) {
+            Log.i(TAG, "Got results when searching database - Set Up Interview");
+            displaySetUpInterviewDataFragment(); // Show set up interview info
+            mostRecentStep = "Set Up Interview";
+            // Lastly, we need to hide the unnecessary boxes
+            scheduledInterviewFilledOut();
+        }
+
+        // Have they recorded having completed an interview?
+        if (!(interviewCompletedCursor.getCount() == 0)) {
+            Log.e("Count was", Integer.toString(interviewCompletedCursor.getCount()));
+            if ((interviewCompletedCursor.getCount() == 2)) {
+                Log.i(TAG, "Got results when searching database - Completed Interview");
+                Log.e("Count", "Count was still two");
+                interviewNumber = 2; // Used to show/hide certain buttons on screen
+                Log.e("Number is", interviewNumber.toString());
+                displayInterviewTwoCompletedFragment(); // If they've done two interviews
+            } else interviewNumber = 1; // Used to show/hide certain buttons on screen
+            displayInterviewOneCompletedFragment(); // Show interview completed info
+            mostRecentStep = "Completed Interview";
+            // Lastly, we need to hide the unnecessary boxes
+            interviewDocumentationFilledOut();
+        }
+
+        // Have they recorded receiving a response?
+        if (!(receivedResponseToInterviewCursor.getCount() == 0)) {
+            // This is called if everything has been filled out
+            Log.i(TAG, "Got results when searching database - Received Response After Interview");
+            displayReceivedResponseFragment(); // Showing response to interview
+            mostRecentStep = "Received Response After Interview";
+            allFilledOut();
         }
 
         // Lastly, we now will mark the column in the database saying what the most recent step
@@ -433,12 +434,9 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      */
     public void initialContactEditClick(View view) {
         final Intent initialContactIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, InitialContactActivityEditMode.class);
-
-        step = "initial";
         editing = true; // This time, we are editing, not creating something new
         // Use this name when starting a new activity
         final Bundle initialContactBundle = new Bundle();
-        initialContactBundle.putString("Step", step);
         initialContactBundle.putBoolean("Editing", editing);
         initialContactBundle.putString("ID", ID);
         initialContactIntent.putExtras(initialContactBundle);
@@ -455,12 +453,9 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      */
     public void setUpInterviewEditClick(View view) {
         final Intent setUpInterviewIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, SetUpInterviewActivityEditMode.class);
-
-        step = "setup";
         editing = true; // This time, we are editing, not creating something new
         // Use this name when starting a new activity
         final Bundle setUpInterviewBundle = new Bundle();
-        setUpInterviewBundle.putString("Step", step);
         setUpInterviewBundle.putBoolean("Editing", editing);
         setUpInterviewBundle.putString("ID", ID);
         setUpInterviewIntent.putExtras(setUpInterviewBundle);
@@ -477,15 +472,12 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      */
     public void interviewCompletedEditClick(View view) {
         final Intent interviewCompletedIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, InterviewCompletedActivityEditMode.class);
-
-        step = "completed";
         editing = true; // This time, we are editing, not creating something new
         // Use this name when starting a new activity
         final Bundle interviewCompletedBundle = new Bundle();
-        interviewCompletedBundle.putString("Step", step);
         interviewCompletedBundle.putBoolean("Editing", editing);
         interviewCompletedBundle.putString("ID", ID);
-        if(view.getParent().getParent().getParent() == (FrameLayout)findViewById(R.id.interview_two_completed_fragment)) {
+        if (view.getParent().getParent().getParent() == findViewById(R.id.interview_two_completed_fragment)) {
             interviewCompletedBundle.putInt("interviewNumber", 2);
         } else interviewCompletedBundle.putInt("interviewNumber", 1);
         interviewCompletedIntent.putExtras(interviewCompletedBundle);
@@ -501,12 +493,9 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      */
     public void receivedResponseEditClick(View view) {
         final Intent receivedResponseIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, ReceivedResponseActivityEditMode.class);
-
-        step = "receivedResponse";
         editing = true; // This time, we are editing, not creating something new
         // Use this name when starting a new activity
         final Bundle receivedResponseBundle = new Bundle();
-        receivedResponseBundle.putString("Step", step);
         receivedResponseBundle.putBoolean("Editing", editing);
         receivedResponseBundle.putString("ID", ID);
         receivedResponseIntent.putExtras(receivedResponseBundle);
@@ -549,7 +538,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewOneCompletedLayout.setVisibility(View.GONE);
         // If they've only done one interview so far
-        if(interviewNumber == 1) {
+        if (interviewNumber == 1) {
             // Two options: second interview, or write about followup:
             interviewTwoCompletedLayout.setVisibility(View.VISIBLE);
         } else interviewTwoCompletedLayout.setVisibility(View.GONE);
@@ -585,7 +574,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     /**
      * This method will get all of the various layout items on the screen for us.
      */
-    public void getLayoutItemsOnScreen(){
+    public void getLayoutItemsOnScreen() {
         initialContactLayout = (RelativeLayout) findViewById(R.id.ic_action_add_person_box);
         setUpInterviewLayout = (RelativeLayout) findViewById(R.id.ic_action_time_box);
         interviewOneCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box);

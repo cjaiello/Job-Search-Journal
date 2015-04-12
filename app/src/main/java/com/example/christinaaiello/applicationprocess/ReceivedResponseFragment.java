@@ -19,7 +19,6 @@ import com.example.christinaaiello.general.DatabaseContract;
  * Created by Christina Aiello on 3/27/2015.
  */
 public class ReceivedResponseFragment extends Fragment {
-    private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     String ID;
     String TAG;
@@ -30,7 +29,7 @@ public class ReceivedResponseFragment extends Fragment {
         TAG = "ReceivedResponseFragment";
 
         // Initialize Database objects
-        databaseHelper = new DatabaseContract.DatabaseHelper(getActivity().getApplicationContext());
+        DatabaseContract.DatabaseHelper databaseHelper = new DatabaseContract.DatabaseHelper(getActivity().getApplicationContext());
         db = databaseHelper.getWritableDatabase();
 
         // Getting bundle information

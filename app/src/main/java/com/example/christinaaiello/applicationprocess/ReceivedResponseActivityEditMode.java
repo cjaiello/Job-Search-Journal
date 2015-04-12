@@ -21,7 +21,6 @@ import com.example.christinaaiello.general.DatabaseContract;
  * Created by Christina Aiello on 3/27/2015.
  */
 public class ReceivedResponseActivityEditMode extends ActionBarActivity {
-    private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     Boolean editing; // Help us tell the difference between adding a new step and editing a current one
     String ID;
@@ -47,7 +46,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
         requestCode = 4;
         TAG = "ReceivedResponseActivityEditMode";
         // Initialize Database objects
-        databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
+        DatabaseContract.DatabaseHelper databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
         acceptedBoxFlag = 0; // Initialize to zero
         getLayoutItemsOnScreen(); // Getting all the items on the screen and putting them into variables
