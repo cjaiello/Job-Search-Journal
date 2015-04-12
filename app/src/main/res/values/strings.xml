@@ -36,6 +36,13 @@
     <string name="company_career_opportunities_rating">Career Opportunities</string>
     <string name="company_work_life_balance_rating">Work/Life Balance</string>
 
+    <!-- Update Steps Activity -->
+    <string name="initial_contact_question">How did you initially contact this company?</string>
+    <string name="enter_interview_scheduling_information">Schedule an interview? Record it here!</string>
+    <string name="first_interview_question">Document how your interview went.</string>
+    <string name="second_interview_question">Get a second interview? Report how it went.</string>
+    <string name="received_response_question">Get a job offer or not? Click to record results.</string>
+
     <!-- Initial Contact Fragment -->
     <string name="initial_contact">Initial Contact</string>
     <string name="date_of_interaction_label">Date</string>

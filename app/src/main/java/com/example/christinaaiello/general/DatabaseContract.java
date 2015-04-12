@@ -101,6 +101,8 @@ public class DatabaseContract {
     public static abstract class InterviewCompletedTable implements BaseColumns {
         public static final String TABLE_NAME = "interview_completed";
         public static final String COLUMN_NAME_COMPANYID = "company_id";
+        public static final String COLUMN_NAME_INTERVIEW_DATE = "interview_date";
+        public static final String COLUMN_NAME_INTERVIEW_NUMBER = "interview_number";
         public static final String COLUMN_NAME_NOTES_ABOUT_INTERVIEW = "notes_about_interview";
     }
 
@@ -108,6 +110,8 @@ public class DatabaseContract {
             "CREATE TABLE " + InterviewCompletedTable.TABLE_NAME + " (" +
                     InterviewCompletedTable._ID + " INTEGER PRIMARY KEY," +
                     InterviewCompletedTable.COLUMN_NAME_COMPANYID + TEXT_TYPE + COMMA_SEP +
+                    InterviewCompletedTable.COLUMN_NAME_INTERVIEW_DATE + TEXT_TYPE + COMMA_SEP +
+                    InterviewCompletedTable.COLUMN_NAME_INTERVIEW_NUMBER + TEXT_TYPE + COMMA_SEP +
                     InterviewCompletedTable.COLUMN_NAME_NOTES_ABOUT_INTERVIEW +
                     " )";
 

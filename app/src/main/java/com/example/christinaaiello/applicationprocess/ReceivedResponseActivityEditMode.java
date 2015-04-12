@@ -237,10 +237,10 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
      */
     public void receivedOfferMethod(View v) {
         acceptedBoxFlag++; // Increase the counter
-        Log.e(TAG, "Clicked, and counter is: " + Integer.toString(acceptedBoxFlag));
+        Log.i(TAG, "Clicked, and counter is: " + Integer.toString(acceptedBoxFlag));
 
         if (((acceptedBoxFlag % 2) == 0) && (acceptedBoxFlag != 0)) {
-            Log.e(TAG, "Odd, and counter is: " + Integer.toString(acceptedBoxFlag));
+            Log.i(TAG, "Counter is an odd number, and counter is: " + Integer.toString(acceptedBoxFlag));
             // This happens for unchecking this box
             offerAmountLayout.setVisibility(View.GONE);
             offerDeadlineLayout.setVisibility(View.GONE);
@@ -251,7 +251,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
             offerResponseLayout.setVisibility(View.VISIBLE);
             rejectedBox.setChecked(false);
         }
-        Log.e(TAG, "Yes, got an offer - was clicked");
+        Log.i(TAG, "Yes, got an offer - was clicked");
     }
 
     /**

@@ -7,7 +7,6 @@
     android:paddingTop="10dp">
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +35,18 @@
             android:onClick="interviewCompletedEditClick"
             android:src="@drawable/ic_action_edit_dark" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/interview_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="InterviewNumber" />
     </RelativeLayout>
 
     <RelativeLayout

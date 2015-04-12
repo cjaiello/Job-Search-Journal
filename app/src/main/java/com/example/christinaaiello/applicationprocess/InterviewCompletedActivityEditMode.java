@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.christinaaiello.R;
 import com.example.christinaaiello.general.DatabaseContract;
@@ -22,10 +23,12 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
     private SQLiteDatabase db;
     Boolean editing; // Help us tell the difference between adding a new step and editing a current one
     String ID;
+    Integer interviewNumber;
     //static Integer requestCode;
     String TAG;
     // Textbox the user typed into:
     EditText notesAboutInterview;
+    TextView interviewNumberView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
         TAG = "InterviewCompletedActivityEditMode";
         // Textbox the user typed into:
         notesAboutInterview = (EditText) findViewById(R.id.notes_about_interview);
+        interviewNumberView = (TextView) findViewById(R.id.interview_number);
         // Initialize Database objects
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
@@ -43,6 +47,8 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
         Bundle bundle = getIntent().getExtras();
         editing = bundle.getBoolean("Editing"); // Whether we're editing (or adding)
         ID = bundle.getString("ID"); // ID for this particular company
+        interviewNumber = bundle.getInt("interviewNumber");
+        Log.e(TAG, "InterviewNumber is: " + interviewNumber);
 
         // If I chose to edit this, show the old data
         if (editing) {
@@ -71,7 +77,6 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
                     // Calling method to decide if we're adding a new thing or updating old:
                     addOrUpdate(initialContactValues); // This updates the database
                     Intent intent = new Intent();
-                    Log.e("Fuck", "Fuck fuck fuck");
                     // Closing this activity
                     setResult(RESULT_OK, intent); //add this
                     finish();
@@ -91,7 +96,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
      */
     public void addOrUpdate(ContentValues setUpValues) throws InterruptedException {
         if (editing) {
-            Log.e(TAG, "We're editing, not adding a new item to the table");
+            Log.i(TAG, "We're editing, not adding a new item to the table");
             updateData(ID, setUpValues); // Updating data, based on this company's ID
         } else {
             db.insert(
@@ -110,6 +115,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
         values.put(DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
         // These are retrieved from what the user typed in:
         values.put(DatabaseContract.InterviewCompletedTable.COLUMN_NAME_NOTES_ABOUT_INTERVIEW, notesAboutInterview.getText().toString());
+        values.put(DatabaseContract.InterviewCompletedTable.COLUMN_NAME_INTERVIEW_NUMBER, interviewNumber);
 
         return values;
     }
@@ -120,10 +126,9 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
     public void updateData(String companyID, ContentValues interviewInfo) throws InterruptedException {
 
         // Updating the row, returning the primary key value of the new row
-        String strFilter = "company_id=" + companyID;
+        String strFilter = "company_id=" + companyID + " AND interview_number=" + interviewNumber;
 
-        long newRowId;
-        newRowId = db.update(
+        db.update(
                 DatabaseContract.InterviewCompletedTable.TABLE_NAME,
                 interviewInfo,
                 strFilter,
@@ -143,16 +148,17 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
                 DatabaseContract.InterviewCompletedTable._ID,
                 DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID,
                 DatabaseContract.InterviewCompletedTable.COLUMN_NAME_NOTES_ABOUT_INTERVIEW,
+                DatabaseContract.InterviewCompletedTable.COLUMN_NAME_INTERVIEW_NUMBER,
         };
 
         // I only want a company whose ID number matches the one passed to me in a bundle
-        String[] selectionArgs = {String.valueOf(companyID)};
+        String[] selectionArgs = {String.valueOf(companyID), String.valueOf(interviewNumber)};
 
         // My cursor that I use to loop over query results
         Cursor cursor = db.query(
                 DatabaseContract.InterviewCompletedTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
+                DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID + "=? AND " + DatabaseContract.InterviewCompletedTable.COLUMN_NAME_INTERVIEW_NUMBER + "=?",                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
@@ -161,10 +167,14 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
 
         if (!(cursor.getCount() == 0)) {
             cursor.moveToFirst();
-            Log.e(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
+            Log.i(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
+            Log.e(TAG, cursor.getString(2));
+            Log.e(TAG, cursor.getString(3));
             notesAboutInterview.setText(cursor.getString(2));
+            interviewNumberView.setText(cursor.getString(3));
         } else {
             Log.i(TAG, "Could not find matches when searching database.");
+            Log.e("no", "no editing matches");
             // We won't show any data, because we don't have it.
         }
 

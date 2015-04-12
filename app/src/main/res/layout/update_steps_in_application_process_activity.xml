@@ -20,8 +20,6 @@
             android:id="@+id/next_step_text"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/ic_action_add_person"
             android:background="@color/background_color"
             android:gravity="center"
             android:text="Next step in the process..." />
@@ -31,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/company_title"
-            android:padding="2dp">
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/ic_action_add_person"
@@ -45,7 +43,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/ic_action_add_person"
                 android:gravity="center"
-                android:text="How did you initially contact this company?" />
+                android:text="@string/initial_contact_question" />
 
         </RelativeLayout>
 
@@ -54,7 +52,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/company_title"
-            android:padding="2dp">
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/ic_action_time"
@@ -68,7 +66,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/ic_action_time"
                 android:gravity="center"
-                android:text="Enter information for an interview you scheduled." />
+                android:text="@string/enter_interview_scheduling_information" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -76,7 +74,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/company_title"
-            android:padding="2dp">
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/ic_action_chat"
@@ -90,7 +88,29 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/ic_action_chat"
                 android:gravity="center"
-                android:text="Document how your interview went." />
+                android:text="@string/first_interview_question" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ic_action_chat_box_two"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/company_title"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/ic_action_chat_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_chat" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ic_action_chat_two"
+                android:gravity="center"
+                android:text="@string/second_interview_question" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -103,7 +123,7 @@
                 android:id="@+id/ic_action_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_action_email" />
 
             <TextView
@@ -112,7 +132,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/ic_action_phone"
                 android:gravity="center"
-                android:text="Record company's followup to your interview." />
+                android:text="@string/received_response_question" />
         </RelativeLayout>
 
         <FrameLayout
@@ -127,7 +147,13 @@
             android:paddingTop="25dp" />
 
         <FrameLayout
-            android:id="@+id/interview_completed_fragment"
+            android:id="@+id/interview_one_completed_fragment"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp" />
+
+        <FrameLayout
+            android:id="@+id/interview_two_completed_fragment"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingTop="25dp" />

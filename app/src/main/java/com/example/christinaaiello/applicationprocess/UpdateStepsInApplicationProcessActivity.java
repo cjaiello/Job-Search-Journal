@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.example.christinaaiello.general.DatabaseContract;
 
 
 public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
+    public static Integer interviewNumber;
     String step;
     Boolean editing;
     String ID;
@@ -30,8 +32,10 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     // These are the options that show up at the top of the screen that let you create various events related to interacting with a company
     RelativeLayout initialContactLayout;
     RelativeLayout setUpInterviewLayout;
-    RelativeLayout interviewCompletedLayout;
+    RelativeLayout interviewOneCompletedLayout;
+    RelativeLayout interviewTwoCompletedLayout;
     RelativeLayout interviewFollowupLayout;
+    Bundle updateStepsBundle;
 
     @Override
 
@@ -45,8 +49,9 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         db = databaseHelper.getReadableDatabase();
 
         // Getting bundle information
-        Bundle bundle = getIntent().getExtras();
-        ID = bundle.getString("ID");
+        updateStepsBundle = getIntent().getExtras();
+        ID = updateStepsBundle.getString("ID");
+        interviewNumber = 0;
 
         getLayoutItemsOnScreen(); // Getting the items on the screen and putting them into variables
         seeIfDataExists(ID); // Initializing the data, using the company ID
@@ -64,10 +69,10 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     @Override
     public void onActivityResult(int aRequestCode, int resultCode, Intent data) {
         super.onActivityResult(aRequestCode, resultCode, data);
-        Log.e("Activity result", "Activity result");
+        Log.i("Activity result", "Activity result");
 
         if (aRequestCode == requestCode) {
-            Log.e("Activity result", "Got correct result code for initialcontact");
+            Log.i("Activity result", "Got correct result code for initialcontact");
             seeIfDataExists(ID); // Initializing the data, using the company ID
         }
     }
@@ -94,7 +99,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
 
     public void initializeClicking() {
 
-        Log.e("Clicking initialized?", "Yes");
+        Log.i(TAG + "Clicking initialized?", "Yes");
 
         // Getting the inital contact layout item
         ImageView initialContactImage = (ImageView) initialContactLayout.getChildAt(0);
@@ -127,6 +132,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // SET UP INTERVIEW: Getting the set up contact layout item
         ImageView setUpContactImage = (ImageView) setUpInterviewLayout.getChildAt(0);
         TextView setUpContactLayoutTextView = (TextView) setUpInterviewLayout.getChildAt(1);
+        // This will let the user edit this section:
         final Intent setupIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, SetUpInterviewActivityEditMode.class);
         final Bundle setupBundle = new Bundle();
         step = "setup";
@@ -152,8 +158,11 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         });
 
         // INTERVIEW COMPLETED: Getting the set up contact layout item
-        ImageView interviewCompletedImage = (ImageView) interviewCompletedLayout.getChildAt(0);
-        TextView interviewCompletedTextView = (TextView) interviewCompletedLayout.getChildAt(1);
+        ImageView interviewOneCompletedImage = (ImageView) interviewOneCompletedLayout.getChildAt(0);
+        TextView interviewOneCompletedTextView = (TextView) interviewOneCompletedLayout.getChildAt(1);
+        ImageView interviewTwoCompletedImage = (ImageView) interviewTwoCompletedLayout.getChildAt(0);
+        TextView interviewTwoCompletedTextView = (TextView) interviewTwoCompletedLayout.getChildAt(1);
+        // This will let the user edit this section:
         final Intent interviewCompletedIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, InterviewCompletedActivityEditMode.class);
         final Bundle interviewCompletedBundle = new Bundle();
         step = "completed";
@@ -162,18 +171,39 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         interviewCompletedBundle.putString("Step", step);
         interviewCompletedBundle.putBoolean("Editing", editing);
         interviewCompletedBundle.putString("ID", ID);
-        interviewCompletedIntent.putExtras(interviewCompletedBundle);
 
-        interviewCompletedImage.setOnClickListener(new View.OnClickListener() {
+        interviewOneCompletedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                interviewCompletedBundle.putInt("interviewNumber", 1);
+                interviewCompletedIntent.putExtras(interviewCompletedBundle);
                 // Creating an intent to start the window
                 startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
             }
         });
-        interviewCompletedTextView.setOnClickListener(new View.OnClickListener() {
+        interviewOneCompletedTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                interviewCompletedBundle.putInt("interviewNumber", 1);
+                interviewCompletedIntent.putExtras(interviewCompletedBundle);
+                // Creating an intent to start the window
+                startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
+            }
+        });
+        interviewTwoCompletedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                interviewCompletedBundle.putInt("interviewNumber", 2);
+                interviewCompletedIntent.putExtras(interviewCompletedBundle);
+                // Creating an intent to start the window
+                startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
+            }
+        });
+        interviewTwoCompletedTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                interviewCompletedBundle.putInt("interviewNumber", 2);
+                interviewCompletedIntent.putExtras(interviewCompletedBundle);
                 // Creating an intent to start the window
                 startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
             }
@@ -182,6 +212,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // RECEIVED RESPONSE: Getting the set up contact layout item
         ImageView receivedResponseImage = (ImageView) interviewFollowupLayout.getChildAt(0);
         TextView receivedResponseTextView = (TextView) interviewFollowupLayout.getChildAt(1);
+        // This will let the user edit this section:
         final Intent receivedResponseIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, ReceivedResponseActivityEditMode.class);
         final Bundle receivedResponseBundle = new Bundle();
         step = "completed";
@@ -249,7 +280,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         Cursor interviewCompletedCursor = db.query(
                 DatabaseContract.InterviewCompletedTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
+                DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
@@ -268,18 +299,27 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         );
 
         if (!(receivedResponseToInterviewCursor.getCount() == 0)) {
+            // This is called if everything has been filled out
             Log.i(TAG, "Got results when searching database - Received Response After Interview");
             displayInitialContactDataFragment(); // Show initial contact info
             displaySetUpInterviewDataFragment(); // Show set up interview info
-            displayInterviewCompletedFragment(); // Show interview completed info
+            displayInterviewOneCompletedFragment(); // Show interview completed info
             displayReceivedResponseFragment(); // Showing response to interview
             mostRecentStep = "Received Response After Interview";
             allFilledOut();
         } else if (!(interviewCompletedCursor.getCount() == 0)) {
-            Log.i(TAG, "Got results when searching database - Completed Interview");
+            Log.e("Count was", Integer.toString(interviewCompletedCursor.getCount()));
+            if((interviewCompletedCursor.getCount() == 2)) {
+                Log.i(TAG, "Got results when searching database - Completed Interview");
+                Log.e("Count", "Count was still two");
+                interviewNumber = 2; // Used to show/hide certain buttons on screen
+                Log.e("Number is", interviewNumber.toString());
+                displayInterviewTwoCompletedFragment(); // If they've done two interviews
+            } else interviewNumber = 1; // Used to show/hide certain buttons on screen
+            displayInterviewOneCompletedFragment();
             displayInitialContactDataFragment(); // Show initial contact info
             displaySetUpInterviewDataFragment(); // Show set up interview info
-            displayInterviewCompletedFragment(); // Show interview completed info
+            displayInterviewOneCompletedFragment(); // Show interview completed info
             mostRecentStep = "Completed Interview";
             // Lastly, we need to hide the unnecessary boxes
             interviewDocumentationFilledOut();
@@ -346,12 +386,30 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     /**
      * Display our interview completed
      */
-    public void displayInterviewCompletedFragment() {
+    public void displayInterviewOneCompletedFragment() {
+        Bundle bundle = new Bundle();
+        bundle.putInt("Number", 1);
         // If we just edited the initial contact fragment, show it now:
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         // Initializing the fragment for initial contact with a company
         InterviewCompletedFragment interviewCompletedFragment = new InterviewCompletedFragment();
-        transaction.add(R.id.interview_completed_fragment, interviewCompletedFragment);
+        interviewCompletedFragment.setArguments(bundle);
+        transaction.add(R.id.interview_one_completed_fragment, interviewCompletedFragment);
+        transaction.commit();
+    }
+
+    /**
+     * Display our interview completed
+     */
+    public void displayInterviewTwoCompletedFragment() {
+        Bundle bundle = new Bundle();
+        bundle.putInt("Number", 2);
+        // If we just edited the initial contact fragment, show it now:
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        // Initializing the fragment for initial contact with a company
+        InterviewCompletedFragment interviewCompletedFragment = new InterviewCompletedFragment();
+        interviewCompletedFragment.setArguments(bundle);
+        transaction.add(R.id.interview_two_completed_fragment, interviewCompletedFragment);
         transaction.commit();
     }
 
@@ -427,6 +485,9 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         interviewCompletedBundle.putString("Step", step);
         interviewCompletedBundle.putBoolean("Editing", editing);
         interviewCompletedBundle.putString("ID", ID);
+        if(view.getParent().getParent().getParent() == (FrameLayout)findViewById(R.id.interview_two_completed_fragment)) {
+            interviewCompletedBundle.putInt("interviewNumber", 2);
+        } else interviewCompletedBundle.putInt("interviewNumber", 1);
         interviewCompletedIntent.putExtras(interviewCompletedBundle);
         // Creating an intent to start the window
         startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
@@ -461,7 +522,8 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // The first box, the add initial contact box
         initialContactLayout.setVisibility(View.GONE);
         setUpInterviewLayout.setVisibility(View.VISIBLE);
-        interviewCompletedLayout.setVisibility(View.GONE);
+        interviewOneCompletedLayout.setVisibility(View.GONE);
+        interviewTwoCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
     }
 
@@ -473,7 +535,8 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // The first box, the add initial contact box
         initialContactLayout.setVisibility(View.GONE);
         setUpInterviewLayout.setVisibility(View.GONE);
-        interviewCompletedLayout.setVisibility(View.VISIBLE);
+        interviewOneCompletedLayout.setVisibility(View.VISIBLE);
+        interviewTwoCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
     }
 
@@ -482,10 +545,14 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      * and the steps after the next step
      */
     public void interviewDocumentationFilledOut() {
-        // The first box, the add initial contact box
         initialContactLayout.setVisibility(View.GONE);
         setUpInterviewLayout.setVisibility(View.GONE);
-        interviewCompletedLayout.setVisibility(View.GONE);
+        interviewOneCompletedLayout.setVisibility(View.GONE);
+        // If they've only done one interview so far
+        if(interviewNumber == 1) {
+            // Two options: second interview, or write about followup:
+            interviewTwoCompletedLayout.setVisibility(View.VISIBLE);
+        } else interviewTwoCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.VISIBLE);
     }
 
@@ -494,10 +561,10 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      * and the steps after the next step
      */
     public void allFilledOut() {
-        // The first box, the add initial contact box
         initialContactLayout.setVisibility(View.GONE);
         setUpInterviewLayout.setVisibility(View.GONE);
-        interviewCompletedLayout.setVisibility(View.GONE);
+        interviewOneCompletedLayout.setVisibility(View.GONE);
+        interviewTwoCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
         // Hiding the text that says "Next steps"
         TextView nextStepText = (TextView) findViewById(R.id.next_step_text);
@@ -509,9 +576,9 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      * and the steps after the next step
      */
     public void noOptionsFilledOut() {
-        // The first box, the add initial contact box
         setUpInterviewLayout.setVisibility(View.GONE);
-        interviewCompletedLayout.setVisibility(View.GONE);
+        interviewOneCompletedLayout.setVisibility(View.GONE);
+        interviewTwoCompletedLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
     }
 
@@ -521,8 +588,10 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     public void getLayoutItemsOnScreen(){
         initialContactLayout = (RelativeLayout) findViewById(R.id.ic_action_add_person_box);
         setUpInterviewLayout = (RelativeLayout) findViewById(R.id.ic_action_time_box);
-        interviewCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box);
+        interviewOneCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box);
+        interviewTwoCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box_two);
         interviewFollowupLayout = (RelativeLayout) findViewById(R.id.ic_action_phone_box);
     }
+
 
 }

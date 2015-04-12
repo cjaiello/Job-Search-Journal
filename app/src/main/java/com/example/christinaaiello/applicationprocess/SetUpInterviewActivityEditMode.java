@@ -174,7 +174,7 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
 
         if (!(cursor.getCount() == 0)) {
             cursor.moveToFirst();
-            Log.e(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
+            Log.i(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
             dateOfInterview.setText(cursor.getString(2));
             timeOfInterview.setText(cursor.getString(3));
             interviewerNames.setText(cursor.getString(4));
