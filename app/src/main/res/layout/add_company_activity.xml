@@ -30,7 +30,7 @@
 
             <TextView
                 android:id="@+id/company_name_label"
-                android:layout_width="90dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:background="@color/section_title"
                 android:gravity="center"
@@ -60,7 +60,7 @@
 
             <TextView
                 android:id="@+id/company_position_label"
-                android:layout_width="90dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:background="@color/section_title"
                 android:gravity="center"
@@ -91,7 +91,7 @@
 
             <TextView
                 android:id="@+id/company_size_label"
-                android:layout_width="90dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:background="@color/section_title"
                 android:gravity="center"
@@ -124,7 +124,7 @@
 
             <TextView
                 android:id="@+id/company_location_label"
-                android:layout_width="90dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:background="@color/section_title"
                 android:gravity="center"
@@ -156,7 +156,7 @@
 
             <TextView
                 android:id="@+id/company_goal_mission_statement_label"
-                android:layout_width="90dp"
+                android:layout_width="84dp"
                 android:layout_height="75dp"
                 android:background="@color/section_title"
                 android:gravity="center"

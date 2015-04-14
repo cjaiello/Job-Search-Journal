@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/company_position_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -95,7 +95,7 @@
 
             <TextView
                 android:id="@+id/company_size_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -127,7 +127,7 @@
 
             <TextView
                 android:id="@+id/company_location_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -159,7 +159,7 @@
 
             <TextView
                 android:id="@+id/company_website_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -190,7 +190,7 @@
 
             <TextView
                 android:id="@+id/company_industry_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -222,7 +222,7 @@
 
             <TextView
                 android:id="@+id/company_goal_mission_statement_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="75dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -286,7 +286,7 @@
 
             <TextView
                 android:id="@+id/company_overall_rating_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -310,7 +310,7 @@
 
             <TextView
                 android:id="@+id/company_culture_and_values_rating_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_overall_rating"
                 android:layout_weight="2"
@@ -342,7 +342,7 @@
 
             <TextView
                 android:id="@+id/company_senior_leadership_rating_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -366,7 +366,7 @@
 
             <TextView
                 android:id="@+id/company_compensation_rating_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_senior_leadership_rating"
                 android:layout_weight="2"
@@ -398,7 +398,7 @@
 
             <TextView
                 android:id="@+id/company_career_opportunities_rating_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -422,7 +422,7 @@
 
             <TextView
                 android:id="@+id/company_work_life_balance_rating_label"
-                android:layout_width="100dp"
+                android:layout_width="84dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_career_opportunities_rating"
                 android:layout_weight="2"
