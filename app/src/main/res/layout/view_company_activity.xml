@@ -91,7 +91,7 @@
 
             <TextView
                 android:id="@+id/company_position_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -122,7 +122,7 @@
 
             <TextView
                 android:id="@+id/company_size_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -154,8 +154,8 @@
 
             <TextView
                 android:id="@+id/company_location_label"
-                android:layout_width="90dp"
-                android:layout_height="50dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
                 android:gravity="center"
@@ -164,38 +164,30 @@
                 android:text="@string/company_location"
                 android:textStyle="bold" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:layout_toRightOf="@id/company_location_label"
                 android:background="@color/section_text">
 
-                <RelativeLayout
+                <ImageView
+                    android:id="@+id/map_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true">
+                    android:src="@drawable/ic_action_map"></ImageView>
 
-                    <ImageView
-                        android:id="@+id/map_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:background="@color/section_text"
-                        android:paddingLeft="10dp"
-                        android:src="@drawable/ic_action_map"></ImageView>
+                <TextView
+                    android:id="@+id/company_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:padding="2dp"
+                    android:text="@string/company_location" />
 
-                    <TextView
-                        android:id="@+id/company_location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_toRightOf="@id/map_icon"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="@string/company_location" />
-                </RelativeLayout>
-
-            </RelativeLayout>
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -207,7 +199,7 @@
 
             <TextView
                 android:id="@+id/company_website_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -238,7 +230,7 @@
 
             <TextView
                 android:id="@+id/company_industry_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -269,7 +261,7 @@
 
             <TextView
                 android:id="@+id/company_goal_mission_statement_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="75dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -332,7 +324,7 @@
 
             <TextView
                 android:id="@+id/company_overall_rating_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -344,7 +336,7 @@
 
             <TextView
                 android:id="@+id/company_overall_rating"
-                android:layout_width="100dp"
+                android:layout_width="75dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_overall_rating_label"
                 android:layout_weight="2"
@@ -356,7 +348,7 @@
 
             <TextView
                 android:id="@+id/company_culture_and_values_rating_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_overall_rating"
                 android:layout_weight="2"
@@ -388,7 +380,7 @@
 
             <TextView
                 android:id="@+id/company_senior_leadership_rating_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -400,7 +392,7 @@
 
             <TextView
                 android:id="@+id/company_senior_leadership_rating"
-                android:layout_width="100dp"
+                android:layout_width="75dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_senior_leadership_rating_label"
                 android:layout_weight="2"
@@ -412,7 +404,7 @@
 
             <TextView
                 android:id="@+id/company_compensation_rating_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_senior_leadership_rating"
                 android:layout_weight="2"
@@ -444,7 +436,7 @@
 
             <TextView
                 android:id="@+id/company_career_opportunities_rating_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
@@ -456,7 +448,7 @@
 
             <TextView
                 android:id="@+id/company_career_opportunities_rating"
-                android:layout_width="100dp"
+                android:layout_width="75dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_career_opportunities_rating_label"
                 android:layout_weight="2"
@@ -468,7 +460,7 @@
 
             <TextView
                 android:id="@+id/company_work_life_balance_rating_label"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_career_opportunities_rating"
                 android:layout_weight="2"
