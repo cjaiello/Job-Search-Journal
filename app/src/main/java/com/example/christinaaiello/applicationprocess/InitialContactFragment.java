@@ -1,9 +1,12 @@
 package com.example.christinaaiello.applicationprocess;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,11 +46,17 @@ public class InitialContactFragment extends Fragment {
         // Reading this company's initial contact data from the database
         readCompanyData(view, ID);
 
+        // Setting it so that phone numbers can be clicked
+        setPhoneNumberClicking(view);
+
         return view;
     }
 
     /**
      * This method will read a company's data from the database, based on ID #
+     *
+     * @param view      is the inital contact fragment view
+     * @param companyID is the ID# of the company
      */
     public void readCompanyData(View view, String companyID) {
         String[] projection = {
@@ -103,7 +112,25 @@ public class InitialContactFragment extends Fragment {
         TextView numberOfCallsExchangedTextView = (TextView) view.findViewById(R.id.contact_phone_number_count);
         // Setting the value in that box
         numberOfCallsExchangedTextView.setText(Integer.toString(numberOfCalls));
+    }
 
+    /**
+     * This method will let a user click a company's phone number and call them.
+     * @param view is the view containing the phone number
+     */
+    public void setPhoneNumberClicking(View view) {
+        final TextView contactPhoneNumber = (TextView) view.findViewById(R.id.contact_phone_number);
+        contactPhoneNumber.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent callCompanyIntent = new Intent(Intent.ACTION_CALL);
+                callCompanyIntent.setData(Uri.parse("tel:" + contactPhoneNumber.getText().toString()));
+                startActivity(callCompanyIntent);
+            }
+        });
+
+        // Setting text to be underlined
+        String locationText = "<u><font face=\"monospace\">" + contactPhoneNumber.getText().toString() + "</font></u>";
+        contactPhoneNumber.setText(Html.fromHtml(locationText));
     }
 
 }
