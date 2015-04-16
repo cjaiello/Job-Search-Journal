@@ -155,9 +155,7 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(MainActivity.this, AddCompanyActivity.class);
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.add_company) {
+        if (id == R.id.add_company) {
             startActivity(intent);
         }
 

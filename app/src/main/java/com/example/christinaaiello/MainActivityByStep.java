@@ -112,9 +112,7 @@ public class MainActivityByStep extends ActionBarActivity {
         Intent intent = new Intent(MainActivityByStep.this, AddCompanyActivity.class);
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.add_company) {
+        if (id == R.id.add_company) {
             startActivity(intent);
         }
 

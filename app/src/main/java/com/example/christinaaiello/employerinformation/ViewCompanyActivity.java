@@ -94,10 +94,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         Log.e(TAG, "Created bundle for editing");
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Log.e(TAG, "Clicked action settings");
-            return true;
-        } else if (id == R.id.edit_company) {
+        if (id == R.id.edit_company) {
             Log.e(TAG, "Clicked Edit Company Button");
             startActivity(intent);
         } else {
