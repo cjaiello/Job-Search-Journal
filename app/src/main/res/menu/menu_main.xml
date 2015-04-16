@@ -10,8 +10,9 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/organize"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Organize by Application Step"
+        android:onClick="setViewPreferences"
         app:showAsAction="never" />
 </menu>

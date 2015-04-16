@@ -3,6 +3,9 @@ package com.example.christinaaiello.employerinformation;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -25,12 +28,14 @@ import static com.example.christinaaiello.general.DatabaseContract.CompanyDataTa
 import static com.example.christinaaiello.general.DatabaseContract.DatabaseHelper;
 
 
-public class ViewCompanyActivity extends ActionBarActivity {
+public class ViewCompanyActivity extends ActionBarActivity implements LocationListener {
     String TAG = "ViewCompanyActivity "; // Used for log printing
     Employer employer; // Contains employer's information
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
-    private String companyID;
+    private String companyID; // in-app ID # for this company
+    private double latitude; // User's current latitude
+    private double longitude; // User's current longitude
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +112,6 @@ public class ViewCompanyActivity extends ActionBarActivity {
     public void displayCompanyData() {
         // First we need to get the view objects that are on the screen
         TextView idView = (TextView) findViewById(R.id.company_id);
-        TextView nameView = (TextView) findViewById(R.id.company_name);
         TextView positionView = (TextView) findViewById(R.id.company_position);
         TextView sizeView = (TextView) findViewById(R.id.company_size);
         TextView goalView = (TextView) findViewById(R.id.company_goal_mission_statement);
@@ -123,7 +127,6 @@ public class ViewCompanyActivity extends ActionBarActivity {
 
         // Now we need to set the content of the views
         idView.setText(employer.getID());
-        nameView.setText(employer.getName());
         positionView.setText(employer.getPosition());
         sizeView.setText(employer.getSize());
         goalView.setText(employer.getGoal());
@@ -136,6 +139,9 @@ public class ViewCompanyActivity extends ActionBarActivity {
         opportunitiesView.setText(employer.getCareerOpportunitiesRating());
         worklifeView.setText(employer.getWorkLifeBalanceRating());
         miscView.setText(employer.getMisc());
+
+        // Giving this activity a new action bar title:
+        setTitle(employer.getName());
     }
 
     /**
@@ -232,10 +238,37 @@ public class ViewCompanyActivity extends ActionBarActivity {
     }
 
     /**
+     * This method will update the map on the screen
+     *
+     * @param location is the user's current location
+     */
+    @Override
+    public void onLocationChanged(Location location) {
+        // Moving the "camera" (what google maps is showing) to the location's current latitude and longitude
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    /**
      * This method will open up a map with this company's location, when the "location" is clicked in the layout.
      */
     public void openMap(View view) {
-        Log.e(TAG, "Onclick called to open map");
+        Uri.parse("http://maps.google.com/maps?saddr=" + latitude + "," + longitude + "&daddr=" + employer.getLocation());
         String uri = String.format(Locale.ENGLISH, "geo:0,0?q=%s", employer.getLocation());
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);

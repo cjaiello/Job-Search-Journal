@@ -1,8 +1,10 @@
 package com.example.christinaaiello;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,23 +17,26 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.christinaaiello.employerinformation.AddCompanyActivity;
 import com.example.christinaaiello.employerinformation.CompanyListAdapter;
-import com.example.christinaaiello.general.DatabaseContract;
 import com.example.christinaaiello.employerinformation.Employer;
 import com.example.christinaaiello.employerinformation.ViewCompanyActivity;
+import com.example.christinaaiello.general.DatabaseContract;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
-    String TAG = "MainActivity "; // Used for log files
-    ListView listView; // Contains all companies' names and urls
+    private String TAG = "MainActivity "; // Used for log files
+    private ListView listView; // Contains all companies' names and urls
     public CompanyListAdapter adapter;
     private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     private ArrayList<Employer> listOfCompanies;
+    private String MY_PREFS_NAME = "preferences";
+    private Menu mainActivityMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,12 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
-        listOfCompanies = getAllCompanyNames(); // Will contain all companies
+        listOfCompanies = getAllCompanies("name"); // Will contain all companies
+
+        // Putting view settings in preferences
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString("view", "name");
+        editor.commit();
 
         // This contains the list of companies
         listView = (ListView) findViewById(R.id.listview);
@@ -77,6 +87,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        mainActivityMenu = menu;
         return true;
     }
 
@@ -95,12 +106,44 @@ public class MainActivity extends ActionBarActivity {
      * This method can be called from anywhere to refresh the list of companies in this activity
      */
     private void refreshListOfCompanies() {
+        // Checking user's preferences to see what way to display data
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        String viewOrder = prefs.getString("view", null);
         // First we clear the list of companies that the adapter is using:
         listOfCompanies.clear();
         // Now we update the list of companies:
-        listOfCompanies.addAll(getAllCompanyNames());
+        listOfCompanies.addAll(getAllCompanies(viewOrder));
         // And lastly we tell the adapter to get new data:
         adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * This method will let a user flip his or her view settings in this main activity - either
+     * organize the list of companies by name or by step in the application process
+     *
+     */
+    public void setViewPreferences(MenuItem viewOrderItem) {
+        // Checking user's preferences to see what way to display data
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        String viewOrder = prefs.getString("view", null);
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+
+        // Flipping view settings
+        if (viewOrder.equals("name")) {
+            editor.putString("view", "step");
+            viewOrderItem.setTitle("Organize by Company Name");
+            Toast.makeText(getApplicationContext(), "Now in order by application step!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            editor.putString("view", "name");
+            viewOrderItem.setTitle("Organize by Application Step");
+            Toast.makeText(getApplicationContext(), "Now in order by company name!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        editor.commit();
+
+        // Finally, refresh the layout:
+        refreshListOfCompanies();
     }
 
     @Override
@@ -125,7 +168,7 @@ public class MainActivity extends ActionBarActivity {
     /**
      * This method will get all company names from the database.
      */
-    public ArrayList<Employer> getAllCompanyNames() {
+    public ArrayList<Employer> getAllCompanies(String orderBy) {
         // This will contain the names of all of the companies
         ArrayList<Employer> employerList = new ArrayList<Employer>();
 
@@ -138,9 +181,18 @@ public class MainActivity extends ActionBarActivity {
                 DatabaseContract.CompanyDataTable.COLUMN_NAME_STEP,
         };
 
-        // Organize company names alphabetically
-        String sortOrder =
-                DatabaseContract.CompanyDataTable.COLUMN_NAME_NAME + " ASC";
+        // Organize company names in this order...
+        String sortOrder;
+
+        // Either do it alphabetically
+        if (orderBy.equals("name")) {
+            sortOrder =
+                    DatabaseContract.CompanyDataTable.COLUMN_NAME_NAME + " ASC";
+        } else {
+            // Or order them by step
+            sortOrder =
+                    DatabaseContract.CompanyDataTable.COLUMN_NAME_STEP + " ASC";
+        }
 
         // My cursor that I use to loop over query results
         Cursor cursor = db.query(
@@ -170,13 +222,6 @@ public class MainActivity extends ActionBarActivity {
 
         Log.i(TAG, "Companynameslist: " + employerList.toString());
         return employerList;
-    }
-
-    /**
-     * This method will refresh the listview on the main activity screen, now that changes have been made.
-     */
-    public void refreshListView() {
-        adapter.notifyDataSetChanged();
     }
 
     /**
