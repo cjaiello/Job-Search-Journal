@@ -59,7 +59,7 @@ public class AddCompanyActivity extends ActionBarActivity {
             try {
                 saveToDatabase();
             } catch (InterruptedException e) {
-                Log.e("Database Error", "Error in saving to database: " + e.toString());
+                Log.i("Database Error", "Error in saving to database: " + e.toString());
             }
         }
 

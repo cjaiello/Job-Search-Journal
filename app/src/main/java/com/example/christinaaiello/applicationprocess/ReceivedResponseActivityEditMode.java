@@ -102,7 +102,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
      */
     public void addOrUpdate(ContentValues receivedResponseValues) throws InterruptedException {
         if (editing) {
-            Log.e(TAG, "editing");
+            Log.i(TAG, "editing");
             updateData(ID, receivedResponseValues); // Updating data, based on this company's ID
         } else {
             db.insert(
@@ -139,7 +139,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_OFFER_DEADLINE, offerDeadline.getText().toString());
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_OFFER_RESPONSE, offerResponse.getText().toString());
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_MISC_NOTES, miscNotes.getText().toString());
-        Log.e(TAG, "Misc Notes column values: " + miscNotes.getText().toString());
+        Log.i(TAG, "Misc Notes column values: " + miscNotes.getText().toString());
 
         return values;
     }
@@ -201,7 +201,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
 
         if (!(cursor.getCount() == 0)) {
             cursor.moveToFirst();
-            Log.e(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
+            Log.i(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
             dateOfResponse.setText(cursor.getString(2));
             String receivedResponse = cursor.getString(3); // Seeing what the response actually was
             // If they did get an offer, display this information on the screen
@@ -259,7 +259,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
      * @param v
      */
     public void receivedNoOfferMethod(View v) {
-        Log.e(TAG, "No, didn't get an offer - was clicked");
+        Log.i(TAG, "No, didn't get an offer - was clicked");
         // Hide what we don't need to see
         offerAmountLayout.setVisibility(View.GONE);
         offerDeadlineLayout.setVisibility(View.GONE);

@@ -35,7 +35,7 @@ public class InitialContactFragment extends Fragment {
         Bundle bundle = getActivity().getIntent().getExtras();
         ID = bundle.getString("ID"); // ID for this particular company
 
-        Log.e(TAG, "Bundle inside initial contact fragment says my id is: " + ID);
+        Log.i(TAG, "Bundle inside initial contact fragment says my id is: " + ID);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.initial_contact_fragment, container, false);

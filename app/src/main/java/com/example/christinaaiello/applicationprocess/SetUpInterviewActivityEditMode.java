@@ -74,7 +74,6 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
                     // Calling method to decide if we're adding a new thing or updating old:
                     addOrUpdate(initialContactValues); // This updates the database
                     Intent intent = new Intent();
-                    Log.e("Fuck", "Fuck fuck fuck");
                     // Closing this activity
                     setResult(RESULT_OK, intent); //add this
                     finish();

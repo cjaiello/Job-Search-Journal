@@ -96,7 +96,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     public void addOrUpdate(ContentValues initialContactValues) throws InterruptedException {
         // If we're editing old data, do an update
         if (editing) {
-            Log.e(TAG, "editing");
+            Log.i(TAG, "editing");
             updateData(ID, initialContactValues); // Updating data, based on this company's ID
         } else {
             // We're adding something new, so do an insert

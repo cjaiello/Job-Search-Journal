@@ -34,10 +34,10 @@ public class InterviewCompletedFragment extends Fragment {
         // Getting bundle information
         Bundle updateStepsBundle = getActivity().getIntent().getExtras();
         ID = updateStepsBundle.getString("ID"); // ID for this particular company
-        Log.e(TAG, "ID is: " + ID);
+        Log.i(TAG, "ID is: " + ID);
         Bundle interviewCompletedBundle = getArguments();
         interviewNumber = interviewCompletedBundle.getInt("Number");
-        Log.e(TAG, "InterviewNumber is: " + interviewNumber);
+        Log.i(TAG, "InterviewNumber is: " + interviewNumber);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.interview_completed_fragment, container, false);
@@ -81,13 +81,10 @@ public class InterviewCompletedFragment extends Fragment {
             Log.i(TAG, "Got results when searching database.");
             // Now, look into the result and get the data
             cursor.moveToFirst();
-            Log.e(TAG, cursor.getString(2));
-            Log.e(TAG, cursor.getString(3));
             notesAboutInterview.setText(cursor.getString(2));
             interviewNumberView.setText(cursor.getString(3));
         } else {
             Log.i(TAG, "Could not find matches when searching database.");
-            Log.e("no", "no matches");
         }
 
     }

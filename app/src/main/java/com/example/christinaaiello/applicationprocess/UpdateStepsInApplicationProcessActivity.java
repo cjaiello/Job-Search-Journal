@@ -315,12 +315,12 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
 
         // Have they recorded having completed an interview?
         if (!(interviewCompletedCursor.getCount() == 0)) {
-            Log.e("Count was", Integer.toString(interviewCompletedCursor.getCount()));
+            Log.i("Count was", Integer.toString(interviewCompletedCursor.getCount()));
             if ((interviewCompletedCursor.getCount() == 2)) {
                 Log.i(TAG, "Got results when searching database - Completed Interview");
-                Log.e("Count", "Count was still two");
+                Log.i("Count", "Count was still two");
                 interviewNumber = 2; // Used to show/hide certain buttons on screen
-                Log.e("Number is", interviewNumber.toString());
+                Log.i("Number is", interviewNumber.toString());
                 displayInterviewTwoCompletedFragment(); // If they've done two interviews
             } else interviewNumber = 1; // Used to show/hide certain buttons on screen
             displayInterviewOneCompletedFragment(); // Show interview completed info

@@ -47,7 +47,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
         editing = bundle.getBoolean("Editing"); // Whether we're editing (or adding)
         ID = bundle.getString("ID"); // ID for this particular company
         interviewNumber = bundle.getInt("interviewNumber");
-        Log.e(TAG, "InterviewNumber is: " + interviewNumber);
+        Log.i(TAG, "InterviewNumber is: " + interviewNumber);
 
         // If I chose to edit this, show the old data
         if (editing) {
@@ -167,13 +167,10 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
         if (!(cursor.getCount() == 0)) {
             cursor.moveToFirst();
             Log.i(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
-            Log.e(TAG, cursor.getString(2));
-            Log.e(TAG, cursor.getString(3));
             notesAboutInterview.setText(cursor.getString(2));
             interviewNumberView.setText(cursor.getString(3));
         } else {
             Log.i(TAG, "Could not find matches when searching database.");
-            Log.e("no", "no editing matches");
             // We won't show any data, because we don't have it.
         }
 

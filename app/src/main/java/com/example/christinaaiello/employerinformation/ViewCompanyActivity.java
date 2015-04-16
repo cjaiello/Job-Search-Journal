@@ -50,7 +50,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         // Getting the company's Name number from the bundle
         Bundle bundle = getIntent().getExtras();
         companyID = bundle.getString("ID");
-        Log.e("Company ID", "Company ID is... " + companyID);
+        Log.i(TAG, "Company ID is... " + companyID);
 
         // When this textview is clicked, it opens up the steps in the process
         // that a user is (regarding applying to a job)
@@ -88,17 +88,17 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         int id = item.getItemId();
 
         // Intent used for editing mode
-        Log.e(TAG, "Making intent for editing");
+        Log.i(TAG, "Making intent for editing");
         Intent intent = new Intent(ViewCompanyActivity.this, EditCompanyActivity.class);
         intent.putExtras(createBundleForEditing()); // Putting company info into bundle
-        Log.e(TAG, "Created bundle for editing");
+        Log.i(TAG, "Created bundle for editing");
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.edit_company) {
-            Log.e(TAG, "Clicked Edit Company Button");
+            Log.i(TAG, "Clicked Edit Company Button");
             startActivity(intent);
         } else {
-            Log.e(TAG, "Didn't click anything");
+            Log.i(TAG, "Didn't click anything");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -276,7 +276,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
      */
     public Bundle createBundleForEditing() {
         Bundle bundle = new Bundle();
-        Log.e(TAG, "Making bundle for editing!");
+        Log.i(TAG, "Making bundle for editing!");
         bundle.putString("ID", employer.getID());
         bundle.putString("Name", employer.getName());
         bundle.putString("Position", employer.getPosition());
@@ -292,7 +292,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         bundle.putString("Opportunities", employer.getCareerOpportunitiesRating());
         bundle.putString("Worklife", employer.getWorkLifeBalanceRating());
         bundle.putString("Misc", employer.getMisc());
-        Log.e(TAG, "Made bundle for editing!");
+        Log.i(TAG, "Made bundle for editing!");
         return bundle;
     }
 
