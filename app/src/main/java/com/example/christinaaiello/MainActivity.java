@@ -200,7 +200,7 @@ public class MainActivity extends ActionBarActivity {
                 null,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
+                sortOrder                                 // Thcce sort order
         );
 
         // Now, we make an employer object and put each row's data into it.

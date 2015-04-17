@@ -118,7 +118,7 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_size_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_size" />
@@ -165,6 +165,7 @@
                     android:gravity="center"
                     android:lines="2"
                     android:padding="2dp"
+                    android:textColor="@color/link_color"
                     android:text="@string/company_location" />
 
             </LinearLayout>
@@ -195,10 +196,10 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_website_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:padding="2dp"
-                android:typeface="monospace"
+                android:textColorLink="@color/link_color"
                 android:text="@string/company_website" />
 
         </RelativeLayout>
@@ -258,7 +259,7 @@
                 android:layout_height="75dp"
                 android:layout_toRightOf="@id/company_goal_mission_statement_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_goal_mission_statement" />
@@ -276,7 +277,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:background="@color/section_title"
+                android:background="@color/company_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_ratings"
@@ -289,10 +290,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ratings_label"
                 android:layout_weight="2"
-                android:background="@color/section_title"
+                android:background="@color/company_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
+                android:textColorLink="@color/link_color"
                 android:text="@string/ratings_subtitle"
                 android:textSize="12dp" />
         </RelativeLayout>
@@ -377,7 +379,7 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_senior_leadership_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="30dp"
@@ -402,7 +404,7 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_compensation_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_compensation_rating" />
@@ -468,7 +470,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
+            android:paddingBottom="6dp"
             android:paddingTop="2dp">
 
             <TextView
@@ -489,7 +491,7 @@
                 android:layout_height="50dp"
                 android:layout_below="@id/company_miscellaneous_notes_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
+                android:background="@color/section_text_2"
                 android:lines="5"
                 android:padding="2dp"
                 android:text="@string/misc_notes_about_company" />

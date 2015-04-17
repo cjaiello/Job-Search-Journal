@@ -1,5 +1,6 @@
 package com.example.christinaaiello.employerinformation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,11 +37,15 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
     private String companyID; // in-app ID # for this company
     private double latitude; // User's current latitude
     private double longitude; // User's current longitude
+    private LocationManager locationManager; // Used to get user's location
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_company_activity);
+
+        // Initializing our location manager, letting us access device's location
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         // Prepping database
         databaseHelper = new DatabaseHelper(getApplicationContext());
@@ -235,7 +240,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
     }
 
     /**
-     * This method will update the map on the screen
+     * This method will acquire the user's location
      *
      * @param location is the user's current location
      */
@@ -302,7 +307,18 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         readCompanyData(companyID);
         displayCompanyData();
         setLinks(); // Setting links in activity
+
+        // Telling the location manager to start listening for location updates
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+
         super.onResume();
+    }
+
+    @Override
+    // When we get destroyed we should clean up after ourselves
+    protected void onDestroy() {
+        super.onDestroy();
+        locationManager.removeUpdates(this);
     }
 
 

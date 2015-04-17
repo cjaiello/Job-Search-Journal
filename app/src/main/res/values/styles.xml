@@ -10,12 +10,4 @@
     <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/background_color</item>
     </style>
-
-    <style name="PurpleTheme" parent="android:Theme.Light">
-        <item name="android:textViewStyle">@style/companyTitleStyle</item>
-    </style>
-
-    <style name="companyTitleStyle" parent="@android:style/Widget.TextView">
-        <item name="android:background">@color/company_title_purple</item>
-    </style>
 </resources>
