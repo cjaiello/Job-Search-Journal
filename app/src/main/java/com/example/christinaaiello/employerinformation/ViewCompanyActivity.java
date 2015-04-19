@@ -8,6 +8,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -213,15 +214,20 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
      * This method will set the links for Glassdoor.com and for the actual company's website.
      */
     public void setLinks() {
-        // Getting the textview containing a company's website
-        TextView websiteTextView = (TextView) findViewById(R.id.company_website);
-        // Getting the text in this textview
-        String websiteLink = websiteTextView.getText().toString();
-        // Turning the content of this textview into a clickable link:
-        websiteTextView.setText(
-                Html.fromHtml(
-                        "<a href=\"http://" + websiteLink + "\">" + websiteLink + "</a>"));
-        websiteTextView.setMovementMethod(LinkMovementMethod.getInstance());
+        if(employer.getWebsite().length() != 0) {
+            // Getting the textview containing a company's website
+            TextView websiteTextView = (TextView) findViewById(R.id.company_website);
+            // Getting the text in this textview
+            String websiteLink = websiteTextView.getText().toString();
+            // Turning the content of this textview into a clickable link:
+            websiteTextView.setText(
+                    Html.fromHtml(
+                            "<a href=\"http://" + websiteLink + "\">" + websiteLink + "</a>"));
+            websiteTextView.setMovementMethod(LinkMovementMethod.getInstance());
+            // Lastly, let's display the internet icon image:
+            ImageView internetIcon = (ImageView)findViewById(R.id.internet_icon);
+            internetIcon.setVisibility(View.VISIBLE);
+        }
 
         // Getting the textview containing "courtesy of glassdoor.com"
         TextView subtitleTextView = (TextView) findViewById(R.id.ratings_subtitle);
@@ -234,9 +240,15 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         subtitleTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
         // Lastly, let's make the location look like a clickable link, so people will click it
-        String locationText="<u>" + employer.getLocation() + "</u>";
-        TextView locationView = (TextView) findViewById(R.id.company_location);
-        locationView.setText(Html.fromHtml(locationText));
+        if(employer.getLocation().length() != 0) {
+            Log.e(TAG, "!!!!!!!!!!! Location is: " + employer.getLocation());
+            String locationText = "<u>" + employer.getLocation() + "</u>";
+            TextView locationView = (TextView) findViewById(R.id.company_location);
+            locationView.setText(Html.fromHtml(locationText));
+            // And let's make the map icon visible:
+            ImageView mapIcon = (ImageView)findViewById(R.id.map_icon);
+            mapIcon.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
