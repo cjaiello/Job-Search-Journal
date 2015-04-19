@@ -25,6 +25,8 @@ public class InitialContactFragment extends Fragment {
     private SQLiteDatabase db;
     String ID;
     String TAG;
+    TextView contactPhoneNumber;
+    TextView numberOfCallsExchangedTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,12 +45,16 @@ public class InitialContactFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.initial_contact_fragment, container, false);
+        contactPhoneNumber = (TextView) view.findViewById(R.id.contact_phone_number);
+        // Getting the number of calls box on the screen
+        numberOfCallsExchangedTextView = (TextView) view.findViewById(R.id.contact_phone_number_count);
 
         // Reading this company's initial contact data from the database
         readCompanyData(view, ID);
 
         // Setting it so that phone numbers can be clicked
         setPhoneNumberClicking(view);
+        hidePhoneCallCount(); // Hides phonecall count if user doesn't enter phone number
 
         return view;
     }
@@ -89,7 +95,6 @@ public class InitialContactFragment extends Fragment {
         TextView dateOfInterview = (TextView) view.findViewById(R.id.date_of_interview);
         TextView contactName = (TextView) view.findViewById(R.id.contact_name);
         TextView contactEmailAddress = (TextView) view.findViewById(R.id.contact_email_address);
-        TextView contactPhoneNumber = (TextView) view.findViewById(R.id.contact_phone_number);
         TextView method = (TextView) view.findViewById(R.id.method_of_interaction);
         TextView whatWasDiscussed = (TextView) view.findViewById(R.id.what_was_discussed_with_contact);
 
@@ -109,8 +114,6 @@ public class InitialContactFragment extends Fragment {
 
         // Calling a method to count the # of times we've exchanged calls with this individual
         Integer numberOfCalls = PhoneCallCounter.getNumberOfPhoneCalls(this.getActivity(), cursor.getString(5));
-        // Getting the number of calls box on the screen
-        TextView numberOfCallsExchangedTextView = (TextView) view.findViewById(R.id.contact_phone_number_count);
         // Setting the value in that box
         numberOfCallsExchangedTextView.setText(Integer.toString(numberOfCalls));
     }
@@ -149,4 +152,14 @@ public class InitialContactFragment extends Fragment {
         }
     }
 
+    /**
+     * This will hide the phonecall count if user hasn't given a phone number
+     */
+    public void hidePhoneCallCount(){
+        if(contactPhoneNumber.getText().toString().length() == 0){
+            numberOfCallsExchangedTextView.setText("");
+        } else {
+            numberOfCallsExchangedTextView.setVisibility(View.VISIBLE);
+        }
+    }
 }
