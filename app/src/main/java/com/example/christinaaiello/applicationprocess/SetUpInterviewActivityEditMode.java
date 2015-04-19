@@ -120,8 +120,7 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
         values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_INTERVIEWERS, interviewerNames.getText().toString());
         values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_EMAIL, contactEmailAddress.getText().toString());
         values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_MISC_NOTES, miscNotes.getText().toString());
-
-        Log.e(TAG, "Values user typed in are: " + values);
+        values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_FOLLOWUP_NOTES, followupNotes.getText().toString());
 
         return values;
     }
@@ -159,6 +158,7 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
                 DatabaseContract.SetUpInterviewTable.COLUMN_NAME_INTERVIEWERS,
                 DatabaseContract.SetUpInterviewTable.COLUMN_NAME_EMAIL,
                 DatabaseContract.SetUpInterviewTable.COLUMN_NAME_MISC_NOTES,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_FOLLOWUP_NOTES,
         };
 
         // I only want a company whose companyID number matches the one passed to me in a bundle
@@ -203,7 +203,7 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
         interviewerNames = (EditText) findViewById(R.id.names_of_interviewers);
         contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
         miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
-        followupNotes = (EditText) findViewById(R.id.notes_about_interview);
+        followupNotes = (EditText) findViewById(R.id.followup_notes);
     }
 
 }
