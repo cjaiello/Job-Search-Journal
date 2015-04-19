@@ -239,18 +239,12 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 null                                 // The sort order
         );
 
-
-
-
         // This contains the list of companies
         ListView listView = (ListView) findViewById(R.id.listview);
 
         // Adapter for the list of companies
+        // This will display on the screen all of the interviews someone has had
         listOfInterviews = getAllInterviews();
-        if(listOfInterviews.size() > 0) {
-            Log.e(TAG, "Interview list size is: " + listOfInterviews.size());
-            Log.e(TAG, "Interview id of first in list: " + listOfInterviews.get(0).getInterviewID());
-        }
         adapter = new InterviewAdapter(listOfInterviews, this);
         listView.setAdapter(adapter);
         setListViewHeightBasedOnChildren((ListView) findViewById(R.id.listview));
@@ -272,6 +266,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
             Log.i(TAG, "Got results when searching database - Received Response After Interview");
             displayReceivedResponseFragment(); // Showing response to interview
             mostRecentStep = "Received Response After Interview";
+            contactWithCompanyCompleted();
         }
 
         // Lastly, we now will mark the column in the database saying what the most recent step
@@ -301,6 +296,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         InitialContactFragment initialContactFragment = new InitialContactFragment();
         transaction.add(R.id.initial_contact_fragment, initialContactFragment);
         transaction.commit();
+        initialContactCompleted(); // Hide the box to add initial contact now
     }
 
     /**
@@ -357,8 +353,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     public void getLayoutItemsOnScreen() {
         initialContactLayout = (RelativeLayout) findViewById(R.id.ic_action_add_person_box);
         setUpInterviewLayout = (RelativeLayout) findViewById(R.id.ic_action_time_box);
-        interviewOneCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box);
-        interviewTwoCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box_two);
         interviewFollowupLayout = (RelativeLayout) findViewById(R.id.ic_action_phone_box);
     }
 
@@ -468,6 +462,24 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
         listView.requestLayout();
+    }
+
+    /**
+     * Once the user has initially contacted a company, they don't need to see that button again!
+     */
+    public void initialContactCompleted() {
+        initialContactLayout.setVisibility(View.GONE);
+        setUpInterviewLayout.setVisibility(View.VISIBLE);
+        interviewFollowupLayout.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Once the user has gotten an offer (or a rejection), they don't need to see any of these buttons again!
+     */
+    public void contactWithCompanyCompleted() {
+        initialContactLayout.setVisibility(View.GONE);
+        setUpInterviewLayout.setVisibility(View.VISIBLE);
+        interviewFollowupLayout.setVisibility(View.VISIBLE);
     }
 
 

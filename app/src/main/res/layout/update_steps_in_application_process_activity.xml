@@ -70,50 +70,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/ic_action_chat_box"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/company_title"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/ic_action_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_chat" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/ic_action_chat"
-                android:gravity="center"
-                android:text="@string/first_interview_question" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/ic_action_chat_box_two"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/company_title"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/ic_action_chat_two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_chat" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/ic_action_chat_two"
-                android:gravity="center"
-                android:text="@string/second_interview_question" />
-        </RelativeLayout>
-
-        <RelativeLayout
             android:id="@+id/ic_action_phone_box"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -151,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:divider="@android:color/transparent"
-            android:dividerHeight="5dp" />
+            android:dividerHeight="25dp" />
 
         <FrameLayout
             android:id="@+id/received_response_fragment"
