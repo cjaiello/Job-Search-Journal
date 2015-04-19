@@ -30,6 +30,7 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
     EditText interviewerNames;
     EditText contactEmailAddress;
     EditText miscNotes;
+    EditText followupNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,6 +183,8 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
             interviewerNames.setText(cursor.getString(4));
             contactEmailAddress.setText(cursor.getString(5));
             miscNotes.setText(cursor.getString(6));
+            miscNotes.setText(cursor.getString(6));
+            followupNotes.setText(cursor.getString(7));
         } else {
             Log.i(TAG, "Could not find matches when searching database.");
             // We won't show any data, because we don't have it.
@@ -200,6 +203,7 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
         interviewerNames = (EditText) findViewById(R.id.names_of_interviewers);
         contactEmailAddress = (EditText) findViewById(R.id.contact_email_address);
         miscNotes = (EditText) findViewById(R.id.miscellaneous_notes);
+        followupNotes = (EditText) findViewById(R.id.notes_about_interview);
     }
 
 }

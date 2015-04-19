@@ -182,7 +182,7 @@
             <TextView
                 android:id="@+id/company_website_label"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
                 android:gravity="center"
@@ -193,7 +193,7 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_toRightOf="@id/company_website_label"

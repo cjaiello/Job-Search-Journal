@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.christinaaiello.R;
@@ -120,17 +121,32 @@ public class InitialContactFragment extends Fragment {
      */
     public void setPhoneNumberClicking(View view) {
         final TextView contactPhoneNumber = (TextView) view.findViewById(R.id.contact_phone_number);
-        contactPhoneNumber.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent callCompanyIntent = new Intent(Intent.ACTION_CALL);
-                callCompanyIntent.setData(Uri.parse("tel:" + contactPhoneNumber.getText().toString()));
-                startActivity(callCompanyIntent);
-            }
-        });
+        if(contactPhoneNumber.getText().toString().length() != 0) {
+            contactPhoneNumber.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent callCompanyIntent = new Intent(Intent.ACTION_CALL);
+                    callCompanyIntent.setData(Uri.parse("tel:" + contactPhoneNumber.getText().toString()));
+                    startActivity(callCompanyIntent);
+                }
+            });
 
-        // Setting text to be underlined
-        String locationText = "<u><font face=\"monospace\">" + contactPhoneNumber.getText().toString() + "</font></u>";
-        contactPhoneNumber.setText(Html.fromHtml(locationText));
+            // Setting text to be underlined
+            String locationText = "<u><font face=\"monospace\">" + contactPhoneNumber.getText().toString() + "</font></u>";
+            contactPhoneNumber.setText(Html.fromHtml(locationText));
+
+            // Also, display the phone icon!
+            ImageView phoneIcon = (ImageView) view.findViewById(R.id.phone_icon);
+            phoneIcon.setVisibility(View.VISIBLE);
+
+            // And let's make this phone icon clickable, so the user can use this as well to call the given phone number
+            phoneIcon.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent callCompanyIntent = new Intent(Intent.ACTION_CALL);
+                    callCompanyIntent.setData(Uri.parse("tel:" + contactPhoneNumber.getText().toString()));
+                    startActivity(callCompanyIntent);
+                }
+            });
+        }
     }
 
 }

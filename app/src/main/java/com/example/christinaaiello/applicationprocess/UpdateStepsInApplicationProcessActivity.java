@@ -258,6 +258,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         } else {
             mostRecentStep = "Not started";
             Log.i(TAG, "Could not find initial contact matches when searching database.");
+            userHastNotStarted(); // Hiding unnecessary items until the user will actually use them
         }
 
         // Have they recorded receiving a response?
@@ -478,8 +479,19 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      */
     public void contactWithCompanyCompleted() {
         initialContactLayout.setVisibility(View.GONE);
-        setUpInterviewLayout.setVisibility(View.VISIBLE);
-        interviewFollowupLayout.setVisibility(View.VISIBLE);
+        setUpInterviewLayout.setVisibility(View.GONE);
+        interviewFollowupLayout.setVisibility(View.GONE);
+        TextView nextStepText = (TextView)findViewById(R.id.next_step_text);
+        nextStepText.setVisibility(View.GONE);
+    }
+
+    /**
+     * User has not yet started tracking progress, so hide the necessary items.
+     */
+    public void userHastNotStarted() {
+        initialContactLayout.setVisibility(View.VISIBLE);
+        setUpInterviewLayout.setVisibility(View.GONE);
+        interviewFollowupLayout.setVisibility(View.GONE);
     }
 
 
