@@ -33,8 +33,8 @@ public class InterviewCompletedFragment extends Fragment {
 
         // Getting bundle information
         Bundle updateStepsBundle = getActivity().getIntent().getExtras();
-        ID = updateStepsBundle.getString("ID"); // ID for this particular company
-        Log.i(TAG, "ID is: " + ID);
+        ID = updateStepsBundle.getString("companyID"); // companyID for this particular company
+        Log.i(TAG, "companyID is: " + ID);
         Bundle interviewCompletedBundle = getArguments();
         interviewNumber = interviewCompletedBundle.getInt("Number");
         Log.i(TAG, "InterviewNumber is: " + interviewNumber);
@@ -49,7 +49,7 @@ public class InterviewCompletedFragment extends Fragment {
     }
 
     /**
-     * This method will read a company's data from the database, based on ID #
+     * This method will read a company's data from the database, based on companyID #
      */
     public void readCompanyData(View view) {
         String[] projection = {
@@ -59,7 +59,7 @@ public class InterviewCompletedFragment extends Fragment {
                 DatabaseContract.InterviewCompletedTable.COLUMN_NAME_INTERVIEW_NUMBER,
         };
 
-        // I only want a company whose ID number matches the one passed to me in a bundle
+        // I only want a company whose companyID number matches the one passed to me in a bundle
         String[] selectionArgs = {String.valueOf(ID), String.valueOf(interviewNumber)};
 
         // My cursor that I use to loop over query results

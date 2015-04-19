@@ -54,7 +54,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
         editing = bundle.getBoolean("Editing"); // Whether we're editing (or adding)
-        ID = bundle.getString("ID"); // ID for this particular company
+        ID = bundle.getString("companyID"); // companyID for this particular company
 
         // If I chose to edit this, show the old data
         if (editing) {
@@ -103,7 +103,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
     public void addOrUpdate(ContentValues receivedResponseValues) throws InterruptedException {
         if (editing) {
             Log.i(TAG, "editing");
-            updateData(ID, receivedResponseValues); // Updating data, based on this company's ID
+            updateData(ID, receivedResponseValues); // Updating data, based on this company's companyID
         } else {
             db.insert(
                     DatabaseContract.ReceivedResponseTable.TABLE_NAME,
@@ -125,7 +125,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
 
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
-        values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
+        values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_COMPANYID, ID); // Using the companyID from the bundle
         // These are retrieved from what the user typed in:
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_DATE_OF_RESPONSE, dateOfResponse.getText().toString());
         // If the user got an offer, store this information:
@@ -185,7 +185,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
                 DatabaseContract.ReceivedResponseTable.COLUMN_NAME_MISC_NOTES,
         };
 
-        // I only want a company whose ID number matches the one passed to me in a bundle
+        // I only want a company whose companyID number matches the one passed to me in a bundle
         String[] selectionArgs = {String.valueOf(companyID)};
 
         // My cursor that I use to loop over query results

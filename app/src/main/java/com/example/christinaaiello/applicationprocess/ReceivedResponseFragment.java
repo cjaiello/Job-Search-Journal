@@ -34,7 +34,7 @@ public class ReceivedResponseFragment extends Fragment {
 
         // Getting bundle information
         Bundle bundle = getActivity().getIntent().getExtras();
-        ID = bundle.getString("ID"); // ID for this particular company
+        ID = bundle.getString("companyID"); // companyID for this particular company
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.received_response_fragment, container, false);
@@ -46,7 +46,7 @@ public class ReceivedResponseFragment extends Fragment {
     }
 
     /**
-     * This method will read a company's data from the database, based on ID #
+     * This method will read a company's data from the database, based on companyID #
      */
     public void readCompanyData(View view, String companyID) {
         String[] projection = {
@@ -60,7 +60,7 @@ public class ReceivedResponseFragment extends Fragment {
                 DatabaseContract.ReceivedResponseTable.COLUMN_NAME_MISC_NOTES,
         };
 
-        // I only want a company whose ID number matches the one passed to me in a bundle
+        // I only want a company whose companyID number matches the one passed to me in a bundle
         String[] selectionArgs = {String.valueOf(companyID)};
 
         // My cursor that I use to loop over query results

@@ -20,7 +20,8 @@ import com.example.christinaaiello.general.DatabaseContract;
 public class SetUpInterviewActivityEditMode extends ActionBarActivity {
     private SQLiteDatabase db;
     Boolean editing; // Help us tell the difference between adding a new step and editing a current one
-    String ID;
+    String companyID;
+    String interviewID;
     static Integer requestCode;
     String TAG;
     // Items on the screen:
@@ -45,12 +46,13 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
         editing = bundle.getBoolean("Editing"); // Whether we're editing (or adding)
-        ID = bundle.getString("ID"); // ID for this particular company
+        companyID = bundle.getString("companyID"); // companyID for this particular company
+        interviewID = bundle.getString("interviewID"); // ID for this specific interview
 
         // If I chose to edit this, show the old data
         if (editing) {
             try {
-                displayPreviouslyEnteredInterviewData(ID);
+                displayPreviouslyEnteredInterviewData(interviewID);
             } catch (InterruptedException e) {
                 Log.e(TAG, "Error in displaying company data.");
             }
@@ -94,10 +96,10 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
     public void addOrUpdate(ContentValues setUpValues) throws InterruptedException {
         if (editing) {
             Log.e(TAG, "editing");
-            updateData(ID, setUpValues); // Updating data, based on this company's ID
+            updateData(companyID, interviewID, setUpValues); // Updating data, based on this company's companyID
         } else {
-            long newRowId;
-            newRowId = db.insert(
+            Log.e(TAG, "Not editing, we're adding instead");
+            db.insert(
                     DatabaseContract.SetUpInterviewTable.TABLE_NAME,
                     null,
                     setUpValues);
@@ -110,7 +112,7 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
     public ContentValues getSetUpInterviewInformation() throws InterruptedException {
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
-        values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
+        values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID, companyID); // Using the companyID from the bundle
         // These are retrieved from what the user typed in:
         values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_DATE, dateOfInterview.getText().toString());
         values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_TIME, timeOfInterview.getText().toString());
@@ -118,16 +120,18 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
         values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_EMAIL, contactEmailAddress.getText().toString());
         values.put(DatabaseContract.SetUpInterviewTable.COLUMN_NAME_MISC_NOTES, miscNotes.getText().toString());
 
+        Log.e(TAG, "Values user typed in are: " + values);
+
         return values;
     }
 
     /**
      * This method will save a company's information to the database
      */
-    public void updateData(String companyID, ContentValues setUpInfo) throws InterruptedException {
+    public void updateData(String companyID, String interviewID, ContentValues setUpInfo) throws InterruptedException {
 
-        // Updating the row, returning the primary key value of the new row
-        String strFilter = "company_id=" + companyID;
+        // Updating the row, matching based on company companyID and interview companyID
+        String strFilter = "company_id=" + companyID + " AND _id=" + Integer.parseInt(interviewID);
 
         long newRowId;
         newRowId = db.update(
@@ -144,7 +148,7 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
     /**
      * This will display the data for the chosen company
      */
-    public void displayPreviouslyEnteredInterviewData(String companyID) throws InterruptedException {
+    public void displayPreviouslyEnteredInterviewData(String interviewID) throws InterruptedException {
 
         String[] projection = {
                 DatabaseContract.SetUpInterviewTable._ID,
@@ -156,14 +160,14 @@ public class SetUpInterviewActivityEditMode extends ActionBarActivity {
                 DatabaseContract.SetUpInterviewTable.COLUMN_NAME_MISC_NOTES,
         };
 
-        // I only want a company whose ID number matches the one passed to me in a bundle
-        String[] selectionArgs = {String.valueOf(companyID)};
+        // I only want a company whose companyID number matches the one passed to me in a bundle
+        String[] selectionArgs = {interviewID};
 
         // My cursor that I use to loop over query results
         Cursor cursor = db.query(
                 DatabaseContract.SetUpInterviewTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
+                DatabaseContract.SetUpInterviewTable._ID + "=?",                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups

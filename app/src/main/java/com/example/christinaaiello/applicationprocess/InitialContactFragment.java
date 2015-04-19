@@ -36,7 +36,7 @@ public class InitialContactFragment extends Fragment {
 
         // Getting bundle information
         Bundle bundle = getActivity().getIntent().getExtras();
-        ID = bundle.getString("ID"); // ID for this particular company
+        ID = bundle.getString("ID"); // companyID for this particular company
 
         Log.i(TAG, "Bundle inside initial contact fragment says my id is: " + ID);
 
@@ -53,10 +53,10 @@ public class InitialContactFragment extends Fragment {
     }
 
     /**
-     * This method will read a company's data from the database, based on ID #
+     * This method will read a company's data from the database, based on companyID #
      *
      * @param view      is the inital contact fragment view
-     * @param companyID is the ID# of the company
+     * @param companyID is the companyID# of the company
      */
     public void readCompanyData(View view, String companyID) {
         String[] projection = {
@@ -70,7 +70,7 @@ public class InitialContactFragment extends Fragment {
                 DatabaseContract.InitialContactTable.COLUMN_NAME_DISCUSSION,
         };
 
-        // I only want a company whose ID number matches the one passed to me in a bundle
+        // I only want a company whose companyID number matches the one passed to me in a bundle
         String[] selectionArgs = {String.valueOf(companyID)};
 
         // My cursor that I use to loop over query results

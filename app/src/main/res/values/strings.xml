@@ -59,10 +59,12 @@
     <string name="contact_phone_number">What is his/her phone number?</string>
 
     <!-- Set Up Interview Fragment -->
-    <string name="set_up_interview">Set Up Interview</string>
+    <string name="set_up_interview">Scheduled Interview</string>
     <string name="date_of_interview">Date of Interview</string>
     <string name="names_of_interviewers">Name(s) of Interviewers</string>
     <string name="misc_notes">Miscellaneous Notes</string>
+    <string name="followup_notes">Notes About Interview</string>
+    <string name="followup_notes_edittext">How did this interview go? Report on how it went.</string>
 
     <!-- Interview Completed -->
     <string name="interview_completed">Interview Completed</string>

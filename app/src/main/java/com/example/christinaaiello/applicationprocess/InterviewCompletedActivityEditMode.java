@@ -45,7 +45,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
         editing = bundle.getBoolean("Editing"); // Whether we're editing (or adding)
-        ID = bundle.getString("ID"); // ID for this particular company
+        ID = bundle.getString("companyID"); // companyID for this particular company
         interviewNumber = bundle.getInt("interviewNumber");
         Log.i(TAG, "InterviewNumber is: " + interviewNumber);
 
@@ -96,7 +96,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
     public void addOrUpdate(ContentValues setUpValues) throws InterruptedException {
         if (editing) {
             Log.i(TAG, "We're editing, not adding a new item to the table");
-            updateData(ID, setUpValues); // Updating data, based on this company's ID
+            updateData(ID, setUpValues); // Updating data, based on this company's companyID
         } else {
             db.insert(
                     DatabaseContract.InterviewCompletedTable.TABLE_NAME,
@@ -111,7 +111,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
     public ContentValues getSetUpInterviewInformation() throws InterruptedException {
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
-        values.put(DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
+        values.put(DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID, ID); // Using the companyID from the bundle
         // These are retrieved from what the user typed in:
         values.put(DatabaseContract.InterviewCompletedTable.COLUMN_NAME_NOTES_ABOUT_INTERVIEW, notesAboutInterview.getText().toString());
         values.put(DatabaseContract.InterviewCompletedTable.COLUMN_NAME_INTERVIEW_NUMBER, interviewNumber);
@@ -150,7 +150,7 @@ public class InterviewCompletedActivityEditMode extends ActionBarActivity {
                 DatabaseContract.InterviewCompletedTable.COLUMN_NAME_INTERVIEW_NUMBER,
         };
 
-        // I only want a company whose ID number matches the one passed to me in a bundle
+        // I only want a company whose companyID number matches the one passed to me in a bundle
         String[] selectionArgs = {String.valueOf(companyID), String.valueOf(interviewNumber)};
 
         // My cursor that I use to loop over query results

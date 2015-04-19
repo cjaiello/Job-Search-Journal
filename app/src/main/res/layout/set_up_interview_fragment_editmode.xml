@@ -198,4 +198,40 @@
             android:textSize="14dp" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/followup_notes_label"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:background="@color/section_title"
+            android:gravity="center"
+            android:padding="2dp"
+            android:paddingRight="5dp"
+            android:text="@string/followup_notes"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/followup_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/followup_notes_label"
+            android:layout_centerVertical="true"
+            android:layout_weight="2"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="@string/followup_notes_edittext"
+            android:inputType="text|textMultiLine|textCapSentences"
+            android:lines="5"
+            android:padding="5dp"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
 </LinearLayout>

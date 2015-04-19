@@ -159,6 +159,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_INTERVIEWERS = "names_of_interviewers";
         public static final String COLUMN_NAME_EMAIL = "contact_email_address";
         public static final String COLUMN_NAME_MISC_NOTES = "misc_notes";
+        public static final String COLUMN_NAME_FOLLOWUP_NOTES = "followup_notes";
     }
 
     private static final String CREATE_SET_UP_INTERVIEW_TABLE =
@@ -169,7 +170,8 @@ public class DatabaseContract {
                     SetUpInterviewTable.COLUMN_NAME_TIME + TEXT_TYPE + COMMA_SEP +
                     SetUpInterviewTable.COLUMN_NAME_INTERVIEWERS + TEXT_TYPE + COMMA_SEP +
                     SetUpInterviewTable.COLUMN_NAME_EMAIL + TEXT_TYPE + COMMA_SEP +
-                    SetUpInterviewTable.COLUMN_NAME_MISC_NOTES +
+                    SetUpInterviewTable.COLUMN_NAME_MISC_NOTES + TEXT_TYPE + COMMA_SEP +
+                    SetUpInterviewTable.COLUMN_NAME_FOLLOWUP_NOTES +
                     " )";
 
     private static final String SQL_DELETE_SET_UP_INTERVIEW_TABLE =

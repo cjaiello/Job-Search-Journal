@@ -21,7 +21,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     Boolean editing; // Help us tell the difference between adding a new step and editing a current one
-    String ID; // This is the ID for this particular company
+    String ID; // This is the companyID for this particular company
     //static Integer requestCode;
     String TAG; // Used for debugging
     // Each of the textboxes the user typed into:
@@ -47,7 +47,8 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         // Getting bundle information
         Bundle bundle = getIntent().getExtras();
         editing = bundle.getBoolean("Editing"); // Whether we're editing (or adding)
-        ID = bundle.getString("ID"); // ID for this particular company
+        ID = bundle.getString("companyID"); // companyID for this particular company
+        Log.e(TAG, "Company ID is: " + ID);
 
         // If I chose to edit this, show the old data
         if (editing) {
@@ -73,8 +74,10 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
             case R.id.save_data:
                 try {
                     ContentValues initialContactValues = getTextFromScreen(); // Get info from the screen
+                    Log.e(TAG, initialContactValues.toString());
                     // Calling method to decide if we're adding a new thing or updating old:
                     addOrUpdate(initialContactValues); // This updates the database
+                    Log.e(TAG, "Done adding initial contact values");
                     Intent intent = new Intent();
                     // Closing this activity
                     setResult(RESULT_OK, intent); //add this
@@ -96,10 +99,11 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     public void addOrUpdate(ContentValues initialContactValues) throws InterruptedException {
         // If we're editing old data, do an update
         if (editing) {
-            Log.i(TAG, "editing");
-            updateData(ID, initialContactValues); // Updating data, based on this company's ID
+            Log.i(TAG, "Initial contact values are being edited");
+            updateData(ID, initialContactValues); // Updating data, based on this company's companyID
         } else {
             // We're adding something new, so do an insert
+            Log.i(TAG, "Initial contact values are being INSERTED");
             db.insert(
                     DatabaseContract.InitialContactTable.TABLE_NAME,
                     null,
@@ -115,7 +119,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
      */
     public ContentValues getTextFromScreen() throws InterruptedException {
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID, ID); // Using the ID from the bundle
+        values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID, ID); // Using the companyID from the bundle
         // These are retrieved from what the user typed in:
         values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_DATE, dateOfContact.getText().toString());
         values.put(DatabaseContract.InitialContactTable.COLUMN_NAME_CONTACT, contactName.getText().toString());
@@ -161,7 +165,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
                 DatabaseContract.InitialContactTable.COLUMN_NAME_DISCUSSION,
         };
 
-        // I only want a company whose ID number matches the one passed to me in a bundle
+        // I only want a company whose companyID number matches the one passed to me in a bundle
         String[] selectionArgs = {String.valueOf(companyID)};
 
         // My cursor that I use to loop over query results

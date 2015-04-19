@@ -146,17 +146,12 @@
             android:layout_height="wrap_content"
             android:paddingTop="25dp" />
 
-        <FrameLayout
-            android:id="@+id/interview_one_completed_fragment"
-            android:layout_width="fill_parent"
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp" />
-
-        <FrameLayout
-            android:id="@+id/interview_two_completed_fragment"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="25dp" />
+            android:divider="@android:color/transparent"
+            android:dividerHeight="5dp" />
 
         <FrameLayout
             android:id="@+id/received_response_fragment"

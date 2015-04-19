@@ -11,12 +11,23 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.christinaaiello.MainActivity;
 import com.example.christinaaiello.R;
+import com.example.christinaaiello.employerinformation.CompanyListAdapter;
+import com.example.christinaaiello.employerinformation.Employer;
+import com.example.christinaaiello.employerinformation.ViewCompanyActivity;
 import com.example.christinaaiello.general.DatabaseContract;
+
+import java.util.ArrayList;
 
 
 public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
@@ -34,6 +45,8 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     RelativeLayout interviewTwoCompletedLayout;
     RelativeLayout interviewFollowupLayout;
     Bundle updateStepsBundle;
+    ArrayList<Interview> listOfInterviews;
+    InterviewAdapter adapter;
 
     @Override
 
@@ -49,10 +62,11 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // Getting bundle information
         updateStepsBundle = getIntent().getExtras();
         ID = updateStepsBundle.getString("ID");
+        Log.e(TAG, "Company ID inside update is: " + ID);
         interviewNumber = 0;
 
         getLayoutItemsOnScreen(); // Getting the items on the screen and putting them into variables
-        seeIfDataExists(ID); // Initializing the data, using the company ID
+        seeIfDataExists(ID); // Initializing the data, using the company companyID
         initializeClicking(); // Initialize the bundle to be used for edit mode, and the onclicks
     }
 
@@ -71,8 +85,16 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
 
         if (aRequestCode == requestCode) {
             Log.i("Activity result", "Got correct result code for initialcontact");
-            seeIfDataExists(ID); // Initializing the data, using the company ID
+            seeIfDataExists(ID); // Initializing the data, using the company companyID
         }
+
+        // First we clear the list of companies that the adapter is using:
+        listOfInterviews.clear();
+        // Now we update the list of companies:
+        listOfInterviews.addAll(getAllInterviews());
+        // And lastly we tell the adapter to get new data:
+        adapter.notifyDataSetChanged();
+        setListViewHeightBasedOnChildren((ListView) findViewById(R.id.listview));
     }
 
     @Override
@@ -104,7 +126,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // Use this name when starting a new activity
         initialContactBundle.putString("Step", step);
         initialContactBundle.putBoolean("Editing", editing);
-        initialContactBundle.putString("ID", ID);
+        initialContactBundle.putString("companyID", ID);
         initialContactIntent.putExtras(initialContactBundle);
 
         initialContactImage.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +155,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // Use this name when starting a new activity
         setupBundle.putString("Step", step);
         setupBundle.putBoolean("Editing", editing);
-        setupBundle.putString("ID", ID);
+        setupBundle.putString("companyID", ID);
         setupIntent.putExtras(setupBundle);
         setUpContactImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,58 +172,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
             }
         });
 
-        // INTERVIEW COMPLETED: Getting the set up contact layout item
-        ImageView interviewOneCompletedImage = (ImageView) interviewOneCompletedLayout.getChildAt(0);
-        TextView interviewOneCompletedTextView = (TextView) interviewOneCompletedLayout.getChildAt(1);
-        ImageView interviewTwoCompletedImage = (ImageView) interviewTwoCompletedLayout.getChildAt(0);
-        TextView interviewTwoCompletedTextView = (TextView) interviewTwoCompletedLayout.getChildAt(1);
-        // This will let the user edit this section:
-        final Intent interviewCompletedIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, InterviewCompletedActivityEditMode.class);
-        final Bundle interviewCompletedBundle = new Bundle();
-        step = "completed";
-        editing = false;
-        // Use this name when starting a new activity
-        interviewCompletedBundle.putString("Step", step);
-        interviewCompletedBundle.putBoolean("Editing", editing);
-        interviewCompletedBundle.putString("ID", ID);
-
-        interviewOneCompletedImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                interviewCompletedBundle.putInt("interviewNumber", 1);
-                interviewCompletedIntent.putExtras(interviewCompletedBundle);
-                // Creating an intent to start the window
-                startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
-            }
-        });
-        interviewOneCompletedTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                interviewCompletedBundle.putInt("interviewNumber", 1);
-                interviewCompletedIntent.putExtras(interviewCompletedBundle);
-                // Creating an intent to start the window
-                startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
-            }
-        });
-        interviewTwoCompletedImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                interviewCompletedBundle.putInt("interviewNumber", 2);
-                interviewCompletedIntent.putExtras(interviewCompletedBundle);
-                // Creating an intent to start the window
-                startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
-            }
-        });
-        interviewTwoCompletedTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                interviewCompletedBundle.putInt("interviewNumber", 2);
-                interviewCompletedIntent.putExtras(interviewCompletedBundle);
-                // Creating an intent to start the window
-                startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
-            }
-        });
-
         // RECEIVED RESPONSE: Getting the set up contact layout item
         ImageView receivedResponseImage = (ImageView) interviewFollowupLayout.getChildAt(0);
         TextView receivedResponseTextView = (TextView) interviewFollowupLayout.getChildAt(1);
@@ -213,7 +183,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // Use this name when starting a new activity
         receivedResponseBundle.putString("Step", step);
         receivedResponseBundle.putBoolean("Editing", editing);
-        receivedResponseBundle.putString("ID", ID);
+        receivedResponseBundle.putString("companyID", ID);
         receivedResponseIntent.putExtras(receivedResponseBundle);
 
         receivedResponseImage.setOnClickListener(new View.OnClickListener() {
@@ -235,7 +205,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     /**
      * This method will initialize all of the data in the list of steps.
      *
-     * @param companyID is the ID of the company in the table
+     * @param companyID is the companyID of the company in the table
      */
     public void seeIfDataExists(String companyID) {
         String mostRecentStep; // This contains the most recent step taken with a company
@@ -244,7 +214,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID,
         };
 
-        // I only want a company whose ID number matches the one passed to me in a bundle
+        // I only want a company whose companyID number matches the one passed to me in a bundle
         String[] selectionArgs = {String.valueOf(companyID)};
 
         // Get any information about initial contact
@@ -252,28 +222,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 DatabaseContract.InitialContactTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
                 DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
-                selectionArgs,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                null                                 // The sort order
-        );
-
-        // Get any information about setting up an interview
-        Cursor setUpInterviewCursor = db.query(
-                DatabaseContract.SetUpInterviewTable.TABLE_NAME,  // The table to query
-                projection,                               // The columns to return
-                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
-                selectionArgs,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                null                                 // The sort order
-        );
-
-        // Get any information about completing an interview
-        Cursor interviewCompletedCursor = db.query(
-                DatabaseContract.InterviewCompletedTable.TABLE_NAME,  // The table to query
-                projection,                               // The columns to return
-                DatabaseContract.InterviewCompletedTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
@@ -291,42 +239,31 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
                 null                                 // The sort order
         );
 
+
+
+
+        // This contains the list of companies
+        ListView listView = (ListView) findViewById(R.id.listview);
+
+        // Adapter for the list of companies
+        listOfInterviews = getAllInterviews();
+        if(listOfInterviews.size() > 0) {
+            Log.e(TAG, "Interview list size is: " + listOfInterviews.size());
+            Log.e(TAG, "Interview id of first in list: " + listOfInterviews.get(0).getInterviewID());
+        }
+        adapter = new InterviewAdapter(listOfInterviews, this);
+        listView.setAdapter(adapter);
+        setListViewHeightBasedOnChildren((ListView) findViewById(R.id.listview));
+
         // Seeing if the user has started recording the interview process:
         if (!(initialContactCursor.getCount() == 0)) {
             Log.i(TAG, "Got results when searching database - Initially Contacted Company");
             mostRecentStep = "Initially Contacted Company";
             displayInitialContactDataFragment();
             // Lastly, we need to hide the "add initial contact" box
-            initialContactFilledOut();
         } else {
             mostRecentStep = "Not started";
-            Log.i(TAG, "Could not find matches when searching database.");
-            noOptionsFilledOut(); // Hide all options other than the first one
-        }
-
-        // Have they recorded setting up an interview?
-        if (!(setUpInterviewCursor.getCount() == 0)) {
-            Log.i(TAG, "Got results when searching database - Set Up Interview");
-            displaySetUpInterviewDataFragment(); // Show set up interview info
-            mostRecentStep = "Set Up Interview";
-            // Lastly, we need to hide the unnecessary boxes
-            scheduledInterviewFilledOut();
-        }
-
-        // Have they recorded having completed an interview?
-        if (!(interviewCompletedCursor.getCount() == 0)) {
-            Log.i("Count was", Integer.toString(interviewCompletedCursor.getCount()));
-            if ((interviewCompletedCursor.getCount() == 2)) {
-                Log.i(TAG, "Got results when searching database - Completed Interview");
-                Log.i("Count", "Count was still two");
-                interviewNumber = 2; // Used to show/hide certain buttons on screen
-                Log.i("Number is", interviewNumber.toString());
-                displayInterviewTwoCompletedFragment(); // If they've done two interviews
-            } else interviewNumber = 1; // Used to show/hide certain buttons on screen
-            displayInterviewOneCompletedFragment(); // Show interview completed info
-            mostRecentStep = "Completed Interview";
-            // Lastly, we need to hide the unnecessary boxes
-            interviewDocumentationFilledOut();
+            Log.i(TAG, "Could not find initial contact matches when searching database.");
         }
 
         // Have they recorded receiving a response?
@@ -335,7 +272,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
             Log.i(TAG, "Got results when searching database - Received Response After Interview");
             displayReceivedResponseFragment(); // Showing response to interview
             mostRecentStep = "Received Response After Interview";
-            allFilledOut();
         }
 
         // Lastly, we now will mark the column in the database saying what the most recent step
@@ -368,48 +304,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     }
 
     /**
-     * Display our initial contact data
-     */
-    public void displaySetUpInterviewDataFragment() {
-        // If we just edited the initial contact fragment, show it now:
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // Initializing the fragment for initial contact with a company
-        SetUpInterviewFragment setUpInterviewFragment = new SetUpInterviewFragment();
-        transaction.add(R.id.set_up_interview_fragment, setUpInterviewFragment);
-        transaction.commit();
-    }
-
-    /**
-     * Display our interview completed
-     */
-    public void displayInterviewOneCompletedFragment() {
-        Bundle bundle = new Bundle();
-        bundle.putInt("Number", 1);
-        // If we just edited the initial contact fragment, show it now:
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // Initializing the fragment for initial contact with a company
-        InterviewCompletedFragment interviewCompletedFragment = new InterviewCompletedFragment();
-        interviewCompletedFragment.setArguments(bundle);
-        transaction.add(R.id.interview_one_completed_fragment, interviewCompletedFragment);
-        transaction.commit();
-    }
-
-    /**
-     * Display our interview completed
-     */
-    public void displayInterviewTwoCompletedFragment() {
-        Bundle bundle = new Bundle();
-        bundle.putInt("Number", 2);
-        // If we just edited the initial contact fragment, show it now:
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // Initializing the fragment for initial contact with a company
-        InterviewCompletedFragment interviewCompletedFragment = new InterviewCompletedFragment();
-        interviewCompletedFragment.setArguments(bundle);
-        transaction.add(R.id.interview_two_completed_fragment, interviewCompletedFragment);
-        transaction.commit();
-    }
-
-    /**
      * Display that we received a response
      */
     public void displayReceivedResponseFragment() {
@@ -433,51 +327,10 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // Use this name when starting a new activity
         final Bundle initialContactBundle = new Bundle();
         initialContactBundle.putBoolean("Editing", editing);
-        initialContactBundle.putString("ID", ID);
+        initialContactBundle.putString("companyID", ID);
         initialContactIntent.putExtras(initialContactBundle);
         // Creating an intent to start the window
         startActivityForResult(initialContactIntent, requestCode, initialContactBundle);
-    }
-
-
-    /**
-     * This method is used when a user wants to edit initial contact info.
-     * This is coded into the XML, which is why it isn't called in this file.
-     *
-     * @param view is the button being clicked
-     */
-    public void setUpInterviewEditClick(View view) {
-        final Intent setUpInterviewIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, SetUpInterviewActivityEditMode.class);
-        editing = true; // This time, we are editing, not creating something new
-        // Use this name when starting a new activity
-        final Bundle setUpInterviewBundle = new Bundle();
-        setUpInterviewBundle.putBoolean("Editing", editing);
-        setUpInterviewBundle.putString("ID", ID);
-        setUpInterviewIntent.putExtras(setUpInterviewBundle);
-        // Creating an intent to start the window
-        startActivityForResult(setUpInterviewIntent, requestCode, setUpInterviewBundle);
-    }
-
-
-    /**
-     * This method is used when a user wants to edit interview completed info.
-     * This is coded into the XML, which is why it isn't called in this file.
-     *
-     * @param view is the button being clicked
-     */
-    public void interviewCompletedEditClick(View view) {
-        final Intent interviewCompletedIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, InterviewCompletedActivityEditMode.class);
-        editing = true; // This time, we are editing, not creating something new
-        // Use this name when starting a new activity
-        final Bundle interviewCompletedBundle = new Bundle();
-        interviewCompletedBundle.putBoolean("Editing", editing);
-        interviewCompletedBundle.putString("ID", ID);
-        if (view.getParent().getParent().getParent() == findViewById(R.id.interview_two_completed_fragment)) {
-            interviewCompletedBundle.putInt("interviewNumber", 2);
-        } else interviewCompletedBundle.putInt("interviewNumber", 1);
-        interviewCompletedIntent.putExtras(interviewCompletedBundle);
-        // Creating an intent to start the window
-        startActivityForResult(interviewCompletedIntent, requestCode, interviewCompletedBundle);
     }
 
     /**
@@ -492,78 +345,10 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // Use this name when starting a new activity
         final Bundle receivedResponseBundle = new Bundle();
         receivedResponseBundle.putBoolean("Editing", editing);
-        receivedResponseBundle.putString("ID", ID);
+        receivedResponseBundle.putString("companyID", ID);
         receivedResponseIntent.putExtras(receivedResponseBundle);
         // Creating an intent to start the window
         startActivityForResult(receivedResponseIntent, requestCode, receivedResponseBundle);
-    }
-
-    /**
-     * This method is used to hide the "Add Initial Contact" box when that's already been clicked,
-     * and the steps after the next step
-     */
-    public void initialContactFilledOut() {
-        // The first box, the add initial contact box
-        initialContactLayout.setVisibility(View.GONE);
-        setUpInterviewLayout.setVisibility(View.VISIBLE);
-        interviewOneCompletedLayout.setVisibility(View.GONE);
-        interviewTwoCompletedLayout.setVisibility(View.GONE);
-        interviewFollowupLayout.setVisibility(View.GONE);
-    }
-
-    /**
-     * This method is used to hide the "When did you schedule your interview" box when that's already been clicked,
-     * and the steps after the next step
-     */
-    public void scheduledInterviewFilledOut() {
-        // The first box, the add initial contact box
-        initialContactLayout.setVisibility(View.GONE);
-        setUpInterviewLayout.setVisibility(View.GONE);
-        interviewOneCompletedLayout.setVisibility(View.VISIBLE);
-        interviewTwoCompletedLayout.setVisibility(View.GONE);
-        interviewFollowupLayout.setVisibility(View.GONE);
-    }
-
-    /**
-     * This method is used to hide the "Document how your interview went" box when that's already been clicked,
-     * and the steps after the next step
-     */
-    public void interviewDocumentationFilledOut() {
-        initialContactLayout.setVisibility(View.GONE);
-        setUpInterviewLayout.setVisibility(View.GONE);
-        interviewOneCompletedLayout.setVisibility(View.GONE);
-        // If they've only done one interview so far
-        if (interviewNumber == 1) {
-            // Two options: second interview, or write about followup:
-            interviewTwoCompletedLayout.setVisibility(View.VISIBLE);
-        } else interviewTwoCompletedLayout.setVisibility(View.GONE);
-        interviewFollowupLayout.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * This method is used to hide the "Add Initial Contact" box when that's already been clicked,
-     * and the steps after the next step
-     */
-    public void allFilledOut() {
-        initialContactLayout.setVisibility(View.GONE);
-        setUpInterviewLayout.setVisibility(View.GONE);
-        interviewOneCompletedLayout.setVisibility(View.GONE);
-        interviewTwoCompletedLayout.setVisibility(View.GONE);
-        interviewFollowupLayout.setVisibility(View.GONE);
-        // Hiding the text that says "Next steps"
-        TextView nextStepText = (TextView) findViewById(R.id.next_step_text);
-        nextStepText.setVisibility(View.GONE);
-    }
-
-    /**
-     * This method is used to hide all options other than the first,
-     * and the steps after the next step
-     */
-    public void noOptionsFilledOut() {
-        setUpInterviewLayout.setVisibility(View.GONE);
-        interviewOneCompletedLayout.setVisibility(View.GONE);
-        interviewTwoCompletedLayout.setVisibility(View.GONE);
-        interviewFollowupLayout.setVisibility(View.GONE);
     }
 
     /**
@@ -575,6 +360,114 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         interviewOneCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box);
         interviewTwoCompletedLayout = (RelativeLayout) findViewById(R.id.ic_action_chat_box_two);
         interviewFollowupLayout = (RelativeLayout) findViewById(R.id.ic_action_phone_box);
+    }
+
+    /**
+     * This method will get all company names from the database.
+     */
+    public ArrayList<Interview> getAllInterviews() {
+        // This will contain the names of all of the companies
+        ArrayList<Interview> interviewList = new ArrayList<Interview>();
+
+        // Writing what columns we want from the table
+        String[] projection = {
+                DatabaseContract.SetUpInterviewTable._ID,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_DATE,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_TIME,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_INTERVIEWERS,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_EMAIL,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_MISC_NOTES,
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_FOLLOWUP_NOTES
+        };
+
+        // Organize interview names in this order...
+        String sortOrder = DatabaseContract.SetUpInterviewTable._ID + " ASC";
+        // Selection arguments (using the company's id)
+        String[] selectionArgs = {String.valueOf(ID)};
+
+        // My cursor that I use to loop over query results
+        Cursor cursor = db.query(
+                DatabaseContract.SetUpInterviewTable.TABLE_NAME,  // The table to query
+                projection,                               // The columns to return
+                DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?",// The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                sortOrder                                 // Thcce sort order
+        );
+
+        // Now, we make an employer object and put each row's data into it.
+        // We then insert this into the ArrayList and move to the next row.
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false) {
+            Interview interview = new Interview();
+            interview.setInterviewID(cursor.getString(0));
+            interview.setCompanyID(cursor.getString(1));
+            interview.setDate(cursor.getString(2));
+            interview.setTime(cursor.getString(3));
+            interview.setInterviewerNames(cursor.getString(4));
+            interview.setContactEmailAddress(cursor.getString(5));
+            interview.setMiscNotes(cursor.getString(6));
+            interview.setInterviewCompletedNotes(cursor.getString(7));
+            interviewList.add(interview);
+            cursor.moveToNext();
+        }
+
+        return interviewList;
+    }
+
+    /**
+     * This method lets a user edit a scheduled interview's information.
+     */
+    public void setUpInterviewEditClick(View view){
+        // Relativelayout that this button is in:
+        RelativeLayout relativeLayout = (RelativeLayout) view.getParent();
+        // Linear layout that is the whole fragment's layout:
+        LinearLayout linearLayout = (LinearLayout) relativeLayout.getParent();
+        // First child is relativelayout with the ID box in it:
+        RelativeLayout relativeIDlayout = (RelativeLayout) linearLayout.getChildAt(1);
+        TextView interviewIDText = (TextView) relativeIDlayout.getChildAt(0);
+        // Lastly, this is the actual interview's ID number:
+        String interviewID = interviewIDText.getText().toString();
+
+        final Intent setUpInterviewIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, SetUpInterviewActivityEditMode.class);
+        editing = true; // This time, we are editing, not creating something new
+        // Use this name when starting a new activity
+        final Bundle setUpInterviewBundle = new Bundle();
+        setUpInterviewBundle.putBoolean("Editing", editing);
+        setUpInterviewBundle.putString("companyID", ID);
+        setUpInterviewBundle.putString("interviewID", interviewID);
+        setUpInterviewIntent.putExtras(setUpInterviewBundle);
+        // Creating an intent to start the window
+        startActivityForResult(setUpInterviewIntent, requestCode, setUpInterviewBundle);
+    }
+
+    /**
+     * This method is used to let me put a scrollivew inside of a listview.
+     * Credit for this code goes to Nex:
+     * http://nex-otaku-en.blogspot.com/2010/12/android-put-listview-in-scrollview.html
+     * Thank you, Nex!!
+     * @param listView
+     */
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 
 
