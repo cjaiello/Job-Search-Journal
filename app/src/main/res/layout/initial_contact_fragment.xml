@@ -172,7 +172,8 @@
                 android:layout_centerVertical="true"
                 android:layout_weight="2"
                 android:gravity="center_horizontal"
-                android:typeface="monospace"
+                android:textStyle="bold"
+                android:textColor="@color/link_color"
                 android:inputType="phone" />
         </LinearLayout>
     </RelativeLayout>

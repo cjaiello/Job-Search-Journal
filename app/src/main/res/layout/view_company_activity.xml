@@ -166,6 +166,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:lines="2"
+                    android:textStyle="bold"
                     android:paddingBottom="2dp"
                     android:textColor="@color/link_color" />
 
@@ -215,6 +216,7 @@
                     android:layout_weight="2"
                     android:gravity="center_horizontal"
                     android:paddingBottom="2dp"
+                    android:textStyle="bold"
                     android:textColorLink="@color/link_color"/>
             </LinearLayout>
 
