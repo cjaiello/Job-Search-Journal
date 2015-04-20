@@ -1,11 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainactivity_bg_color"
+    android:background="@color/background_color"
     android:paddingBottom="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="10dp"
     android:scrollbarFadeDuration="0">
 
     <LinearLayout
@@ -13,8 +10,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip">
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
         <TextView
             android:id="@+id/next_step_text"

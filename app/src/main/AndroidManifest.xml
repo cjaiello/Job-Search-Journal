@@ -67,15 +67,7 @@
         </activity>
 
         <activity
-            android:name=".applicationprocess.SetUpInterviewActivityEditMode"
-            android:label="Edit Your Progress" >
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".applicationprocess.InterviewCompletedActivityEditMode"
+            android:name=".applicationprocess.InterviewActivityEditMode"
             android:label="Edit Your Progress" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

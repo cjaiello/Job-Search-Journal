@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -20,11 +19,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.christinaaiello.MainActivity;
 import com.example.christinaaiello.R;
-import com.example.christinaaiello.employerinformation.CompanyListAdapter;
-import com.example.christinaaiello.employerinformation.Employer;
-import com.example.christinaaiello.employerinformation.ViewCompanyActivity;
 import com.example.christinaaiello.general.DatabaseContract;
 
 import java.util.ArrayList;
@@ -148,7 +143,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         ImageView setUpContactImage = (ImageView) setUpInterviewLayout.getChildAt(0);
         TextView setUpContactLayoutTextView = (TextView) setUpInterviewLayout.getChildAt(1);
         // This will let the user edit this section:
-        final Intent setupIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, SetUpInterviewActivityEditMode.class);
+        final Intent setupIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, InterviewActivityEditMode.class);
         final Bundle setupBundle = new Bundle();
         step = "setup";
         editing = false;
@@ -426,7 +421,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // Lastly, this is the actual interview's ID number:
         String interviewID = interviewIDText.getText().toString();
 
-        final Intent setUpInterviewIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, SetUpInterviewActivityEditMode.class);
+        final Intent setUpInterviewIntent = new Intent(UpdateStepsInApplicationProcessActivity.this, InterviewActivityEditMode.class);
         editing = true; // This time, we are editing, not creating something new
         // Use this name when starting a new activity
         final Bundle setUpInterviewBundle = new Bundle();

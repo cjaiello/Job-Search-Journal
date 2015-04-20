@@ -9,12 +9,12 @@
 
 
     <color name="dark_blue">#73baba</color>
-    <color name="company_title">#ff72a9ba</color>
-    <color name="section_title">#ff72a9ba</color>
-    <color name="mainactivity_bg_color">#C5E9E9</color>
-    <color name="section_text">#5b8acee2</color>
-    <color name="section_text_2">#9d8acee2</color>
+    <color name="company_title">#ff53b5ba</color>
+    <color name="section_title">#ff53b5ba</color>
+    <color name="section_text">#5b92e2bf</color>
+    <color name="section_text_2">#be8be2b3</color>
     <color name="background_color">#C5E9E9</color>
+    <color name="shadow_color">#ffadd7d4</color>
     <color name="link_color">#ff455d97</color>
 
 </resources>

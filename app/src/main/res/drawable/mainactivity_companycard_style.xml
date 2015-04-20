@@ -6,7 +6,7 @@
             <!-- Shadow -->
             <stroke
                 android:width="3dp"
-                android:color="@color/section_text_2" />
+                android:color="@color/shadow_color" />
             <!-- Shadow properties  -->
             <padding
                 android:bottom="2dp"
