@@ -1,6 +1,7 @@
 package com.example.christinaaiello.employerinformation;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -44,8 +45,14 @@ public class CompanyListAdapter extends ArrayAdapter<Employer> {
         TextView positionView = (TextView) convertView.findViewById(R.id.position);
         ImageView positionImageView = (ImageView) convertView.findViewById(R.id.position_image);
         TextView stepView = (TextView) convertView.findViewById(R.id.step);
+        ImageView companyLogo = (ImageView) convertView.findViewById(R.id.companyLogo);
         Employer employer = employerList.get(position);
 
+        // Logo for company:
+        if(employer.getImageByteArray() != null){
+            Log.e("CompanyListAdapter", "Imageview wasn't null");
+            companyLogo.setImageBitmap(BitmapFactory.decodeByteArray(employer.getImageByteArray(), 0, employer.getImageByteArray().length));
+        } else Log.e("CompanyListAdapter", "Imageview was null");
         Log.i("Inside Adapter name", "Position is: " + Integer.toString(position));
         // Now let's set the text on the screen for this employer:
         companyIDView.setText(employer.getID());

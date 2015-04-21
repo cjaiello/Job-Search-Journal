@@ -25,6 +25,7 @@ import com.example.christinaaiello.employerinformation.Employer;
 import com.example.christinaaiello.employerinformation.ViewCompanyActivity;
 import com.example.christinaaiello.general.DatabaseContract;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -44,7 +45,11 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
-        listOfCompanies = getAllCompanies("name"); // Will contain all companies
+        try {
+            listOfCompanies = getAllCompanies("name"); // Will contain all companies
+        } catch (IOException e) {
+            Log.e(TAG, e.toString());
+        }
 
         // Putting view settings in preferences
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
@@ -70,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
                 // Getting the clicked view
                 RelativeLayout relativeLayout = (RelativeLayout) view;
                 // Getting the first child, which is the textview with a company's name
-                TextView idTextView = (TextView) relativeLayout.getChildAt(0);
+                TextView idTextView = (TextView) relativeLayout.getChildAt(1);
                 // Use this name when starting a new activity
                 bundle.putString("ID", idTextView.getText().toString());
                 startViewCompanyIntent.putExtras(bundle);
@@ -99,13 +104,17 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();
-        refreshListOfCompanies();
+        try {
+            refreshListOfCompanies();
+        } catch (IOException e) {
+            Log.e(TAG, e.toString());
+        }
     }
 
     /**
      * This method can be called from anywhere to refresh the list of companies in this activity
      */
-    private void refreshListOfCompanies() {
+    private void refreshListOfCompanies() throws IOException {
         // Checking user's preferences to see what way to display data
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String viewOrder = prefs.getString("view", null);
@@ -122,7 +131,7 @@ public class MainActivity extends ActionBarActivity {
      * organize the list of companies by name or by step in the application process
      *
      */
-    public void setViewPreferences(MenuItem viewOrderItem) {
+    public void setViewPreferences(MenuItem viewOrderItem) throws IOException {
         // Checking user's preferences to see what way to display data
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String viewOrder = prefs.getString("view", null);
@@ -166,7 +175,7 @@ public class MainActivity extends ActionBarActivity {
     /**
      * This method will get all company names from the database.
      */
-    public ArrayList<Employer> getAllCompanies(String orderBy) {
+    public ArrayList<Employer> getAllCompanies(String orderBy) throws IOException {
         // This will contain the names of all of the companies
         ArrayList<Employer> employerList = new ArrayList<Employer>();
 
@@ -177,6 +186,7 @@ public class MainActivity extends ActionBarActivity {
                 DatabaseContract.CompanyDataTable.COLUMN_NAME_POSITION,
                 DatabaseContract.CompanyDataTable.COLUMN_NAME_WEBSITE,
                 DatabaseContract.CompanyDataTable.COLUMN_NAME_STEP,
+                DatabaseContract.CompanyDataTable.COLUMN_NAME_LOGO,
         };
 
         // Organize company names in this order...
@@ -214,6 +224,7 @@ public class MainActivity extends ActionBarActivity {
             employer.setPosition(cursor.getString(2));
             employer.setWebsite(cursor.getString(3));
             employer.setStep(cursor.getString(4));
+            employer.setImageByteArray(cursor.getBlob(5));
             employerList.add(employer);
             cursor.moveToNext();
         }
@@ -239,7 +250,7 @@ public class MainActivity extends ActionBarActivity {
                 // Getting the relativelayout holding this trash can and other things
                 RelativeLayout parentView = (RelativeLayout) view.getParent();
                 // Getting the textview holding the company's ID number
-                TextView idView = (TextView) parentView.getChildAt(0);
+                TextView idView = (TextView) parentView.getChildAt(1);
                 // This is the actual ID number
                 String idNumber = idView.getText().toString();
                 // Deleting from the database:
@@ -248,7 +259,11 @@ public class MainActivity extends ActionBarActivity {
                 db.delete(DatabaseContract.SetUpInterviewTable.TABLE_NAME, DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
                 db.delete(DatabaseContract.ReceivedResponseTable.TABLE_NAME, DatabaseContract.ReceivedResponseTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
                 // And refreshing the layout
-                refreshListOfCompanies();
+                try {
+                    refreshListOfCompanies();
+                } catch (IOException e) {
+                    Log.e(TAG, e.toString());
+                }
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
