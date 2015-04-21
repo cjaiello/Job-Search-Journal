@@ -94,13 +94,13 @@ public class AddCompanyActivity extends ActionBarActivity {
         // These are retrieved via the API:
         values.put(CompanyDataTable.COLUMN_NAME_WEBSITE, employer.getWebsite());
         values.put(CompanyDataTable.COLUMN_NAME_INDUSTRY, employer.getIndustry());
-        values.put(CompanyDataTable.COLUMN_NAME_LOGO, employer.getSquareLogo());
         values.put(CompanyDataTable.COLUMN_NAME_OVERALL_RATING, employer.getOverallRating());
         values.put(CompanyDataTable.COLUMN_NAME_CULTURE, employer.getCultureAndValuesRating());
         values.put(CompanyDataTable.COLUMN_NAME_LEADERSHIP, employer.getSeniorLeadershipRating());
         values.put(CompanyDataTable.COLUMN_NAME_COMPENSATION, employer.getCompensationAndBenefitsRating());
         values.put(CompanyDataTable.COLUMN_NAME_OPPORTUNITIES, employer.getCareerOpportunitiesRating());
         values.put(CompanyDataTable.COLUMN_NAME_WORKLIFE, employer.getWorkLifeBalanceRating());
+        values.put(CompanyDataTable.COLUMN_NAME_LOGO, employer.getImageByteArray());
 
         // Insert the new row, returning the primary key value of the new row
         db.insert(

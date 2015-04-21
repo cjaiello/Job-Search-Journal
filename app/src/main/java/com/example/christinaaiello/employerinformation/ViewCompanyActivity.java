@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -24,6 +25,7 @@ import com.example.christinaaiello.R;
 import com.example.christinaaiello.applicationprocess.UpdateStepsInApplicationProcessActivity;
 import com.example.christinaaiello.general.DatabaseContract;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import static com.example.christinaaiello.general.DatabaseContract.CompanyDataTable;
@@ -62,14 +64,6 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         // that a user is (regarding applying to a job)
         TextView trackProgressText = (TextView) findViewById(R.id.track_progress_text);
         trackProgressText.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ViewCompanyActivity.this, UpdateStepsInApplicationProcessActivity.class);
-                intent.putExtras(createBundleForEditing()); // Putting company info into bundle
-                startActivity(intent);
-            }
-        });
-        ImageView trackProcessImage = (ImageView) findViewById(R.id.track_progress_image);
-        trackProcessImage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(ViewCompanyActivity.this, UpdateStepsInApplicationProcessActivity.class);
                 intent.putExtras(createBundleForEditing()); // Putting company info into bundle
@@ -127,6 +121,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         TextView compensationView = (TextView) findViewById(R.id.company_compensation_rating);
         TextView opportunitiesView = (TextView) findViewById(R.id.company_career_opportunities_rating);
         TextView worklifeView = (TextView) findViewById(R.id.company_work_life_balance_rating);
+        ImageView companyLogo = (ImageView) findViewById(R.id.companyLogo);
 
         // Now we need to set the content of the views
         idView.setText(employer.getID());
@@ -142,6 +137,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         opportunitiesView.setText(employer.getCareerOpportunitiesRating());
         worklifeView.setText(employer.getWorkLifeBalanceRating());
         miscView.setText(employer.getMisc());
+        companyLogo.setImageBitmap(BitmapFactory.decodeByteArray(employer.getImageByteArray(), 0, employer.getImageByteArray().length));
 
         // Giving this activity a new action bar title:
         setTitle(employer.getName());
@@ -150,7 +146,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
     /**
      * This method will read a company's data from the database, based on ID #
      */
-    public void readCompanyData(String companyID) {
+    public void readCompanyData(String companyID) throws IOException {
         String[] projection = {
                 CompanyDataTable._ID,
                 CompanyDataTable.COLUMN_NAME_NAME,
@@ -168,6 +164,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
                 CompanyDataTable.COLUMN_NAME_COMPENSATION,
                 CompanyDataTable.COLUMN_NAME_OPPORTUNITIES,
                 CompanyDataTable.COLUMN_NAME_WORKLIFE,
+                CompanyDataTable.COLUMN_NAME_LOGO,
         };
 
         // I only want a company whose ID number matches the one passed to me in a bundle
@@ -197,13 +194,13 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
             employer.setMisc(cursor.getString(6));
             employer.setWebsite(cursor.getString(7));
             employer.setIndustry(cursor.getString(8));
-            employer.setSquareLogo(cursor.getString(9));
             employer.setOverallRating(cursor.getString(10));
             employer.setCultureAndValuesRating(cursor.getString(11));
             employer.setSeniorLeadershipRating(cursor.getString(12));
             employer.setCompensationAndBenefitsRating(cursor.getString(13));
             employer.setCareerOpportunitiesRating(cursor.getString(14));
             employer.setWorkLifeBalanceRating(cursor.getString(15));
+            employer.setImageByteArray(cursor.getBlob(16));
         } else {
             Log.i(TAG, "Could not find matches when searching database for companies user has entered.");
         }
@@ -241,7 +238,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
 
         // Lastly, let's make the location look like a clickable link, so people will click it
         if(employer.getLocation().length() != 0) {
-            Log.e(TAG, "!!!!!!!!!!! Location is: " + employer.getLocation());
+            Log.e(TAG, "Location is: " + employer.getLocation());
             String locationText = "<u>" + employer.getLocation() + "</u>";
             TextView locationView = (TextView) findViewById(R.id.company_location);
             locationView.setText(Html.fromHtml(locationText));
@@ -316,7 +313,11 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
     @Override
     public void onResume() {
         // Displaying the company's data on the screen
-        readCompanyData(companyID);
+        try {
+            readCompanyData(companyID);
+        } catch (IOException e) {
+            Log.e(TAG, e.toString());
+        }
         displayCompanyData();
         setLinks(); // Setting links in activity
 

@@ -1,15 +1,24 @@
 package com.example.christinaaiello.employerinformation;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.ByteBuffer;
 
 /**
  * Created by Christina Aiello on 3/22/2015.
@@ -33,6 +42,7 @@ public class Employer {
     private String workLifeBalanceRating;
     private Boolean couldRetrieveFromGlassdoor = false;
     private String step;
+    private byte[] imageByteArray;
 
     public Employer() {
     }
@@ -273,14 +283,6 @@ public class Employer {
      * Setter for an employer object
      *
      */
-    public void setSquareLogo(String squareLogo) {
-        this.squareLogo = squareLogo;
-    }
-
-    /**
-     * Setter for an employer object
-     *
-     */
     public void setOverallRating(String overallRating) {
         this.overallRating = overallRating;
     }
@@ -332,7 +334,7 @@ public class Employer {
      * @throws java.io.FileNotFoundException if this file could not be found
      * @throws org.json.JSONException
      */
-    public void extractCompanyInformation(String jsonString) throws FileNotFoundException, JSONException {
+    public void extractCompanyInformation(String jsonString) throws IOException, JSONException {
         // Reader for this URL
         JSONObject reader = new JSONObject(jsonString);
 
@@ -347,7 +349,7 @@ public class Employer {
             this.setWebsite(employersInfoObject.getString("website"));
             Log.e("Website is", "Website is: " + employersInfoObject.getString("website"));
             this.setIndustry(employersInfoObject.getString("industry"));
-            this.setSquareLogo(employersInfoObject.getString("squareLogo"));
+            this.setImageByteArray(makeImageByteArray(employersInfoObject.getString("squareLogo")));
             this.setOverallRating(employersInfoObject.getString("overallRating"));
             this.setCultureAndValuesRating(employersInfoObject.getString("cultureAndValuesRating"));
             this.setSeniorLeadershipRating(employersInfoObject.getString("seniorLeadershipRating"));
@@ -358,7 +360,6 @@ public class Employer {
         } else {
             this.setWebsite("");
             this.setIndustry("");
-            this.setSquareLogo("");
             this.setOverallRating("");
             this.setCultureAndValuesRating("");
             this.setSeniorLeadershipRating("");
@@ -451,5 +452,44 @@ public class Employer {
      */
     public Boolean getCouldRetrieveFromGlassdoor() {
         return couldRetrieveFromGlassdoor;
+    }
+
+    /**
+     * Source: http://www.tutorialforandroid.com/2009/10/how-to-insert-image-data-to-sqlite.html
+     * Author: Almond Joseph Mendoza
+     * Date: 10/12/2009
+     * @param imageURL is the URL of the image being accessed
+     * @return is a bytearray for this image
+     * @throws IOException
+     */
+    public byte[] makeImageByteArray(String imageURL) throws IOException {
+        imageByteArray = new byte[500];
+        DefaultHttpClient mHttpClient = new DefaultHttpClient();
+        HttpGet mHttpGet = new HttpGet(imageURL);
+        HttpResponse mHttpResponse = mHttpClient.execute(mHttpGet);
+        if (mHttpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            HttpEntity entity = mHttpResponse.getEntity();
+            if (entity != null) {
+                imageByteArray = EntityUtils.toByteArray(entity);
+            }
+        }
+        return imageByteArray;
+    }
+
+    /**
+     * This will use a helper to turn a URL into an image byte array, then save the byte array in the Employer object
+     * @param byteArray is an array of bytes that make this image
+     * @throws IOException
+     */
+    public void setImageByteArray(byte[] byteArray) throws IOException {
+        this.imageByteArray = byteArray;
+    }
+
+    /**
+     * This returns a byte array for this company's logo
+     * @return
+     */
+    public byte[] getImageByteArray() {
+        return this.imageByteArray;
     }
 }
