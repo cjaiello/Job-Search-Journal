@@ -1,7 +1,6 @@
 package com.example.christinaaiello;
 
 import android.app.AlertDialog;
-import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -224,7 +223,7 @@ public class MainActivity extends ActionBarActivity {
             employer.setPosition(cursor.getString(2));
             employer.setWebsite(cursor.getString(3));
             employer.setStep(cursor.getString(4));
-            employer.setImageByteArray(cursor.getBlob(5));
+            employer.setLogoByteArray(cursor.getBlob(5));
             employerList.add(employer);
             cursor.moveToNext();
         }

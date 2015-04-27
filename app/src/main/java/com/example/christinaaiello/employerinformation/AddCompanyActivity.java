@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.christinaaiello.R;
 import com.example.christinaaiello.general.DatabaseContract;
 
+import java.io.IOException;
+
 import static com.example.christinaaiello.general.DatabaseContract.CompanyDataTable;
 import static com.example.christinaaiello.general.DatabaseContract.DatabaseHelper;
 
@@ -70,11 +72,6 @@ public class AddCompanyActivity extends ActionBarActivity {
      * This method will save a company's information to the database
      */
     public void saveToDatabase() throws InterruptedException {
-        // URL for the company's information:
-        String URL = employer.constructAPIURL(employerNameEditText.getText().toString());
-        // Fetching the company's information:
-        employer.fetchCompanyInformation(URL);
-
         // Each of the textboxes the user typed into:
         EditText companyNameTextView = (EditText) findViewById(R.id.company_name);
         EditText companyPosition = (EditText) findViewById(R.id.company_position);
@@ -91,6 +88,12 @@ public class AddCompanyActivity extends ActionBarActivity {
         values.put(CompanyDataTable.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
         values.put(CompanyDataTable.COLUMN_NAME_GOAL, companyGoal.getText().toString());
         values.put(CompanyDataTable.COLUMN_NAME_MISCELLANEOUS, companyMisc.getText().toString());
+
+        // URL for the company's information:
+        String URL = employer.constructAPIURL(employerNameEditText.getText().toString());
+        // Fetching the company's information:
+        employer.fetchCompanyInformation(URL);
+
         // These are retrieved via the API:
         values.put(CompanyDataTable.COLUMN_NAME_WEBSITE, employer.getWebsite());
         values.put(CompanyDataTable.COLUMN_NAME_INDUSTRY, employer.getIndustry());
@@ -100,7 +103,13 @@ public class AddCompanyActivity extends ActionBarActivity {
         values.put(CompanyDataTable.COLUMN_NAME_COMPENSATION, employer.getCompensationAndBenefitsRating());
         values.put(CompanyDataTable.COLUMN_NAME_OPPORTUNITIES, employer.getCareerOpportunitiesRating());
         values.put(CompanyDataTable.COLUMN_NAME_WORKLIFE, employer.getWorkLifeBalanceRating());
-        values.put(CompanyDataTable.COLUMN_NAME_LOGO, employer.getImageByteArray());
+        values.put(CompanyDataTable.COLUMN_NAME_LOGO, employer.getLogoByteArray());
+
+        String streetViewUrl = ("https://maps.googleapis.com/maps/api/streetview?size=400x400&location=" + companyLocation.getText().toString()).replaceAll(" ", "%20");
+        employer.fetchCompanyStreetView(streetViewUrl);
+
+        // Lastly, add the streetview image to the database based on the address the user typed in:
+        values.put(CompanyDataTable.COLUMN_NAME_STREET_VIEW, employer.getStreetByteArray());
 
         // Insert the new row, returning the primary key value of the new row
         db.insert(

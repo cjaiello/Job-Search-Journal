@@ -48,8 +48,8 @@
                 android:layout_weight="2"
                 android:background="@color/white"
                 android:gravity="center"
-                android:text="Company Name"
                 android:inputType="textCapWords"
+                android:text="Company Name"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
@@ -81,8 +81,8 @@
                 android:layout_weight="2"
                 android:background="@color/white"
                 android:gravity="center"
-                android:padding="2dp"
                 android:inputType="textCapWords"
+                android:padding="2dp"
                 android:text="@string/company_position" />
 
         </RelativeLayout>
@@ -113,8 +113,8 @@
                 android:layout_weight="2"
                 android:background="@color/white"
                 android:gravity="center"
-                android:padding="2dp"
                 android:inputType="textCapWords"
+                android:padding="2dp"
                 android:text="@string/company_size" />
 
         </RelativeLayout>
@@ -145,8 +145,8 @@
                 android:layout_weight="2"
                 android:background="@color/white"
                 android:gravity="center"
-                android:padding="2dp"
                 android:inputType="textCapWords"
+                android:padding="2dp"
                 android:text="@string/company_location" />
 
         </RelativeLayout>
@@ -240,8 +240,8 @@
                 android:layout_weight="2"
                 android:background="@color/white"
                 android:gravity="center"
-                android:padding="2dp"
                 android:inputType="textCapSentences"
+                android:padding="2dp"
                 android:text="@string/company_goal_mission_statement" />
 
         </RelativeLayout>
@@ -471,6 +471,7 @@
                 android:layout_below="@id/company_miscellaneous_notes_label"
                 android:layout_weight="2"
                 android:background="@color/white"
+                android:inputType="textCapSentences"
                 android:lines="5"
                 android:padding="2dp"
                 android:text="@string/misc_notes_about_company" />

@@ -42,20 +42,21 @@
             android:paddingBottom="6dp">
 
             <ImageView
-                android:id="@+id/companyLogo"
-                android:paddingTop="6dp"
-                android:paddingLeft="6dp"
+                android:id="@+id/company_logo"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="6dp"
+                android:paddingTop="6dp" />
 
             <TextView
                 android:id="@+id/track_progress_text"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:layout_toRightOf="@+id/companyLogo"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/company_logo"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:layout_centerInParent="true"
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
                 android:text="Click to track progress\nwith this company!"
@@ -135,7 +136,7 @@
             <TextView
                 android:id="@+id/company_location_label"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="200dp"
                 android:layout_weight="2"
                 android:background="@color/section_title"
                 android:gravity="center"
@@ -146,19 +147,27 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:orientation="vertical"
-                android:gravity="center"
+                android:layout_height="200dp"
                 android:layout_toRightOf="@id/company_location_label"
-                android:background="@color/section_text">
+                android:background="@color/section_text"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/map_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingTop="2dp"
                     android:src="@drawable/ic_action_map"
-                    android:visibility="gone"
-                    android:paddingTop="2dp"></ImageView>
+                    android:visibility="gone"></ImageView>
+
+                <ImageView
+                    android:id="@+id/company_street_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="6dp" />
 
                 <TextView
                     android:id="@+id/company_location"
@@ -166,9 +175,9 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:lines="2"
-                    android:textStyle="bold"
                     android:paddingBottom="2dp"
-                    android:textColor="@color/link_color" />
+                    android:textColor="@color/link_color"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -195,18 +204,18 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="75dp"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_toRightOf="@id/company_website_label"
-                android:background="@color/section_text_2">
+                android:background="@color/section_text_2"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/internet_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingTop="2dp"
                     android:src="@drawable/ic_action_computer"
-                    android:visibility="gone"
-                    android:paddingTop="2dp"></ImageView>
+                    android:visibility="gone"></ImageView>
 
                 <TextView
                     android:id="@+id/company_website"
@@ -216,8 +225,8 @@
                     android:layout_weight="2"
                     android:gravity="center_horizontal"
                     android:paddingBottom="2dp"
-                    android:textStyle="bold"
-                    android:textColorLink="@color/link_color"/>
+                    android:textColorLink="@color/link_color"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -312,8 +321,8 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:textColorLink="@color/link_color"
                 android:text="@string/ratings_subtitle"
+                android:textColorLink="@color/link_color"
                 android:textSize="12dp" />
         </RelativeLayout>
 

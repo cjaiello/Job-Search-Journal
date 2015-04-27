@@ -9,7 +9,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -26,7 +25,6 @@ import com.example.christinaaiello.applicationprocess.UpdateStepsInApplicationPr
 import com.example.christinaaiello.general.DatabaseContract;
 
 import java.io.IOException;
-import java.util.Locale;
 
 import static com.example.christinaaiello.general.DatabaseContract.CompanyDataTable;
 import static com.example.christinaaiello.general.DatabaseContract.DatabaseHelper;
@@ -121,7 +119,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         TextView compensationView = (TextView) findViewById(R.id.company_compensation_rating);
         TextView opportunitiesView = (TextView) findViewById(R.id.company_career_opportunities_rating);
         TextView worklifeView = (TextView) findViewById(R.id.company_work_life_balance_rating);
-        ImageView companyLogo = (ImageView) findViewById(R.id.companyLogo);
+        ImageView companyLogo = (ImageView) findViewById(R.id.company_logo);
 
         // Now we need to set the content of the views
         idView.setText(employer.getID());
@@ -137,7 +135,9 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         opportunitiesView.setText(employer.getCareerOpportunitiesRating());
         worklifeView.setText(employer.getWorkLifeBalanceRating());
         miscView.setText(employer.getMisc());
-        companyLogo.setImageBitmap(BitmapFactory.decodeByteArray(employer.getImageByteArray(), 0, employer.getImageByteArray().length));
+        if (employer.getLogoByteArray() != null) {
+            companyLogo.setImageBitmap(BitmapFactory.decodeByteArray(employer.getLogoByteArray(), 0, employer.getLogoByteArray().length));
+        }
 
         // Giving this activity a new action bar title:
         setTitle(employer.getName());
@@ -164,7 +164,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
                 CompanyDataTable.COLUMN_NAME_COMPENSATION,
                 CompanyDataTable.COLUMN_NAME_OPPORTUNITIES,
                 CompanyDataTable.COLUMN_NAME_WORKLIFE,
-                CompanyDataTable.COLUMN_NAME_LOGO,
+                CompanyDataTable.COLUMN_NAME_STREET_VIEW,
         };
 
         // I only want a company whose ID number matches the one passed to me in a bundle
@@ -194,13 +194,14 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
             employer.setMisc(cursor.getString(6));
             employer.setWebsite(cursor.getString(7));
             employer.setIndustry(cursor.getString(8));
+            employer.setLogoByteArray(cursor.getBlob(9));
             employer.setOverallRating(cursor.getString(10));
             employer.setCultureAndValuesRating(cursor.getString(11));
             employer.setSeniorLeadershipRating(cursor.getString(12));
             employer.setCompensationAndBenefitsRating(cursor.getString(13));
             employer.setCareerOpportunitiesRating(cursor.getString(14));
             employer.setWorkLifeBalanceRating(cursor.getString(15));
-            employer.setImageByteArray(cursor.getBlob(16));
+            employer.setStreetByteArray(cursor.getBlob(16));
         } else {
             Log.i(TAG, "Could not find matches when searching database for companies user has entered.");
         }
@@ -211,7 +212,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
      * This method will set the links for Glassdoor.com and for the actual company's website.
      */
     public void setLinks() {
-        if(employer.getWebsite().length() != 0) {
+        if (employer.getWebsite().length() != 0) {
             // Getting the textview containing a company's website
             TextView websiteTextView = (TextView) findViewById(R.id.company_website);
             // Getting the text in this textview
@@ -222,7 +223,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
                             "<a href=\"http://" + websiteLink + "\">" + websiteLink + "</a>"));
             websiteTextView.setMovementMethod(LinkMovementMethod.getInstance());
             // Lastly, let's display the internet icon image:
-            ImageView internetIcon = (ImageView)findViewById(R.id.internet_icon);
+            ImageView internetIcon = (ImageView) findViewById(R.id.internet_icon);
             internetIcon.setVisibility(View.VISIBLE);
         }
 
@@ -237,14 +238,21 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         subtitleTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
         // Lastly, let's make the location look like a clickable link, so people will click it
-        if(employer.getLocation().length() != 0) {
-            Log.e(TAG, "Location is: " + employer.getLocation());
+        if (employer.getLocation().length() != 0) {
             String locationText = "<u>" + employer.getLocation() + "</u>";
             TextView locationView = (TextView) findViewById(R.id.company_location);
             locationView.setText(Html.fromHtml(locationText));
-            // And let's make the map icon visible:
-            ImageView mapIcon = (ImageView)findViewById(R.id.map_icon);
-            mapIcon.setVisibility(View.VISIBLE);
+
+            // If we have a streetview image, use that, else show the map icon:
+            ImageView companyStreetView = (ImageView) findViewById(R.id.company_street_view);
+            if (employer.getStreetByteArray() != null) {
+                companyStreetView.setImageBitmap(BitmapFactory.decodeByteArray(employer.getStreetByteArray(), 0, employer.getStreetByteArray().length));
+
+            } else {
+                // And let's make the map icon visible:
+                ImageView mapIcon = (ImageView) findViewById(R.id.map_icon);
+                mapIcon.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -279,9 +287,8 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
      * This method will open up a map with this company's location, when the "location" is clicked in the layout.
      */
     public void openMap(View view) {
-        Uri.parse("http://maps.google.com/maps?saddr=" + latitude + "," + longitude + "&daddr=" + employer.getLocation());
-        String uri = String.format(Locale.ENGLISH, "geo:0,0?q=%s", employer.getLocation());
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        Uri uri = Uri.parse("http://maps.google.com/maps?saddr=" + latitude + "," + longitude + "&daddr=" + employer.getLocation());
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }
 

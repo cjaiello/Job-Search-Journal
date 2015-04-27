@@ -26,6 +26,7 @@ public class DatabaseContract {
         public static final String TABLE_NAME = "company_information";
         public static final String COLUMN_NAME_NAME = "name";
         public static final String COLUMN_NAME_LOGO = "logo";
+        public static final String COLUMN_NAME_STREET_VIEW = "streetview";
         public static final String COLUMN_NAME_POSITION = "position";
         public static final String COLUMN_NAME_SIZE = "size";
         public static final String COLUMN_NAME_LOCATION = "location";
@@ -48,6 +49,7 @@ public class DatabaseContract {
                     CompanyDataTable._ID + " INTEGER PRIMARY KEY," +
                     CompanyDataTable.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
                     CompanyDataTable.COLUMN_NAME_LOGO + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_STREET_VIEW + TEXT_TYPE + COMMA_SEP +
                     CompanyDataTable.COLUMN_NAME_POSITION + TEXT_TYPE + COMMA_SEP +
                     CompanyDataTable.COLUMN_NAME_SIZE + TEXT_TYPE + COMMA_SEP +
                     CompanyDataTable.COLUMN_NAME_LOCATION + TEXT_TYPE + COMMA_SEP +

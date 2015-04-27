@@ -1,6 +1,5 @@
 package com.example.christinaaiello.employerinformation;
 
-import android.graphics.Bitmap;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -13,12 +12,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.ByteBuffer;
 
 /**
  * Created by Christina Aiello on 3/22/2015.
@@ -33,7 +30,6 @@ public class Employer {
     private String goal;
     private String website;
     private String industry;
-    private String squareLogo;
     private String overallRating;
     private String cultureAndValuesRating;
     private String seniorLeadershipRating;
@@ -42,7 +38,8 @@ public class Employer {
     private String workLifeBalanceRating;
     private Boolean couldRetrieveFromGlassdoor = false;
     private String step;
-    private byte[] imageByteArray;
+    private byte[] logoByteArray;
+    private byte[] streetByteArray;
 
     public Employer() {
     }
@@ -126,15 +123,6 @@ public class Employer {
      */
     public String getIndustry() {
         return this.industry;
-    }
-
-    /**
-     * Getter for an employer object
-     *
-     * @return squareLogo
-     */
-    public String getSquareLogo() {
-        return this.squareLogo;
     }
 
     /**
@@ -347,9 +335,8 @@ public class Employer {
             // Now we need to get the necessary information from the first item in this array:
             JSONObject employersInfoObject = employersInfoArray.getJSONObject(0);
             this.setWebsite(employersInfoObject.getString("website"));
-            Log.e("Website is", "Website is: " + employersInfoObject.getString("website"));
             this.setIndustry(employersInfoObject.getString("industry"));
-            this.setImageByteArray(makeImageByteArray(employersInfoObject.getString("squareLogo")));
+            this.setLogoByteArray(makeImageByteArray(employersInfoObject.getString("squareLogo")));
             this.setOverallRating(employersInfoObject.getString("overallRating"));
             this.setCultureAndValuesRating(employersInfoObject.getString("cultureAndValuesRating"));
             this.setSeniorLeadershipRating(employersInfoObject.getString("seniorLeadershipRating"));
@@ -369,6 +356,29 @@ public class Employer {
             this.setCouldRetrieveFromGlassdoor(false);
         }
 
+    }
+
+    /**
+     * @param streetViewUrl is the URL that you are using to get the streetview image
+     */
+    public void fetchCompanyStreetView(final String streetViewUrl) throws InterruptedException {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Log.e("Employer", "Trying to get byte array with url: " + streetViewUrl);
+                    // Getting the image byte array, then setting it as this employer's streetview image byte array
+                    setStreetByteArray(makeImageByteArray(streetViewUrl));
+                    Log.e("Employer", "Got byte array");
+                } catch (IOException e) {
+                    Log.e("Employer", "Couldn't get byte array due to: " + e.toString());
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+        thread.join();
     }
 
     /**
@@ -463,7 +473,7 @@ public class Employer {
      * @throws IOException
      */
     public byte[] makeImageByteArray(String imageURL) throws IOException {
-        imageByteArray = new byte[500];
+        byte[] imageByteArray = new byte[500];
         DefaultHttpClient mHttpClient = new DefaultHttpClient();
         HttpGet mHttpGet = new HttpGet(imageURL);
         HttpResponse mHttpResponse = mHttpClient.execute(mHttpGet);
@@ -481,15 +491,32 @@ public class Employer {
      * @param byteArray is an array of bytes that make this image
      * @throws IOException
      */
-    public void setImageByteArray(byte[] byteArray) throws IOException {
-        this.imageByteArray = byteArray;
+    public void setLogoByteArray(byte[] byteArray) throws IOException {
+        this.logoByteArray = byteArray;
     }
 
     /**
      * This returns a byte array for this company's logo
      * @return
      */
-    public byte[] getImageByteArray() {
-        return this.imageByteArray;
+    public byte[] getLogoByteArray() {
+        return this.logoByteArray;
+    }
+
+    /**
+     * Gets a company's streetview image
+     * @return
+     */
+    public byte[] getStreetByteArray() {
+        return streetByteArray;
+    }
+
+    /**
+     * Sets a company's street view image
+     * @param streetByteArray
+     */
+    public void setStreetByteArray(byte[] streetByteArray) {
+        this.streetByteArray = streetByteArray;
+        Log.e("setting", "Streetbytearray is: " + streetByteArray.toString());
     }
 }
