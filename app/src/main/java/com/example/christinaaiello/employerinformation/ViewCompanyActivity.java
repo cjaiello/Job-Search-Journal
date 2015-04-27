@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -39,6 +42,21 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
     private double latitude; // User's current latitude
     private double longitude; // User's current longitude
     private LocationManager locationManager; // Used to get user's location
+    // Views on screen:
+    TextView idView;
+    TextView positionView;
+    TextView sizeView;
+    TextView goalView;
+    TextView miscView;
+    TextView websiteView;
+    TextView industryView;
+    TextView overallRatingView;
+    TextView cultureView;
+    TextView leadershipView;
+    TextView compensationView;
+    TextView opportunitiesView;
+    TextView worklifeView;
+    ImageView companyLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,24 +124,23 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
      */
     public void displayCompanyData() {
         // First we need to get the view objects that are on the screen
-        TextView idView = (TextView) findViewById(R.id.company_id);
-        TextView positionView = (TextView) findViewById(R.id.company_position);
-        TextView sizeView = (TextView) findViewById(R.id.company_size);
-        TextView goalView = (TextView) findViewById(R.id.company_goal_mission_statement);
-        TextView miscView = (TextView) findViewById(R.id.company_miscellaneous_notes);
-        TextView websiteView = (TextView) findViewById(R.id.company_website);
-        TextView industryView = (TextView) findViewById(R.id.company_industry);
-        TextView overallRatingView = (TextView) findViewById(R.id.company_overall_rating);
-        TextView cultureView = (TextView) findViewById(R.id.company_culture_and_values_rating);
-        TextView leadershipView = (TextView) findViewById(R.id.company_senior_leadership_rating);
-        TextView compensationView = (TextView) findViewById(R.id.company_compensation_rating);
-        TextView opportunitiesView = (TextView) findViewById(R.id.company_career_opportunities_rating);
-        TextView worklifeView = (TextView) findViewById(R.id.company_work_life_balance_rating);
-        ImageView companyLogo = (ImageView) findViewById(R.id.company_logo);
+        idView = (TextView) findViewById(R.id.company_id);
+        positionView = (TextView) findViewById(R.id.company_position);
+        sizeView = (TextView) findViewById(R.id.company_size);
+        goalView = (TextView) findViewById(R.id.company_goal_mission_statement);
+        miscView = (TextView) findViewById(R.id.company_miscellaneous_notes);
+        websiteView = (TextView) findViewById(R.id.company_website);
+        industryView = (TextView) findViewById(R.id.company_industry);
+        overallRatingView = (TextView) findViewById(R.id.company_overall_rating);
+        cultureView = (TextView) findViewById(R.id.company_culture_and_values_rating);
+        leadershipView = (TextView) findViewById(R.id.company_senior_leadership_rating);
+        compensationView = (TextView) findViewById(R.id.company_compensation_rating);
+        opportunitiesView = (TextView) findViewById(R.id.company_career_opportunities_rating);
+        worklifeView = (TextView) findViewById(R.id.company_work_life_balance_rating);
+        companyLogo = (ImageView) findViewById(R.id.company_logo);
 
         // Now we need to set the content of the views
         idView.setText(employer.getID());
-        positionView.setText(employer.getPosition());
         sizeView.setText(employer.getSize());
         goalView.setText(employer.getGoal());
         websiteView.setText(employer.getWebsite());
@@ -165,6 +182,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
                 CompanyDataTable.COLUMN_NAME_OPPORTUNITIES,
                 CompanyDataTable.COLUMN_NAME_WORKLIFE,
                 CompanyDataTable.COLUMN_NAME_STREET_VIEW,
+                CompanyDataTable.COLUMN_NAME_LINK_TO_JOB_POSTING,
         };
 
         // I only want a company whose ID number matches the one passed to me in a bundle
@@ -202,6 +220,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
             employer.setCareerOpportunitiesRating(cursor.getString(14));
             employer.setWorkLifeBalanceRating(cursor.getString(15));
             employer.setStreetByteArray(cursor.getBlob(16));
+            employer.setLinkToJobPosting(cursor.getString(17));
         } else {
             Log.i(TAG, "Could not find matches when searching database for companies user has entered.");
         }
@@ -253,6 +272,30 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
                 ImageView mapIcon = (ImageView) findViewById(R.id.map_icon);
                 mapIcon.setVisibility(View.VISIBLE);
             }
+        }
+        
+        // Turning the position applied for into a link to a specific position
+        if(employer.getLinkToJobPosting() != null){
+            Log.e(TAG, "Link to job posting was NOT null");
+            Log.e(TAG, employer.getLinkToJobPosting());
+            positionView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (!employer.getLinkToJobPosting().startsWith("http://") && !employer.getLinkToJobPosting().startsWith("https://")){
+                        employer.setLinkToJobPosting("http://" + employer.getLinkToJobPosting());
+                    }
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(employer.getLinkToJobPosting()));
+                    startActivity(intent);
+                }
+            });
+            positionView.setText(employer.getPosition());
+            // Give this link the proper formatting:
+            positionView.setTextColor(getResources().getColorStateList(R.color.link_color));
+            positionView.setTypeface(null, Typeface.BOLD);
+            positionView.setPaintFlags(positionView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        } else {
+            // Else just have it list the position without a link to anywhere
+            positionView.setText(employer.getPosition());
+            Log.e(TAG, "Link to job posting was null");
         }
     }
 
@@ -313,6 +356,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         bundle.putString("Opportunities", employer.getCareerOpportunitiesRating());
         bundle.putString("Worklife", employer.getWorkLifeBalanceRating());
         bundle.putString("Misc", employer.getMisc());
+        bundle.putString("LinkToJobPosting", employer.getLinkToJobPosting());
         Log.i(TAG, "Made bundle for editing!");
         return bundle;
     }

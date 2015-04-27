@@ -75,6 +75,7 @@ public class AddCompanyActivity extends ActionBarActivity {
         // Each of the textboxes the user typed into:
         EditText companyNameTextView = (EditText) findViewById(R.id.company_name);
         EditText companyPosition = (EditText) findViewById(R.id.company_position);
+        EditText companyPositionPosting = (EditText) findViewById(R.id.company_position_posting);
         EditText companySize = (EditText) findViewById(R.id.company_size);
         EditText companyLocation = (EditText) findViewById(R.id.company_location);
         EditText companyGoal = (EditText) findViewById(R.id.company_goal_mission_statement);
@@ -88,6 +89,7 @@ public class AddCompanyActivity extends ActionBarActivity {
         values.put(CompanyDataTable.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
         values.put(CompanyDataTable.COLUMN_NAME_GOAL, companyGoal.getText().toString());
         values.put(CompanyDataTable.COLUMN_NAME_MISCELLANEOUS, companyMisc.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_LINK_TO_JOB_POSTING, companyPositionPosting.getText().toString());
 
         // URL for the company's information:
         String URL = employer.constructAPIURL(employerNameEditText.getText().toString());

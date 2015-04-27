@@ -21,7 +21,23 @@ public class EditCompanyActivity extends ActionBarActivity {
     Employer employer; // Contains employer's information
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
-    private String companyID;
+    // Views on screen:
+    TextView idView;
+    EditText nameView;
+    EditText positionView;
+    EditText positionPostingView;
+    EditText sizeView;
+    EditText locationView;
+    EditText goalView;
+    EditText miscView;
+    EditText websiteView;
+    EditText industryView;
+    EditText overallRatingView;
+    EditText cultureView;
+    EditText leadershipView;
+    EditText compensationView;
+    EditText opportunitiesView;
+    EditText worklifeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,21 +88,22 @@ public class EditCompanyActivity extends ActionBarActivity {
      */
     public void displayCompanyData(Bundle bundle) {
         // First we need to get the view objects that are on the screen
-        TextView idView = (TextView) findViewById(R.id.company_id);
-        EditText nameView = (EditText) findViewById(R.id.company_name);
-        EditText positionView = (EditText) findViewById(R.id.company_position);
-        EditText sizeView = (EditText) findViewById(R.id.company_size);
-        EditText locationView = (EditText) findViewById(R.id.company_location);
-        EditText goalView = (EditText) findViewById(R.id.company_goal_mission_statement);
-        EditText miscView = (EditText) findViewById(R.id.company_miscellaneous_notes);
-        EditText websiteView = (EditText) findViewById(R.id.company_website);
-        EditText industryView = (EditText) findViewById(R.id.company_industry);
-        EditText overallRatingView = (EditText) findViewById(R.id.company_overall_rating);
-        EditText cultureView = (EditText) findViewById(R.id.company_culture_and_values_rating);
-        EditText leadershipView = (EditText) findViewById(R.id.company_senior_leadership_rating);
-        EditText compensationView = (EditText) findViewById(R.id.company_compensation_rating);
-        EditText opportunitiesView = (EditText) findViewById(R.id.company_career_opportunities_rating);
-        EditText worklifeView = (EditText) findViewById(R.id.company_work_life_balance_rating);
+        idView = (TextView) findViewById(R.id.company_id);
+        nameView = (EditText) findViewById(R.id.company_name);
+        positionView = (EditText) findViewById(R.id.company_position);
+        positionPostingView = (EditText) findViewById(R.id.company_position_posting);
+        sizeView = (EditText) findViewById(R.id.company_size);
+        locationView = (EditText) findViewById(R.id.company_location);
+        goalView = (EditText) findViewById(R.id.company_goal_mission_statement);
+        miscView = (EditText) findViewById(R.id.company_miscellaneous_notes);
+        websiteView = (EditText) findViewById(R.id.company_website);
+        industryView = (EditText) findViewById(R.id.company_industry);
+        overallRatingView = (EditText) findViewById(R.id.company_overall_rating);
+        cultureView = (EditText) findViewById(R.id.company_culture_and_values_rating);
+        leadershipView = (EditText) findViewById(R.id.company_senior_leadership_rating);
+        compensationView = (EditText) findViewById(R.id.company_compensation_rating);
+        opportunitiesView = (EditText) findViewById(R.id.company_career_opportunities_rating);
+        worklifeView = (EditText) findViewById(R.id.company_work_life_balance_rating);
 
         // Now we need to set the content of the views
         idView.setText(bundle.getString("ID"));
@@ -104,49 +121,35 @@ public class EditCompanyActivity extends ActionBarActivity {
         opportunitiesView.setText(bundle.getString("Opportunities"));
         worklifeView.setText(bundle.getString("Worklife"));
         miscView.setText(bundle.getString("Misc"));
+        positionPostingView.setText(bundle.getString("LinkToJobPosting"));
     }
 
     /**
      * This method will save a company's information to the database
      */
     public void saveToDatabase() throws InterruptedException {
-        // Each of the textboxes the user typed into:
-        TextView companyID = (TextView) findViewById(R.id.company_id);
-        EditText companyName = (EditText) findViewById(R.id.company_name);
-        EditText companyPosition = (EditText) findViewById(R.id.company_position);
-        EditText companySize = (EditText) findViewById(R.id.company_size);
-        EditText companyLocation = (EditText) findViewById(R.id.company_location);
-        EditText companyGoal = (EditText) findViewById(R.id.company_goal_mission_statement);
-        EditText companyMisc = (EditText) findViewById(R.id.company_miscellaneous_notes);
-        EditText companyWebsite = (EditText) findViewById(R.id.company_website);
-        EditText companyIndustry = (EditText) findViewById(R.id.company_industry);
-        EditText companyOverall = (EditText) findViewById(R.id.company_overall_rating);
-        EditText companyCulture = (EditText) findViewById(R.id.company_culture_and_values_rating);
-        EditText companyLeadership = (EditText) findViewById(R.id.company_senior_leadership_rating);
-        EditText companyCompensation = (EditText) findViewById(R.id.company_compensation_rating);
-        EditText companyOpportunities = (EditText) findViewById(R.id.company_career_opportunities_rating);
-        EditText companyWorklife = (EditText) findViewById(R.id.company_work_life_balance_rating);
 
         ContentValues values = new ContentValues();
         // These are retrieved from what the user typed in:
-        values.put(CompanyDataTable.COLUMN_NAME_NAME, companyName.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_POSITION, companyPosition.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_SIZE, companySize.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_LOCATION, companyLocation.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_GOAL, companyGoal.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_MISCELLANEOUS, companyMisc.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_NAME, nameView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_POSITION, positionView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_SIZE, sizeView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_LOCATION, locationView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_GOAL, goalView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_MISCELLANEOUS, miscView.getText().toString());
         // These are retrieved via the API:
-        values.put(CompanyDataTable.COLUMN_NAME_WEBSITE, companyWebsite.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_INDUSTRY, companyIndustry.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_OVERALL_RATING, companyOverall.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_CULTURE, companyCulture.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_LEADERSHIP, companyLeadership.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_COMPENSATION, companyCompensation.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_OPPORTUNITIES, companyOpportunities.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_WORKLIFE, companyWorklife.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_WEBSITE, websiteView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_INDUSTRY, industryView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_OVERALL_RATING, overallRatingView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_CULTURE, cultureView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_LEADERSHIP, leadershipView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_COMPENSATION, compensationView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_OPPORTUNITIES, opportunitiesView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_WORKLIFE, worklifeView.getText().toString());
+        values.put(CompanyDataTable.COLUMN_NAME_LINK_TO_JOB_POSTING, positionPostingView.getText().toString());
 
         // Updating the row, returning the primary key value of the new row
-        String strFilter = "_id=" + companyID.getText().toString();
+        String strFilter = "_id=" + idView.getText().toString();
 
         long newRowId;
         newRowId = db.update(

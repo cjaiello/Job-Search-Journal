@@ -8,8 +8,9 @@
     <!-- Add Company -->
     <string name="company_name">Name</string>
     <string name="company_position">Position</string>
+    <string name="company_position_posting">Link to Job Posting</string>
     <string name="company_size">Size</string>
-    <string name="company_location">Location</string>
+    <string name="company_location">Address</string>
     <string name="company_goal_mission_statement">Purpose or Mission Statement</string>
     <string name="misc_notes_about_company">Miscellaneous Notes About Company</string>
     <string name="add_company_message">When you click \'save,\' we will search Glassdoor.com™ for some more company information (website, industry, and ratings). If this information is not found, you will be able to add it yourself.</string>
@@ -17,6 +18,7 @@
 
     <string name="company_name_hint">What\'s the company\'s name?</string>
     <string name="company_position_hint">What position are you applying for?</string>
+    <string name="company_position_posting_hint">Do you have a link to a job posting?</string>
     <string name="company_size_hint">What size is the company?</string>
     <string name="company_location_hint">Where are they located?</string>
     <string name="company_goal_mission_statement_hint">Company\'s goal? What do they do?</string>

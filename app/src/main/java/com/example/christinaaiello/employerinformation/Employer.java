@@ -40,6 +40,7 @@ public class Employer {
     private String step;
     private byte[] logoByteArray;
     private byte[] streetByteArray;
+    private String linkToJobPosting;
 
     public Employer() {
     }
@@ -518,5 +519,13 @@ public class Employer {
     public void setStreetByteArray(byte[] streetByteArray) {
         this.streetByteArray = streetByteArray;
         Log.e("setting", "Streetbytearray is: " + streetByteArray.toString());
+    }
+
+    public String getLinkToJobPosting() {
+        return linkToJobPosting;
+    }
+
+    public void setLinkToJobPosting(String linkToJobPosting) {
+        this.linkToJobPosting = linkToJobPosting;
     }
 }

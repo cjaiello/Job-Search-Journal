@@ -82,6 +82,38 @@
                 android:padding="10dp" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/company_position_posting_label"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@color/section_title"
+                android:gravity="center"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:text="@string/company_position_posting"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/company_position_posting"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/company_position_posting_label"
+                android:layout_weight="2"
+                android:background="@color/white"
+                android:inputType="textCapWords"
+                android:padding="10dp"
+                android:textSize="14dp"
+                android:hint="@string/company_position_posting_hint" />
+
+        </RelativeLayout>
+
 
         <RelativeLayout
             android:layout_width="wrap_content"

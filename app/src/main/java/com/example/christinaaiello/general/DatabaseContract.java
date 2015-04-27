@@ -41,6 +41,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_WORKLIFE = "worklife";
         public static final String COLUMN_NAME_MISCELLANEOUS = "miscellaneous";
         public static final String COLUMN_NAME_STEP = "step";
+        public static final String COLUMN_NAME_LINK_TO_JOB_POSTING = "link_to_job_posting";
     }
 
 
@@ -63,6 +64,7 @@ public class DatabaseContract {
                     CompanyDataTable.COLUMN_NAME_OPPORTUNITIES + TEXT_TYPE + COMMA_SEP +
                     CompanyDataTable.COLUMN_NAME_WORKLIFE + TEXT_TYPE + COMMA_SEP +
                     CompanyDataTable.COLUMN_NAME_STEP + TEXT_TYPE + COMMA_SEP +
+                    CompanyDataTable.COLUMN_NAME_LINK_TO_JOB_POSTING + TEXT_TYPE + COMMA_SEP +
                     CompanyDataTable.COLUMN_NAME_MISCELLANEOUS +
                     " )";
     private static final String SQL_DELETE_COMPANY_DATA_TABLE =
