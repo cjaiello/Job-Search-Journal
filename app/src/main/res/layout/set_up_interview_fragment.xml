@@ -7,7 +7,6 @@
     android:paddingTop="10dp">
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,29 +22,24 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/set_up_interview"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/edit_button_set_up_interview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_toRightOf="@+id/set_up_interview_label"
             android:focusableInTouchMode="false"
             android:onClick="setUpInterviewEditClick"
             android:src="@drawable/ic_action_edit_dark" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background_color"
-        android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="5dp"
-        android:visibility="gone">
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:onClick="deleteInterview"
+            android:src="@drawable/ic_action_discard" />
 
         <TextView
             android:id="@+id/interview_id"
@@ -55,6 +49,7 @@
             android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
+            android:visibility="gone"
             android:paddingRight="5dp"
             android:textStyle="bold" />
     </RelativeLayout>

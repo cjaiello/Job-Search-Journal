@@ -47,7 +47,7 @@
             android:layout_weight="2"
             android:background="@color/white"
             android:gravity="center"
-            android:hint="@string/date_of_interaction"
+            android:hint="@string/date_of_interview"
             android:inputType="date"
             android:padding="2dp"
             android:textSize="14dp" />
@@ -121,7 +121,7 @@
             android:layout_weight="2"
             android:background="@color/white"
             android:gravity="center"
-            android:hint="Who interviewed you?"
+            android:hint="@string/who_is_interviewer"
             android:inputType="text|textCapWords"
             android:padding="2dp"
             android:textSize="14dp" />
@@ -179,7 +179,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
-            android:text="@string/misc_notes"
+            android:text="@string/preinterview_notes"
             android:textStyle="bold" />
 
         <EditText
@@ -191,7 +191,7 @@
             android:layout_weight="2"
             android:background="@color/white"
             android:gravity="top"
-            android:hint="@string/what_did_you_discuss"
+            android:hint="@string/what_did_you_discuss_hint"
             android:inputType="text|textMultiLine|textCapSentences"
             android:lines="5"
             android:padding="5dp"

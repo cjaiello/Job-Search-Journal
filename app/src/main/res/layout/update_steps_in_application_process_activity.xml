@@ -10,16 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
-
-        <TextView
-            android:id="@+id/next_step_text"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@color/background_color"
-            android:gravity="center"
-            android:text="Next step in the process..." />
+        android:padding="5dp">
 
         <RelativeLayout
             android:id="@+id/ic_action_add_person_box"

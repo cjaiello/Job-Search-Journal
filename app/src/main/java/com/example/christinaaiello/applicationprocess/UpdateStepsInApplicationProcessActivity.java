@@ -1,6 +1,8 @@
 package com.example.christinaaiello.applicationprocess;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +24,7 @@ import android.widget.TextView;
 import com.example.christinaaiello.R;
 import com.example.christinaaiello.general.DatabaseContract;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -245,10 +248,24 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         setListViewHeightBasedOnChildren((ListView) findViewById(R.id.listview));
 
         // Seeing if the user has started recording the interview process:
-        if (!(initialContactCursor.getCount() == 0)) {
+        if (!(receivedResponseToInterviewCursor.getCount() == 0)) {
+            // This is called if everything has been filled out
+            Log.i(TAG, "Got results when searching database - Received Response After Interview");
+            displayReceivedResponseFragment(); // Showing response to interview
+            mostRecentStep = "Received Response After Interview";
+            displayInitialContactDataFragment(); // Show info from initial contact
+            contactWithCompanyCompleted(); // Hide all boxes
+        } else if (listOfInterviews.size() > 0) {
+            // Display how many interviews have happened
+            mostRecentStep = listOfInterviews.size() > 1 ? listOfInterviews.size() + " interviews completed" : "1 interview completed";
+            // Show option to either add another interview or report results back
+            displayInitialContactDataFragment(); // Show info from initial contact
+            completedAtLeastOneInterview(); // Now the user can potentially record followup information
+            // Have they recorded receiving a response?
+        } else if (!(initialContactCursor.getCount() == 0)) {
             Log.i(TAG, "Got results when searching database - Initially Contacted Company");
             mostRecentStep = "Initially Contacted Company";
-            displayInitialContactDataFragment();
+            displayInitialContactDataFragment(); // Show info from initial contact
             // Lastly, we need to hide the "add initial contact" box
         } else {
             mostRecentStep = "Not started";
@@ -256,14 +273,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
             userHastNotStarted(); // Hiding unnecessary items until the user will actually use them
         }
 
-        // Have they recorded receiving a response?
-        if (!(receivedResponseToInterviewCursor.getCount() == 0)) {
-            // This is called if everything has been filled out
-            Log.i(TAG, "Got results when searching database - Received Response After Interview");
-            displayReceivedResponseFragment(); // Showing response to interview
-            mostRecentStep = "Received Response After Interview";
-            contactWithCompanyCompleted();
-        }
 
         // Lastly, we now will mark the column in the database saying what the most recent step
         // that has been taken with this company
@@ -410,7 +419,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     /**
      * This method lets a user edit a scheduled interview's information.
      */
-    public void setUpInterviewEditClick(View view){
+    public void setUpInterviewEditClick(View view) {
         // Relativelayout that this button is in:
         RelativeLayout relativeLayout = (RelativeLayout) view.getParent();
         // Linear layout that is the whole fragment's layout:
@@ -438,6 +447,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      * Credit for this code goes to Nex:
      * http://nex-otaku-en.blogspot.com/2010/12/android-put-listview-in-scrollview.html
      * Thank you, Nex!!
+     *
      * @param listView
      */
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -466,6 +476,15 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     public void initialContactCompleted() {
         initialContactLayout.setVisibility(View.GONE);
         setUpInterviewLayout.setVisibility(View.VISIBLE);
+        interviewFollowupLayout.setVisibility(View.GONE);
+    }
+
+    /**
+     * Once the user has had at least one interview, display option to add more interviews or report results
+     */
+    public void completedAtLeastOneInterview() {
+        initialContactLayout.setVisibility(View.GONE);
+        setUpInterviewLayout.setVisibility(View.VISIBLE);
         interviewFollowupLayout.setVisibility(View.VISIBLE);
     }
 
@@ -476,8 +495,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         initialContactLayout.setVisibility(View.GONE);
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
-        TextView nextStepText = (TextView)findViewById(R.id.next_step_text);
-        nextStepText.setVisibility(View.GONE);
     }
 
     /**
@@ -487,6 +504,48 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         initialContactLayout.setVisibility(View.VISIBLE);
         setUpInterviewLayout.setVisibility(View.GONE);
         interviewFollowupLayout.setVisibility(View.GONE);
+    }
+
+
+    /**
+     * This method lets a user delete an interview
+     *
+     * @param view is the view a user clicked on
+     */
+    public void deleteInterview(final View view) {
+        // Making a dialog box that will pop up for the user
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateStepsInApplicationProcessActivity.this);
+        builder.setTitle("Delete Interview?");
+        builder.setMessage("Are you sure you want to delete this interview?");
+        builder.setIcon(R.drawable.ic_launcher);
+        builder.setPositiveButton("Yes, Delete It", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+                // Getting the RelativeLayout holding this trash can and other things
+                RelativeLayout parentView = (RelativeLayout) view.getParent();
+                // Getting the textview holding the interview's ID number
+                TextView idView = (TextView) parentView.getChildAt(3);
+                // This is the actual ID number
+                String idNumber = idView.getText().toString();
+                // Deleting from the database:
+                db.delete(DatabaseContract.SetUpInterviewTable.TABLE_NAME, DatabaseContract.SetUpInterviewTable._ID + "=?", new String[]{idNumber});
+                // And refreshing the layout:
+                // First we clear the list of companies that the adapter is using:
+                listOfInterviews.clear();
+                // Now we update the list of companies:
+                listOfInterviews.addAll(getAllInterviews());
+                // And lastly we tell the adapter to get new data:
+                adapter.notifyDataSetChanged();
+                setListViewHeightBasedOnChildren((ListView) findViewById(R.id.listview));
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 

@@ -67,7 +67,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
+        android:background="@color/section_text_2"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -155,7 +155,7 @@
         android:id="@+id/offer_deadline_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
+        android:background="@color/section_text_2"
         android:orientation="horizontal"
         android:visibility="gone"
         android:paddingBottom="2dp"
@@ -228,7 +228,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
+        android:background="@color/section_text_2"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">

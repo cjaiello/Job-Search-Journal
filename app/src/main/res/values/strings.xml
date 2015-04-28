@@ -56,15 +56,18 @@
     <string name="contact_email_address">What\'s his/her email address?</string>
     <string name="method_of_interaction">How did you contact him/her?</string>
     <string name="what_did_you_discuss">What did you discuss with this individual?</string>
+    <string name="what_did_you_discuss_hint">Any other notes you want to record before the interview takes place?</string>
     <string name="contact_phone_number">What is his/her phone number?</string>
 
     <!-- Set Up Interview Fragment -->
     <string name="set_up_interview">Scheduled Interview</string>
-    <string name="date_of_interview">Date of Interview</string>
+    <string name="preinterview_notes">Pre-Interview Notes</string>
+    <string name="date_of_interview">What day is your interview?</string>
     <string name="names_of_interviewers">Name(s) of Interviewers</string>
     <string name="misc_notes">Miscellaneous Notes</string>
-    <string name="followup_notes">Notes About Interview</string>
-    <string name="followup_notes_edittext">How did this interview go? Report on how it went.</string>
+    <string name="followup_notes">Post-Interview Notes</string>
+    <string name="who_is_interviewer">Who is/are your interviewer(ers)?</string>
+    <string name="followup_notes_edittext">Update this once your interview has happened! How did this interview go? Report on how it went.</string>
 
     <!-- Interview Completed -->
     <string name="interview_completed">Interview Completed</string>
