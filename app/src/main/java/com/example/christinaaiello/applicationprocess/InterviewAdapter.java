@@ -1,6 +1,8 @@
 package com.example.christinaaiello.applicationprocess;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +44,7 @@ public class InterviewAdapter extends ArrayAdapter<Interview> {
         TextView dateOfInterview = (TextView) convertView.findViewById(R.id.date_of_interview);
         TextView timeOfInterview = (TextView) convertView.findViewById(R.id.time_of_interview);
         TextView interviewerNames = (TextView) convertView.findViewById(R.id.names_of_interviewers);
-        TextView contactEmailAddress = (TextView) convertView.findViewById(R.id.contact_email_address);
+        final TextView contactEmailAddress = (TextView) convertView.findViewById(R.id.contact_email_address);
         TextView miscNotes = (TextView) convertView.findViewById(R.id.miscellaneous_notes);
         TextView followupNotes = (TextView) convertView.findViewById(R.id.followup_notes);
 
@@ -53,7 +55,17 @@ public class InterviewAdapter extends ArrayAdapter<Interview> {
         dateOfInterview.setText(interview.getDate());
         timeOfInterview.setText(interview.getTime());
         interviewerNames.setText(interview.getInterviewerNames());
-        contactEmailAddress.setText(interview.getContactEmailAddress());
+        contactEmailAddress.setText(Html.fromHtml("<u>" + interview.getContactEmailAddress() + "</u>"));
+        TextView emailAddress = (TextView)convertView.findViewById(R.id.contact_email_address);
+        // Letting the user immediately email this individual:
+        emailAddress.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{contactEmailAddress.getText().toString()});
+                emailIntent.setType("message/rfc822");
+                context.startActivity(emailIntent);
+            }
+        });
         miscNotes.setText(interview.getMiscNotes());
         followupNotes.setText(interview.getInterviewCompletedNotes());
 

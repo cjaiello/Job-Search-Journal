@@ -27,6 +27,7 @@ public class InitialContactFragment extends Fragment {
     String TAG;
     TextView contactPhoneNumber;
     TextView numberOfCallsExchangedTextView;
+    TextView contactEmailAddress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +56,16 @@ public class InitialContactFragment extends Fragment {
         // Setting it so that phone numbers can be clicked
         setPhoneNumberClicking(view);
         hidePhoneCallCount(); // Hides phonecall count if user doesn't enter phone number
+
+        TextView emailAddress = (TextView)view.findViewById(R.id.contact_email_address);
+        emailAddress.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{contactEmailAddress.getText().toString()});
+                intent.setType("message/rfc822");
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
@@ -94,7 +105,7 @@ public class InitialContactFragment extends Fragment {
         // Getting each of the text boxes for this fragment:
         TextView dateOfInterview = (TextView) view.findViewById(R.id.date_of_interview);
         TextView contactName = (TextView) view.findViewById(R.id.contact_name);
-        TextView contactEmailAddress = (TextView) view.findViewById(R.id.contact_email_address);
+        contactEmailAddress = (TextView) view.findViewById(R.id.contact_email_address);
         TextView method = (TextView) view.findViewById(R.id.method_of_interaction);
         TextView whatWasDiscussed = (TextView) view.findViewById(R.id.what_was_discussed_with_contact);
 
@@ -104,7 +115,7 @@ public class InitialContactFragment extends Fragment {
             cursor.moveToFirst();
             dateOfInterview.setText(cursor.getString(2));
             contactName.setText(cursor.getString(3));
-            contactEmailAddress.setText(cursor.getString(4));
+            contactEmailAddress.setText(Html.fromHtml("<u>" + cursor.getString(4) + "</u>"));
             contactPhoneNumber.setText(cursor.getString(5));
             method.setText(cursor.getString(6));
             whatWasDiscussed.setText(cursor.getString(7));
@@ -134,8 +145,8 @@ public class InitialContactFragment extends Fragment {
             });
 
             // Setting text to be underlined
-            String locationText = "<u><font face=\"monospace\">" + contactPhoneNumber.getText().toString() + "</font></u>";
-            contactPhoneNumber.setText(Html.fromHtml(locationText));
+            String phoneNumberText = "<u>" + contactPhoneNumber.getText().toString() + "</u>";
+            contactPhoneNumber.setText(Html.fromHtml(phoneNumberText));
 
             // Also, display the phone icon!
             ImageView phoneIcon = (ImageView) view.findViewById(R.id.phone_icon);
@@ -162,4 +173,5 @@ public class InitialContactFragment extends Fragment {
             numberOfCallsExchangedTextView.setVisibility(View.VISIBLE);
         }
     }
+
 }

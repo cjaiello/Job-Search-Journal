@@ -49,9 +49,9 @@
             android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
-            android:visibility="gone"
             android:paddingRight="5dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
     </RelativeLayout>
 
 
@@ -190,7 +190,9 @@
             android:gravity="center"
             android:inputType="textEmailAddress"
             android:padding="2dp"
-            android:textSize="14dp" />
+            android:textColor="@color/link_color"
+            android:textSize="14dp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -210,7 +212,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
-            android:text="@string/misc_notes"
+            android:text="@string/preinterview_notes"
             android:textStyle="bold" />
 
         <TextView
