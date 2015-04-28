@@ -60,7 +60,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
         // Getting bundle information
         updateStepsBundle = getIntent().getExtras();
         ID = updateStepsBundle.getString("ID");
-        Log.e(TAG, "Company ID inside update is: " + ID);
+        Log.i(TAG, "Company ID inside update is: " + ID);
         interviewNumber = 0;
 
         getLayoutItemsOnScreen(); // Getting the items on the screen and putting them into variables
@@ -362,7 +362,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     }
 
     /**
-     * This method will get all company names from the database.
+     * This method will get all interviews from the database.
      */
     public ArrayList<Interview> getAllInterviews() {
         // This will contain the names of all of the companies
@@ -422,11 +422,7 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
     public void setUpInterviewEditClick(View view) {
         // Relativelayout that this button is in:
         RelativeLayout relativeLayout = (RelativeLayout) view.getParent();
-        // Linear layout that is the whole fragment's layout:
-        LinearLayout linearLayout = (LinearLayout) relativeLayout.getParent();
-        // First child is relativelayout with the ID box in it:
-        RelativeLayout relativeIDlayout = (RelativeLayout) linearLayout.getChildAt(1);
-        TextView interviewIDText = (TextView) relativeIDlayout.getChildAt(0);
+        TextView interviewIDText = (TextView) relativeLayout.getChildAt(3);
         // Lastly, this is the actual interview's ID number:
         String interviewID = interviewIDText.getText().toString();
 

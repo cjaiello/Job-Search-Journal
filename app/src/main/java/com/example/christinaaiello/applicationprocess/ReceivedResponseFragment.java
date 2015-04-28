@@ -34,7 +34,8 @@ public class ReceivedResponseFragment extends Fragment {
 
         // Getting bundle information
         Bundle bundle = getActivity().getIntent().getExtras();
-        ID = bundle.getString("companyID"); // companyID for this particular company
+        ID = bundle.getString("ID"); // companyID for this particular company
+        Log.e(TAG, "Inside fragment, company ID is: " + ID);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.received_response_fragment, container, false);

@@ -48,7 +48,6 @@ public class InterviewAdapter extends ArrayAdapter<Interview> {
 
         // Getting the current interview object:
         Interview interview = interviewList.get(position);
-        Log.e(TAG, "In list of interviews, company ID: " + interview.getCompanyID());
         // And setting info on screen based on this interview's information:
         interviewID.setText(interview.getInterviewID());
         dateOfInterview.setText(interview.getDate());

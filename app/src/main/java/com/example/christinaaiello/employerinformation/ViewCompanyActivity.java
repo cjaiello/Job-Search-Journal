@@ -231,7 +231,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
      * This method will set the links for Glassdoor.com and for the actual company's website.
      */
     public void setLinks() {
-        if (employer.getWebsite().length() != 0) {
+        if ((employer.getWebsite() != null) && (employer.getWebsite().length() != 0)) {
             // Getting the textview containing a company's website
             TextView websiteTextView = (TextView) findViewById(R.id.company_website);
             // Getting the text in this textview

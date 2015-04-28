@@ -98,30 +98,6 @@ public class DatabaseContract {
     private static final String SQL_DELETE_INITIAL_CONTACT_TABLE =
             "DROP TABLE IF EXISTS " + InitialContactTable.TABLE_NAME;
 
-
-    // ------------------- Table for Interview Completed -----------------------------
-
-    /* Inner class that defines the table contents */
-    public static abstract class InterviewCompletedTable implements BaseColumns {
-        public static final String TABLE_NAME = "interview_completed";
-        public static final String COLUMN_NAME_COMPANYID = "company_id";
-        public static final String COLUMN_NAME_INTERVIEW_DATE = "interview_date";
-        public static final String COLUMN_NAME_INTERVIEW_NUMBER = "interview_number";
-        public static final String COLUMN_NAME_NOTES_ABOUT_INTERVIEW = "notes_about_interview";
-    }
-
-    private static final String CREATE_INTERVIEW_COMPLETED_TABLE =
-            "CREATE TABLE " + InterviewCompletedTable.TABLE_NAME + " (" +
-                    InterviewCompletedTable._ID + " INTEGER PRIMARY KEY," +
-                    InterviewCompletedTable.COLUMN_NAME_COMPANYID + TEXT_TYPE + COMMA_SEP +
-                    InterviewCompletedTable.COLUMN_NAME_INTERVIEW_DATE + TEXT_TYPE + COMMA_SEP +
-                    InterviewCompletedTable.COLUMN_NAME_INTERVIEW_NUMBER + TEXT_TYPE + COMMA_SEP +
-                    InterviewCompletedTable.COLUMN_NAME_NOTES_ABOUT_INTERVIEW +
-                    " )";
-
-    private static final String SQL_DELETE_INTERVIEW_COMPLETED_TABLE =
-            "DROP TABLE IF EXISTS " + InterviewCompletedTable.TABLE_NAME;
-
     // ------------------- Table for Received Response -----------------------------
 
     /* Inner class that defines the table contents */
@@ -196,7 +172,6 @@ public class DatabaseContract {
             db.execSQL(CREATE_COMPANY_DATA_TABLE);
             db.execSQL(CREATE_INITIAL_CONTACT_TABLE);
             db.execSQL(CREATE_SET_UP_INTERVIEW_TABLE);
-            db.execSQL(CREATE_INTERVIEW_COMPLETED_TABLE);
             db.execSQL(CREATE_RECEIVED_RESPONSE_TABLE);
         }
 
@@ -206,7 +181,6 @@ public class DatabaseContract {
             db.execSQL(SQL_DELETE_COMPANY_DATA_TABLE);
             db.execSQL(SQL_DELETE_INITIAL_CONTACT_TABLE);
             db.execSQL(SQL_DELETE_SET_UP_INTERVIEW_TABLE);
-            db.execSQL(SQL_DELETE_INTERVIEW_COMPLETED_TABLE);
             db.execSQL(SQL_DELETE_RECEIVED_RESPONSE_TABLE);
             onCreate(db);
         }
