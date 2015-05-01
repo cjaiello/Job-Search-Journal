@@ -274,8 +274,8 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         }
         
         // Turning the position applied for into a link to a specific position
-        if(employer.getLinkToJobPosting() != null){
-            Log.i(TAG, "Link to job posting was NOT null");
+        if(employer.getLinkToJobPosting().length() > 0){
+            Log.i(TAG, "Link to job posting exists! Let's make this a link now.");
             Log.i(TAG, employer.getLinkToJobPosting());
             positionView.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
