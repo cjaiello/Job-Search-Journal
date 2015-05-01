@@ -42,7 +42,7 @@ public class InitialContactFragment extends Fragment {
         Bundle bundle = getActivity().getIntent().getExtras();
         ID = bundle.getString("ID"); // companyID for this particular company
 
-        Log.i(TAG, "Bundle inside initial contact fragment says my id is: " + ID);
+        Log.i(TAG, "Bundle inside initial contact fragment says my company id is: " + ID);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.initial_contact_fragment, container, false);
@@ -57,6 +57,7 @@ public class InitialContactFragment extends Fragment {
         setPhoneNumberClicking(view);
         hidePhoneCallCount(); // Hides phonecall count if user doesn't enter phone number
 
+        // Letting a user email someone:
         TextView emailAddress = (TextView)view.findViewById(R.id.contact_email_address);
         emailAddress.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -109,8 +110,9 @@ public class InitialContactFragment extends Fragment {
         TextView method = (TextView) view.findViewById(R.id.method_of_interaction);
         TextView whatWasDiscussed = (TextView) view.findViewById(R.id.what_was_discussed_with_contact);
 
+        // Display initial contact information if it exists:
         if (!(cursor.getCount() == 0)) {
-            Log.i(TAG, "Got results when searching database.");
+            Log.i(TAG, "Got results when searching database for initial contact info.");
             // Now, look into the result and get the data
             cursor.moveToFirst();
             dateOfInterview.setText(cursor.getString(2));
