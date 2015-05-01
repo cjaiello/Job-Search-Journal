@@ -51,9 +51,6 @@ public class AddCompanyActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -61,7 +58,7 @@ public class AddCompanyActivity extends ActionBarActivity {
             try {
                 saveToDatabase();
             } catch (InterruptedException e) {
-                Log.i("Database Error", "Error in saving to database: " + e.toString());
+                Log.e("Database Error", "Error in saving to database: " + e.toString());
             }
         }
 
@@ -121,7 +118,7 @@ public class AddCompanyActivity extends ActionBarActivity {
 
         // Now, if we couldn't get info for this company from Glassdoor, let's let them know about that.
         if (!employer.getCouldRetrieveFromGlassdoor()) {
-            Toast.makeText(getApplicationContext(), "Could not retrieve company data from Glassdoor.com",
+            Toast.makeText(getApplicationContext(), "Sorry! We could not retrieve company data from Glassdoor.com for this company.",
                     Toast.LENGTH_LONG).show();
         }
 
