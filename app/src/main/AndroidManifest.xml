@@ -51,7 +51,7 @@
         </activity>
 
         <activity
-            android:name=".applicationprocess.UpdateStepsInApplicationProcessActivity"
+            android:name=".applicationprocess.TrackYourProgressActivity"
             android:label="Track Your Progress" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

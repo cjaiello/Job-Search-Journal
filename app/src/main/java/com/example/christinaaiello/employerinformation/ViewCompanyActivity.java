@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -24,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.christinaaiello.R;
-import com.example.christinaaiello.applicationprocess.UpdateStepsInApplicationProcessActivity;
+import com.example.christinaaiello.applicationprocess.TrackYourProgressActivity;
 import com.example.christinaaiello.general.DatabaseContract;
 
 import java.io.IOException;
@@ -81,7 +80,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         TextView trackProgressText = (TextView) findViewById(R.id.track_progress_text);
         trackProgressText.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ViewCompanyActivity.this, UpdateStepsInApplicationProcessActivity.class);
+                Intent intent = new Intent(ViewCompanyActivity.this, TrackYourProgressActivity.class);
                 intent.putExtras(createBundleForEditing()); // Putting company info into bundle
                 startActivity(intent);
             }
