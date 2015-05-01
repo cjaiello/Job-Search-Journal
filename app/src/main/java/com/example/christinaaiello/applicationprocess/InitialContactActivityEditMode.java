@@ -24,7 +24,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
     String ID; // This is the companyID for this particular company
     //static Integer requestCode;
     String TAG; // Used for debugging
-    // Each of the textboxes the user typed into:
+    // UI Components:
     EditText dateOfContact;
     EditText contactName;
     EditText contactEmailAddress;
@@ -37,9 +37,9 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_contact_activity_editmode);
         getLayoutItemsOnScreen();
-
-        //requestCode = 4;
+         // Used for logging:
         TAG = "InitialContactActivityEditMode";
+
         // Initialize Database objects
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
@@ -48,7 +48,7 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         Bundle bundle = getIntent().getExtras();
         editing = bundle.getBoolean("Editing"); // Whether we're editing (or adding)
         ID = bundle.getString("companyID"); // companyID for this particular company
-        Log.e(TAG, "Company ID is: " + ID);
+        Log.i(TAG, "Within initial contact (edit mode), company ID is: " + ID);
 
         // If I chose to edit this, show the old data
         if (editing) {
@@ -75,9 +75,9 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
                 try {
                     ContentValues initialContactValues = getTextFromScreen(); // Get info from the screen
                     Log.e(TAG, initialContactValues.toString());
-                    // Calling method to decide if we're adding a new thing or updating old:
+                    // Calling method to decide if we're adding a new "Initial Contact" or updating old one:
                     addOrUpdate(initialContactValues); // This updates the database
-                    Log.e(TAG, "Done adding initial contact values");
+                    Log.i(TAG, "Done adding initial contact values");
                     Intent intent = new Intent();
                     // Closing this activity
                     setResult(RESULT_OK, intent); //add this
@@ -172,16 +172,17 @@ public class InitialContactActivityEditMode extends ActionBarActivity {
         Cursor cursor = db.query(
                 DatabaseContract.InitialContactTable.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?",                                // The columns for the WHERE clause
+                DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?",// The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
                 null                                 // The sort order
         );
 
+        // If we got results:
         if (!(cursor.getCount() == 0)) {
             cursor.moveToFirst();
-            Log.e(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
+            Log.i(TAG, "Got \"initial contact\" results when searching database: " + Integer.toString(cursor.getCount()));
             dateOfContact.setText(cursor.getString(2));
             contactName.setText(cursor.getString(3));
             contactEmailAddress.setText(cursor.getString(4));
