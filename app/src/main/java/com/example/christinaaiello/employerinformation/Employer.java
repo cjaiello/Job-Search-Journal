@@ -367,10 +367,10 @@ public class Employer {
             @Override
             public void run() {
                 try {
-                    Log.e("Employer", "Trying to get byte array with url: " + streetViewUrl);
+                    Log.i("Employer", "Trying to get byte array with url: " + streetViewUrl);
                     // Getting the image byte array, then setting it as this employer's streetview image byte array
                     setStreetByteArray(makeImageByteArray(streetViewUrl));
-                    Log.e("Employer", "Got byte array");
+                    Log.i("Employer", "Got byte array");
                 } catch (IOException e) {
                     Log.e("Employer", "Couldn't get byte array due to: " + e.toString());
                     e.printStackTrace();
@@ -518,7 +518,7 @@ public class Employer {
      */
     public void setStreetByteArray(byte[] streetByteArray) {
         this.streetByteArray = streetByteArray;
-        Log.e("setting", "Streetbytearray is: " + streetByteArray.toString());
+        Log.i("setting", "Streetbytearray is: " + streetByteArray.toString());
     }
 
     public String getLinkToJobPosting() {

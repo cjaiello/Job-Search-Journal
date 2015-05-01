@@ -275,8 +275,8 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         
         // Turning the position applied for into a link to a specific position
         if(employer.getLinkToJobPosting() != null){
-            Log.e(TAG, "Link to job posting was NOT null");
-            Log.e(TAG, employer.getLinkToJobPosting());
+            Log.i(TAG, "Link to job posting was NOT null");
+            Log.i(TAG, employer.getLinkToJobPosting());
             positionView.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (!employer.getLinkToJobPosting().startsWith("http://") && !employer.getLinkToJobPosting().startsWith("https://")){
@@ -294,7 +294,7 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         } else {
             // Else just have it list the position without a link to anywhere
             positionView.setText(employer.getPosition());
-            Log.e(TAG, "Link to job posting was null");
+            Log.i(TAG, "Link to job posting was null");
         }
     }
 
