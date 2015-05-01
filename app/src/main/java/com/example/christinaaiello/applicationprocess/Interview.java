@@ -1,16 +1,5 @@
 package com.example.christinaaiello.applicationprocess;
 
-import android.util.Log;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 /**
  * Created by Christina Aiello on 3/22/2015.
  */
@@ -73,10 +62,6 @@ public class Interview {
 
     public void setInterviewCompletedNotes(String interviewCompletedNotes) {
         this.interviewCompletedNotes = interviewCompletedNotes;
-    }
-
-    public String getCompanyID() {
-        return companyID;
     }
 
     public void setCompanyID(String companyID) {

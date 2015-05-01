@@ -139,7 +139,6 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_OFFER_DEADLINE, offerDeadline.getText().toString());
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_OFFER_RESPONSE, offerResponse.getText().toString());
         values.put(DatabaseContract.ReceivedResponseTable.COLUMN_NAME_MISC_NOTES, miscNotes.getText().toString());
-        Log.i(TAG, "Misc Notes column values: " + miscNotes.getText().toString());
 
         return values;
     }
@@ -201,7 +200,8 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
 
         if (!(cursor.getCount() == 0)) {
             cursor.moveToFirst();
-            Log.i(TAG, "Got results when searching database: " + Integer.toString(cursor.getCount()));
+            Log.i(TAG, "Got results when searching database for " +
+                    "\received response\" information: " + Integer.toString(cursor.getCount()));
             dateOfResponse.setText(cursor.getString(2));
             String receivedResponse = cursor.getString(3); // Seeing what the response actually was
             // If they did get an offer, display this information on the screen
@@ -236,7 +236,7 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
      */
     public void receivedOfferMethod(View v) {
         acceptedBoxFlag++; // Increase the counter
-        Log.i(TAG, "Clicked, and counter is: " + Integer.toString(acceptedBoxFlag));
+        Log.i(TAG, "Clicked received offer, and counter is: " + Integer.toString(acceptedBoxFlag));
 
         if (((acceptedBoxFlag % 2) == 0) && (acceptedBoxFlag != 0)) {
             Log.i(TAG, "Counter is an odd number, and counter is: " + Integer.toString(acceptedBoxFlag));
@@ -250,7 +250,6 @@ public class ReceivedResponseActivityEditMode extends ActionBarActivity {
             offerResponseLayout.setVisibility(View.VISIBLE);
             rejectedBox.setChecked(false);
         }
-        Log.i(TAG, "Yes, got an offer - was clicked");
     }
 
     /**
