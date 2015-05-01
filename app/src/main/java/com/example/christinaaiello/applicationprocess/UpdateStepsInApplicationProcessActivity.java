@@ -111,9 +111,6 @@ public class UpdateStepsInApplicationProcessActivity extends ActionBarActivity {
      */
 
     public void initializeClicking() {
-
-        Log.i(TAG + "Clicking initialized?", "Yes");
-
         // Getting the inital contact layout item
         ImageView initialContactImage = (ImageView) initialContactLayout.getChildAt(0);
         TextView initialContactTextView = (TextView) initialContactLayout.getChildAt(1);

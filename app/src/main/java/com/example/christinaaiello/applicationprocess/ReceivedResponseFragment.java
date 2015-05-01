@@ -88,7 +88,7 @@ public class ReceivedResponseFragment extends Fragment {
         TextView miscNotes = (TextView) view.findViewById(R.id.miscellaneous_notes);
 
         if (!(cursor.getCount() == 0)) {
-            Log.i(TAG, "Got results when searching database.");
+            Log.i(TAG, "Got results when searching database for recieved response information for this company.");
             // Now, look into the result and get the data
             cursor.moveToFirst();
             dateOfResponse.setText(cursor.getString(2));
