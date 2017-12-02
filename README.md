@@ -13,7 +13,7 @@ The initial contact fragment within the “Track Your Progress” activity acces
 
 Main page
 
-![Main page](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/mainpage.png)
+![Main page](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/mainpage.png =414x700)
 
 
 
@@ -21,29 +21,29 @@ Main page
 
 Tracking progress with a company
 
-![Adding a new company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/entry.png)
-![Company view](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/companyview.jpg)
-![Imported ratings](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/ratings.png)
+![Adding a new company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/entry.png =414x700)
+![Company view](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/companyview.jpg =414x700)
+![Imported ratings](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/ratings.png =414x700)
 
 
 --------------------------------------------------
 
 Initial contact info
 
-![Initial Contact Info](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-2.png)
+![Initial Contact Info](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-2.png =414x700)
 
 
 --------------------------------------------------
 
 Interview scheduling
 
-![Interview Scheduling](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-3.png)
+![Interview Scheduling](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-3.png =414x700)
 
 
 --------------------------------------------------
 
 Interview results
 
-![Interview Results](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-4.png)
+![Interview Results](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-4.png =414x700)
 
 
