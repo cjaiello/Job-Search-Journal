@@ -13,7 +13,7 @@ The initial contact fragment within the “Track Your Progress” activity acces
 
 Main page
 
-![Main page](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/mainpage.png =414x700)
+![Main page](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/mainpage.png | height = 700px )
 
 
 
