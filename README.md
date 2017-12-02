@@ -22,6 +22,8 @@ Main page
 Tracking progress with a company
 
 ![Tracking progress with a company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-1.png)
+![Tracking progress with a company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/entry.png)
+![Tracking progress with a company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/ratings.png)
 
 
 --------------------------------------------------
