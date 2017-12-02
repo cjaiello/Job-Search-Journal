@@ -22,7 +22,7 @@ Main page
 Tracking progress with a company
 
 ![Adding a new company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/entry.png)
-![Company view](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/companyview.jpg)
+![Company view](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/companyview.png)
 ![Imported ratings](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/ratings.png)
 
 
