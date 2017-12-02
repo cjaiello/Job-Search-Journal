@@ -13,7 +13,7 @@ The initial contact fragment within the “Track Your Progress” activity acces
 
 Main page
 
-![Main page](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-0.png)
+![Main page](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/mainpage.png)
 
 
 
@@ -21,9 +21,9 @@ Main page
 
 Tracking progress with a company
 
-![Tracking progress with a company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-1.png)
-![Tracking progress with a company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/entry.png)
-![Tracking progress with a company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/ratings.png)
+![Adding a new company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/entry.png)
+![Company view](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/companyview.jpg)
+![Imported ratings](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/ratings.png)
 
 
 --------------------------------------------------
