@@ -36,8 +36,8 @@ Interview Process Logging
 
 ![Initial Contact Info](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/trackprogress.jpg)
 
-![Interview Scheduling](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-3.png)
+![Interview Scheduling](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/scheduledinterview.jpg)
 
-![Interview Results](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-4.png)
+![Interview Results](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/receivedoffer.jpg)
 
 
