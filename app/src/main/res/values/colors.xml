@@ -3,12 +3,10 @@
     <color name="blue">#0066FF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="primary_light">#b2b2ff</color>
-    <color name="primary_medium">#6666ff</color>
-    <color name="primary_dark">#1919ff</color>
 
 
     <color name="dark_blue">#73baba</color>
+    <color name="action_bar">#218a8f</color>
     <color name="company_title">#ff53b5ba</color>
     <color name="section_title">#ff53b5ba</color>
     <color name="section_text">#ffffff</color>

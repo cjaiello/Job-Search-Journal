@@ -54,6 +54,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/ic_action_time"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:text="@string/enter_interview_scheduling_information" />
         </RelativeLayout>
 

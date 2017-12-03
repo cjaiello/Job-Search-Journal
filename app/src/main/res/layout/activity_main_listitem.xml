@@ -17,12 +17,13 @@
 
     <TextView
         android:id="@+id/id"
-        android:layout_toRightOf="@id/companyLogo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/companyLogo"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center_vertical"
         android:text="ID"
         android:textSize="16sp"
@@ -30,29 +31,31 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_toRightOf="@id/companyLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/companyLogo"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center_vertical"
-        android:paddingLeft="5dp"
+        android:paddingLeft="10dp"
         android:text="Name"
         android:textSize="18dp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/website"
-        android:layout_toRightOf="@id/companyLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
+        android:layout_toRightOf="@id/companyLogo"
         android:ellipsize="marquee"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center_vertical"
-        android:paddingLeft="5dp"
+        android:paddingLeft="10dp"
         android:singleLine="true"
         android:text="Website"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="italic" />
 
     <ImageView
@@ -71,12 +74,13 @@
         android:layout_below="@id/website"
         android:layout_toRightOf="@id/position_image"
         android:ellipsize="marquee"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center_vertical"
-        android:paddingLeft="5dp"
+        android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:singleLine="true"
         android:text="Position:"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -86,11 +90,12 @@
         android:layout_below="@id/position_label"
         android:layout_toRightOf="@id/position_image"
         android:ellipsize="marquee"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center_vertical"
-        android:paddingLeft="5dp"
+        android:paddingLeft="10dp"
         android:singleLine="true"
         android:text="Position"
-        android:textSize="14sp" />
+        android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/track_progress_image"
@@ -105,31 +110,33 @@
         android:id="@+id/step_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/track_progress_image"
         android:layout_below="@+id/position"
+        android:layout_toRightOf="@id/track_progress_image"
         android:ellipsize="marquee"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center_vertical"
         android:lines="2"
+        android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:paddingLeft="5dp"
         android:singleLine="true"
         android:text="Step in Application Process:"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/track_progress_image"
         android:layout_below="@+id/step_label"
+        android:layout_toRightOf="@id/track_progress_image"
         android:ellipsize="marquee"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center_vertical"
         android:lines="2"
-        android:paddingLeft="5dp"
+        android:paddingLeft="10dp"
         android:singleLine="true"
         android:text="Step"
-        android:textSize="14sp" />
+        android:textSize="16sp" />
 
 
     <ImageView

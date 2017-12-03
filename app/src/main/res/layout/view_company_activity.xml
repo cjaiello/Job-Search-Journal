@@ -59,8 +59,7 @@
                 android:gravity="center"
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
-                android:text="Click to track progress\nwith this company!"
-                android:textSize="15dp"
+                android:text="Click here to track progress\nwith this company!"
                 android:textStyle="bold" />
         </RelativeLayout>
 

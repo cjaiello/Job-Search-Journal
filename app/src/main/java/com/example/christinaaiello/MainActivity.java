@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -42,6 +44,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FloatingActionButton fab = (FloatingActionButton) findViewById (R.id.fab);
+        fab.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick (View view) {
+                startActivity(new Intent(MainActivity.this, AddCompanyActivity.class));
+            }
+        });
         databaseHelper = new DatabaseContract.DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
         try {
@@ -135,18 +144,16 @@ public class MainActivity extends ActionBarActivity {
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String viewOrder = prefs.getString("view", null);
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-
+        View view = (View) findViewById(R.id.listview);
         // Flipping view settings
         if (viewOrder.equals("name")) {
             editor.putString("view", "step");
             viewOrderItem.setTitle("Organize by Company Name");
-            Toast.makeText(getApplicationContext(), "Now in order by application step!",
-                    Toast.LENGTH_SHORT).show();
+            Snackbar.make (view, "Now in order by application step!", Snackbar.LENGTH_LONG).show ();
         } else {
             editor.putString("view", "name");
             viewOrderItem.setTitle("Organize by Application Step");
-            Toast.makeText(getApplicationContext(), "Now in order by company name!",
-                    Toast.LENGTH_SHORT).show();
+            Snackbar.make (view, "Now in order by company name!", Snackbar.LENGTH_LONG).show ();
         }
         editor.commit();
 
@@ -156,18 +163,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        Intent intent = new Intent(MainActivity.this, AddCompanyActivity.class);
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.add_company) {
-            startActivity(intent);
-        }
-
-
         return super.onOptionsItemSelected(item);
     }
 

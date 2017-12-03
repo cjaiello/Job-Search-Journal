@@ -9,9 +9,9 @@
                 android:color="@color/shadow_color" />
             <!-- Shadow properties  -->
             <padding
-                android:bottom="2dp"
+                android:bottom="3dp"
                 android:left="0dp"
-                android:right="2dp"
+                android:right="3dp"
                 android:top="0dp" />
         </shape>
 

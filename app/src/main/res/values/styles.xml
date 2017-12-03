@@ -1,13 +1,22 @@
 <resources>
     <style name="MyCustomTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
     </style>
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="titleTextStyle">@style/MyTitleTextStyle</item>
+        <item name="background">@color/action_bar</item>
     </style>
 
     <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/background_color</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>
