@@ -126,16 +126,16 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/company_location_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="openMap"
+            android:layout_height="50dp"
             android:paddingBottom="2dp"
             android:paddingTop="2dp">
 
             <TextView
                 android:id="@+id/company_location_label"
                 android:layout_width="100dp"
-                android:layout_height="200dp"
+                android:layout_height="fill_parent"
                 android:layout_weight="2"
                 android:background="@color/section_title"
                 android:gravity="center"
@@ -146,7 +146,7 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="200dp"
+                android:layout_height="fill_parent"
                 android:layout_toRightOf="@id/company_location_label"
                 android:background="@color/section_text"
                 android:gravity="center"

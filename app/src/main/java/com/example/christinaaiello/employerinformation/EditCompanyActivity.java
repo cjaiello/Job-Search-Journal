@@ -32,12 +32,6 @@ public class EditCompanyActivity extends ActionBarActivity {
     EditText miscView;
     EditText websiteView;
     EditText industryView;
-    EditText overallRatingView;
-    EditText cultureView;
-    EditText leadershipView;
-    EditText compensationView;
-    EditText opportunitiesView;
-    EditText worklifeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +92,6 @@ public class EditCompanyActivity extends ActionBarActivity {
         miscView = (EditText) findViewById(R.id.company_miscellaneous_notes);
         websiteView = (EditText) findViewById(R.id.company_website);
         industryView = (EditText) findViewById(R.id.company_industry);
-        overallRatingView = (EditText) findViewById(R.id.company_overall_rating);
-        cultureView = (EditText) findViewById(R.id.company_culture_and_values_rating);
-        leadershipView = (EditText) findViewById(R.id.company_senior_leadership_rating);
-        compensationView = (EditText) findViewById(R.id.company_compensation_rating);
-        opportunitiesView = (EditText) findViewById(R.id.company_career_opportunities_rating);
-        worklifeView = (EditText) findViewById(R.id.company_work_life_balance_rating);
 
         // Now we need to set the content of the views
         idView.setText(bundle.getString("ID"));
@@ -114,12 +102,6 @@ public class EditCompanyActivity extends ActionBarActivity {
         goalView.setText(bundle.getString("Goal"));
         websiteView.setText(bundle.getString("Website"));
         industryView.setText(bundle.getString("Industry"));
-        overallRatingView.setText(bundle.getString("Overall"));
-        cultureView.setText(bundle.getString("Culture"));
-        leadershipView.setText(bundle.getString("Leadership"));
-        compensationView.setText(bundle.getString("Compensation"));
-        opportunitiesView.setText(bundle.getString("Opportunities"));
-        worklifeView.setText(bundle.getString("Worklife"));
         miscView.setText(bundle.getString("Misc"));
         positionPostingView.setText(bundle.getString("LinkToJobPosting"));
     }
@@ -140,12 +122,6 @@ public class EditCompanyActivity extends ActionBarActivity {
         // These are retrieved via the API:
         values.put(CompanyDataTable.COLUMN_NAME_WEBSITE, websiteView.getText().toString());
         values.put(CompanyDataTable.COLUMN_NAME_INDUSTRY, industryView.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_OVERALL_RATING, overallRatingView.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_CULTURE, cultureView.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_LEADERSHIP, leadershipView.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_COMPENSATION, compensationView.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_OPPORTUNITIES, opportunitiesView.getText().toString());
-        values.put(CompanyDataTable.COLUMN_NAME_WORKLIFE, worklifeView.getText().toString());
         values.put(CompanyDataTable.COLUMN_NAME_LINK_TO_JOB_POSTING, positionPostingView.getText().toString());
 
         // Updating the row, returning the primary key value of the new row

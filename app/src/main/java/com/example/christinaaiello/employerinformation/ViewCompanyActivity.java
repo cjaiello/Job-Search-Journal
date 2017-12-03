@@ -12,14 +12,16 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.christinaaiello.R;
@@ -32,7 +34,7 @@ import static com.example.christinaaiello.general.DatabaseContract.CompanyDataTa
 import static com.example.christinaaiello.general.DatabaseContract.DatabaseHelper;
 
 
-public class ViewCompanyActivity extends ActionBarActivity implements LocationListener {
+public class ViewCompanyActivity extends AppCompatActivity {
     String TAG = "ViewCompanyActivity "; // Used for log printing
     Employer employer; // Contains employer's information
     private DatabaseHelper databaseHelper;
@@ -261,13 +263,26 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
             TextView locationView = (TextView) findViewById(R.id.company_location);
             locationView.setText(Html.fromHtml(locationText));
 
+            // Making this box larger and clickable
+            RelativeLayout locationLayout = (RelativeLayout) findViewById(R.id.company_location_layout);
+            ViewGroup.LayoutParams params = locationLayout.getLayoutParams();
+            params.height = 600;
+            locationLayout.setLayoutParams(params);
+            // And this needs to actually be clickable:
+            locationLayout.setOnClickListener (new View.OnClickListener () {
+                @Override
+                public void onClick (View view) {
+                    openMap(view);
+                }
+            });
+
             // If we have a streetview image, use that, else show the map icon:
             ImageView companyStreetView = (ImageView) findViewById(R.id.company_street_view);
             if (employer.getStreetByteArray() != null) {
                 companyStreetView.setImageBitmap(BitmapFactory.decodeByteArray(employer.getStreetByteArray(), 0, employer.getStreetByteArray().length));
 
             } else {
-                // And let's make the map icon visible:
+                // Making the map icon visible:
                 ImageView mapIcon = (ImageView) findViewById(R.id.map_icon);
                 mapIcon.setVisibility(View.VISIBLE);
             }
@@ -296,33 +311,6 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
             positionView.setText(employer.getPosition());
             Log.i(TAG, "Link to job posting was null");
         }
-    }
-
-    /**
-     * This method will acquire the user's location
-     *
-     * @param location is the user's current location
-     */
-    @Override
-    public void onLocationChanged(Location location) {
-        // Moving the "camera" (what google maps is showing) to the location's current latitude and longitude
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
     }
 
     /**
@@ -372,7 +360,27 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
         setLinks(); // Setting links in activity
 
         // Telling the location manager to start listening for location updates
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                // Moving the "camera" (what google maps is showing) to the location's current latitude and longitude
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+            }
+            @Override
+            public void onProviderDisabled(String provider) {
+                // TODO Auto-generated method stub
+            }
+            @Override
+            public void onProviderEnabled(String provider) {
+                // TODO Auto-generated method stub
+            }
+            @Override
+            public void onStatusChanged(String provider, int status,
+                                        Bundle extras) {
+                // TODO Auto-generated method stub
+            }
+        });
 
         super.onResume();
     }
@@ -381,7 +389,6 @@ public class ViewCompanyActivity extends ActionBarActivity implements LocationLi
     // When we get destroyed we should clean up after ourselves
     protected void onDestroy() {
         super.onDestroy();
-        locationManager.removeUpdates(this);
     }
 
 
