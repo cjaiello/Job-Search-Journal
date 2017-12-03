@@ -1,3 +1,5 @@
+You can watch a demo (1:20) [here](https://youtu.be/pNvP3-tMgG4).
+
 The process of applying for jobs can be time-consuming and stressful: You’re filling out applications, attending interviews, and keeping track of what step you are in the application process with each company you apply to. Eventually names, dates, emails, and interviews all blend together. In this paper an application called “JobApp Tracker” is presented. JobApp Tracker is an application that helps individuals track the applying-to-jobs process for various jobs, keeping all potentially-useful information within the application for later retrieval.
 
 The main screen shown when the application is first started lists each company that a user has entered (either alphabetically by name or sorted by step in the application process, based on a user’s choice in the settings). This information is stored in an SQLite database on the device. Each company’s logo, name, website, position the user applied for, and step in the application process is shown. Companies’ logos and websites are retrieved via the Glassdoor Web API.
@@ -30,21 +32,11 @@ Tracking progress with a company
 
 --------------------------------------------------
 
-Initial contact info
+Interview Process Logging
 
 ![Initial Contact Info](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/trackprogress.jpg)
 
-
---------------------------------------------------
-
-Interview scheduling
-
 ![Interview Scheduling](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-3.png)
-
-
---------------------------------------------------
-
-Interview results
 
 ![Interview Results](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/screenshot-4.png)
 
