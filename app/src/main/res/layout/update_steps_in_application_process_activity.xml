@@ -77,6 +77,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/ic_action_phone"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:text="@string/received_response_question" />
         </RelativeLayout>
 

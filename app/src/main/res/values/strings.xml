@@ -3,7 +3,6 @@
 
 
     <string name="action_settings">Action Settings</string>
-    <string name="save">Save</string>
 
     <!-- Add Company -->
     <string name="company_name">Name</string>
@@ -23,8 +22,6 @@
     <string name="company_location_hint">Where are they located?</string>
     <string name="company_goal_mission_statement_hint">Company\'s goal? What do they do?</string>
     <string name="misc_notes_about_company_hint">Anything else you\'d like to include can go here.</string>
-    <string name="add_company_message_hint">When you click \'save,\' we will search Glassdoor.com™ for some more company information (website, industry, and ratings). If this information is not found, you will be able to add it yourself.</string>
-    <string name="add_company_instructions_hint">Fill in the fields below with information about a company!</string>
 
     <!-- View Company -->
     <string name="company_website">Website</string>
@@ -70,10 +67,6 @@
     <string name="followup_notes_edittext">Update this once your interview has happened! How did this interview go? Report on how it went.</string>
 
     <!-- Interview Completed -->
-    <string name="interview_completed">Interview Completed</string>
-    <string name="interview_start_time">Interview Start Time</string>
-    <string name="interview_end_time">Interview End Time</string>
-    <string name="notes_about_interview">Notes About Interview</string>
 
     <!-- Received Response Fragment -->
     <string name="received_response">Received Response</string>

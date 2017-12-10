@@ -102,12 +102,12 @@ public class TrackYourProgressActivity extends ActionBarActivity {
     }
 
     /**
-     * This method will initalize clicking on the top-of-screen options in this layout,
+     * This method will initialize clicking on the top-of-screen options in this layout,
      * which allow the user to add new "events"
      */
 
     public void initializeClicking() {
-        // Getting the inital contact layout item
+        // Getting the initial contact layout item
         ImageView initialContactImage = (ImageView) initialContactLayout.getChildAt(0);
         TextView initialContactTextView = (TextView) initialContactLayout.getChildAt(1);
         final Intent initialContactIntent = new Intent(TrackYourProgressActivity.this, InitialContactActivityEditMode.class);
@@ -250,7 +250,7 @@ public class TrackYourProgressActivity extends ActionBarActivity {
             contactWithCompanyCompleted(); // Hide all boxes
         } else if (listOfInterviews.size() > 0) {
             // Display how many interviews have happened
-            mostRecentStep = listOfInterviews.size() > 1 ? listOfInterviews.size() + " interviews completed" : "1 interview completed";
+            mostRecentStep = listOfInterviews.size() > 1 ? listOfInterviews.size() + " Interviews Recorded" : "1 Interview Recorded";
             // Show option to either add another interview or report results back
             displayInitialContactDataFragment(); // Show info from initial contact
             completedAtLeastOneInterview(); // Now the user can potentially record followup information
@@ -261,7 +261,7 @@ public class TrackYourProgressActivity extends ActionBarActivity {
             displayInitialContactDataFragment(); // Show info from initial contact
             // Lastly, we need to hide the "add initial contact" box
         } else {
-            mostRecentStep = "Not started";
+            mostRecentStep = "Not Started";
             Log.i(TAG, "Could not find initial contact matches when searching database.");
             userHastNotStarted(); // Hiding unnecessary items until the user will actually use them
         }
