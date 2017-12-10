@@ -1,3 +1,5 @@
+Update on 12/10/2017: This app is now officially in the [app store](https://play.google.com/store/apps/details?id=com.jobsearchjournal)!
+
 You can watch a demo (1:20) [here](https://youtu.be/pNvP3-tMgG4).
 
 The process of applying for jobs can be time-consuming and stressful: You’re filling out applications, attending interviews, and keeping track of what step you are in the application process with each company you apply to. Eventually names, dates, emails, and interviews all blend together. JobApp Tracker is an application that helps individuals track the applying-to-jobs process for various jobs, keeping all potentially-useful information within the application for later retrieval.
@@ -39,5 +41,3 @@ Interview Process Logging
 ![Interview Scheduling](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/scheduledinterview.jpg)
 
 ![Interview Results](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/receivedoffer.jpg)
-
-
