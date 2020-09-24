@@ -15,6 +15,12 @@ Watch a demo here:
 https://drive.google.com/file/d/1g8MDqFtlZWOhInPrjE1HvCb7VQUCkPDM/view?usp=sharing
 
 
+![Add a Company](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/add-a-company.gif)
+![Add Interview](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/add-interview.gif)
+![Company Info](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/company-info-2.gif)
+![Company Info](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/company-info.gif)
+![Reorder and Delete](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/reorder-and-delete.gif)
+
 
 
 
@@ -22,7 +28,7 @@ https://drive.google.com/file/d/1g8MDqFtlZWOhInPrjE1HvCb7VQUCkPDM/view?usp=shari
 
 ## Main page
 
-![Main page](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-1.png?s=700)
+![Main page](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-1.png)
 
 The main screen shown when the application is first started lists each company that a user has entered (either alphabetically by name or sorted by step in the application process, based on a user’s choice in the settings). This information is stored in an SQLite database on the device. Each company’s logo, name, website, position the user applied for, and step in the application process is shown. Companies’ logos and websites are retrieved via the Glassdoor Web API.
 
