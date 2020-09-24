@@ -82,11 +82,15 @@ public class ViewCompanyActivity extends AppCompatActivity {
         TextView trackProgressText = (TextView) findViewById(R.id.track_progress_text);
         trackProgressText.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ViewCompanyActivity.this, TrackYourProgressActivity.class);
-                intent.putExtras(createBundleForEditing()); // Putting company info into bundle
-                startActivity(intent);
+                viewCompanyProgress();
             }
         });
+    }
+
+    public void viewCompanyProgress(final View view) {
+        Intent intent = new Intent(ViewCompanyActivity.this, TrackYourProgressActivity.class);
+        intent.putExtras(createBundleForEditing()); // Putting company info into bundle
+        startActivity(intent);
     }
 
 
