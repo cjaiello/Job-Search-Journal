@@ -446,7 +446,7 @@ public class Employer {
         // Next, we need to replace any middle spaces with %20's
         String noSpacesInName = trimmedName.replaceAll(" ", "%20");
         // Lastly, return the URL for this company name
-        return "http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=31746&t.k=f6EKkHN4wb9&action=employers&q=" + noSpacesInName + "&userip=192.168.43.42&useragent=Mozilla/%2F4.0";
+        return "https://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=31746&t.k=f6EKkHN4wb9&action=employers&q=" + noSpacesInName + "&userip=192.168.43.42&useragent=Mozilla/%2F4.0";
     }
 
     /**

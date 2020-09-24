@@ -1,14 +1,21 @@
 package com.example.jobsearchjournal;
 
+import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +25,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.location.Location;
+import android.location.LocationListener;
 
 import com.example.jobsearchjournal.employerinformation.AddCompanyActivity;
 import com.example.jobsearchjournal.employerinformation.CompanyListAdapter;
@@ -38,6 +48,11 @@ public class MainActivity extends ActionBarActivity {
     private ArrayList<Employer> listOfCompanies;
     private String MY_PREFS_NAME = "preferences";
     private Menu mainActivityMenu;
+    private final int REQUEST_ACCESS_FINE_LOCATION=1;
+    private final int REQUEST_ACCESS_COARSE_LOCATION=1;
+    private double latitude; // User's current latitude
+    private double longitude; // User's current longitude
+    private LocationManager locationManager; // Used to get user's locations
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +72,39 @@ public class MainActivity extends ActionBarActivity {
         } catch (IOException e) {
 
         }
+
+        // Telling the location manager to start listening for location updates
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            this.showPhoneStatePermission(Manifest.permission.ACCESS_FINE_LOCATION, REQUEST_ACCESS_FINE_LOCATION);
+            this.showPhoneStatePermission(Manifest.permission.ACCESS_COARSE_LOCATION, REQUEST_ACCESS_COARSE_LOCATION);
+            return;
+        }
+
+        locationManager = (LocationManager)  this.getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                // Moving the "camera" (what google maps is showing) to the location's current latitude and longitude
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status,
+                                        Bundle extras) {
+                // TODO Auto-generated method stub
+            }
+        });
 
         // Putting view settings in preferences
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
@@ -266,5 +314,51 @@ public class MainActivity extends ActionBarActivity {
         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void showPhoneStatePermission(String permission, int requestCode) {
+        int permissionCheck = ContextCompat.checkSelfPermission(
+                this, permission);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    permission)) {
+                showExplanation("Permission Needed", "Rationale", permission, requestCode);
+            } else {
+                requestPermission(permission, requestCode);
+            }
+        } else {
+            Toast.makeText(MainActivity.this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    // Credit to NightSkyDev https://stackoverflow.com/users/1626190/nightskydev
+    // https://stackoverflow.com/questions/35484767/activitycompat-requestpermissions-not-showing-dialog-box
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(MainActivity.this, "Permission Granted!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Credit to NightSkyDev https://stackoverflow.com/users/1626190/nightskydev
+    // https://stackoverflow.com/questions/35484767/activitycompat-requestpermissions-not-showing-dialog-box
+    private void showExplanation(String title, String message, final String permission, final int permissionRequestCode) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    requestPermission(permission, permissionRequestCode);
+                }
+            });
+        builder.create().show();
+    }
+
+    // Credit to NightSkyDev https://stackoverflow.com/users/1626190/nightskydev
+    // https://stackoverflow.com/questions/35484767/activitycompat-requestpermissions-not-showing-dialog-box
+    private void requestPermission(String permissionName, int permissionRequestCode) {
+        ActivityCompat.requestPermissions(this, new String[]{permissionName}, permissionRequestCode);
     }
 }

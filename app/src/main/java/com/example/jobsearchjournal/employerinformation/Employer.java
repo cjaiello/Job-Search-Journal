@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -391,31 +393,31 @@ public class Employer {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    // Creating our request:
-                    URL url = new URL(urlString);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setReadTimeout(1000);
-                    conn.setConnectTimeout(1200);
-                    conn.setRequestMethod("GET");
-                    conn.setDoInput(true);
+            try {
+                // Creating our request:
+                URL url = new URL(urlString);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(1000);
+                conn.setConnectTimeout(1200);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
 
-                    // Requesting information
-                    conn.connect();
-                    InputStream stream = conn.getInputStream();
+                // Requesting information
+                conn.connect();
+                InputStream stream = conn.getInputStream();
 
-                    // Converting information to a string
-                    String data = convertStreamToString(stream);
+                // Converting information to a string
+                String data = convertStreamToString(stream);
 
-                    // Getting information from this string
-                    extractCompanyInformation(data);
+                // Getting information from this string
+                extractCompanyInformation(data);
 
-                    // Closing stream
-                    stream.close();
+                // Closing stream
+                stream.close();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             }
         });
 
@@ -446,7 +448,7 @@ public class Employer {
         // Next, we need to replace any middle spaces with %20's
         String noSpacesInName = trimmedName.replaceAll(" ", "%20");
         // Lastly, return the URL for this company name
-        return "http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=31746&t.k=f6EKkHN4wb9&action=employers&q=" + noSpacesInName + "&userip=192.168.43.42&useragent=Mozilla/%2F4.0";
+        return "https://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=31746&t.k=f6EKkHN4wb9&action=employers&q=" + noSpacesInName + "&userip=192.168.43.42&useragent=Mozilla/%2F4.0";
     }
 
     /**
@@ -474,16 +476,26 @@ public class Employer {
      * @throws IOException
      */
     public byte[] makeImageByteArray(String imageURL) throws IOException {
-        byte[] imageByteArray = new byte[500];
-        DefaultHttpClient mHttpClient = new DefaultHttpClient();
-        HttpGet mHttpGet = new HttpGet(imageURL);
-        HttpResponse mHttpResponse = mHttpClient.execute(mHttpGet);
-        if (mHttpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-            HttpEntity entity = mHttpResponse.getEntity();
-            if (entity != null) {
-                imageByteArray = EntityUtils.toByteArray(entity);
+        byte[] imageByteArray = new byte[2048];
+        URL url = new URL(imageURL);
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        try {
+            InputStream input = new BufferedInputStream(urlConnection.getInputStream());
+            ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+
+            int bufferSize = 2048;
+            byte[] buffer = new byte[bufferSize];
+
+            int len = 0;
+            while ((len = input.read(buffer)) != -1) {
+                byteBuffer.write(buffer, 0, len);
             }
+
+            imageByteArray = byteBuffer.toByteArray();
+        } finally {
+            urlConnection.disconnect();
         }
+
         return imageByteArray;
     }
 
