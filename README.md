@@ -10,10 +10,18 @@ The initial contact fragment within the “Track Your Progress” activity acces
 --------------------------------------------------
 
 
+Watch a demo here: 
+https://drive.google.com/file/d/1g8MDqFtlZWOhInPrjE1HvCb7VQUCkPDM/view?usp=sharing
+
+
+--------------------------------------------------
+
+
+
 
 Main page
 
-![Main page](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/mainpage.jpg)
+![Main page](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-1.png)
 
 
 
@@ -21,19 +29,15 @@ Main page
 
 Tracking progress with a company
 
-![Adding a new company](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/addcompany.jpg)
+![Adding a new company](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-2.png)
 
-![Company view](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/companyview.jpg)
-
-![Imported ratings](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/companyview-2.jpg)
+![Company view](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-3.png)
 
 
 --------------------------------------------------
 
 Interview Process Logging
 
-![Initial Contact Info](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/trackprogress.jpg)
+![Initial Contact Info](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-4.png)
 
-![Interview Scheduling](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/scheduledinterview.jpg)
-
-![Interview Results](https://github.com/cjaiello/MobileBSMSProject/blob/master/screenshots/receivedoffer.jpg)
+![Interview](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-5.png)
