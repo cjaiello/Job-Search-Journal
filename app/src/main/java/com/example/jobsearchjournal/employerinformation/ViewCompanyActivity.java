@@ -1,18 +1,17 @@
 package com.example.jobsearchjournal.employerinformation;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -41,6 +40,9 @@ public class ViewCompanyActivity extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     private String companyID; // in-app ID # for this company
+    private double latitude; // User's current latitude
+    private double longitude; // User's current longitude
+    private LocationManager locationManager; // Used to get user's location
     // Views on screen:
     TextView idView;
     TextView positionView;
@@ -56,9 +58,6 @@ public class ViewCompanyActivity extends AppCompatActivity {
     TextView opportunitiesView;
     TextView worklifeView;
     ImageView companyLogo;
-    private double latitude; // User's current latitude
-    private double longitude; // User's current longitude
-    private LocationManager locationManager; // Used to get user's location
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -270,9 +269,9 @@ public class ViewCompanyActivity extends AppCompatActivity {
             params.height = 600;
             locationLayout.setLayoutParams(params);
             // And this needs to actually be clickable:
-            locationLayout.setOnClickListener(new View.OnClickListener() {
+            locationLayout.setOnClickListener (new View.OnClickListener () {
                 @Override
-                public void onClick(View view) {
+                public void onClick (View view) {
                     openMap(view);
                 }
             });
@@ -290,12 +289,12 @@ public class ViewCompanyActivity extends AppCompatActivity {
         }
 
         // Turning the position applied for into a link to a specific position
-        if (employer.getLinkToJobPosting().length() > 0) {
+        if(employer.getLinkToJobPosting().length() > 0){
             //Log.i(TAG, "Link to job posting exists! Let's make this a link now.");
             //Log.i(TAG, employer.getLinkToJobPosting());
             positionView.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (!employer.getLinkToJobPosting().startsWith("http://") && !employer.getLinkToJobPosting().startsWith("https://")) {
+                    if (!employer.getLinkToJobPosting().startsWith("http://") && !employer.getLinkToJobPosting().startsWith("https://")){
                         employer.setLinkToJobPosting("http://" + employer.getLinkToJobPosting());
                     }
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(employer.getLinkToJobPosting()));
@@ -306,7 +305,7 @@ public class ViewCompanyActivity extends AppCompatActivity {
             // Give this link the proper formatting:
             positionView.setTextColor(getResources().getColorStateList(R.color.link_color));
             positionView.setTypeface(null, Typeface.BOLD);
-            positionView.setPaintFlags(positionView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            positionView.setPaintFlags(positionView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         } else {
             // Else just have it list the position without a link to anywhere
             positionView.setText(employer.getPosition());
@@ -359,6 +358,29 @@ public class ViewCompanyActivity extends AppCompatActivity {
         }
         displayCompanyData();
         setLinks(); // Setting links in activity
+
+        // Telling the location manager to start listening for location updates
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                // Moving the "camera" (what google maps is showing) to the location's current latitude and longitude
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+            }
+            @Override
+            public void onProviderDisabled(String provider) {
+                // TODO Auto-generated method stub
+            }
+            @Override
+            public void onProviderEnabled(String provider) {
+                // TODO Auto-generated method stub
+            }
+            @Override
+            public void onStatusChanged(String provider, int status,
+                                        Bundle extras) {
+                // TODO Auto-generated method stub
+            }
+        });
 
         super.onResume();
     }

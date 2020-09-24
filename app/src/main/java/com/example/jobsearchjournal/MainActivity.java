@@ -207,7 +207,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /**
-     * This method will let a user flip his or her view settings in this main activity - either
+     * This method will let a user flip her or his view settings in this main activity - either
      * organize the list of companies by name or by step in the application process
      *
      */

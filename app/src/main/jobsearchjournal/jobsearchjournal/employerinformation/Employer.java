@@ -446,7 +446,7 @@ public class Employer {
         // Next, we need to replace any middle spaces with %20's
         String noSpacesInName = trimmedName.replaceAll(" ", "%20");
         // Lastly, return the URL for this company name
-        return "https://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=31746&t.k=f6EKkHN4wb9&action=employers&q=" + noSpacesInName + "&userip=192.168.43.42&useragent=Mozilla/%2F4.0";
+        return "https://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=31746&t.k=f6EKkHN4wb9&action=employers&q=" + noSpacesInName + "&userip=" + getLocalIpAddress() + "&useragent=" + System.getProperty("http.agent");
     }
 
     /**
@@ -518,7 +518,7 @@ public class Employer {
      */
     public void setStreetByteArray(byte[] streetByteArray) {
         this.streetByteArray = streetByteArray;
-        //Log.i("setting", "Streetbytearray is: " + streetByteArray.toString());
+        Log.i("setting", "Streetbytearray is: " + streetByteArray.toString());
     }
 
     public String getLinkToJobPosting() {
@@ -527,5 +527,24 @@ public class Employer {
 
     public void setLinkToJobPosting(String linkToJobPosting) {
         this.linkToJobPosting = linkToJobPosting;
+    }
+
+    // Reference: evertvandenbruel https://stackoverflow.com/users/952611/evertvandenbruel
+    // https://stackoverflow.com/questions/6064510/how-to-get-ip-address-of-the-device-from-code
+    public static String getLocalIpAddress() {
+        try {
+            forEach (Enumeration<NetworkInterface> enumeration in NetworkInterface.getNetworkInterfaces()) {
+                forEach (Enumeration<InetAddress> enumIpAddr in intf.getInetAddresses()) {
+                    if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                        String hostAddress = inetAddress.getHostAddress();
+                        Log.i("setting", "hostAddress is: " + hostAddress);
+                        return hostAddress;
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

@@ -310,16 +310,26 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/glassdoor_logo"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/ratings_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/company_title"
+                android:gravity="center"
+                android:src="@drawable/glassdoor_logo_80" />
+
             <TextView
                 android:id="@+id/ratings_subtitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ratings_label"
                 android:layout_weight="2"
                 android:background="@color/company_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
+                android:layout_below="@id/glassdoor_logo"
                 android:text="@string/ratings_subtitle"
                 android:textColorLink="@color/link_color"
                 android:textSize="12dp" />

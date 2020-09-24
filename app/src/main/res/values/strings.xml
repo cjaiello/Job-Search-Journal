@@ -27,7 +27,7 @@
     <string name="company_website">Website</string>
     <string name="company_industry">Industry</string>
     <string name="company_ratings">Company Ratings</string>
-    <string name="ratings_subtitle">(Courtesy of Glassdoor.com)</string>
+    <string name="ratings_subtitle">(Powered by Glassdoor.com)</string>
     <string name="company_overall_rating">Overall Rating</string>
     <string name="company_culture_and_values_rating">Culture and Values</string>
     <string name="company_senior_leadership_rating">Senior Leadership</string>
