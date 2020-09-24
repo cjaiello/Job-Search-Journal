@@ -16,9 +16,13 @@ https://drive.google.com/file/d/1g8MDqFtlZWOhInPrjE1HvCb7VQUCkPDM/view?usp=shari
 
 
 ![Add a Company](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/add-a-company.gif)
+
 ![Add Interview](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/add-interview.gif)
+
 ![Company Info](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/company-info-2.gif)
+
 ![Company Info](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/company-info.gif)
+
 ![Reorder and Delete](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/reorder-and-delete.gif)
 
 
