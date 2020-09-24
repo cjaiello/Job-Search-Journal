@@ -17,7 +17,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +25,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.location.Location;
 import android.location.LocationListener;
 
 import com.example.jobsearchjournal.employerinformation.AddCompanyActivity;
@@ -42,14 +40,12 @@ import java.util.ArrayList;
 public class MainActivity extends ActionBarActivity {
     private String TAG = "MainActivity "; // Used for log files
     private ListView listView; // Contains all companies' names and urls
-    public CompanyListAdapter adapter;
+    public CompanyListAdapter adapter = null;
     private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
     private ArrayList<Employer> listOfCompanies;
     private String MY_PREFS_NAME = "preferences";
     private Menu mainActivityMenu;
-    private final int REQUEST_ACCESS_FINE_LOCATION=1;
-    private final int REQUEST_ACCESS_COARSE_LOCATION=1;
     private double latitude; // User's current latitude
     private double longitude; // User's current longitude
     private LocationManager locationManager; // Used to get user's locations
@@ -70,14 +66,41 @@ public class MainActivity extends ActionBarActivity {
         try {
             listOfCompanies = getAllCompanies("name"); // Will contain all companies
         } catch (IOException e) {
-
+            // TODO Do something here omg
         }
 
-        // Telling the location manager to start listening for location updates
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            this.showPhoneStatePermission(Manifest.permission.ACCESS_FINE_LOCATION, REQUEST_ACCESS_FINE_LOCATION);
-            this.showPhoneStatePermission(Manifest.permission.ACCESS_COARSE_LOCATION, REQUEST_ACCESS_COARSE_LOCATION);
-            return;
+        class PermissionsAndRequestCode {
+            public String permissionName;
+            public int permissionRequestCode;
+
+            public PermissionsAndRequestCode(String name, int requestCode) {
+                this.permissionName = name;
+                this.permissionRequestCode = requestCode;
+            }
+        }
+
+        PermissionsAndRequestCode[] permissionsNeeded = {
+            new PermissionsAndRequestCode(Manifest.permission.READ_CALENDAR, 1),
+            new PermissionsAndRequestCode(Manifest.permission.WRITE_CALENDAR, 2),
+            new PermissionsAndRequestCode(Manifest.permission.ACCESS_NETWORK_STATE, 3),
+            new PermissionsAndRequestCode(Manifest.permission.READ_PHONE_STATE, 4),
+            new PermissionsAndRequestCode(Manifest.permission.CALL_PHONE, 5),
+            new PermissionsAndRequestCode(Manifest.permission.INTERNET, 6),
+            new PermissionsAndRequestCode(Manifest.permission.ACCESS_FINE_LOCATION, 7),
+            new PermissionsAndRequestCode(Manifest.permission.ACCESS_COARSE_LOCATION, 8),
+            new PermissionsAndRequestCode(Manifest.permission.READ_CALL_LOG, 9)
+        };
+
+        // Request all the permissions we need
+        for (PermissionsAndRequestCode permissionNeeded : permissionsNeeded) {
+            boolean needPermissions = false;
+            if (ActivityCompat.checkSelfPermission(this, permissionNeeded.permissionName) != PackageManager.PERMISSION_GRANTED) {
+                this.showPhoneStatePermission(permissionNeeded.permissionName, permissionNeeded.permissionRequestCode);
+                needPermissions = true;
+            }
+            if (needPermissions) {
+                return;
+            }
         }
 
         locationManager = (LocationManager)  this.getSystemService(Context.LOCATION_SERVICE);
@@ -170,15 +193,17 @@ public class MainActivity extends ActionBarActivity {
      * This method can be called from anywhere to refresh the list of companies in this activity
      */
     private void refreshListOfCompanies() throws IOException {
-        // Checking user's preferences to see what way to display data
-        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        String viewOrder = prefs.getString("view", null);
-        // First we clear the list of companies that the adapter is using:
-        listOfCompanies.clear();
-        // Now we update the list of companies:
-        listOfCompanies.addAll(getAllCompanies(viewOrder));
-        // And lastly we tell the adapter to get new data:
-        adapter.notifyDataSetChanged();
+        if (adapter != null) {
+            // Checking user's preferences to see what way to display data
+            SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+            String viewOrder = prefs.getString("view", null);
+            // First we clear the list of companies that the adapter is using:
+            listOfCompanies.clear();
+            // Now we update the list of companies:
+            listOfCompanies.addAll(getAllCompanies(viewOrder));
+            // And lastly we tell the adapter to get new data:
+            adapter.notifyDataSetChanged();
+        }
     }
 
     /**
@@ -287,24 +312,24 @@ public class MainActivity extends ActionBarActivity {
         builder.setIcon(R.drawable.ic_launcher);
         builder.setPositiveButton("Yes, Delete It", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-                // Getting the relativelayout holding this trash can and other things
-                RelativeLayout parentView = (RelativeLayout) view.getParent();
-                // Getting the textview holding the company's ID number
-                TextView idView = (TextView) parentView.getChildAt(1);
-                // This is the actual ID number
-                String idNumber = idView.getText().toString();
-                // Deleting from the database:
-                db.delete(DatabaseContract.CompanyDataTable.TABLE_NAME, DatabaseContract.CompanyDataTable._ID + "=?", new String[]{idNumber});
-                db.delete(DatabaseContract.InitialContactTable.TABLE_NAME, DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
-                db.delete(DatabaseContract.SetUpInterviewTable.TABLE_NAME, DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
-                db.delete(DatabaseContract.ReceivedResponseTable.TABLE_NAME, DatabaseContract.ReceivedResponseTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
-                // And refreshing the layout
-                try {
-                    refreshListOfCompanies();
-                } catch (IOException e) {
-
-                }
+        dialog.dismiss();
+        // Getting the relativelayout holding this trash can and other things
+        RelativeLayout parentView = (RelativeLayout) view.getParent();
+        // Getting the textview holding the company's ID number
+        TextView idView = (TextView) parentView.getChildAt(1);
+        // This is the actual ID number
+        String idNumber = idView.getText().toString();
+        // Deleting from the database:
+        db.delete(DatabaseContract.CompanyDataTable.TABLE_NAME, DatabaseContract.CompanyDataTable._ID + "=?", new String[]{idNumber});
+        db.delete(DatabaseContract.InitialContactTable.TABLE_NAME, DatabaseContract.InitialContactTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
+        db.delete(DatabaseContract.SetUpInterviewTable.TABLE_NAME, DatabaseContract.SetUpInterviewTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
+        db.delete(DatabaseContract.ReceivedResponseTable.TABLE_NAME, DatabaseContract.ReceivedResponseTable.COLUMN_NAME_COMPANYID + "=?", new String[]{idNumber});
+        // And refreshing the layout
+        try {
+            refreshListOfCompanies();
+        } catch (IOException e) {
+            // TODO Please do something here, omg.
+        }
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
