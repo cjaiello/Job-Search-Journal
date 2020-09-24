@@ -21,7 +21,7 @@ https://drive.google.com/file/d/1g8MDqFtlZWOhInPrjE1HvCb7VQUCkPDM/view?usp=shari
 
 Main page
 
-![Main page](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-1.png)
+![Main page](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-1.png)
 
 
 
@@ -29,15 +29,15 @@ Main page
 
 Tracking progress with a company
 
-![Adding a new company](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-2.png)
+![Adding a new company](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-2.png)
 
-![Company view](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-3.png)
+![Company view](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-3.png)
 
 
 --------------------------------------------------
 
 Interview Process Logging
 
-![Initial Contact Info](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-4.png)
+![Initial Contact Info](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-4.png)
 
-![Interview](https://github.com/cjaiello/Job-Search-Journal/blob/master/Job-Search-Journal-5.png)
+![Interview](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-5.png)
