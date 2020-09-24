@@ -1,9 +1,17 @@
+# Job Search Journal
+### By Christina
+
+# Technologies Used
+Java, SQLite, Google API, Glassdoor API
+
+# Description
 The process of applying for jobs can be time-consuming and stressful: You’re filling out applications, attending interviews, and keeping track of what step you are in the application process with each company you apply to. Eventually names, dates, emails, and interviews all blend together. JobApp Tracker is an application that helps individuals track the applying-to-jobs process for various jobs, keeping all potentially-useful information within the application for later retrieval.
 
 
 --------------------------------------------------
 
 
+# Demo
 Watch a demo here: 
 https://drive.google.com/file/d/1g8MDqFtlZWOhInPrjE1HvCb7VQUCkPDM/view?usp=sharing
 
@@ -13,7 +21,7 @@ https://drive.google.com/file/d/1g8MDqFtlZWOhInPrjE1HvCb7VQUCkPDM/view?usp=shari
 
 
 
-Main page
+## Main page
 
 ![Main page](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-1.png?s=700)
 
@@ -24,7 +32,7 @@ The main screen shown when the application is first started lists each company t
 
 --------------------------------------------------
 
-Logging Company Info
+## Logging Company Info
 
 ![Adding a new company](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-2.png)
 
@@ -36,7 +44,7 @@ When a user clicks on a company’s name in this list, the user is brought to a 
 
 --------------------------------------------------
 
-Interview Process Logging
+## Interview Process Logging
 
 ![Initial Contact Info](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-4.png)
 
