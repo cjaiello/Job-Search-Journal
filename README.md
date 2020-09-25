@@ -6,6 +6,18 @@ Java, SQLite, Google API, Glassdoor API, Android Studio developer.android.com/an
 
 
 ## Running On Your Android Phone
+* Plug your phone into your laptop
+* Go to Settings
+* Type "Developer" into the search bar
+* Choose "Developer Options"
+* Scroll down to the "Debugging" section
+* Turn on where it says "USB Debugging"
+* Now install Android Studio
+* Open project folder (seen in gif below)
+* Go to "Run" in top menu bar (seen in gif below)
+* Click "Select Device" (seen in gif below)
+* Choose your phone (seen in gif below)
+* Now click the green right-facing triangle button to run (seen in gif below)
 ![Running On Your Android Phone](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/how-to-run-on-android-phone.gif)
 
 
