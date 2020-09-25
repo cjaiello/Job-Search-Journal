@@ -76,5 +76,5 @@ When a user clicks on a company’s name in this list, the user is brought to a 
 
 ![Interview](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/Job-Search-Journal-5.png)
 
-The initial contact fragment within the “Track Your Progress” activity accesses the device’s call logs to count how many times calls have been exchanged with a particular phone number. The scheduled interview fragment uses an intent to bring up the user’s email client with an email already addressed to the recipient (based on the “Contact Email Address” provided). All of these features exist to help users track their application process, in addition to granting users quick-and-easy access to recruiters’ and interviewers’ contact information.
+The initial contact fragment within the “Track Your Progress” activity accesses the phone’s call logs to count how many times calls have been exchanged with a particular phone number. The scheduled interview fragment uses an intent to bring up the user’s email client with an email already addressed to the recipient (based on the “Contact Email Address” provided). All of these features exist to help users track their application process, in addition to granting users quick-and-easy access to recruiters’ and interviewers’ contact information.
 
