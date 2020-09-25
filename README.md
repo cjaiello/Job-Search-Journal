@@ -1,16 +1,21 @@
 # Job Search Journal
  By Christina
 
-# Technologies Used
-Java, SQLite, Google API, Glassdoor API
+## Technologies Used
+Java, SQLite, Google API, Glassdoor API, Android Studio developer.android.com/androidstudio/download
 
-# Description
+
+## Running On Your Android Phone
+![Running On Your Android Phone](https://github.com/cjaiello/Job-Search-Journal/blob/master/screenshots/how-to-run-on-android-phone.gif)
+
+
+## Description
 The process of applying for jobs can be time-consuming and stressful: You’re filling out applications, attending interviews, and keeping track of what step you are in the application process with each company you apply to. Eventually names, dates, emails, and interviews all blend together. JobApp Tracker is an application that helps individuals track the applying-to-jobs process for various jobs, keeping all potentially-useful information within the application for later retrieval.
 
 
 
 
-# Demo
+## Demo
 Watch a demo here: 
 https://drive.google.com/file/d/1g8MDqFtlZWOhInPrjE1HvCb7VQUCkPDM/view?usp=sharing
 
