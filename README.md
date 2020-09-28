@@ -2,10 +2,11 @@
  By Christina
 
 ## Technologies Used
-Java, SQLite, Google API, Glassdoor API, Android Studio developer.android.com/androidstudio/download
+Java, SQLite, Google API, Glassdoor API, Android Studio
 
 
 ## Running On Your Android Phone
+* Download Android Studio developer.android.com/androidstudio/download
 * Plug your phone into your laptop
 * Go to Settings
 * Type "Developer" into the search bar
