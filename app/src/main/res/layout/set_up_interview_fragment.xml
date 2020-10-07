@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/set_up_interview_label"
@@ -20,14 +20,14 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/set_up_interview"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/edit_button_set_up_interview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/set_up_interview_label"
+            android:layout_toEndOf="@+id/set_up_interview_label"
             android:focusableInTouchMode="false"
             android:onClick="setUpInterviewEditClick"
             android:src="@drawable/ic_action_edit_dark" />
@@ -35,7 +35,7 @@
         <ImageView
             android:layout_width="42dp"
             android:layout_height="32dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:onClick="deleteInterview"
             android:src="@drawable/ic_action_discard" />
 
@@ -43,10 +43,9 @@
             android:id="@+id/interview_id"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:textStyle="bold"
             android:visibility="gone" />
     </RelativeLayout>
@@ -55,17 +54,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="5dp">
+        android:paddingTop="5dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/company_date_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/date_of_interaction_label"
             android:textStyle="bold" />
 
@@ -74,12 +72,11 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/company_date_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/company_date_label"
             android:gravity="center"
             android:inputType="date"
             android:padding="2dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -87,17 +84,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/time_of_interview_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="Time"
             android:textStyle="bold" />
 
@@ -106,12 +102,11 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/time_of_interview_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/time_of_interview_label"
             android:gravity="center"
             android:inputType="date"
             android:padding="2dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -119,17 +114,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/names_of_interviewers_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/names_of_interviewers"
             android:textStyle="bold" />
 
@@ -138,29 +132,27 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/names_of_interviewers_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/names_of_interviewers_label"
             android:gravity="center"
             android:inputType="text|textCapWords"
             android:padding="2dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/company_email_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/contact_email_address_label"
             android:textStyle="bold" />
 
@@ -169,13 +161,12 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/company_email_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/company_email_label"
+            android:autoLink="all"
             android:gravity="center"
             android:inputType="textEmailAddress"
             android:padding="2dp"
-            android:autoLink="all"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -183,17 +174,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/miscellaneous_notes_label"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/preinterview_notes"
             android:textStyle="bold" />
 
@@ -203,29 +193,27 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/miscellaneous_notes_label"
             android:layout_centerVertical="true"
-            android:layout_weight="2"
             android:gravity="top"
             android:inputType="text|textMultiLine"
             android:lines="3"
             android:padding="5dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/followup_notes_label"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/followup_notes"
             android:textStyle="bold" />
 
@@ -235,12 +223,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/followup_notes_label"
             android:layout_centerVertical="true"
-            android:layout_weight="2"
             android:gravity="top"
             android:inputType="text|textMultiLine"
             android:lines="5"
             android:padding="5dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
 </LinearLayout>

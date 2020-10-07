@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingRight="5dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -22,15 +22,13 @@
                 android:id="@+id/company_id_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
                 android:text="" />
 
             <TextView
                 android:id="@+id/company_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/company_id_label"
-                android:layout_weight="2"
+                android:layout_toEndOf="@id/company_id_label"
                 android:text="" />
 
         </RelativeLayout>
@@ -38,19 +36,18 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <EditText
                 android:id="@+id/company_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:inputType="textCapWords"
                 android:text="Company Name"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -58,17 +55,16 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <TextView
                 android:id="@+id/company_position_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="2dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:text="@string/company_position"
                 android:textStyle="bold" />
 
@@ -76,8 +72,7 @@
                 android:id="@+id/company_position"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_toRightOf="@id/company_position_label"
-                android:layout_weight="2"
+                android:layout_toEndOf="@id/company_position_label"
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:inputType="textCapWords"
@@ -89,18 +84,17 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <!--                android:background="@color/section_title"-->
             <TextView
                 android:id="@+id/company_position_posting_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="2dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:text="@string/company_position_posting"
                 android:textStyle="bold" />
 
@@ -108,8 +102,7 @@
                 android:id="@+id/company_position_posting"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_toRightOf="@id/company_position_posting_label"
-                android:layout_weight="2"
+                android:layout_toEndOf="@id/company_position_posting_label"
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:inputType="textCapWords"
@@ -121,17 +114,16 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <TextView
                 android:id="@+id/company_size_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="2dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:text="@string/company_size"
                 android:textStyle="bold" />
 
@@ -139,8 +131,7 @@
                 android:id="@+id/company_size"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_toRightOf="@id/company_size_label"
-                android:layout_weight="2"
+                android:layout_toEndOf="@id/company_size_label"
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:inputType="textCapWords"
@@ -152,17 +143,16 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <TextView
                 android:id="@+id/company_location_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="2dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:text="@string/company_location"
                 android:textStyle="bold" />
 
@@ -170,8 +160,7 @@
                 android:id="@+id/company_location"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_toRightOf="@id/company_location_label"
-                android:layout_weight="2"
+                android:layout_toEndOf="@id/company_location_label"
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:inputType="textCapWords"
@@ -183,17 +172,16 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <TextView
                 android:id="@+id/company_website_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="2dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:text="@string/company_website"
                 android:textStyle="bold" />
 
@@ -201,8 +189,7 @@
                 android:id="@+id/company_website"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_toRightOf="@id/company_website_label"
-                android:layout_weight="2"
+                android:layout_toEndOf="@id/company_website_label"
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:padding="2dp"
@@ -213,17 +200,16 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <TextView
                 android:id="@+id/company_industry_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="2dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:text="@string/company_industry"
                 android:textStyle="bold" />
 
@@ -231,8 +217,7 @@
                 android:id="@+id/company_industry"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_toRightOf="@id/company_industry_label"
-                android:layout_weight="2"
+                android:layout_toEndOf="@id/company_industry_label"
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:inputType="textCapWords"
@@ -244,17 +229,16 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <TextView
                 android:id="@+id/company_goal_mission_statement_label"
                 android:layout_width="100dp"
                 android:layout_height="75dp"
-                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="2dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:text="@string/company_goal_mission_statement"
                 android:textStyle="bold" />
 
@@ -262,8 +246,7 @@
                 android:id="@+id/company_goal_mission_statement"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:layout_toRightOf="@id/company_goal_mission_statement_label"
-                android:layout_weight="2"
+                android:layout_toEndOf="@id/company_goal_mission_statement_label"
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:inputType="textCapSentences"
@@ -275,17 +258,16 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="6dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="6dp">
 
             <TextView
                 android:id="@+id/company_miscellaneous_notes_label"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="2dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:text="@string/misc_notes_about_company"
                 android:textStyle="bold" />
 
@@ -294,7 +276,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_below="@id/company_miscellaneous_notes_label"
-                android:layout_weight="2"
                 android:background="@android:color/white"
                 android:inputType="textCapSentences"
                 android:lines="5"

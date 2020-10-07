@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/set_up_interview"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <RelativeLayout
@@ -27,10 +27,9 @@
             android:id="@+id/company_date_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/date_of_interaction_label"
             android:textStyle="bold" />
 
@@ -39,14 +38,13 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/company_date_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/company_date_label"
             android:background="@android:color/white"
             android:gravity="center"
             android:hint="@string/date_of_interview"
             android:inputType="date"
             android:padding="2dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -61,10 +59,9 @@
             android:id="@+id/time_of_interview_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="Time"
             android:textStyle="bold" />
 
@@ -73,14 +70,13 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/time_of_interview_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/time_of_interview_label"
             android:background="@android:color/white"
             android:gravity="center"
             android:hint="When is your interview?"
             android:inputType="time"
             android:padding="2dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -95,10 +91,9 @@
             android:id="@+id/names_of_interviewers_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/names_of_interviewers"
             android:textStyle="bold" />
 
@@ -107,14 +102,13 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/names_of_interviewers_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/names_of_interviewers_label"
             android:background="@android:color/white"
             android:gravity="center"
             android:hint="@string/who_is_interviewer"
             android:inputType="text|textCapWords"
             android:padding="2dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -128,10 +122,9 @@
             android:id="@+id/company_email_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/contact_email_address_label"
             android:textStyle="bold" />
 
@@ -140,14 +133,13 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/company_email_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/company_email_label"
             android:background="@android:color/white"
             android:gravity="center"
             android:hint="@string/contact_email_address"
             android:inputType="textEmailAddress"
             android:padding="2dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -161,10 +153,9 @@
             android:id="@+id/miscellaneous_notes_label"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/preinterview_notes"
             android:textStyle="bold" />
 
@@ -174,14 +165,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/miscellaneous_notes_label"
             android:layout_centerVertical="true"
-            android:layout_weight="2"
             android:background="@android:color/white"
             android:gravity="top"
             android:hint="@string/what_did_you_discuss_hint"
             android:inputType="text|textMultiLine|textCapSentences"
             android:lines="5"
             android:padding="5dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -195,10 +185,9 @@
             android:id="@+id/followup_notes_label"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/followup_notes"
             android:textStyle="bold" />
 
@@ -208,14 +197,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/followup_notes_label"
             android:layout_centerVertical="true"
-            android:layout_weight="2"
             android:background="@android:color/white"
             android:gravity="top"
             android:hint="@string/followup_notes_edittext"
             android:inputType="text|textMultiLine|textCapSentences"
             android:lines="5"
             android:padding="5dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
 </LinearLayout>

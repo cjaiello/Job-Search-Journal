@@ -20,15 +20,15 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/initial_contact"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/edit_button_initial_contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@+id/initial_contact_label"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/initial_contact_label"
             android:focusableInTouchMode="false"
             android:onClick="initialContactEditClick"
             android:src="@drawable/ic_action_edit_dark" />
@@ -46,10 +46,9 @@
             android:id="@+id/date_of_interview_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/date_of_interaction_label"
             android:textStyle="bold" />
 
@@ -58,8 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/date_of_interview_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/date_of_interview_label"
             android:gravity="center"
             android:inputType="date" />
 
@@ -76,11 +74,10 @@
             android:id="@+id/contact_name_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
 
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/contact_name_label"
             android:textStyle="bold" />
 
@@ -89,8 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/contact_name_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/contact_name_label"
             android:gravity="center"
             android:inputType="text|textCapWords" />
     </RelativeLayout>
@@ -106,10 +102,9 @@
             android:id="@+id/method_of_interaction_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/method_of_interaction_label"
             android:textStyle="bold" />
 
@@ -118,8 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/method_of_interaction_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/method_of_interaction_label"
             android:gravity="center"
             android:inputType="text|textMultiLine"
             android:lines="2" />
@@ -136,10 +130,9 @@
             android:id="@+id/company_email_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/contact_email_address_label"
             android:textStyle="bold" />
 
@@ -148,8 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/company_email_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/company_email_label"
             android:autoLink="all"
             android:gravity="center"
             android:inputType="textEmailAddress"
@@ -167,17 +159,16 @@
             android:id="@+id/contact_phone_number_label"
             android:layout_width="100dp"
             android:layout_height="75dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/contact_phone_number_label"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="75dp"
-            android:layout_toRightOf="@id/contact_phone_number_label"
+            android:layout_toEndOf="@id/contact_phone_number_label"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -192,8 +183,7 @@
             <TextView
                 android:id="@+id/contact_phone_number"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
+                android:layout_height="0dp"
                 android:layout_weight="2"
                 android:autoLink="all"
                 android:gravity="center_horizontal"
@@ -214,10 +204,9 @@
             android:id="@+id/contact_phone_number_count_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="# of Calls Exchanged"
             android:textStyle="bold" />
 
@@ -226,8 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/contact_phone_number_count_label"
-            android:layout_weight="2"
+            android:layout_toEndOf="@id/contact_phone_number_count_label"
             android:gravity="center"
             android:inputType="phone" />
     </RelativeLayout>
@@ -243,10 +231,9 @@
             android:id="@+id/what_was_discussed_with_contact_label"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/what_did_you_discuss_label"
             android:textStyle="bold" />
 
@@ -256,7 +243,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/what_was_discussed_with_contact_label"
             android:layout_centerVertical="true"
-            android:layout_weight="2"
             android:gravity="top"
             android:inputType="text|textMultiLine"
             android:lines="5"

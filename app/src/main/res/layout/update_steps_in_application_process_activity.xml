@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/ic_action_add_person"
+                android:layout_toEndOf="@+id/ic_action_add_person"
                 android:gravity="center"
                 android:text="@string/initial_contact_question" />
 
@@ -50,10 +50,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/ic_action_time"
+                android:layout_toEndOf="@+id/ic_action_time"
                 android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/enter_interview_scheduling_information" />
+                android:text="@string/enter_interview_scheduling_information"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -72,16 +72,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/ic_action_phone"
+                android:layout_toEndOf="@+id/ic_action_phone"
                 android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/received_response_question" />
+                android:text="@string/received_response_question"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <FrameLayout
             android:id="@+id/initial_contact_fragment"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <FrameLayout
             android:id="@+id/set_up_interview_fragment"
