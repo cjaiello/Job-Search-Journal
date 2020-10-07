@@ -1,90 +1,127 @@
 package com.example.jobsearchjournal.employerinformation;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jobsearchjournal.R;
 
 import java.util.List;
 
-/**
- * Created by Christina Aiello on 3/23/2015.
- */
-public class CompanyListAdapter extends ArrayAdapter<Employer> {
+public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.ViewHolder> {
     private List<Employer> employerList;
-    private Context context;
 
-    public CompanyListAdapter(List<Employer> employerList, Context ctx) {
-        super(ctx, R.layout.activity_main_listitem, employerList);
+    public CompanyListAdapter(List<Employer> employerList) {
         this.employerList = employerList;
-        this.context = ctx;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        // First let's verify the convertView is not null
-        if (convertView == null) {
-            // This a new view we inflate the new layout
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.activity_main_listitem, parent, false);
+        RelativeLayout innerLayout;
+        TextView companyIDView;
+        TextView companyNameView;
+        TextView websiteView;
+        TextView positionLabelView;
+        TextView positionView;
+        ImageView positionImageView;
+        TextView stepView;
+        ImageView companyLogo;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            innerLayout = (RelativeLayout) itemView.findViewById(R.id.relative_layout);
+            companyIDView = (TextView) itemView.findViewById(R.id.id);
+            companyNameView = (TextView) itemView.findViewById(R.id.name);
+            websiteView = (TextView) itemView.findViewById(R.id.website);
+            positionLabelView = (TextView) itemView.findViewById(R.id.position_label);
+            positionView = (TextView) itemView.findViewById(R.id.position);
+            positionImageView = (ImageView) itemView.findViewById(R.id.position_image);
+            stepView = (TextView) itemView.findViewById(R.id.step);
+            companyLogo = (ImageView) itemView.findViewById(R.id.companyLogo);
         }
-        // Now we can fill the layout with the right values
-        TextView companyIDView = (TextView) convertView.findViewById(R.id.id);
-        TextView companyNameView = (TextView) convertView.findViewById(R.id.name);
-        TextView websiteView = (TextView) convertView.findViewById(R.id.website);
-        TextView positionLabelView = (TextView) convertView.findViewById(R.id.position_label);
-        TextView positionView = (TextView) convertView.findViewById(R.id.position);
-        ImageView positionImageView = (ImageView) convertView.findViewById(R.id.position_image);
-        TextView stepView = (TextView) convertView.findViewById(R.id.step);
-        ImageView companyLogo = (ImageView) convertView.findViewById(R.id.companyLogo);
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.activity_main_listitem, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        //Getting current employer from this position
         Employer employer = employerList.get(position);
 
+        // Now we can fill the layout with the right values
         // Logo for company:
-        if(employer.getLogoByteArray() != null){
-            companyLogo.setImageBitmap(BitmapFactory.decodeByteArray(employer.getLogoByteArray(), 0, employer.getLogoByteArray().length));
-            companyLogo.setVisibility(View.VISIBLE);
-        } else companyLogo.setVisibility(View.INVISIBLE);
+        if (employer.getLogoByteArray() != null) {
+            holder.companyLogo.setImageBitmap(BitmapFactory.decodeByteArray(employer.getLogoByteArray(), 0, employer.getLogoByteArray().length));
+            holder.companyLogo.setVisibility(View.VISIBLE);
+        } else holder.companyLogo.setVisibility(View.INVISIBLE);
         // Now let's set the text on the screen for this employer:
-        companyIDView.setText(employer.getID());
-        companyNameView.setText(employer.getName());
-        websiteView.setText(employer.getWebsite());
+        holder.companyIDView.setText(employer.getID());
+        holder.companyNameView.setText(employer.getName());
+        holder.websiteView.setText(employer.getWebsite());
 
         // If they don't put in a website, hide this field
         if (employer.getWebsite() == null) {
-            websiteView.setVisibility(View.GONE);
+            holder.websiteView.setVisibility(View.GONE);
         } else if (employer.getWebsite().length() == 0) {
-            websiteView.setVisibility(View.GONE);
+            holder.websiteView.setVisibility(View.GONE);
         } else {
             // There is a website, so show this field:
-            websiteView.setVisibility(View.VISIBLE);
+            holder.websiteView.setVisibility(View.VISIBLE);
         }
 
-        positionView.setText(employer.getPosition());
+        holder.positionView.setText(employer.getPosition());
         // If they don't put in a position, hide this field
         if (employer.getPosition().length() == 0) {
-            positionView.setVisibility(View.GONE);
-            positionLabelView.setVisibility(View.GONE);
-            positionImageView.setVisibility(View.GONE);
+            holder.positionView.setVisibility(View.GONE);
+            holder.positionLabelView.setVisibility(View.GONE);
+            holder.positionImageView.setVisibility(View.GONE);
         } else {
             // They did enter a position, so show this field:
-            positionView.setVisibility(View.VISIBLE);
-            positionLabelView.setVisibility(View.VISIBLE);
-            positionImageView.setVisibility(View.VISIBLE);
+            holder.positionView.setVisibility(View.VISIBLE);
+            holder.positionLabelView.setVisibility(View.VISIBLE);
+            holder.positionImageView.setVisibility(View.VISIBLE);
         }
 
         // If they have started, show most recent step, else don't
         if (employer.getStep() != null) {
-            stepView.setText(employer.getStep());
+            holder.stepView.setText(employer.getStep());
         } else {
-            stepView.setText("Not started");
+            holder.stepView.setText("Not started");
         }
 
-        return convertView;
+        // Using a setOnClickListener here since it's easier to get all needed info
+        // With that, we don't need to use a callback and it makes our Activity less messy
+        holder.innerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Making an intent to open ViewCompanyActivity
+                Intent startViewCompanyIntent = new Intent(v.getContext(), ViewCompanyActivity.class);
+                // Bundle to store things in
+                Bundle bundle = new Bundle();
+                // Use this name when starting a new activity
+                bundle.putString("ID", holder.companyIDView.getText().toString());
+                startViewCompanyIntent.putExtras(bundle);
+                // Creating an intent to start the window
+                v.getContext().startActivity(startViewCompanyIntent);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return employerList != null ? employerList.size() : 0;
     }
 }

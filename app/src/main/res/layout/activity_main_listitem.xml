@@ -3,7 +3,6 @@
     android:id="@+id/card_view"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
