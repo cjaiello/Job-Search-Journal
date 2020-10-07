@@ -1,7 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@android:color/white"
     android:scrollbarFadeDuration="0">
 
     <LinearLayout
@@ -38,7 +38,6 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/company_title"
             android:paddingBottom="6dp">
 
             <ImageView
@@ -75,7 +74,6 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -88,7 +86,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_position_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_position" />
@@ -106,7 +103,6 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -119,7 +115,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_size_label"
                 android:layout_weight="2"
-                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_size" />
@@ -138,7 +133,6 @@
                 android:layout_width="100dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -149,7 +143,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_toRightOf="@id/company_location_label"
-                android:background="@color/section_text"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -159,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="2dp"
                     android:src="@drawable/ic_action_map"
-                    android:visibility="gone"></ImageView>
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/company_street_view"
@@ -176,7 +169,7 @@
                     android:gravity="center_horizontal"
                     android:lines="2"
                     android:paddingBottom="2dp"
-                    android:textColor="@color/link_color"
+                    android:autoLink="all"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -194,7 +187,6 @@
                 android:layout_width="100dp"
                 android:layout_height="75dp"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -205,7 +197,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="75dp"
                 android:layout_toRightOf="@id/company_website_label"
-                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -215,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="2dp"
                     android:src="@drawable/ic_action_computer"
-                    android:visibility="gone"></ImageView>
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/company_website"
@@ -225,7 +216,7 @@
                     android:layout_weight="2"
                     android:gravity="center_horizontal"
                     android:paddingBottom="2dp"
-                    android:textColorLink="@color/link_color"
+                    android:autoLink="all"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -242,7 +233,6 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -255,7 +245,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_industry_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_industry" />
@@ -273,7 +262,6 @@
                 android:layout_width="100dp"
                 android:layout_height="75dp"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -286,7 +274,6 @@
                 android:layout_height="75dp"
                 android:layout_toRightOf="@id/company_goal_mission_statement_label"
                 android:layout_weight="2"
-                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_goal_mission_statement" />
@@ -304,7 +291,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:background="@color/company_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_ratings"
@@ -317,7 +303,6 @@
                 android:layout_below="@id/ratings_label"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/company_title"
                 android:gravity="center"
                 android:src="@drawable/glassdoor_logo_80" />
 
@@ -326,13 +311,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:background="@color/company_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
                 android:layout_below="@id/glassdoor_logo"
                 android:text="@string/ratings_subtitle"
-                android:textColorLink="@color/link_color"
+                android:autoLink="all"
                 android:textSize="12dp" />
         </RelativeLayout>
 
@@ -347,7 +331,6 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -360,7 +343,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_overall_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="30dp"
@@ -372,7 +354,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_overall_rating"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -385,7 +366,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_culture_and_values_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_culture_and_values_rating" />
@@ -403,7 +383,6 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -416,7 +395,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_senior_leadership_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="30dp"
@@ -428,7 +406,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_senior_leadership_rating"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -441,7 +418,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_compensation_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text_2"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_compensation_rating" />
@@ -459,7 +435,6 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -472,7 +447,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_career_opportunities_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="30dp"
@@ -484,7 +458,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_career_opportunities_rating"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -497,7 +470,6 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_work_life_balance_rating_label"
                 android:layout_weight="2"
-                android:background="@color/section_text"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/company_work_life_balance_rating" />
@@ -515,7 +487,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -528,11 +499,11 @@
                 android:layout_height="50dp"
                 android:layout_below="@id/company_miscellaneous_notes_label"
                 android:layout_weight="2"
-                android:background="@color/section_text_2"
                 android:lines="5"
                 android:padding="4dp"
                 android:text="@string/misc_notes_about_company" />
         </RelativeLayout>
 
     </LinearLayout>
+
 </ScrollView>

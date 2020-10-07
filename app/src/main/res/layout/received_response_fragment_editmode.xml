@@ -2,15 +2,14 @@
     android:id="@+id/initial_contact_fragment"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background_color"
+    android:background="@android:color/white"
     android:orientation="vertical"
     android:paddingTop="10dp">
-
-
+    
+    <!--        android:background="@color/company_title"-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/company_title"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -27,21 +26,20 @@
 
     </RelativeLayout>
 
-
+    <!--        android:background="@color/background_color"-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="5dp">
 
+        <!--            android:background="@color/section_title"-->
         <TextView
             android:id="@+id/date_of_response_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -55,7 +53,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/date_of_response_label"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:inputType="date"
             android:padding="2dp"
@@ -64,20 +62,20 @@
 
     </RelativeLayout>
 
+    <!--        android:background="@color/background_color"-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
 
+        <!--            android:background="@color/section_title"-->
         <TextView
             android:id="@+id/yes_or_no_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -88,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/yes_or_no_label"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
@@ -114,22 +112,22 @@
 
     </RelativeLayout>
 
+    <!--        android:background="@color/background_color"-->
     <RelativeLayout
         android:id="@+id/offer_amount_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:visibility="gone"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
 
+        <!--            android:background="@color/section_title"-->
         <TextView
             android:id="@+id/offer_amount_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -143,7 +141,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/offer_amount_label"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:inputType="text|textCapWords"
             android:padding="2dp"
@@ -151,22 +149,22 @@
             android:textSize="14dp" />
     </RelativeLayout>
 
+    <!--        android:background="@color/background_color"-->
     <RelativeLayout
         android:id="@+id/offer_deadline_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:visibility="gone"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
 
+        <!--            android:background="@color/section_title"-->
         <TextView
             android:id="@+id/offer_deadline_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -180,7 +178,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/offer_deadline_label"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:inputType="date"
             android:padding="2dp"
@@ -188,11 +186,11 @@
             android:textSize="14dp" />
     </RelativeLayout>
 
+    <!--        android:background="@color/background_color"-->
     <RelativeLayout
         android:id="@+id/offer_response_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:visibility="gone"
         android:paddingBottom="2dp"
@@ -203,7 +201,6 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -217,7 +214,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/offer_response_label"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:hint="How did you respond to the offer?"
             android:inputType="text|textCapSentences"
@@ -228,7 +225,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -238,7 +234,6 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -252,7 +247,7 @@
             android:layout_below="@id/miscellaneous_notes_label"
             android:layout_centerVertical="true"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="top"
             android:inputType="text|textMultiLine"
             android:lines="5"

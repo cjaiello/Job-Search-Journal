@@ -300,8 +300,6 @@ public class ViewCompanyActivity extends AppCompatActivity {
                 }
             });
             positionView.setText(employer.getPosition());
-            // Give this link the proper formatting:
-            positionView.setTextColor(getResources().getColorStateList(R.color.link_color));
             positionView.setTypeface(null, Typeface.BOLD);
             positionView.setPaintFlags(positionView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         } else {

@@ -1,7 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@android:color/white"
     android:paddingBottom="5dp"
     android:scrollbarFadeDuration="0">
 
@@ -16,7 +16,6 @@
             android:id="@+id/ic_action_add_person_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/company_title"
             android:padding="5dp">
 
             <ImageView
@@ -39,7 +38,6 @@
             android:id="@+id/ic_action_time_box"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/company_title"
             android:padding="5dp">
 
             <ImageView
@@ -61,8 +59,7 @@
         <RelativeLayout
             android:id="@+id/ic_action_phone_box"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/company_title">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/ic_action_phone"
@@ -112,4 +109,5 @@
             android:paddingTop="25dp" />
 
     </LinearLayout>
+
 </ScrollView>

@@ -6,7 +6,7 @@
             <!-- Shadow -->
             <stroke
                 android:width="3dp"
-                android:color="@color/shadow_color" />
+                android:color="@color/secondaryLighter" />
             <!-- Shadow properties  -->
             <padding
                 android:bottom="3dp"

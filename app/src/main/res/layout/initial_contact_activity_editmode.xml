@@ -2,7 +2,7 @@
     android:id="@+id/initial_contact_fragment"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background_color"
+    android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="10dp"
     android:paddingTop="2dp">
@@ -11,17 +11,14 @@
         android:id="@+id/initial_contact_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/company_title"
         android:gravity="center"
         android:text="@string/initial_contact"
         android:textSize="30dp"
         android:textStyle="bold" />
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="5dp">
@@ -31,7 +28,6 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -45,7 +41,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/company_date_label"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:hint="@string/date_of_interaction"
             android:inputType="date"
@@ -57,7 +53,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -67,7 +62,6 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -81,7 +75,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/contact_name_label"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:hint="@string/contact_name"
             android:inputType="text|textCapWords"
@@ -92,7 +86,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -102,7 +95,6 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -116,7 +108,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/company_email_label"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:hint="@string/contact_email_address"
             android:inputType="textEmailAddress"
@@ -127,7 +119,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -137,7 +128,6 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -151,7 +141,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/contact_phone_number_label"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:hint="@string/contact_phone_number"
             android:inputType="phone"
@@ -162,7 +152,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -172,7 +161,6 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -186,7 +174,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/method_of_interaction_label"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="center"
             android:hint="@string/method_of_interaction"
             android:inputType="text|textMultiLine|textCapSentences"
@@ -198,7 +186,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
         android:paddingTop="2dp">
@@ -208,7 +195,6 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
             android:paddingRight="5dp"
@@ -222,7 +208,7 @@
             android:layout_below="@id/what_was_discussed_with_contact_label"
             android:layout_centerVertical="true"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="top"
             android:hint="@string/what_did_you_discuss"
             android:inputType="text|textMultiLine|textCapSentences"

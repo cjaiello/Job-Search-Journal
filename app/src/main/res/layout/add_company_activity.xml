@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbarFadeDuration="0"
-    android:background="@color/background_color">
+    android:background="@android:color/white">
 
     <LinearLayout
         android:id="@+id/listView"
@@ -21,7 +21,6 @@
             android:textSize="14dp"
             android:textStyle="italic" />
 
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +31,6 @@
                 android:id="@+id/company_name_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -44,13 +42,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_name_label"
-                android:background="@color/white"
+                android:background="@android:color/white"
                 android:hint="@string/company_name_hint"
                 android:inputType="text|textCapWords"
                 android:textSize="14dp"
                 android:padding="10dp" />
         </RelativeLayout>
-
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -62,7 +59,6 @@
                 android:id="@+id/company_position_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -75,7 +71,7 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_position_label"
                 android:layout_weight="2"
-                android:background="@color/white"
+                android:background="@android:color/white"
                 android:hint="@string/company_position_hint"
                 android:textSize="14dp"
                 android:inputType="text|textCapWords"
@@ -93,7 +89,6 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -106,14 +101,13 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_position_posting_label"
                 android:layout_weight="2"
-                android:background="@color/white"
+                android:background="@android:color/white"
                 android:inputType="textCapWords"
                 android:padding="10dp"
                 android:textSize="14dp"
                 android:hint="@string/company_position_posting_hint" />
 
         </RelativeLayout>
-
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -125,13 +119,11 @@
                 android:id="@+id/company_size_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
                 android:text="@string/company_size"
                 android:textStyle="bold" />
-
 
             <EditText
                 android:id="@+id/company_size"
@@ -139,14 +131,13 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_size_label"
                 android:layout_weight="2"
-                android:background="@color/white"
+                android:background="@android:color/white"
                 android:hint="@string/company_size_hint"
                 android:inputType="text|textCapWords"
                 android:lines="2"
                 android:textSize="14dp"
                 android:padding="10dp" />
         </RelativeLayout>
-
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -158,7 +149,6 @@
                 android:id="@+id/company_location_label"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -171,14 +161,13 @@
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/company_location_label"
                 android:layout_weight="2"
-                android:background="@color/white"
+                android:background="@android:color/white"
                 android:hint="@string/company_location_hint"
                 android:inputType="text|textCapWords"
                 android:lines="2"
                 android:textSize="14dp"
                 android:padding="10dp" />
         </RelativeLayout>
-
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -190,7 +179,6 @@
                 android:id="@+id/company_goal_mission_statement_label"
                 android:layout_width="100dp"
                 android:layout_height="75dp"
-                android:background="@color/section_title"
                 android:gravity="center"
                 android:padding="2dp"
                 android:paddingRight="20dp"
@@ -204,7 +192,7 @@
                 android:layout_toRightOf="@id/company_goal_mission_statement_label"
                 android:layout_weight="2"
                 android:gravity="top"
-                android:background="@color/white"
+                android:background="@android:color/white"
                 android:hint="@string/company_goal_mission_statement_hint"
                 android:inputType="text|textCapSentences|textMultiLine"
                 android:lines="3"
@@ -212,12 +200,10 @@
                 android:padding="10dp" />
         </RelativeLayout>
 
-
         <TextView
             android:id="@+id/company_miscellaneous_notes_label"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="10dp"
             android:paddingRight="20dp"
@@ -229,7 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="top"
             android:hint="@string/misc_notes_about_company_hint"
             android:inputType="text|textMultiLine|textCapSentences"
@@ -248,4 +234,5 @@
             android:textStyle="italic" />
 
     </LinearLayout>
+
 </ScrollView>

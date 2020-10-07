@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#FFFFFF</color>
 
+    <color name="primaryColor">#00acc1</color>
+    <color name="primaryLightColor">#5ddef4</color>
+    <color name="primaryDarkColor">#007c91</color>
+    <color name="secondaryColor">#1976d2</color>
+    <color name="secondaryLightColor">#63a4ff</color>
+    <color name="secondaryDarkColor">#004ba0</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#ffffff</color>
 
-    <color name="action_bar">#218a8f</color>
-    <color name="company_title">#ff53b5ba</color>
-    <color name="section_title">#ff53b5ba</color>
-    <color name="section_text">#ffffff</color>
-    <color name="section_text_2">#ffffff</color>
-    <color name="background_color">#C5E9E9</color>
-    <color name="shadow_color">#ffadd7d4</color>
-    <color name="link_color">#ff455d97</color>
-
+    <color name="secondaryLighter">#FF6CA9FF</color>
 </resources>
