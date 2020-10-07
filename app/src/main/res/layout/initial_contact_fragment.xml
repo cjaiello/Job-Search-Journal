@@ -45,7 +45,8 @@
         <TextView
             android:id="@+id/date_of_interview_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -63,6 +64,13 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,8 +81,8 @@
         <TextView
             android:id="@+id/contact_name_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
-
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -91,6 +99,13 @@
             android:inputType="text|textCapWords" />
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,7 +116,8 @@
         <TextView
             android:id="@+id/method_of_interaction_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -119,6 +135,13 @@
             android:lines="2" />
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,7 +152,8 @@
         <TextView
             android:id="@+id/company_email_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -148,6 +172,13 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -158,7 +189,8 @@
         <TextView
             android:id="@+id/contact_phone_number_label"
             android:layout_width="100dp"
-            android:layout_height="75dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -193,6 +225,13 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -203,7 +242,8 @@
         <TextView
             android:id="@+id/contact_phone_number_count_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -219,6 +259,13 @@
             android:gravity="center"
             android:inputType="phone" />
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -60,7 +60,8 @@
         <TextView
             android:id="@+id/company_date_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -80,6 +81,13 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,7 +98,8 @@
         <TextView
             android:id="@+id/time_of_interview_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -110,6 +119,13 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,7 +136,8 @@
         <TextView
             android:id="@+id/names_of_interviewers_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -139,6 +156,13 @@
             android:textSize="14sp" />
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -149,7 +173,8 @@
         <TextView
             android:id="@+id/company_email_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
             android:paddingEnd="5dp"
@@ -169,6 +194,13 @@
             android:textSize="14sp"
             android:textStyle="bold" />
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -199,6 +231,13 @@
             android:padding="5dp"
             android:textSize="14sp" />
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
 
     <RelativeLayout
         android:layout_width="match_parent"
