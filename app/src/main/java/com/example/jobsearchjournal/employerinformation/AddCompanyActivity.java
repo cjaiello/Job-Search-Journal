@@ -3,8 +3,7 @@ package com.example.jobsearchjournal.employerinformation;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -17,7 +16,7 @@ import static com.example.jobsearchjournal.general.DatabaseContract.CompanyDataT
 import static com.example.jobsearchjournal.general.DatabaseContract.DatabaseHelper;
 
 
-public class AddCompanyActivity extends ActionBarActivity {
+public class AddCompanyActivity extends AppCompatActivity {
     private EditText employerNameEditText; // Box where user types employer's name
     private Employer employer; // Will contain an employer's information
     private DatabaseHelper databaseHelper;

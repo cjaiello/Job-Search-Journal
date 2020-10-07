@@ -3,28 +3,27 @@
     <style name="MyCustomTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="android:fontFamily">@font/raleway</item>
+        <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-<!--        <item name="android:colorSecondary">@color/secondaryColor</item>-->
-<!--        <item name="android:colorAccent">@color/secondaryColor</item>-->
         <item name="colorAccent">@color/secondaryColor</item>
     </style>
 
-    <!--<style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="titleTextStyle">@style/MyTitleTextStyle</item>
-        <item name="background">@color/action_bar</item>
+        <item name="background">@color/primaryColor</item>
         <item name="android:fontFamily">@font/raleway</item>
     </style>
 
     <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/raleway</item>
         <item name="android:textStyle">bold</item>
-    </style>-->
+    </style>
 
     <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/raleway</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>
