@@ -102,8 +102,11 @@ public class AddCompanyActivity extends ActionBarActivity {
         values.put(CompanyDataTable.COLUMN_NAME_WORKLIFE, employer.getWorkLifeBalanceRating());
         values.put(CompanyDataTable.COLUMN_NAME_LOGO, employer.getLogoByteArray());
 
-        String streetViewUrl = ("https://maps.googleapis.com/maps/api/streetview?size=400x400&location=" + companyLocation.getText().toString()).replaceAll(" ", "%20");
-        employer.fetchCompanyStreetView(streetViewUrl);
+        String location = companyLocation.getText().toString();
+        if (!location.isEmpty()) {
+            String streetViewUrl = ("https://maps.googleapis.com/maps/api/streetview?size=400x400&location=" + location).replaceAll(" ", "%20");
+            employer.fetchCompanyStreetView(streetViewUrl);
+        }
 
         // Lastly, add the streetview image to the database based on the address the user typed in:
         values.put(CompanyDataTable.COLUMN_NAME_STREET_VIEW, employer.getStreetByteArray());
