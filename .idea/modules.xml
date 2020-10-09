@@ -3,8 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Job-Search-Journal.iml" filepath="$PROJECT_DIR$/.idea/modules/Job-Search-Journal.iml" group="Job-Search-Journal" />
-      <module fileurl="file://$PROJECT_DIR$/MobileBSMSProject.iml" filepath="$PROJECT_DIR$/MobileBSMSProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Job-Search-Journal/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Job-Search-Journal/app" />
     </modules>
   </component>
 </project>

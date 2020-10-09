@@ -2,18 +2,16 @@
     android:id="@+id/initial_contact_fragment"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background_color"
+    android:background="@android:color/white"
     android:orientation="vertical"
     android:paddingTop="10dp">
-
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/company_title"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/received_response_label"
@@ -22,29 +20,26 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/received_response"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="5dp">
+        android:paddingTop="5dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/date_of_response_label"
             android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_weight="2"
-            android:background="@color/section_title"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/date_of_response"
             android:textStyle="bold" />
 
@@ -53,46 +48,49 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/date_of_response_label"
-            android:layout_weight="2"
-            android:background="@color/white"
+            android:layout_toEndOf="@id/date_of_response_label"
+            android:background="@android:color/white"
             android:gravity="center"
+            android:hint="When did you receive a response?"
             android:inputType="date"
             android:padding="2dp"
-            android:hint="When did you receive a response?"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/yes_or_no_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="Offer?"
             android:textStyle="bold" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_toRightOf="@id/yes_or_no_label"
-            android:background="@color/white"
+            android:layout_toEndOf="@id/yes_or_no_label"
+            android:background="@android:color/white"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <CheckBox
                 android:id="@+id/accepted_button"
@@ -106,7 +104,7 @@
                 android:id="@+id/rejected_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/accepted_button"
+                android:layout_toEndOf="@id/accepted_button"
                 android:gravity="center"
                 android:onClick="receivedNoOfferMethod"
                 android:text="@string/no_offer" />
@@ -114,25 +112,29 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/primaryColor" />
+
     <RelativeLayout
         android:id="@+id/offer_amount_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:paddingTop="2dp"
         android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/offer_amount_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/offer_amount"
             android:textStyle="bold" />
 
@@ -141,35 +143,31 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/offer_amount_label"
-            android:layout_weight="2"
-            android:background="@color/white"
+            android:layout_toEndOf="@id/offer_amount_label"
+            android:background="@android:color/white"
             android:gravity="center"
+            android:hint="How much was the offer for?"
             android:inputType="text|textCapWords"
             android:padding="2dp"
-            android:hint="How much was the offer for?"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/offer_deadline_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:paddingTop="2dp"
         android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/offer_deadline_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/offer_deadline"
             android:textStyle="bold" />
 
@@ -178,35 +176,31 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/offer_deadline_label"
-            android:layout_weight="2"
-            android:background="@color/white"
+            android:layout_toEndOf="@id/offer_deadline_label"
+            android:background="@android:color/white"
             android:gravity="center"
+            android:hint="When is this offer due?"
             android:inputType="date"
             android:padding="2dp"
-            android:hint="When is this offer due?"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/offer_response_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:paddingTop="2dp"
         android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/offer_response_label"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="Offer Response"
             android:textStyle="bold" />
 
@@ -215,33 +209,29 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/offer_response_label"
-            android:layout_weight="2"
-            android:background="@color/white"
+            android:layout_toEndOf="@id/offer_response_label"
+            android:background="@android:color/white"
             android:gravity="center"
             android:hint="How did you respond to the offer?"
             android:inputType="text|textCapSentences"
             android:padding="2dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/miscellaneous_notes_label"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_weight="2"
-            android:background="@color/section_title"
             android:gravity="center"
             android:padding="2dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/misc_notes"
             android:textStyle="bold" />
 
@@ -251,14 +241,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/miscellaneous_notes_label"
             android:layout_centerVertical="true"
-            android:layout_weight="2"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:gravity="top"
+            android:hint="Any other notes can go here."
             android:inputType="text|textMultiLine"
             android:lines="5"
-            android:hint="Any other notes can go here."
             android:padding="5dp"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
 </LinearLayout>

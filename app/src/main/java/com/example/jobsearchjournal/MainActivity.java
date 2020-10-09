@@ -10,36 +10,35 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.location.LocationListener;
 
 import com.example.jobsearchjournal.employerinformation.AddCompanyActivity;
 import com.example.jobsearchjournal.employerinformation.CompanyListAdapter;
 import com.example.jobsearchjournal.employerinformation.Employer;
-import com.example.jobsearchjournal.employerinformation.ViewCompanyActivity;
 import com.example.jobsearchjournal.general.DatabaseContract;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity "; // Used for log files
-    private ListView listView; // Contains all companies' names and urls
+    private RecyclerView recyclerView; // Contains all companies' names and urls
     public CompanyListAdapter adapter = null;
     private DatabaseContract.DatabaseHelper databaseHelper;
     private SQLiteDatabase db;
@@ -134,35 +133,15 @@ public class MainActivity extends ActionBarActivity {
         editor.putString("view", "name");
         editor.commit();
 
-        // This contains the list of companies
-        listView = (ListView) findViewById(R.id.listview);
+        // The RecyclerView which will get the new adapter
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        // Adapter for the list of companies
-        adapter = new CompanyListAdapter(listOfCompanies, this);
-        listView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Setting actions that occur when pressing an item in the listview
-        listView.setOnItemClickListener(new ListView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // Making an intent to open ViewCompanyActivity
-                Intent startViewCompanyIntent = new Intent(MainActivity.this, ViewCompanyActivity.class);
-                // Bundle to store things in
-                Bundle bundle = new Bundle();
-                // Getting the clicked view
-                RelativeLayout relativeLayout = (RelativeLayout) view;
-                // Getting the first child, which is the textview with a company's name
-                TextView idTextView = (TextView) relativeLayout.getChildAt(1);
-                // Use this name when starting a new activity
-                bundle.putString("ID", idTextView.getText().toString());
-                startViewCompanyIntent.putExtras(bundle);
-                // Creating an intent to start the window
-                startActivity(startViewCompanyIntent);
-            }
-        });
-
-
+        // RecyclerView Adapter for the list of companies
+        // Not a ListView as it isn't happy with clickable children (like the cardView with ripple)
+        adapter = new CompanyListAdapter(listOfCompanies);
+        recyclerView.setAdapter(adapter);
     }
 
 
